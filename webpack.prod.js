@@ -8,5 +8,6 @@ module.exports = merge(common, {
         new UglifyJSPlugin({
             sourceMap: true
         })
-    ]
+    ],
+    mode: 'production',
 });
