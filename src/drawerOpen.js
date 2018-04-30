@@ -1,4 +1,4 @@
-import aAnimationWrapper from './aAnimationWrapper';
+import aAnimationWrapper from '../utils/aAnimationWrapper';
 export default AFRAME.registerComponent('drawer-open',{
 
     schema: {
