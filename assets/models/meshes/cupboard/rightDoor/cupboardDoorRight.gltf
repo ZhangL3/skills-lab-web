@@ -3,9 +3,9 @@
         {
             "bufferView" : 0, 
             "componentType" : 5121, 
-            "count" : 126, 
+            "count" : 336, 
             "max" : [
-                83
+                143
             ], 
             "min" : [
                 0
@@ -15,25 +15,25 @@
         {
             "bufferView" : 1, 
             "componentType" : 5126, 
-            "count" : 84, 
+            "count" : 144, 
             "max" : [
-                2.0, 
-                0.9599999785423279, 
-                4.929999828338623
+                2.980232238769531e-07, 
+                4.075882911682129, 
+                -0.0
             ], 
             "min" : [
+                -0.06793132424354553, 
                 0.0, 
-                -0.030000029131770134, 
-                -0.029999999329447746
+                -3.39656925201416
             ], 
             "type" : "VEC3"
         }, 
         {
             "bufferView" : 2, 
             "componentType" : 5126, 
-            "count" : 84, 
+            "count" : 144, 
             "max" : [
-                1.0, 
+                0.9999999403953552, 
                 1.0, 
                 1.0
             ], 
@@ -47,32 +47,14 @@
         {
             "bufferView" : 3, 
             "componentType" : 5126, 
-            "count" : 84, 
+            "count" : 144, 
             "max" : [
-                1.0, 
-                2.628808215376921e-05, 
-                1.0, 
-                1.0
+                0.9636886119842529, 
+                0.9994652682216838
             ], 
             "min" : [
-                -1.0, 
-                -1.0, 
-                -1.0, 
-                1.0
-            ], 
-            "type" : "VEC4"
-        }, 
-        {
-            "bufferView" : 4, 
-            "componentType" : 5126, 
-            "count" : 84, 
-            "max" : [
-                0.9997003078460693, 
-                0.9997002790332772
-            ], 
-            "min" : [
-                0.00029972096672281623, 
-                0.08876007795333862
+                0.0005347317783161998, 
+                0.0005348324775695801
             ], 
             "type" : "VEC2"
         }
@@ -84,39 +66,33 @@
     "bufferViews" : [
         {
             "buffer" : 0, 
-            "byteLength" : 126, 
+            "byteLength" : 336, 
             "byteOffset" : 0, 
             "target" : 34963
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 1008, 
-            "byteOffset" : 128, 
+            "byteLength" : 1728, 
+            "byteOffset" : 336, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 1008, 
-            "byteOffset" : 1136, 
+            "byteLength" : 1728, 
+            "byteOffset" : 2064, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 1344, 
-            "byteOffset" : 2144, 
-            "target" : 34962
-        }, 
-        {
-            "buffer" : 0, 
-            "byteLength" : 672, 
-            "byteOffset" : 3488, 
+            "byteLength" : 1152, 
+            "byteOffset" : 3792, 
             "target" : 34962
         }
     ], 
     "buffers" : [
         {
-            "byteLength" : 4160, 
-            "uri" : "drawer.bin"
+            "byteLength" : 4944, 
+            "uri" : "cupboardDoorRight.bin"
         }
     ], 
     "images" : [
@@ -125,6 +101,18 @@
         }
     ], 
     "materials" : [
+        {
+            "name" : "Material", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.6400000190734865, 
+                    0.6400000190734865, 
+                    0.6400000190734865, 
+                    1.0
+                ], 
+                "metallicFactor" : 0.0
+            }
+        }, 
         {
             "name" : "Wood", 
             "pbrMetallicRoughness" : {
@@ -137,17 +125,16 @@
     ], 
     "meshes" : [
         {
-            "name" : "Plane", 
+            "name" : "Cube", 
             "primitives" : [
                 {
                     "attributes" : {
                         "NORMAL" : 2, 
                         "POSITION" : 1, 
-                        "TANGENT" : 3, 
-                        "TEXCOORD_0" : 4
+                        "TEXCOORD_0" : 3
                     }, 
                     "indices" : 0, 
-                    "material" : 0
+                    "material" : 1
                 }
             ]
         }
@@ -155,11 +142,12 @@
     "nodes" : [
         {
             "mesh" : 0, 
-            "name" : "Plane", 
-            "scale" : [
-                1.3586276769638062, 
-                1.3586276769638062, 
-                1.3586276769638062
+            "name" : "Cube", 
+            "rotation" : [
+                0.0, 
+                1.0, 
+                -0.0, 
+                -4.371138828673793e-08
             ]
         }
     ], 

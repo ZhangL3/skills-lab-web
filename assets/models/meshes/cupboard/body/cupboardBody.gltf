@@ -3,7 +3,7 @@
         {
             "bufferView" : 0, 
             "componentType" : 5121, 
-            "count" : 126, 
+            "count" : 132, 
             "max" : [
                 83
             ], 
@@ -18,13 +18,13 @@
             "count" : 84, 
             "max" : [
                 2.0, 
-                0.9599999785423279, 
-                4.929999828338623
+                3.0, 
+                5.0
             ], 
             "min" : [
                 0.0, 
-                -0.030000029131770134, 
-                -0.029999999329447746
+                0.0, 
+                -0.0
             ], 
             "type" : "VEC3"
         }, 
@@ -49,30 +49,12 @@
             "componentType" : 5126, 
             "count" : 84, 
             "max" : [
-                1.0, 
-                2.628808215376921e-05, 
-                1.0, 
-                1.0
+                0.9996501803398132, 
+                0.9996501832793001
             ], 
             "min" : [
-                -1.0, 
-                -1.0, 
-                -1.0, 
-                1.0
-            ], 
-            "type" : "VEC4"
-        }, 
-        {
-            "bufferView" : 4, 
-            "componentType" : 5126, 
-            "count" : 84, 
-            "max" : [
-                0.9997003078460693, 
-                0.9997002790332772
-            ], 
-            "min" : [
-                0.00029972096672281623, 
-                0.08876007795333862
+                0.00034981672069989145, 
+                0.12274450063705444
             ], 
             "type" : "VEC2"
         }
@@ -84,39 +66,33 @@
     "bufferViews" : [
         {
             "buffer" : 0, 
-            "byteLength" : 126, 
+            "byteLength" : 132, 
             "byteOffset" : 0, 
             "target" : 34963
         }, 
         {
             "buffer" : 0, 
             "byteLength" : 1008, 
-            "byteOffset" : 128, 
+            "byteOffset" : 132, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
             "byteLength" : 1008, 
-            "byteOffset" : 1136, 
-            "target" : 34962
-        }, 
-        {
-            "buffer" : 0, 
-            "byteLength" : 1344, 
-            "byteOffset" : 2144, 
+            "byteOffset" : 1140, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
             "byteLength" : 672, 
-            "byteOffset" : 3488, 
+            "byteOffset" : 2148, 
             "target" : 34962
         }
     ], 
     "buffers" : [
         {
-            "byteLength" : 4160, 
-            "uri" : "drawer.bin"
+            "byteLength" : 2820, 
+            "uri" : "cupboardBody.bin"
         }
     ], 
     "images" : [
@@ -143,8 +119,7 @@
                     "attributes" : {
                         "NORMAL" : 2, 
                         "POSITION" : 1, 
-                        "TANGENT" : 3, 
-                        "TEXCOORD_0" : 4
+                        "TEXCOORD_0" : 3
                     }, 
                     "indices" : 0, 
                     "material" : 0

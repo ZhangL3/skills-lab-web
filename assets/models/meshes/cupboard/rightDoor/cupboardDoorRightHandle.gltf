@@ -3,9 +3,9 @@
         {
             "bufferView" : 0, 
             "componentType" : 5121, 
-            "count" : 378, 
+            "count" : 372, 
             "max" : [
-                207
+                251
             ], 
             "min" : [
                 0
@@ -15,46 +15,46 @@
         {
             "bufferView" : 1, 
             "componentType" : 5126, 
-            "count" : 208, 
+            "count" : 252, 
             "max" : [
-                2.0, 
-                5.0, 
-                5.0
+                -0.0706997811794281, 
+                2.203355073928833, 
+                -2.9968316555023193
             ], 
             "min" : [
-                0.0, 
-                0.0, 
-                -0.0
+                -0.2738648056983948, 
+                1.8623348474502563, 
+                -3.3378517627716064
             ], 
             "type" : "VEC3"
         }, 
         {
             "bufferView" : 2, 
             "componentType" : 5126, 
-            "count" : 208, 
+            "count" : 252, 
             "max" : [
                 1.0, 
-                1.0, 
-                1.0
+                0.9800478219985962, 
+                0.9626369476318359
             ], 
             "min" : [
                 -1.0, 
-                -1.0, 
-                -1.0
+                -0.9800474643707275, 
+                -0.9626368284225464
             ], 
             "type" : "VEC3"
         }, 
         {
             "bufferView" : 3, 
             "componentType" : 5126, 
-            "count" : 208, 
+            "count" : 252, 
             "max" : [
-                0.9994134902954102, 
-                0.9994135149172507
+                0.9813184142112732, 
+                0.9993878609966487
             ], 
             "min" : [
-                0.0005864850827492774, 
-                0.03421074151992798
+                0.0006121390033513308, 
+                0.0006121993064880371
             ], 
             "type" : "VEC2"
         }
@@ -66,41 +66,56 @@
     "bufferViews" : [
         {
             "buffer" : 0, 
-            "byteLength" : 378, 
+            "byteLength" : 372, 
             "byteOffset" : 0, 
             "target" : 34963
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 2496, 
-            "byteOffset" : 380, 
+            "byteLength" : 3024, 
+            "byteOffset" : 372, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 2496, 
-            "byteOffset" : 2876, 
+            "byteLength" : 3024, 
+            "byteOffset" : 3396, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 1664, 
-            "byteOffset" : 5372, 
+            "byteLength" : 2016, 
+            "byteOffset" : 6420, 
             "target" : 34962
         }
     ], 
     "buffers" : [
         {
-            "byteLength" : 7036, 
-            "uri" : "cabinet.bin"
+            "byteLength" : 8436, 
+            "uri" : "cupboardDoorRightHandle.bin"
         }
     ], 
     "images" : [
         {
-            "uri" : "../../../texture/woodtexture.png"
+            "uri" : "../../../texture/silverMetalTexture512.png"
         }
     ], 
     "materials" : [
+        {
+            "name" : "Material", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.6400000190734865, 
+                    0.6400000190734865, 
+                    0.6400000190734865, 
+                    1.0
+                ], 
+                "baseColorTexture" : {
+                    "index" : 0
+                }, 
+                "metallicFactor" : 0.0
+            }
+        }, 
         {
             "name" : "Wood", 
             "pbrMetallicRoughness" : {
@@ -110,16 +125,13 @@
                     0.04970657452940941, 
                     1.0
                 ], 
-                "baseColorTexture" : {
-                    "index" : 0
-                }, 
                 "metallicFactor" : 0.0
             }
         }
     ], 
     "meshes" : [
         {
-            "name" : "Plane", 
+            "name" : "Cube", 
             "primitives" : [
                 {
                     "attributes" : {
@@ -136,11 +148,12 @@
     "nodes" : [
         {
             "mesh" : 0, 
-            "name" : "Plane", 
-            "scale" : [
-                1.3586276769638062, 
-                1.3586276769638062, 
-                1.3586276769638062
+            "name" : "Cube", 
+            "rotation" : [
+                0.0, 
+                1.0, 
+                -0.0, 
+                -4.371138828673793e-08
             ]
         }
     ], 
