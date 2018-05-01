@@ -3,9 +3,9 @@
         {
             "bufferView" : 0, 
             "componentType" : 5121, 
-            "count" : 126, 
+            "count" : 378, 
             "max" : [
-                83
+                207
             ], 
             "min" : [
                 0
@@ -15,23 +15,23 @@
         {
             "bufferView" : 1, 
             "componentType" : 5126, 
-            "count" : 84, 
+            "count" : 208, 
             "max" : [
                 2.0, 
-                0.9599999785423279, 
-                4.929999828338623
+                5.0, 
+                5.0
             ], 
             "min" : [
                 0.0, 
-                -0.030000029131770134, 
-                -0.029999999329447746
+                0.0, 
+                -0.0
             ], 
             "type" : "VEC3"
         }, 
         {
             "bufferView" : 2, 
             "componentType" : 5126, 
-            "count" : 84, 
+            "count" : 208, 
             "max" : [
                 1.0, 
                 1.0, 
@@ -47,32 +47,14 @@
         {
             "bufferView" : 3, 
             "componentType" : 5126, 
-            "count" : 84, 
+            "count" : 208, 
             "max" : [
-                1.0, 
-                2.628808215376921e-05, 
-                1.0, 
-                1.0
+                0.9994134902954102, 
+                0.9994135149172507
             ], 
             "min" : [
-                -1.0, 
-                -1.0, 
-                -1.0, 
-                1.0
-            ], 
-            "type" : "VEC4"
-        }, 
-        {
-            "bufferView" : 4, 
-            "componentType" : 5126, 
-            "count" : 84, 
-            "max" : [
-                0.9997003078460693, 
-                0.9997002790332772
-            ], 
-            "min" : [
-                0.00029972096672281623, 
-                0.08876007795333862
+                0.0005864850827492774, 
+                0.03421074151992798
             ], 
             "type" : "VEC2"
         }
@@ -84,39 +66,33 @@
     "bufferViews" : [
         {
             "buffer" : 0, 
-            "byteLength" : 126, 
+            "byteLength" : 378, 
             "byteOffset" : 0, 
             "target" : 34963
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 1008, 
-            "byteOffset" : 128, 
+            "byteLength" : 2496, 
+            "byteOffset" : 380, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 1008, 
-            "byteOffset" : 1136, 
+            "byteLength" : 2496, 
+            "byteOffset" : 2876, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 1344, 
-            "byteOffset" : 2144, 
-            "target" : 34962
-        }, 
-        {
-            "buffer" : 0, 
-            "byteLength" : 672, 
-            "byteOffset" : 3488, 
+            "byteLength" : 1664, 
+            "byteOffset" : 5372, 
             "target" : 34962
         }
     ], 
     "buffers" : [
         {
-            "byteLength" : 4160, 
-            "uri" : "drawer.bin"
+            "byteLength" : 7036, 
+            "uri" : "cabinetBody.bin"
         }
     ], 
     "images" : [
@@ -143,8 +119,7 @@
                     "attributes" : {
                         "NORMAL" : 2, 
                         "POSITION" : 1, 
-                        "TANGENT" : 3, 
-                        "TEXCOORD_0" : 4
+                        "TEXCOORD_0" : 3
                     }, 
                     "indices" : 0, 
                     "material" : 0
