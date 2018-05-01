@@ -22,16 +22,23 @@
         <!-- cupboard -->
         <a-asset-item id="cupboardBody" src="../assets/models/meshes/cupboard/body/cupboardBody.gltf"/>
         <a-asset-item id="cupboardLeftDoor" src="../assets/models/meshes/cupboard/leftDoor/cupboardDoorLeft.gltf"/>
-        <a-asset-item id="cupboardLeftDoorHandle" src="../assets/models/meshes/cupboard/leftDoor/cupboardDoorLeftHandle.gltf"/>
+        <a-asset-item id="cupboardLeftDoorHandle"
+                      src="../assets/models/meshes/cupboard/leftDoor/cupboardDoorLeftHandle.gltf"/>
         <a-asset-item id="cupboardLeftDoorGlass" src="../assets/models/meshes/cupboard/leftDoor/leftGlass.gltf"/>
         <a-asset-item id="cupboardRightDoor" src="../assets/models/meshes/cupboard/rightDoor/cupboardDoorRight.gltf"/>
-        <a-asset-item id="cupboardRightDoorHandle" src="../assets/models/meshes/cupboard/rightDoor/cupboardDoorRightHandle.gltf"/>
+        <a-asset-item id="cupboardRightDoorHandle"
+                      src="../assets/models/meshes/cupboard/rightDoor/cupboardDoorRightHandle.gltf"/>
         <a-asset-item id="cupboardRightDoorGlass" src="../assets/models/meshes/cupboard/rightDoor/rightGlass.gltf"/>
 
         <!-- hand disinfection dispenser -->
         <a-asset-item id="dispenserBody" src="../assets/models/meshes/dispenser/dispenserBody.gltf"/>
         <a-asset-item id="dispenserHandle" src="../assets/models/meshes/dispenser/dispenserHandle.gltf"/>
         <img id="disinfectionLabel" src="../assets/models/meshes/dispenser/disinfectionLabel.png">
+
+        <!-- clock -->
+        <a-asset-item id="clockBody" src="../assets/models/meshes/clock/clock.gltf"/>
+        <a-asset-item id="clockHand" src="../assets/models/meshes/clock/clockHand.gltf"/>
+        <a-asset-item id="clockMarker" src="../assets/models/meshes/clock/clockMarker.gltf"/>
 
 
     </a-assets>
@@ -155,6 +162,13 @@
     <a-gltf-model src="#dispenserBody" position="-1.18 0.742 -0.9" scale="0.4 0.4 0.4">
         <a-gltf-model src="#dispenserHandle"></a-gltf-model>
         <a-image src="#disinfectionLabel" position="0 -0.13 0" scale="0.266 0.301 1"></a-image>
+    </a-gltf-model>
+
+    <!-- clock -->
+    <a-gltf-model src="#clockBody" position="-1.2 1.35 -1" scale="0.2 0.2 0.2" rotation="0 270 0">
+        <a-gltf-model id="secHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.9 0.9 " rotation="90 0 0" clock_hand_roll></a-gltf-model>
+        <a-gltf-model id="minHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.725 1.026 " rotation="90 0 0" clock_hand_roll="minuteClockHand"></a-gltf-model>
+        <a-gltf-model id="hHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.624 1.353" rotation="90 0 0" clock_hand_roll="hourClockHand"></a-gltf-model>
     </a-gltf-model>
 
     <!--camera -->
