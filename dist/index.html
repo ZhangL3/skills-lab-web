@@ -22,8 +22,7 @@
         <!-- cupboard -->
         <a-asset-item id="cupboardBody" src="../assets/models/meshes/cupboard/body/cupboardBody.gltf"/>
         <a-asset-item id="cupboardLeftDoor" src="../assets/models/meshes/cupboard/leftDoor/cupboardDoorLeft.gltf"/>
-        <a-asset-item id="cupboardLeftDoorHandle"
-                      src="../assets/models/meshes/cupboard/leftDoor/cupboardDoorLeftHandle.gltf"/>
+        <a-asset-item id="cupboardLeftDoorHandle" src="../assets/models/meshes/cupboard/leftDoor/cupboardDoorLeftHandle.gltf"/>
         <a-asset-item id="cupboardLeftDoorGlass" src="../assets/models/meshes/cupboard/leftDoor/leftGlass.gltf"/>
         <a-asset-item id="cupboardRightDoor" src="../assets/models/meshes/cupboard/rightDoor/cupboardDoorRight.gltf"/>
         <a-asset-item id="cupboardRightDoorHandle"
@@ -39,6 +38,16 @@
         <a-asset-item id="clockBody" src="../assets/models/meshes/clock/clock.gltf"/>
         <a-asset-item id="clockHand" src="../assets/models/meshes/clock/clockHand.gltf"/>
         <a-asset-item id="clockMarker" src="../assets/models/meshes/clock/clockMarker.gltf"/>
+
+        <!-- wasteBin -->
+        <a-asset-item id="wasteBinBody" src="../assets/models/meshes/wasteBin/wasteBin.gltf"/>
+        <a-asset-item id="wasteBinCap" src="../assets/models/meshes/wasteBin/wasteBinCap.gltf"/>
+
+        <!-- cloth bottle -->
+        <a-asset-item id="clothBottleBody" src="../assets/models/meshes/clothBottle/clothBottleBody.gltf"/>
+        <a-asset-item id="clothBottleCap" src="../assets/models/meshes/clothBottle/clothBottleCap.gltf"/>
+        <a-asset-item id="clothBottleCloth" src="../assets/models/meshes/clothBottle/clothBottleCloth.gltf"/>
+
 
 
     </a-assets>
@@ -169,6 +178,17 @@
         <a-gltf-model id="secHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.9 0.9 " rotation="90 0 0" clock_hand_roll></a-gltf-model>
         <a-gltf-model id="minHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.725 1.026 " rotation="90 0 0" clock_hand_roll="minuteClockHand"></a-gltf-model>
         <a-gltf-model id="hHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.624 1.353" rotation="90 0 0" clock_hand_roll="hourClockHand"></a-gltf-model>
+    </a-gltf-model>
+
+    <!-- waste bin-->
+    <a-gltf-model src="#wasteBinBody" position="0.00 0.746 -0.93" scale="0.06 0.06 0.06 " rotation="0 45 0">
+        <a-gltf-model src="#wasteBinCap" position="0.594 1.264 -0.020" waste_bin_cap_open></a-gltf-model>
+    </a-gltf-model>
+
+    <!-- cloth bottle -->
+    <a-gltf-model src="#clothBottleBody" position="0.22 0.678 -0.9" rotation="0 180 0" scale="0.15 0.15 0.15">
+        <a-gltf-model src="#clothBottleCap" position="-0.017 0.851 0.322"></a-gltf-model>
+        <a-gltf-model src="#clothBottleCloth" position="-0.074 0.599 0.145"></a-gltf-model>
     </a-gltf-model>
 
     <!--camera -->

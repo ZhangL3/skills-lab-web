@@ -1,4 +1,5 @@
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+
 export default AFRAME.registerComponent('door_open', {
     schema: {
         open : {default: '0 -90 0'},
