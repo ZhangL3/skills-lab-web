@@ -9,8 +9,9 @@
  * @param dur
  * @param direction
  * @param remove
+ * @param fill
  */
-const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', remove=false) => {
+const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', remove=false, fill='none') => {
     const move=document.createElement("a-animation");
     move.setAttribute("begin",begin);
     move.setAttribute("attribute", attribute);
@@ -18,6 +19,7 @@ const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', re
     move.setAttribute("to", to);
     move.setAttribute("dur", dur);
     move.setAttribute("direction", direction);
+    move.setAttribute("fill", fill);
 
     el.appendChild(move);
 
