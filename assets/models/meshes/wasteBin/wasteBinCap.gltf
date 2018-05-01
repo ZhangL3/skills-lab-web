@@ -1,0 +1,189 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0, 
+            "componentType" : 5123, 
+            "count" : 876, 
+            "max" : [
+                875
+            ], 
+            "min" : [
+                0
+            ], 
+            "type" : "SCALAR"
+        }, 
+        {
+            "bufferView" : 1, 
+            "componentType" : 5126, 
+            "count" : 876, 
+            "max" : [
+                0.11263763904571533, 
+                0.5974044799804688, 
+                1.0026143789291382
+            ], 
+            "min" : [
+                -3.5237741470336914, 
+                -4.781344413757324, 
+                -0.9973856806755066
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 2, 
+            "componentType" : 5126, 
+            "count" : 876, 
+            "max" : [
+                0.8750877380371094, 
+                1.0, 
+                0.7670217156410217
+            ], 
+            "min" : [
+                -0.7278664708137512, 
+                -0.9550462365150452, 
+                -0.8715475797653198
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 3, 
+            "componentType" : 5126, 
+            "count" : 876, 
+            "max" : [
+                1.0, 
+                0.727872371673584, 
+                0.9994342923164368, 
+                1.0
+            ], 
+            "min" : [
+                -1.0, 
+                -0.7892067432403564, 
+                -1.0, 
+                -1.0
+            ], 
+            "type" : "VEC4"
+        }, 
+        {
+            "bufferView" : 4, 
+            "componentType" : 5126, 
+            "count" : 876, 
+            "max" : [
+                0.9988138675689697, 
+                0.9988139274064451
+            ], 
+            "min" : [
+                0.0011860725935548544, 
+                0.049816668033599854
+            ], 
+            "type" : "VEC2"
+        }
+    ], 
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter", 
+        "version" : "2.0"
+    }, 
+    "bufferViews" : [
+        {
+            "buffer" : 0, 
+            "byteLength" : 1752, 
+            "byteOffset" : 0, 
+            "target" : 34963
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 10512, 
+            "byteOffset" : 1752, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 10512, 
+            "byteOffset" : 12264, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 14016, 
+            "byteOffset" : 22776, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 7008, 
+            "byteOffset" : 36792, 
+            "target" : 34962
+        }
+    ], 
+    "buffers" : [
+        {
+            "byteLength" : 43800, 
+            "uri" : "wasteBinCap.bin"
+        }
+    ], 
+    "images" : [
+        {
+            "uri" : "redplastictexture512.png"
+        }
+    ], 
+    "materials" : [
+        {
+            "name" : "Material.001", 
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 0
+                }, 
+                "metallicFactor" : 0.0
+            }
+        }
+    ], 
+    "meshes" : [
+        {
+            "name" : "Cylinder.004", 
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2, 
+                        "POSITION" : 1, 
+                        "TANGENT" : 3, 
+                        "TEXCOORD_0" : 4
+                    }, 
+                    "indices" : 0, 
+                    "material" : 0
+                }
+            ]
+        }
+    ], 
+    "nodes" : [
+        {
+            "mesh" : 0, 
+            "name" : "Deckel", 
+            "scale" : [
+                0.38509511947631836, 
+                0.025556296110153198, 
+                0.5977734327316284
+            ], 
+            "translation" : [
+                -0.004628300666809082, 
+                0.05841609835624695, 
+                -0.001562781515531242
+            ]
+        }
+    ], 
+    "samplers" : [
+        {}
+    ], 
+    "scene" : 0, 
+    "scenes" : [
+        {
+            "name" : "Scene", 
+            "nodes" : [
+                0
+            ]
+        }
+    ], 
+    "textures" : [
+        {
+            "sampler" : 0, 
+            "source" : 0
+        }
+    ]
+}
