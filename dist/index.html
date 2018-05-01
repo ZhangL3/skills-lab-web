@@ -28,6 +28,12 @@
         <a-asset-item id="cupboardRightDoorHandle" src="../assets/models/meshes/cupboard/rightDoor/cupboardDoorRightHandle.gltf"/>
         <a-asset-item id="cupboardRightDoorGlass" src="../assets/models/meshes/cupboard/rightDoor/rightGlass.gltf"/>
 
+        <!-- hand disinfection dispenser -->
+        <a-asset-item id="dispenserBody" src="../assets/models/meshes/dispenser/dispenserBody.gltf"/>
+        <a-asset-item id="dispenserHandle" src="../assets/models/meshes/dispenser/dispenserHandle.gltf"/>
+        <img id="disinfectionLabel" src="../assets/models/meshes/dispenser/disinfectionLabel.png">
+
+
     </a-assets>
 
     <!-- cabinets -->
@@ -144,6 +150,13 @@
             </a-gltf-model>
         </a-gltf-model>
     </a-entity>
+
+    <!-- hand disinfection dispenser -->
+    <a-gltf-model src="#dispenserBody" position="-1.18 0.742 -0.9" scale="0.4 0.4 0.4">
+        <a-gltf-model src="#dispenserHandle"></a-gltf-model>
+        <a-image src="#disinfectionLabel" position="0 -0.13 0" scale="0.266 0.301 1"></a-image>
+    </a-gltf-model>
+
     <!--camera -->
     <a-camera position="0 1.1 -0.35">
         <a-entity cursor="fuse: false; fuseTimeout: 1000;"

@@ -1,0 +1,201 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0, 
+            "componentType" : 5121, 
+            "count" : 120, 
+            "max" : [
+                75
+            ], 
+            "min" : [
+                0
+            ], 
+            "type" : "SCALAR"
+        }, 
+        {
+            "bufferView" : 1, 
+            "componentType" : 5126, 
+            "count" : 76, 
+            "max" : [
+                1.0, 
+                0.984767735004425, 
+                11.603404998779297
+            ], 
+            "min" : [
+                -1.0, 
+                -1.0, 
+                -38.56246566772461
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 2, 
+            "componentType" : 5126, 
+            "count" : 76, 
+            "max" : [
+                0.9989623427391052, 
+                0.999969482421875, 
+                0.843226432800293
+            ], 
+            "min" : [
+                -0.9989623427391052, 
+                -0.7162389159202576, 
+                -0.8464918732643127
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 3, 
+            "componentType" : 5126, 
+            "count" : 76, 
+            "max" : [
+                1.0, 
+                0.6988259553909302, 
+                0.5375118255615234, 
+                1.0
+            ], 
+            "min" : [
+                -0.8676194548606873, 
+                -0.6988259553909302, 
+                -0.9999977946281433, 
+                -1.0
+            ], 
+            "type" : "VEC4"
+        }, 
+        {
+            "bufferView" : 4, 
+            "componentType" : 5126, 
+            "count" : 76, 
+            "max" : [
+                0.9997743964195251, 
+                0.999774382362375
+            ], 
+            "min" : [
+                0.00022561763762496412, 
+                0.39418601989746094
+            ], 
+            "type" : "VEC2"
+        }
+    ], 
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter", 
+        "version" : "2.0"
+    }, 
+    "bufferViews" : [
+        {
+            "buffer" : 0, 
+            "byteLength" : 120, 
+            "byteOffset" : 0, 
+            "target" : 34963
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 912, 
+            "byteOffset" : 120, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 912, 
+            "byteOffset" : 1032, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 1216, 
+            "byteOffset" : 1944, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 608, 
+            "byteOffset" : 3160, 
+            "target" : 34962
+        }
+    ], 
+    "buffers" : [
+        {
+            "byteLength" : 3768, 
+            "uri" : "dispenserHandle.bin"
+        }
+    ], 
+    "images" : [
+        {
+            "uri" : "../../texture/whiteplastictexture256.png"
+        }
+    ], 
+    "materials" : [
+        {
+            "name" : "box", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.800000011920929, 
+                    0.800000011920929, 
+                    0.800000011920929, 
+                    1.0
+                ], 
+                "baseColorTexture" : {
+                    "index" : 0
+                }, 
+                "metallicFactor" : 0.0
+            }
+        }
+    ], 
+    "meshes" : [
+        {
+            "name" : "Cube.001", 
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2, 
+                        "POSITION" : 1, 
+                        "TANGENT" : 3, 
+                        "TEXCOORD_0" : 4
+                    }, 
+                    "indices" : 0, 
+                    "material" : 0
+                }
+            ]
+        }
+    ], 
+    "nodes" : [
+        {
+            "mesh" : 0, 
+            "name" : "Hander", 
+            "rotation" : [
+                -0.0, 
+                0.1419164389371872, 
+                -0.9898787140846252, 
+                0.0
+            ], 
+            "scale" : [
+                -0.164353609085083, 
+                -0.4081929326057434, 
+                -0.011238000355660915
+            ], 
+            "translation" : [
+                0.0, 
+                0.4231070578098297, 
+                -0.07751607149839401
+            ]
+        }
+    ], 
+    "samplers" : [
+        {}
+    ], 
+    "scene" : 0, 
+    "scenes" : [
+        {
+            "name" : "Scene", 
+            "nodes" : [
+                0
+            ]
+        }
+    ], 
+    "textures" : [
+        {
+            "sampler" : 0, 
+            "source" : 0
+        }
+    ]
+}
