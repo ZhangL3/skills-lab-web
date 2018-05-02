@@ -63,6 +63,10 @@
         <!-- holder -->
         <a-asset-item id="holder" src="../assets/models/meshes/holder/holder.gltf"/>
 
+        <!-- room -->
+        <img id="wallTexture" src="../assets/models/texture/walltexture2048.jpg"/>
+        <img id="floorTexture" src="../assets/models/texture/floortexture2048.jpg"/>
+
 
     </a-assets>
 
@@ -228,6 +232,16 @@
 
     <!-- holder -->
     <a-gltf-model src="#holder" position="0.975 0 -0.65" rotation="0 41.59 0" scale="0.5 0.45 0.5"></a-gltf-model>
+
+    <!-- walls -->
+    <a-image id="wallfront" src="#wallTexture" scale="4.833 2.155 1.000" position="-0.233 1.075 -1.004" rotation=""></a-image>
+    <a-image id="wallleft" src="#wallTexture" scale="4.833 2.155 1.000" position="-2.649 1.075 1.398" rotation="0 90 0"></a-image>
+    <a-image id="wallright" src="#wallTexture" scale="4.833 2.155 1.000" position="2.188 1.075 1.398" rotation="0 90 0"></a-image>
+    <a-image id="walltop" src="#wallTexture" scale="4.833 4.865 1.000" position="-0.233 2.121 1.420" rotation="90 0 0"></a-image>
+    <a-image id="wallback" src="#wallTexture" scale="4.833 2.155 1.000" position="-0.233 1.075 3.803" rotation=""></a-image>
+
+    <!-- floor -->
+    <a-image id="floor" src="#floorTexture" scale="4.801 4.807 1.268" position="-0.212 0.001 1.395" rotation="90 0 0"></a-image>
 
     <!--camera -->
     <a-camera position="0 1.1 -0.35">
