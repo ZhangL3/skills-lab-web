@@ -15,7 +15,7 @@ export default AFRAME.registerComponent('drawer_open',{
         });
 
         // Add open and close animation of drawer
-        aAnimationWrapper(this.el, 'click', 'position', close, open, dur, 'alternate');
+        aAnimationWrapper(this.el, 'click', 'position', close, open, dur, 'alternate', false, 'forwards');
 
     }
 });

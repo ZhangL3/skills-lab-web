@@ -16,7 +16,7 @@ export default AFRAME.registerComponent('door_open', {
         });
 
         // Add open and close animation of drawer
-        aAnimationWrapper(this.el, 'click', 'rotation', close, open, dur, 'alternate');
+        aAnimationWrapper(this.el, 'click', 'rotation', close, open, dur, 'alternate', false, 'forwards');
 
     }
 });
