@@ -53,6 +53,13 @@
         <a-asset-item id="clothBottleCap" src="../assets/models/meshes/clothBottle/clothBottleCap.gltf"/>
         <a-asset-item id="clothBottleCloth" src="../assets/models/meshes/clothBottle/clothBottleCloth.gltf"/>
 
+        <!-- glove shelf -->
+        <a-asset-item id="gloveShelfBody" src="../assets/models/meshes/gloveShelf/shelfBody.gltf"/>
+        <a-asset-item id="gloveShelfBox" src="../assets/models/meshes/gloveShelf/box.gltf"/>
+        <img id="gloveBoxL" src="../assets/models/meshes/gloveShelf/labelL256.png">
+        <img id="gloveBoxM" src="../assets/models/meshes/gloveShelf/labelM256.png">
+        <img id="gloveBoxS" src="../assets/models/meshes/gloveShelf/labelS256.png">
+
 
 
     </a-assets>
@@ -61,22 +68,22 @@
     <a-entity id="twoCabinets" position="0 0 -1">
         <a-gltf-model src="#cabinetBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
 
-            <a-gltf-model id="drawer1" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 5.44 3.41" drawer_open="open: 1.8 5.44 3.41; close: 0 5.44 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
 
-            <a-gltf-model id="drawer2" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 4.1 3.41" drawer_open="open: 1.8 4.1 3.41; close: 0 4.1 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
 
-            <a-gltf-model id="drawer3" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 2.8 3.41" drawer_open="open: 1.8 2.8 3.41; close: 0 2.8 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
 
-            <a-gltf-model id="drawer4" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 5.44 0.037" drawer_open="open: 1.8 5.44 0.037; close: 0 5.44 0.037">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
@@ -88,7 +95,7 @@
 
             </a-gltf-model>
 
-            <a-gltf-model id="drawer6" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 2.8 0.037" drawer_open="open: 1.8 2.8 0.037; close: 0 2.8 0.037">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
@@ -202,6 +209,19 @@
     <a-gltf-model src="#clothBottleBody" position="0.22 0.678 -0.9" rotation="0 180 0" scale="0.15 0.15 0.15">
         <a-gltf-model src="#clothBottleCap" position="-0.017 0.851 0.322" cloth_bottle_cap_open></a-gltf-model>
         <a-gltf-model src="#clothBottleCloth" position="-0.074 0.599 0.145"></a-gltf-model>
+    </a-gltf-model>
+
+    <!-- glove shelf -->
+    <a-gltf-model src="#gloveShelfBody" position="0.570 0.979 -1.000" scale="0.15 0.15 0.15">
+        <a-gltf-model src="#gloveShelfBox" position="0.015 1.125 0.000" scale="1.115 1.115 1">
+            <a-image src="#gloveBoxL" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+        </a-gltf-model>
+        <a-gltf-model src="#gloveShelfBox" position="0.015 0.625 0.000" scale="1.115 1.115 1">
+            <a-image src="#gloveBoxM" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+        </a-gltf-model>
+        <a-gltf-model src="#gloveShelfBox" position="0.015 0.039 0.000" scale="1.115 1.115 1">
+            <a-image src="#gloveBoxS" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+        </a-gltf-model>
     </a-gltf-model>
 
     <!--camera -->
