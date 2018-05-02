@@ -18,6 +18,11 @@
         <a-asset-item id="cabinetHandle" src="../assets/models/meshes/cabinet/handle/handle.gltf"/>
         <a-mixin id="cabinetSmallDrawer" scale="1 1 0.5"></a-mixin>
         <a-mixin id="cabinetSmallDrawerHandle" scale="1 1 2.083" position="0 0 -3.5"></a-mixin>
+        <img id="drawerLabelCutlery" src="../assets/models/meshes/cabinet/labels/Infusionsbesteck512.png">
+        <img id="drawerLabelMandrins" src="../assets/models/meshes/cabinet/labels/Mandrins512.png">
+        <img id="drawerLabelSprizen" src="../assets/models/meshes/cabinet/labels/Sprizen512.png">
+        <img id="drawerLabelVenen" src="../assets/models/meshes/cabinet/labels/Venenverweilkanuelen512.png">
+
 
         <!-- cupboard -->
         <a-asset-item id="cupboardBody" src="../assets/models/meshes/cupboard/body/cupboardBody.gltf"/>
@@ -56,32 +61,34 @@
     <a-entity id="twoCabinets" position="0 0 -1">
         <a-gltf-model src="#cabinetBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
 
-            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model id="drawer1" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 5.44 3.41" drawer_open="open: 1.8 5.44 3.41; close: 0 5.44 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
 
-            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model id="drawer2" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 4.1 3.41" drawer_open="open: 1.8 4.1 3.41; close: 0 4.1 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
 
-            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model id="drawer3" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 2.8 3.41" drawer_open="open: 1.8 2.8 3.41; close: 0 2.8 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
 
-            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model id="drawer4" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 5.44 0.037" drawer_open="open: 1.8 5.44 0.037; close: 0 5.44 0.037">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
 
-            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model id="drawerWithCutlery" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 4.1 0.037" drawer_open="open: 1.8 4.1 0.037; close: 0 4.1 0.037">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                <a-image src="#drawerLabelCutlery" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
+
             </a-gltf-model>
 
-            <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
+            <a-gltf-model id="drawer6" src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 2.8 0.037" drawer_open="open: 1.8 2.8 0.037; close: 0 2.8 0.037">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
             </a-gltf-model>
@@ -102,16 +109,22 @@
             <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 5.44 3.41" drawer_open="open: 1.8 5.44 3.41; close: 0 5.44 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                <a-image src="#drawerLabelVenen" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
+
             </a-gltf-model>
 
             <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 4.1 3.41" drawer_open="open: 1.8 4.1 3.41; close: 0 4.1 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                <a-image src="#drawerLabelSprizen" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
+
             </a-gltf-model>
 
             <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
                           position="0 2.8 3.41" drawer_open="open: 1.8 2.8 3.41; close: 0 2.8 3.41">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                <a-image src="#drawerLabelMandrins" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
+
             </a-gltf-model>
 
             <a-gltf-model src="../assets/models/meshes/cabinet/drawer/drawer.gltf" mixin="cabinetSmallDrawer"
