@@ -305,7 +305,7 @@
     ], 
     "images" : [
         {
-            "uri" : "yellowplastictexture512.png"
+            "uri" : "../../texture/yellowplastictexture512.png"
         }
     ], 
     "materials" : [
