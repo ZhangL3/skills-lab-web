@@ -10,7 +10,7 @@ AFRAME.registerComponent('hand_disinfection', {
     },
 
     init: function(){
-        var data= this.data;
+        const { open, close, dur }= this.data;
         var el= this.el;
         var handleusing = false;
 
@@ -18,7 +18,7 @@ AFRAME.registerComponent('hand_disinfection', {
 
         var clock = document.querySelector("#clock");
 
-        aAnimationWrapper(this.el, 'click', 'position', data.close, data.open, 500, '', false, 'backwards' );
+        aAnimationWrapper(this.el, 'click', 'position', close, open, dur, '', false, 'backwards' );
 
         // el.addEventListener('click', function(){
         //     if (statusIndex.getAttribute("exercisestarted") == "true" && statusIndex.getAttribute("tabledesinfection") == "true") {

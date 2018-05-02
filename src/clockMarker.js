@@ -1,3 +1,5 @@
+//TODO: Add this action after creating index of status.
+
 AFRAME.registerComponent('clockclick', {
     init: function () {
         var el= this.el;
