@@ -8,4 +8,10 @@ import * as handDisinfection from './handDisinfection';
 import * as wasteBinCapOpen from './wasteBinCapOpen';
 import * as clothBottleCapOpen from './clothBottleCapOpen';
 
-stateIndex.showName();
+
+stateIndex.init();
+
+// let name = stateIndex.showName();
+// console.log("name: ", name, typeof(name));
+stateIndex.get('portfolio');
+stateIndex.getIn(['infusionSet', 'checkSet', 'label']);
