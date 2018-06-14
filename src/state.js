@@ -86,7 +86,13 @@ export default class stateIndex {
         return result;
     }
 
-    static showName(){
-        return name;
+    /**
+     * Set the prop as the given value.
+     *
+     * @param propString
+     * @param value
+     */
+    static set (propString, value) {
+        state[propString] = value;
     }
 }
