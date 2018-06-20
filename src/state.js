@@ -1,4 +1,8 @@
 import $ from 'jquery';
+import Observable from '../utils/observable';
+
+import { handleNotifyPortfolio } from "./portfolio";
+
 
 const initState = {
     portfolio: {
@@ -54,6 +58,9 @@ export default class stateIndex {
 
     static init() {
         state = initState;
+        this.headingsObserver = new Observable();
+        // Add function from observers
+        this.headingsObserver.subscribe(handleNotifyPortfolio);
     }
 
     /**
@@ -94,6 +101,7 @@ export default class stateIndex {
      */
     static set (propString, value) {
         state[propString] = value;
+        this.headingsObserver.notify(state);
     }
 
     /**
@@ -120,5 +128,7 @@ export default class stateIndex {
                 state[propsArray[0]][[propsArray[1]]][[propsArray[3]]][[propsArray[4]]] = value;
                 break;
         }
+
+        this.headingsObserver.notify(state);
     }
 }
