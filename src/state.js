@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import Observable from '../utils/observable';
+import * as constants from '../utils/constants';
 
 import { handleNotifyPortfolio } from "./portfolio";
 
 
 const initState = {
     portfolio: {
-        position: 'on-table', // 'on-table' || 'in-hand'
+        position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
             R1: false,
             R2: false,
@@ -14,6 +15,7 @@ const initState = {
             R4: false,
             R5: false,
         },
+        finish: false,
     },
     tableDisinfection:{
         hasGlove: false,
@@ -61,6 +63,15 @@ export default class stateIndex {
         this.headingsObserver = new Observable();
         // Add function from observers
         this.headingsObserver.subscribe(handleNotifyPortfolio);
+    }
+
+    /**
+     * Get all state.
+     *
+     * @returns {*}
+     */
+    static getState () {
+        return state;
     }
 
     /**
