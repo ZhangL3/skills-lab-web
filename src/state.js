@@ -67,7 +67,7 @@ export default class stateIndex {
     }
 
     /**
-     * Get the value of the props in state. Type of param should be array.
+     * Get the value of the props in state in deep. Type of param should be array.
      *
      * @param propsArray
      * @returns {*}
@@ -94,5 +94,31 @@ export default class stateIndex {
      */
     static set (propString, value) {
         state[propString] = value;
+    }
+
+    /**
+     * Set the value of the props in state in deep. Type of first param should be array.
+     *
+     * @param propsArray
+     * @param value
+     */
+    // TODO: Ugly function, must to be rewrite
+    static setIn(propsArray, value) {
+        const lengthOfProps = propsArray.length;
+
+        switch (lengthOfProps) {
+            case 1:
+                state[propsArray[0]] = value;
+                break;
+            case 2:
+                state[propsArray[0]][[propsArray[1]]] = value;
+                break;
+            case 3:
+                state[propsArray[0]][[propsArray[1]]][[propsArray[2]]] = value;
+                break;
+            case 4:
+                state[propsArray[0]][[propsArray[1]]][[propsArray[3]]][[propsArray[4]]] = value;
+                break;
+        }
     }
 }
