@@ -1,44 +1,18 @@
 import $ from 'jquery';
+
 import stateIndex from './state';
+import * as constants from '../utils/constants';
+import aAnimationWrapper from '../utils/aAnimationWrapper';
+
+let element;
 
 export default AFRAME.registerComponent('portfolio', {
-    schema:{
-        openPosition : {default: '0 0 0'},
-        openRotation : {default: '0 0 0'},
-        closePosition :   {default: '0.007 0.019 0'},
-        closeRotation : {default: '0 0 -122.728'},
-        onTablePosition : {default: '-0.57 0.684 -0.94'},
-        onTableRotation : {default: '0 -90 -1.43'},
-        inFrontOfEyesPosition : {default: '0 1.109 -0.45'},
-        inFrontOfEyesRotation : {default: '0 -90 -70'},
-        dur : {default: 500},
-    },
 
     init: function(){
-        var data= this.data;
-        var el= this.el;
 
-        const {
-            openPosition, openRotation, closePosition, closeRotation,
-            onTablePosition, onTableRotation, inFrontOfEyesPosition,
-            inFrontOfEyesRotation, dur
-        } = this.data;
+        element = this.el;
+        $(this.el).on('click', () => {handleClickPortfolio()});
 
-        // components
-        // const foregroundOfPortfolio = $('#foregroundOfPortfolio');
-        // console.log("foregroundOfPortfolio: ", foregroundOfPortfolio, typeof(foregroundOfPortfolio));
-        // foregroundOfPortfolio.on('click',function(){console.log("click");})
-
-        $(this.el).on('click', () => {stateIndex.set('handDisinfection', true)});
-
-        // var foregroundOfPortfolio = el.querySelector("#foregroundOfPortfolio");
-        // var statusIndex=document.querySelector("#statusIndex");
-        //
-        // var hookname = el.querySelector("#hookname");
-        // var hookdrug = el.querySelector("#hookdrug");
-        // var hookdose = el.querySelector("#hookdose");
-        // var hookiv = el.querySelector("#hookiv");
-        // var hookcf = el.querySelector("#hookcf");
         //
         // el.addEventListener('click', function(){
         //     // if portfolio not closed
@@ -58,51 +32,89 @@ export default AFRAME.registerComponent('portfolio', {
     }
 });
 
-// close portfolio
-function close(el, openP, closeP, openR, closeR, dur){
-    var move = document.createElement("a-animation");
-    move.setAttribute("attribute", "position");
-    move.setAttribute("from", openP)
-    move.setAttribute("to", closeP);
-    move.setAttribute("dur", dur);
+const currentState = stateIndex.getState();
+const foregroundOfPortfolio = $('#foregroundOfPortfolio');
+const hookName = $('#hookName');
+const hookDrug = $('#hookDrug');
+const hookDose = $('#hookDose');
+const hookIV = $('#hookIV');
+const hookCF = $('#hookCF');
 
-    el.appendChild(move);
+const schema = {
+    openPosition : '0 0 0',
+    openRotation : '0 0 0',
+    closePosition :   '0.007 0.019 0',
+    closeRotation : '0 0 -122.728',
+    onTablePosition : '-0.57 0.684 -0.94',
+    onTableRotation : '0 -90 -1.43',
+    inFrontOfEyesPosition : '0 1.109 -0.45',
+    inFrontOfEyesRotation : '0 -90 -70',
+    dur : 500,
+};
 
-    var move2 = document.createElement("a-animation");
-    move2.setAttribute("attribute", "rotation");
-    move2.setAttribute("from", openR)
-    move2.setAttribute("to", closeR);
-    move2.setAttribute("dur", dur);
-
-    el.appendChild(move2);
-
-    var t = setTimeout(function(){
-        el.removeChild(move);
-        el.removeChild(move2);
-    },600);
+// open portfolio
+function open () {
+    aAnimationWrapper(
+        foregroundOfPortfolio, 0, 'position', schema.closePosition, schema.openPosition, schema.dur
+    );
+    aAnimationWrapper(
+        foregroundOfPortfolio, 0, 'rotation', schema.closeRotation, schema.openRotation, schema.dur
+    );
 }
 
-function setOnTable(el, eyesP, tableP, eyesR, tableR, dur){
-    var move = document.createElement("a-animation");
-    move.setAttribute("attribute", "position");
-    move.setAttribute("from", eyesP)
-    move.setAttribute("to", tableP);
-    move.setAttribute("dur", dur);
+function takeInHand () {
+    aAnimationWrapper(
+        element, 0, 'position', schema.onTablePosition, schema.inFrontOfEyesPosition, schema.dur
+    );
+    aAnimationWrapper(
+        element, 0, 'rotation', schema.onTableRotation, schema.inFrontOfEyesRotation, schema.dur
+    );
+}
 
-    el.appendChild(move);
 
-    var move2 = document.createElement("a-animation");
-    move2.setAttribute("attribute", "rotation");
-    move2.setAttribute("from", eyesR)
-    move2.setAttribute("to", tableR);
-    move2.setAttribute("dur", dur);
 
-    el.appendChild(move2);
+// close portfolio
+function close () {
+    aAnimationWrapper(
+        foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur
+    );
+    aAnimationWrapper(
+        foregroundOfPortfolio, 0, 'rotation', schema.openRotation, schema.closeRotation, schema.dur
+    );
+}
 
-    var t = setTimeout(function(){
-        el.removeChild(move);
-        el.removeChild(move2);
-    },600);
+function setOnTable(){
+    aAnimationWrapper(
+        element, 0, 'position', schema.inFrontOfEyesPosition, schema.onTablePosition, schema.dur
+    );
+    aAnimationWrapper(
+        element, 0, 'rotation', schema.inFrontOfEyesRotation, schema.onTableRotation, schema.dur
+    );
+}
+
+function is5RChecked () {
+    const status5R = stateIndex.getIn(['portfolio', 'checkPortfolio']);
+    const checkValues = Object.values(status5R);
+    for(let i = 0; i < checkValues.length; i++) {
+        if (checkValues[i] === false) {
+           return false;
+        }
+    }
+    return true;
+}
+
+function handleClickPortfolio () {
+    if (stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.ON_TABLE && !is5RChecked()) {
+        stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.IN_HAND);
+
+        console.log('state.portfolio.position = inHand');
+    }
+    else if (stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.IN_HAND && is5RChecked()) {
+        stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.ON_TABLE);
+        stateIndex.setIn(['portfolio', 'finish'], true);
+
+        console.log('state.portfolio.position = onTable && state.portfolio.finish = true');
+    }
 }
 
 // hide the hooks for 5R
@@ -114,7 +126,14 @@ function hidehooks(hookname, hookdrug, hookdose, hookiv, hookcf){
     hookcf.setAttribute("visible","false");
 }
 
-export function handleNotifyPortfolio(state) {
-    console.log("state: ", state, typeof(state));
+export function handleNotifyPortfolio(nextState) {
+    if(
+        currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
+            nextState.portfolio.position === constants.portfolio.position.IN_HAND
+    ) {
+        takeInHand();
+        open();
+    }
+    console.log("nestState: ", nestState, typeof(nestState));
 };
 
