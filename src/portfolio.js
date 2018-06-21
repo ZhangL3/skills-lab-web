@@ -1,17 +1,24 @@
 import $ from 'jquery';
+import _ from 'lodash';
 
 import stateIndex from './state';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 
 let element;
+let currentState;
 
 export default AFRAME.registerComponent('portfolio', {
 
     init: function(){
-
+        // shallow copy
         element = this.el;
-        $(this.el).on('click', () => {handleClickPortfolio()});
+
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+        $(this.el).on('click', () => {
+            handleClickPortfolio();
+        });
 
         //
         // el.addEventListener('click', function(){
@@ -28,11 +35,12 @@ export default AFRAME.registerComponent('portfolio', {
         //         }
         //     }
         // });
-
     }
 });
 
-const currentState = stateIndex.getState();
+// const currentState = stateIndex.getState();
+// console.log(currentState);
+
 const foregroundOfPortfolio = $('#foregroundOfPortfolio');
 const hookName = $('#hookName');
 const hookDrug = $('#hookDrug');
@@ -63,11 +71,12 @@ function open () {
 }
 
 function takeInHand () {
+    console.log('element: ', element);
     aAnimationWrapper(
-        element, 0, 'position', schema.onTablePosition, schema.inFrontOfEyesPosition, schema.dur
+        element, '', 'position', schema.onTablePosition, schema.inFrontOfEyesPosition, schema.dur
     );
     aAnimationWrapper(
-        element, 0, 'rotation', schema.onTableRotation, schema.inFrontOfEyesRotation, schema.dur
+        element, '', 'rotation', schema.onTableRotation, schema.inFrontOfEyesRotation, schema.dur
     );
 }
 
@@ -104,16 +113,15 @@ function is5RChecked () {
 }
 
 function handleClickPortfolio () {
+
     if (stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.ON_TABLE && !is5RChecked()) {
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.IN_HAND);
 
-        console.log('state.portfolio.position = inHand');
     }
     else if (stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.IN_HAND && is5RChecked()) {
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.ON_TABLE);
         stateIndex.setIn(['portfolio', 'finish'], true);
 
-        console.log('state.portfolio.position = onTable && state.portfolio.finish = true');
     }
 }
 
@@ -128,12 +136,13 @@ function hidehooks(hookname, hookdrug, hookdose, hookiv, hookcf){
 
 export function handleNotifyPortfolio(nextState) {
     if(
-        currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
-            nextState.portfolio.position === constants.portfolio.position.IN_HAND
+        (currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
+            nextState.portfolio.position === constants.portfolio.position.IN_HAND) &&
+            !is5RChecked()
     ) {
         takeInHand();
         open();
     }
-    console.log("nestState: ", nestState, typeof(nestState));
-};
+    currentState = nextState;
+}
 
