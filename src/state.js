@@ -125,18 +125,21 @@ export default class stateIndex {
     static setIn(propsArray, value) {
         const lengthOfProps = propsArray.length;
 
+        // why state here already changed
+        // console.log('before.setIn.state:', state);
+
         switch (lengthOfProps) {
             case 1:
                 state[propsArray[0]] = value;
                 break;
             case 2:
-                state[propsArray[0]][[propsArray[1]]] = value;
+                state[propsArray[0]][propsArray[1]] = value;
                 break;
             case 3:
-                state[propsArray[0]][[propsArray[1]]][[propsArray[2]]] = value;
+                state[propsArray[0]][propsArray[1]][propsArray[2]] = value;
                 break;
             case 4:
-                state[propsArray[0]][[propsArray[1]]][[propsArray[3]]][[propsArray[4]]] = value;
+                state[propsArray[0]][propsArray[1]][propsArray[2]][propsArray[3]] = value;
                 break;
         }
 
