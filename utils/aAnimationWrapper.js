@@ -21,7 +21,10 @@ const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', re
     move.setAttribute("direction", direction);
     move.setAttribute("fill", fill);
 
-    el.appendChild(move);
+    if (!el.append) {
+        el.appendChild(move);
+    }
+    el.append(move);
 
     if (remove) {
         setTimeout(()=>{
