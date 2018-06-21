@@ -7,6 +7,7 @@ import * as clockRoll from './clockRoll';
 import * as handDisinfection from './handDisinfection';
 import * as wasteBinCapOpen from './wasteBinCapOpen';
 import * as clothBottleCapOpen from './clothBottleCapOpen';
+import * as portfolio from "./portfolio";
 
 
 stateIndex.init();
