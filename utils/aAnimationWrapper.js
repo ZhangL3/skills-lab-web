@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 /**
  * Wrap <a-animation> tag as a function.
  *
@@ -23,13 +25,21 @@ const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', re
 
     if (!el.append) {
         el.appendChild(move);
+        el.removeChild(move)
     }
+
+    if (el.remove) {
+        console.log("el.remove: ", el.remove, typeof(el.remove));
+    } else {
+      console.log("el.removeChild: ", el.removeChild, typeof(el.removeChild));
+    }
+
     el.append(move);
 
     if (remove) {
         setTimeout(()=>{
-            el.removeChild(move);
-        }, remove);
+            $(move).remove();
+        }, dur);
     }
 };
 
