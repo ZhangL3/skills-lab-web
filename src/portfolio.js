@@ -9,6 +9,12 @@ let element;
 let currentState;
 let foregroundOfPortfolio;
 
+let hookName;
+let hookDrug;
+let hookDose;
+let hookIV;
+let hookCF;
+
 export default AFRAME.registerComponent('portfolio', {
 
     init: function(){
@@ -17,6 +23,12 @@ export default AFRAME.registerComponent('portfolio', {
         // Here must use querySelector, not JQuery selector.
         foregroundOfPortfolio = document.querySelector('#portfolioFrontSiteModel');
 
+        hookName = document.querySelector("#hookName");
+        hookDrug = document.querySelector("#hookDrug");
+        hookDose = document.querySelector("#hookDose");
+        hookIV = document.querySelector("#hookIV");
+        hookCF = document.querySelector("#hookCF");
+
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
         $(this.el).on('click', () => {
@@ -24,12 +36,6 @@ export default AFRAME.registerComponent('portfolio', {
         });
     }
 });
-
-const hookName = $('#hookName');
-const hookDrug = $('#hookDrug');
-const hookDose = $('#hookDose');
-const hookIV = $('#hookIV');
-const hookCF = $('#hookCF');
 
 const schema = {
     openPosition : '0 0 0',
@@ -66,23 +72,23 @@ function takeInHand () {
 
 // close portfolio
 function close () {
+    // aAnimationWrapper(
+    //     foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur,
+    //     '', true, 'forwards',
+    // );
     aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur,
-        '', true, 'forwards',
-    );
-    aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'rotation', schema.openRotation, schema.closeRotation, schema.dur,
+        foregroundOfPortfolio, '', 'rotation', schema.openRotation, schema.closeRotation, schema.dur,
         '', true, 'forwards',
     );
 }
 
-function setOnTable(){
+function putOnTable(){
     aAnimationWrapper(
-        element, 0, 'position', schema.inFrontOfEyesPosition, schema.onTablePosition, schema.dur,
+        element, '', 'position', schema.inFrontOfEyesPosition, schema.onTablePosition, schema.dur,
         '', true, 'forwards',
     );
     aAnimationWrapper(
-        element, 0, 'rotation', schema.inFrontOfEyesRotation, schema.onTableRotation, schema.dur,
+        element, '', 'rotation', schema.inFrontOfEyesRotation, schema.onTableRotation, schema.dur,
         '', true, 'forwards',
     );
 }
@@ -100,27 +106,49 @@ function is5RChecked () {
 
 function handleClickPortfolio () {
 
-    if (stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.ON_TABLE && !is5RChecked()) {
+    if (
+        stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.ON_TABLE &&
+        !is5RChecked()
+    ) {
+        console.log("take in hand: ");
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.IN_HAND);
 
     }
-    else if (stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.IN_HAND && is5RChecked()) {
+    else if (
+        stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.IN_HAND &&
+        is5RChecked()
+    ) {
+        // why here already true? before setIn.
+        // console.log("to checkFinish: ", stateIndex.getState());
+        console.log("put on table: ");
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.ON_TABLE);
-        stateIndex.setIn(['portfolio', 'finish'], true);
 
+        console.log("currentState!!!: ", currentState.portfolio.position);
+    }
+    else if (
+        currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
+        stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.ON_TABLE &&
+        is5RChecked() &&
+        stateIndex.getIn(['portfolio', 'finish']) === false
+    ) {
+        stateIndex.setIn(['portfolio', 'checkFinish'], true);
     }
 }
 
 // hide the hooks for 5R
-function hidehooks(hookname, hookdrug, hookdose, hookiv, hookcf){
-    hookname.setAttribute("visible","false");
-    hookdrug.setAttribute("visible","false");
-    hookdose.setAttribute("visible","false");
-    hookiv.setAttribute("visible","false");
-    hookcf.setAttribute("visible","false");
+function hideHooks(){
+    $(hookName).attr('visible', 'false');
+    $(hookDrug).attr('visible', 'false');
+    $(hookDose).attr('visible', 'false');
+    $(hookIV).attr('visible', 'false');
+    $(hookCF).attr('visible', 'false');
 }
 
 export function handleNotifyPortfolio(nextState) {
+    console.log("currentState: ", currentState.portfolio.position);
+    console.log("nextState: ", nextState.portfolio.position);
+    console.log("is5RChecked(): ", is5RChecked());
+    console.log("nextState: ", nextState, typeof(nextState));
     if(
         (currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
             nextState.portfolio.position === constants.portfolio.position.IN_HAND) &&
@@ -129,6 +157,20 @@ export function handleNotifyPortfolio(nextState) {
         takeInHand();
         open();
     }
-    currentState = nextState;
+    else if (
+        // (currentState.portfolio.position === constants.portfolio.position.IN_HAND &&
+        //     nextState.portfolio.position === constants.portfolio.position.ON_TABLE) &&
+        // is5RChecked()
+        nextState.portfolio.checkFinish === true && nextState.portfolio.finish === false
+    ) {
+        console.log("putOnTable: ");
+        putOnTable();
+        close();
+        hideHooks();
+
+        stateIndex.setIn(['portfolio', 'finish'], true);
+    }
+    // deep copy
+    currentState = _.cloneDeep(stateIndex.getState());
 }
 

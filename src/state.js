@@ -16,6 +16,7 @@ const initState = {
             IV: false,
             CF: false,
         },
+        checkFinish: false,
         finish: false,
     },
     tableDisinfection:{
