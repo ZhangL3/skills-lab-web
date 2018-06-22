@@ -17,7 +17,8 @@ export default AFRAME.registerComponent('portfolio', {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
         $(this.el).on('click', () => {
-            handleClickPortfolio();
+            takeInHand();
+            // handleClickPortfolio();
         });
 
         //
@@ -53,7 +54,7 @@ const schema = {
     openRotation : '0 0 0',
     closePosition :   '0.007 0.019 0',
     closeRotation : '0 0 -122.728',
-    onTablePosition : '-0.57 0.684 -0.94',
+    onTablePosition : '-0.57 0.684 -0.980',
     onTableRotation : '0 -90 -1.43',
     inFrontOfEyesPosition : '0 1.109 -0.45',
     inFrontOfEyesRotation : '0 -90 -70',
@@ -71,13 +72,13 @@ function open () {
 }
 
 function takeInHand () {
-    console.log('element: ', element);
     aAnimationWrapper(
-        element, '', 'position', schema.onTablePosition, schema.inFrontOfEyesPosition, schema.dur
+        element, '', 'position', schema.onTablePosition, schema.inFrontOfEyesPosition, schema.dur,
+        '', true, 'forwards',
     );
-    aAnimationWrapper(
+    /*aAnimationWrapper(
         element, '', 'rotation', schema.onTableRotation, schema.inFrontOfEyesRotation, schema.dur
-    );
+    );*/
 }
 
 
@@ -140,8 +141,8 @@ export function handleNotifyPortfolio(nextState) {
             nextState.portfolio.position === constants.portfolio.position.IN_HAND) &&
             !is5RChecked()
     ) {
-        takeInHand();
-        open();
+        // takeInHand();
+        // open();
     }
     currentState = nextState;
 }
