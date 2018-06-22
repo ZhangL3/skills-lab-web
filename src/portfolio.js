@@ -7,42 +7,25 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 
 let element;
 let currentState;
+let foregroundOfPortfolio;
 
 export default AFRAME.registerComponent('portfolio', {
 
     init: function(){
         // shallow copy
         element = this.el;
+        // Here must use querySelector, not JQuery selector.
+        foregroundOfPortfolio = document.querySelector('#portfolioFrontSiteModel');
+
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
         $(this.el).on('click', () => {
-            takeInHand();
-            // handleClickPortfolio();
+            handleClickPortfolio();
         });
-
-        //
-        // el.addEventListener('click', function(){
-        //     // if portfolio not closed
-        //     if (statusIndex.getAttribute("exercisestarted") == "true" && statusIndex.getAttribute("portfoliochecked") == "false"){
-        //         // if 5R not checked
-        //         if(hookname.getAttribute("checked")=="true" && hookdrug.getAttribute("checked")=="true" && hookdose.getAttribute("checked")=="true" && hookiv.getAttribute("checked")=="true" && hookcf.getAttribute("checked")=="true"
-        //         ){
-        //             close(foregroundOfPortfolio, data.openPosition, data.closePosition, data.openRotation, data.closeRotation, data.dur);
-        //             setOnTable(el, data.inFrontOfEyesPosition, data.onTablePosition, data.inFrontOfEyesRotation, data.onTableRotation, data.dur);
-        //             hidehooks(hookname, hookdrug, hookdose, hookiv, hookcf);
-        //
-        //             statusIndex.setAttribute("portfoliochecked","true");
-        //         }
-        //     }
-        // });
     }
 });
 
-// const currentState = stateIndex.getState();
-// console.log(currentState);
-
-const foregroundOfPortfolio = $('#foregroundOfPortfolio');
 const hookName = $('#hookName');
 const hookDrug = $('#hookDrug');
 const hookDose = $('#hookDose');
@@ -52,7 +35,7 @@ const hookCF = $('#hookCF');
 const schema = {
     openPosition : '0 0 0',
     openRotation : '0 0 0',
-    closePosition :   '0.007 0.019 0',
+    closePosition :   '0.08 -0.015 0',
     closeRotation : '0 0 -122.728',
     onTablePosition : '-0.57 0.684 -0.980',
     onTableRotation : '0 -90 -1.43',
@@ -64,10 +47,8 @@ const schema = {
 // open portfolio
 function open () {
     aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'position', schema.closePosition, schema.openPosition, schema.dur
-    );
-    aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'rotation', schema.closeRotation, schema.openRotation, schema.dur
+        foregroundOfPortfolio, 0, 'rotation', schema.closeRotation, schema.openRotation, schema.dur,
+        '', true, 'forwards',
     );
 }
 
@@ -76,9 +57,10 @@ function takeInHand () {
         element, '', 'position', schema.onTablePosition, schema.inFrontOfEyesPosition, schema.dur,
         '', true, 'forwards',
     );
-    /*aAnimationWrapper(
-        element, '', 'rotation', schema.onTableRotation, schema.inFrontOfEyesRotation, schema.dur
-    );*/
+    aAnimationWrapper(
+        element, '', 'rotation', schema.onTableRotation, schema.inFrontOfEyesRotation, schema.dur,
+        '', true, 'forwards',
+    );
 }
 
 
@@ -86,19 +68,23 @@ function takeInHand () {
 // close portfolio
 function close () {
     aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur
+        foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur,
+        '', true, 'forwards',
     );
     aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'rotation', schema.openRotation, schema.closeRotation, schema.dur
+        foregroundOfPortfolio, 0, 'rotation', schema.openRotation, schema.closeRotation, schema.dur,
+        '', true, 'forwards',
     );
 }
 
 function setOnTable(){
     aAnimationWrapper(
-        element, 0, 'position', schema.inFrontOfEyesPosition, schema.onTablePosition, schema.dur
+        element, 0, 'position', schema.inFrontOfEyesPosition, schema.onTablePosition, schema.dur,
+        '', true, 'forwards',
     );
     aAnimationWrapper(
-        element, 0, 'rotation', schema.inFrontOfEyesRotation, schema.onTableRotation, schema.dur
+        element, 0, 'rotation', schema.inFrontOfEyesRotation, schema.onTableRotation, schema.dur,
+        '', true, 'forwards',
     );
 }
 
@@ -141,8 +127,8 @@ export function handleNotifyPortfolio(nextState) {
             nextState.portfolio.position === constants.portfolio.position.IN_HAND) &&
             !is5RChecked()
     ) {
-        // takeInHand();
-        // open();
+        takeInHand();
+        open();
     }
     currentState = nextState;
 }
