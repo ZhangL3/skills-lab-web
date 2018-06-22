@@ -28,12 +28,6 @@ const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', re
         el.removeChild(move)
     }
 
-    if (el.remove) {
-        console.log("el.remove: ", el.remove, typeof(el.remove));
-    } else {
-      console.log("el.removeChild: ", el.removeChild, typeof(el.removeChild));
-    }
-
     el.append(move);
 
     if (remove) {
