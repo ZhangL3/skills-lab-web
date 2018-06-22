@@ -7,12 +7,7 @@ import * as clockRoll from './clockRoll';
 import * as handDisinfection from './handDisinfection';
 import * as wasteBinCapOpen from './wasteBinCapOpen';
 import * as clothBottleCapOpen from './clothBottleCapOpen';
-import * as portfolio from "./portfolio";
-
+import * as portfolio from './portfolio';
+import * as portfolioCheck from './portfolioCheck';
 
 stateIndex.init();
-
-// let name = stateIndex.showName();
-// console.log("name: ", name, typeof(name));
-stateIndex.get('portfolio');
-stateIndex.getIn(['infusionSet', 'checkSet', 'label']);

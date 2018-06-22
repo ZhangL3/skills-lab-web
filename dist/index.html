@@ -271,23 +271,24 @@
 
     <!-- portfolio -->
     <a-gltf-model src="#portfolioBacksite" scale="0.1 0.1 0.1" position="-0.57 0.684 -0.980" rotation="0 -90 -1.43" portfolio>
-        <a-gltf-model src="#portfolioFrontsite" position="-0.086 -0.013 0" rotation="0 0 -122.728"></a-gltf-model>
+        <a-gltf-model id="portfolioFrontSiteModel" src="#portfolioFrontsite" position="-0.08 -0.015 0" rotation="0 0 -122.728"></a-gltf-model>
+
         <a-image src="#filledPortfolio" scale="1.8 1 1" position="0.485 0.008 -0.027" rotation="-90.000 180.000 -90.000"></a-image>
         <a-image src="#colorStreak" scale="0.792 0.161 1.000" position="1.070 0.003 -0.486" rotation="-90 -90 180"></a-image>
 
-        <a-image id="transparentName" src="#transparent" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" visible="true"></a-image>
+        <a-image portfolioCheck id="transparentName" src="#transparent" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" visible="true"></a-image>
         <a-image id="hookName" src="#hook" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" checked="false" visible="false"></a-image>
 
-        <a-image id="transparentDrug" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" visible="true"></a-image>
+        <a-image portfolioCheck id="transparentDrug" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" visible="true"></a-image>
         <a-image id="hookDrug" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" checked="false" visible="false"></a-image>
 
-        <a-image id="transparentDose" src="#transparent" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" visible="true"></a-image>
+        <a-image portfolioCheck id="transparentDose" src="#transparent" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" visible="true"></a-image>
         <a-image id="hookDose" src="#hook" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" checked="false" visible="false"></a-image>
 
-        <a-image id="transparentIV" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" visible="true"></a-image>
+        <a-image portfolioCheck id="transparentIV" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" visible="true"></a-image>
         <a-image id="hookIV" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" checked="false" visible="false"></a-image>
 
-        <a-image id="transparentCF" src="#transparent" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" visible="true"></a-image>
+        <a-image portfolioCheck id="transparentCF" src="#transparent" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" visible="true"></a-image>
         <a-image id="hookCF" src="#hook" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" checked="false" visible="false"></a-image>
     </a-gltf-model>
 

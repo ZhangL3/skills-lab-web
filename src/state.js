@@ -3,17 +3,18 @@ import Observable from '../utils/observable';
 import * as constants from '../utils/constants';
 
 import { handleNotifyPortfolio } from "./portfolio";
+import { handleNotifyPortfolioCheck } from './portfolioCheck';
 
 
 const initState = {
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
-            R1: false,
-            R2: false,
-            R3: false,
-            R4: false,
-            R5: false,
+            name: false,
+            drug: false,
+            dose: false,
+            IV: false,
+            CF: false,
         },
         finish: false,
     },
@@ -63,6 +64,7 @@ export default class stateIndex {
         this.headingsObserver = new Observable();
         // Add function from observers
         this.headingsObserver.subscribe(handleNotifyPortfolio);
+        this.headingsObserver.subscribe(handleNotifyPortfolioCheck);
     }
 
     /**
@@ -125,7 +127,7 @@ export default class stateIndex {
     static setIn(propsArray, value) {
         const lengthOfProps = propsArray.length;
 
-        // why state here already changed
+        // why state already changed here, before switch???
         // console.log('before.setIn.state:', state);
 
         switch (lengthOfProps) {

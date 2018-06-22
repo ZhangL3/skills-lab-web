@@ -17,7 +17,6 @@ export default AFRAME.registerComponent('portfolio', {
         // Here must use querySelector, not JQuery selector.
         foregroundOfPortfolio = document.querySelector('#portfolioFrontSiteModel');
 
-
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
         $(this.el).on('click', () => {
