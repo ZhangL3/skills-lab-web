@@ -23,14 +23,12 @@ export default AFRAME.registerComponent('portfoliocheck', {
         element = this.el;
 
         $(this.el).on('click', (event) => {
-            alert(event.target.id);
             handleClickPortfolioCheck(event);
         });
     }
 });
 
 function handleClickPortfolioCheck(event){
-    console.log("event.target.id: ", event.target.id, typeof(event.target.id));
 
     switch(event.target.id){
 
