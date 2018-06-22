@@ -137,7 +137,10 @@ function handleClickPortfolio () {
 
 // hide the hooks for 5R
 function hideHooks(){
-    $(hookName).attr('visible', 'false');
+    console.log("hide!!!!: ");
+    console.log("hookName: ", hookName, typeof(hookName));
+    // $(hookName).attr('visible', 'false');
+    hookName.setAttribute('visible', 'false');
     $(hookDrug).attr('visible', 'false');
     $(hookDose).attr('visible', 'false');
     $(hookIV).attr('visible', 'false');
