@@ -25,10 +25,11 @@ const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', re
 
     if (!el.append) {
         el.appendChild(move);
-        el.removeChild(move)
     }
-
-    el.append(move);
+    // support of JQuery
+    else {
+        el.append(move);
+    }
 
     if (remove) {
         setTimeout(()=>{
