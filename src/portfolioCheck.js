@@ -36,7 +36,6 @@ function handleClickPortfolioCheck(event){
             stateIndex.setIn(['portfolio', 'checkPortfolio', 'name'], true);
             break;
         case "transparentDrug":
-            console.log("drag: ");
             stateIndex.setIn(['portfolio', 'checkPortfolio', 'drug'], true);
             break;
         case "transparentDose":
