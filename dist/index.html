@@ -9,7 +9,6 @@
 <body>
 <script src="./app.bundle.js"></script>
 </body>
-<div id="indexStatus"></div>
 <a-scene id="scene">
 
     <a-assets>
@@ -53,6 +52,9 @@
         <a-asset-item id="clothBottleBody" src="./assets/models/meshes/clothBottle/clothBottleBody.gltf"/>
         <a-asset-item id="clothBottleCap" src="./assets/models/meshes/clothBottle/clothBottleCap.gltf"/>
         <a-asset-item id="clothBottleCloth" src="./assets/models/meshes/clothBottle/clothBottleCloth.gltf"/>
+
+        <!-- cloth -->
+        <a-asset-item id="clothMesh" src="./assets/models/meshes/cloth/cloth.gltf"></a-asset-item>
 
         <!-- glove shelf -->
         <a-asset-item id="gloveShelfBody" src="./assets/models/meshes/gloveShelf/shelfBody.gltf"/>
@@ -235,17 +237,20 @@
         <a-gltf-model src="#clothBottleCloth" position="-0.074 0.599 0.145"></a-gltf-model>
     </a-gltf-model>
 
+    <!-- cloth -->
+    <a-gltf-model id="clothOnTable" src="#clothMesh" position="0 0.679 -0.81" rotation="" scale="0.1 0.1 0.1"></a-gltf-model>
+
     <!-- glove shelf -->
     <a-gltf-model src="#gloveShelfBody" position="0.570 0.979 -1.000" scale="0.15 0.15 0.15">
-        <a-gltf-model src="#gloveShelfBox" position="0.015 1.125 0.000" scale="1.115 1.115 1">
+        <a-gltf-model src="#gloveShelfBox" position="0.015 1.125 0.000" scale="1.115 1.115 1" glove>
             <a-image src="#gloveBoxL" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
             <a-gltf-model id="gloveL" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
         </a-gltf-model>
-        <a-gltf-model src="#gloveShelfBox" position="0.015 0.625 0.000" scale="1.115 1.115 1">
+        <a-gltf-model src="#gloveShelfBox" position="0.015 0.625 0.000" scale="1.115 1.115 1" glove>
             <a-image src="#gloveBoxM" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
             <a-gltf-model id="gloveM" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
         </a-gltf-model>
-        <a-gltf-model src="#gloveShelfBox" position="0.015 0.039 0.000" scale="1.115 1.115 1">
+        <a-gltf-model src="#gloveShelfBox" position="0.015 0.039 0.000" scale="1.115 1.115 1" glove>
             <a-image src="#gloveBoxS" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
             <a-gltf-model id="gloveS" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
         </a-gltf-model>
