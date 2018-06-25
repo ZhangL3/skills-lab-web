@@ -83,8 +83,8 @@
         <img id="transparent" src="./assets/models/meshes/portfolio/transparent512.png"/>
         <img id="hook" src="./assets/models/meshes/portfolio/hook512.png"/>
 
-
-
+        <!-- glove -->
+        <a-asset-item id="gloveMesh" src="./assets/models/meshes/glove/glove.gltf"/>
 
     </a-assets>
 
@@ -239,12 +239,15 @@
     <a-gltf-model src="#gloveShelfBody" position="0.570 0.979 -1.000" scale="0.15 0.15 0.15">
         <a-gltf-model src="#gloveShelfBox" position="0.015 1.125 0.000" scale="1.115 1.115 1">
             <a-image src="#gloveBoxL" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+            <a-gltf-model id="gloveL" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
         </a-gltf-model>
         <a-gltf-model src="#gloveShelfBox" position="0.015 0.625 0.000" scale="1.115 1.115 1">
             <a-image src="#gloveBoxM" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+            <a-gltf-model id="gloveM" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
         </a-gltf-model>
         <a-gltf-model src="#gloveShelfBox" position="0.015 0.039 0.000" scale="1.115 1.115 1">
             <a-image src="#gloveBoxS" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+            <a-gltf-model id="gloveS" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
         </a-gltf-model>
     </a-gltf-model>
 
