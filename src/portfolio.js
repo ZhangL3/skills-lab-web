@@ -110,7 +110,7 @@ function handleClickPortfolio () {
         stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.ON_TABLE &&
         !is5RChecked()
     ) {
-        console.log("take in hand: ");
+        // console.log("take in hand: ");
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.IN_HAND);
 
     }
@@ -120,10 +120,10 @@ function handleClickPortfolio () {
     ) {
         // why here already true? before setIn.
         // console.log("to checkFinish: ", stateIndex.getState());
-        console.log("put on table: ");
+        // console.log("put on table: ");
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.ON_TABLE);
 
-        console.log("currentState!!!: ", currentState.portfolio.position);
+        // console.log("currentState!!!: ", currentState.portfolio.position);
     }
     else if (
         currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
@@ -148,10 +148,10 @@ function hideHooks(){
 }
 
 export function handleNotifyPortfolio(nextState) {
-    console.log("currentState: ", currentState.portfolio.position);
-    console.log("nextState: ", nextState.portfolio.position);
-    console.log("is5RChecked(): ", is5RChecked());
-    console.log("nextState: ", nextState, typeof(nextState));
+    // console.log("currentState: ", currentState.portfolio.position);
+    // console.log("nextState: ", nextState.portfolio.position);
+    // console.log("is5RChecked(): ", is5RChecked());
+    // console.log("nextState: ", nextState, typeof(nextState));
     if(
         (currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
             nextState.portfolio.position === constants.portfolio.position.IN_HAND) &&
@@ -166,7 +166,7 @@ export function handleNotifyPortfolio(nextState) {
         // is5RChecked()
         nextState.portfolio.checkFinish === true && nextState.portfolio.finish === false
     ) {
-        console.log("putOnTable: ");
+        // console.log("putOnTable: ");
         putOnTable();
         close();
         hideHooks();
