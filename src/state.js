@@ -2,8 +2,9 @@ import $ from 'jquery';
 import Observable from '../utils/observable';
 import * as constants from '../utils/constants';
 
-import { handleNotifyPortfolio } from "./portfolio";
+import { handleNotifyPortfolio } from './portfolio';
 import { handleNotifyPortfolioCheck } from './portfolioCheck';
+import { handleNotifyGlove } from './glove';
 
 
 const initState = {
@@ -22,7 +23,7 @@ const initState = {
     tableDisinfection:{
         hasGlove: false,
         hasCloth: false,
-        disinfected: false,
+        finish: false,
     },
     handDisinfection: false,
     bottlePrepare: {
@@ -66,6 +67,8 @@ export default class stateIndex {
         // Add function from observers
         this.headingsObserver.subscribe(handleNotifyPortfolio);
         this.headingsObserver.subscribe(handleNotifyPortfolioCheck);
+        this.headingsObserver.subscribe(handleNotifyGlove);
+
     }
 
     /**

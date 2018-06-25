@@ -9,5 +9,6 @@ import * as wasteBinCapOpen from './wasteBinCapOpen';
 import * as clothBottleCapOpen from './clothBottleCapOpen';
 import * as portfolio from './portfolio';
 import * as portfolioCheck from './portfolioCheck';
+import * as glove from './glove';
 
 stateIndex.init();
