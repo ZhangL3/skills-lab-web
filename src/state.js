@@ -5,6 +5,7 @@ import * as constants from '../utils/constants';
 import { handleNotifyPortfolio } from './portfolio';
 import { handleNotifyPortfolioCheck } from './portfolioCheck';
 import { handleNotifyGlove } from './glove';
+import { handleNotifyClothInBottle } from "./disinfectionClothInBottle";
 
 
 const initState = {
@@ -23,6 +24,7 @@ const initState = {
     tableDisinfection:{
         hasGlove: false,
         hasCloth: false,
+        disinfectionFinish: false,
         finish: false,
     },
     handDisinfection: false,
@@ -68,6 +70,8 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifyPortfolio);
         this.headingsObserver.subscribe(handleNotifyPortfolioCheck);
         this.headingsObserver.subscribe(handleNotifyGlove);
+        this.headingsObserver.subscribe(handleNotifyClothInBottle);
+
 
     }
 

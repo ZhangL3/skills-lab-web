@@ -10,5 +10,6 @@ import * as clothBottleCapOpen from './clothBottleCapOpen';
 import * as portfolio from './portfolio';
 import * as portfolioCheck from './portfolioCheck';
 import * as glove from './glove';
+import * as disinfectionClothInBottle from './disinfectionClothInBottle';
 
 stateIndex.init();
