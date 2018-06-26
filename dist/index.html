@@ -88,6 +88,13 @@
         <!-- glove -->
         <a-asset-item id="gloveMesh" src="./assets/models/meshes/glove/glove.gltf"/>
 
+        <!-- bottles -->
+        <a-asset-item id="bottleMesh" src="./assets/models/meshes/bottle/bottleWithoutLiquid.gltf"/>
+        <a-asset-item id="liquidMesh" src="./assets/models/meshes/bottle/liquid.gltf"/>
+        <a-asset-item id="bottleCapMesh" src="./assets/models/meshes/bottle/bottleCap.gltf"/>
+        <img id="nacl500" src="./assets/models/meshes/bottle/label_nacl_500_122018.png"/>
+        <img id="g51000" src="././assets/models/meshes/bottle/label-G5_1000_122018.png"/>
+
     </a-assets>
 
     <!-- cabinets -->
@@ -212,6 +219,20 @@
             </a-gltf-model>
         </a-gltf-model>
     </a-entity>
+
+    <!-- bottles -->
+    <a-gltf-model id="nacl500Bottle" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1">
+        <a-gltf-model id="nacl500Cap" src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
+        <a-gltf-model src="#liquidMesh"></a-gltf-model>
+        <a-image src="#nacl500" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
+    </a-gltf-model>
+    <a-gltf-model id="g51000Bottle" src="#bottleMesh" position="-0.272 1.420 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1">
+        <a-gltf-model src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
+
+        <a-gltf-model src="#liquidMesh"></a-gltf-model>
+        <a-image src="#g51000" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
+    </a-gltf-model>
+
 
     <!-- hand disinfection dispenser -->
     <a-gltf-model src="#dispenserBody" position="-1.18 0.742 -0.9" scale="0.4 0.4 0.4">
