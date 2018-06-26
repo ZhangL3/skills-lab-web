@@ -60,8 +60,14 @@ function putOnTable(){
 }
 
 function handleClickClothInBottle () {
-    if (stateIndex.getIn(['tableDisinfection','hasCloth']) === false) {
+    if (stateIndex.getIn(['tableDisinfection','hasCloth']) === false
+        // TODO: for product uncomment
+        // && stateIndex.getIn(['tableDisinfection','hasGlove']) === true
+    ) {
         stateIndex.setIn(['tableDisinfection','hasCloth'], true);
+    }
+    else {
+        console.log("has no glove: ");
     }
 }
 
