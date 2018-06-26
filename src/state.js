@@ -7,6 +7,7 @@ import { handleNotifyPortfolioCheck } from './portfolioCheck';
 import { handleNotifyGlove } from './glove';
 import { handleNotifyClothInBottle } from "./disinfectionClothInBottle";
 import { handleNotifyClothOnTable } from "./disinfectionClothOnTable";
+import { handleNotifyHandDisinfection } from "./handDisinfection";
 
 
 const initState = {
@@ -28,7 +29,10 @@ const initState = {
         disinfectionFinish: false,
         finish: false,
     },
-    handDisinfection: false,
+    handDisinfection: {
+        disinfecting: false,
+        finish: false,
+    },
     bottlePrepare: {
         position: 'in-cupboard', // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
         checkBottle: {
@@ -73,6 +77,7 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifyGlove);
         this.headingsObserver.subscribe(handleNotifyClothInBottle);
         this.headingsObserver.subscribe(handleNotifyClothOnTable);
+        this.headingsObserver.subscribe(handleNotifyHandDisinfection);
 
 
     }

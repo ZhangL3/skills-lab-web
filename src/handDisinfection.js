@@ -1,4 +1,13 @@
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+import $ from 'jquery';
+
+import stateIndex from './state';
+
+let element;
+let clock;
+let currentState;
+let plat30sec;
+
 
 //TODO: Add this action after creating index of status.
 
@@ -10,59 +19,90 @@ AFRAME.registerComponent('hand_disinfection', {
     },
 
     init: function(){
-        const { open, close, dur }= this.data;
-        var el= this.el;
-        var handleusing = false;
 
-        var statusIndex = document.querySelector("#statusIndex");
+        element = this.el;
+        clock = document.querySelector("#clockBody");
 
-        var clock = document.querySelector("#clock");
+        $(this.el).on('click', () => {
+            handleClickHandle();
+        });
 
-        aAnimationWrapper(this.el, 'click', 'position', close, open, dur, '', false, 'backwards' );
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
 
-        // el.addEventListener('click', function(){
-        //     if (statusIndex.getAttribute("exercisestarted") == "true" && statusIndex.getAttribute("tabledesinfection") == "true") {
-        //         handleDownUp(el, data.open, data.close);
-        //         clock.emit("handwashing");
-        //     }
-        // });
     }
 });
-//
-// function handleDownUp(el, open, close){
-//     handleDown(el, open, close);
-//     var t = setTimeout(function(){
-//         handleUp(el,open,close);
-//     },300);
-// }
-//
-// function handleDown(el, open, close){
-//     var move = document.createElement("a-animation");
-//     move.setAttribute("begin","0");
-//     move.setAttribute("attribute", "position");
-//     move.setAttribute("from", close)
-//     move.setAttribute("to", open);
-//     move.setAttribute("dur", 300);
-//
-//     el.appendChild(move);
-//
-//     var t = setTimeout(function(){
-//         el.removeChild(move);
-//     },600);
-// }
-//
-// function handleUp(el, open, close){
-//
-//     var move = document.createElement("a-animation");
-//     move.setAttribute("begin","0");
-//     move.setAttribute("attribute", "position");
-//     move.setAttribute("from", open)
-//     move.setAttribute("to", close);
-//     move.setAttribute("dur", 500);
-//
-//     el.appendChild(move);
-//
-//     var t = setTimeout(function(){
-//         el.removeChild(move);
-//     },600);
-// }
+
+const schema = {
+    open : '0 -0.09 0',
+    close : '0 0 0',
+    dur : 500,
+};
+
+function handDisinfection() {
+    aAnimationWrapper(element, '', 'position', '', schema.open, schema.dur, '', false, 'backwards' );
+    showClockIndicate();
+}
+
+function createPlat30Sec () {
+
+}
+
+function showClockIndicate() {
+
+    plat30sec=document.createElement("a-gltf-model");
+
+    plat30sec.setAttribute("id","plat30");
+    plat30sec.setAttribute("src","#clockMarker");
+    plat30sec.setAttribute("position", "0.01 0 0");
+    plat30sec.setAttribute("rotation", getPlat30Rotation());
+
+    clock.appendChild(plat30sec);
+}
+
+function hideClockIndicate() {
+    $(plat30sec).attr('visible', false);
+}
+
+function getPlat30Rotation(){
+    const oTime= new Date();
+    const curTime=oTime.getSeconds();
+    const gradForOneSec=360/60;
+    return {x: -(curTime*gradForOneSec), y: 0, z: 0};
+}
+
+function handleClickHandle () {
+    if (// TODO: for product remove comment
+        // stateIndex.getIn(['tableDisinfection', 'finish']) === true &&
+        stateIndex.getIn(['handDisinfection', 'disinfecting']) === false &&
+        stateIndex.getIn(['handDisinfection', 'finish']) === false
+    ){
+        stateIndex.setIn(['handDisinfection', 'disinfecting'], true);
+    }
+
+}
+
+export function handleNotifyHandDisinfection(nextState) {
+    if (// TODO: for product remove comment
+        // nextState.tableDisinfection.hasCloth === true &&
+        nextState.handDisinfection.disinfecting === true &&
+        nextState.handDisinfection.finish === false &&
+        currentState.handDisinfection.disinfecting === false
+    ) {
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+
+        // active handle, after 30sec chang state
+        handDisinfection();
+        setTimeout(()=>{
+            stateIndex.setIn(['handDisinfection', 'finish'], true);
+        }, 3000);
+    }
+    else if (
+        nextState.handDisinfection.disinfecting === true &&
+        nextState.handDisinfection.finish === true
+    ) {
+        hideClockIndicate();
+    }
+
+}

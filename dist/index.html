@@ -40,7 +40,7 @@
         <img id="disinfectionLabel" src="./assets/models/meshes/dispenser/disinfectionLabel.png">
 
         <!-- clock -->
-        <a-asset-item id="clockBody" src="./assets/models/meshes/clock/clock.gltf"/>
+        <a-asset-item id="clockBodyMesh" src="./assets/models/meshes/clock/clock.gltf"/>
         <a-asset-item id="clockHand" src="./assets/models/meshes/clock/clockHand.gltf"/>
         <a-asset-item id="clockMarker" src="./assets/models/meshes/clock/clockMarker.gltf"/>
 
@@ -220,7 +220,7 @@
     </a-gltf-model>
 
     <!-- clock -->
-    <a-gltf-model src="#clockBody" position="-1.2 1.35 -1" scale="0.2 0.2 0.2" rotation="0 270 0">
+    <a-gltf-model id="clockBody" src="#clockBodyMesh" position="-1.2 1.35 -1" scale="0.2 0.2 0.2" rotation="0 270 0">
         <a-gltf-model id="secHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.9 0.9 " rotation="90 0 0" clock_hand_roll></a-gltf-model>
         <a-gltf-model id="minHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.725 1.026 " rotation="90 0 0" clock_hand_roll="minuteClockHand"></a-gltf-model>
         <a-gltf-model id="hHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.624 1.353" rotation="90 0 0" clock_hand_roll="hourClockHand"></a-gltf-model>
