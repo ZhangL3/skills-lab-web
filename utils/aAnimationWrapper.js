@@ -12,8 +12,11 @@ import $ from 'jquery';
  * @param direction
  * @param remove
  * @param fill
+ * @param repeat
+ * @param easing
  */
-const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', remove=false, fill='none') => {
+const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='',
+                           remove=false, fill='none', repeat=0, easing='ease') => {
     const move=document.createElement("a-animation");
     move.setAttribute("begin",begin);
     move.setAttribute("attribute", attribute);
@@ -22,6 +25,8 @@ const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', re
     move.setAttribute("dur", dur);
     move.setAttribute("direction", direction);
     move.setAttribute("fill", fill);
+    move.setAttribute("repeat", repeat);
+    move.setAttribute("easing", easing);
 
     if (!el.append) {
         el.appendChild(move);
@@ -32,9 +37,16 @@ const aAnimationWrapper = (el, begin, attribute, from, to, dur, direction='', re
     }
 
     if (remove) {
-        setTimeout(()=>{
-            $(move).remove();
-        }, dur);
+        if (repeat) {
+            setTimeout(()=>{
+                $(move).remove();
+            }, dur * (repeat + 1));
+        }
+        else {
+            setTimeout(()=>{
+                $(move).remove();
+            }, dur);
+        }
     }
 };
 
