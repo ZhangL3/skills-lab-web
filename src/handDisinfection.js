@@ -8,9 +8,6 @@ let clock;
 let currentState;
 let plat30sec;
 
-
-//TODO: Add this action after creating index of status.
-
 AFRAME.registerComponent('hand_disinfection', {
     schema:{
         open : {default: '0 -0.09 0'},
