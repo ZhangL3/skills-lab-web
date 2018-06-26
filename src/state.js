@@ -34,16 +34,17 @@ const initState = {
         finish: false,
     },
     bottlePrepare: {
-        position: 'in-cupboard', // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
+        position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
         checkBottle: {
             front: false,
             back: false,
             top: false,
         },
         withCap: true,
+        finish: false,
     },
     infusionSet: {
-        position: 'in-drawer', // 'in-drawer' || 'in-hand' || 'on-table' || 'in-bottle'
+        position: constants.infusionSet.position.IN_DRAWER, // 'in-drawer' || 'in-hand' || 'on-table' || 'in-bottle'
         checkSet: {
             label: false,
         },
@@ -54,7 +55,7 @@ const initState = {
         fixed: false,
     },
     nameLabel: {
-        position: 'in-box', // 'in-box' || 'in-hand' || 'on-bottle'
+        position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
     },
     showResult: {
