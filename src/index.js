@@ -11,5 +11,6 @@ import * as portfolio from './portfolio';
 import * as portfolioCheck from './portfolioCheck';
 import * as glove from './glove';
 import * as disinfectionClothInBottle from './disinfectionClothInBottle';
+import * as disinfectionClothOnTable from './disinfectionClothOnTable';
 
 stateIndex.init();
