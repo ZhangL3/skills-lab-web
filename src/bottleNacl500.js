@@ -2,6 +2,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import $ from 'jquery';
 
 import stateIndex from './state';
+import { bottle } from "../utils/constants";
 
 let element;
 let bottleCap;
@@ -21,7 +22,7 @@ AFRAME.registerComponent('bottle_nacl500', {
         clock = document.querySelector("#clockBody");
 
         $(this.el).on('click', () => {
-            handleClickHandle();
+            handleClickBottle();
         });
 
         // deep copy
@@ -66,11 +67,44 @@ function hangUp() {
 
 function handleClickBottle () {
     if (// TODO: for product remove comment
-    // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
-    stateIndex.getIn(['handDisinfection', 'disinfecting']) === false &&
-    stateIndex.getIn(['handDisinfection', 'finish']) === false
+        // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD
     ){
-        stateIndex.setIn(['handDisinfection', 'disinfecting'], true);
+        stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.IN_HAND);
+    }
+    else if (
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_HAND &&
+        stateIndex.getIn(['bottlePrepare', 'checkBottle', 'front']) === false
+    ) {
+        stateIndex.setIn(['bottlePrepare', 'checkBottle', 'front'], true);
+    }
+    else if (
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_HAND &&
+        stateIndex.getIn(['bottlePrepare', 'checkBottle', 'front']) === true &&
+        stateIndex.getIn(['bottlePrepare', 'checkBottle', 'back']) === false
+    ) {
+        stateIndex.setIn(['bottlePrepare', 'checkBottle', 'back'], true);
+    }
+    else if (
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_HAND &&
+        stateIndex.getIn(['bottlePrepare', 'checkBottle', 'back']) === true &&
+        stateIndex.getIn(['bottlePrepare', 'checkBottle', 'top']) === false
+    ) {
+        stateIndex.setIn(['bottlePrepare', 'checkBottle', 'back'], false);
+    }
+    else if (
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
+        stateIndex.getIn(['bottlePrepare', 'checkBottle', 'top']) === true &&
+        stateIndex.getIn(['bottlePrepare', 'withCap']) === true
+    ) {
+        stateIndex.setIn(['bottlePrepare', 'withCap'], false);
+    }
+    else if (
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
+        stateIndex.getIn(['bottlePrepare', 'withCap']) === false &&
+        stateIndex.getIn(['bottlePrepare', 'withInfusionSet']) === true
+    ) {
+        stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.HANGED);
     }
 
 }
