@@ -37,7 +37,7 @@ const schema = {
     dur : 500,
 };
 
-function moveToCamera() {
+function takeBottle() {
 
 }
 
@@ -111,25 +111,22 @@ function handleClickBottle () {
 
 export function handleNotifyHandDisinfection(nextState) {
     if (// TODO: for product remove comment
-    // nextState.tableDisinfection.hasCloth === true &&
-    nextState.handDisinfection.disinfecting === true &&
-    nextState.handDisinfection.finish === false &&
-    currentState.handDisinfection.disinfecting === false
+    // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
+    currentState.bottlePrepare.position === bottle.position.IN_CUPBOARD &&
+    nextState.bottlePrepare.position === bottle.position.IN_HAND
     ) {
+        takeBottle();
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
-
-        // active handle, after 30sec chang state
-        handDisinfection();
-        setTimeout(()=>{
-            stateIndex.setIn(['handDisinfection', 'finish'], true);
-        }, 3000);
     }
     else if (
-        nextState.handDisinfection.disinfecting === true &&
-        nextState.handDisinfection.finish === true
+        currentState.bottlePrepare.position === bottle.position.IN_CUPBOARD &&
+        nextState.bottlePrepare.position === bottle.position.IN_HAND &&
+        nextState.bottlePrepare.checkBottle.front === true
     ) {
-        hideClockIndicate();
+        takeBottle();
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
     }
 
 }
