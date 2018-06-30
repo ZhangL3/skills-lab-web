@@ -10,11 +10,6 @@ let currentState;
 let plat30sec;
 
 AFRAME.registerComponent('bottle_nacl500', {
-    schema: {
-        open: {default: '0 -0.09 0'},
-        close: {default: '0 0 0'},
-        dur: {default: 500},
-    },
 
     init: function () {
 
@@ -31,25 +26,34 @@ AFRAME.registerComponent('bottle_nacl500', {
 });
 
 const schema = {
-    open: '0 -0.09 0',
-    close: '0 0 0',
+    inCupboardPosition: '-0.441 1.407 -0.766',
+    inFrontOfCameraPosition: '0 1.054 -0.55',
+    checkBackSiteRotation: '0 150 0',
+    checkTopSiteRotation: '0 120 90',
+    onTablePosition: '-0.32 0.732 -0.83',
+    onTableRotation: '0 90 0',
     dur: 500,
 };
 
 function takeBottle() {
     console.log("takeBottle");
+    aAnimationWrapper(element, '', 'position', '', schema.inFrontOfCameraPosition, schema.dur, '', true, 'forwards');
 }
 
 function checkBack() {
     console.log("checkBack");
+    aAnimationWrapper(element, '', 'rotation', '', schema.checkBackSiteRotation, schema.dur, '', true, 'forwards')
 }
 
 function checkTop() {
     console.log("checkTop");
+    aAnimationWrapper(element, '', 'rotation', '', schema.checkTopSiteRotation, schema.dur, '', true, 'forwards')
 }
 
 function putOnTable() {
     console.log("putOnTable");
+    aAnimationWrapper(element, '', 'position', '', schema.onTablePosition, schema.dur, '', true, 'forwards');
+    aAnimationWrapper(element, '', 'rotation', '', schema.onTableRotation, schema.dur, '', true, 'forwards');
 }
 
 function takeOffCap() {
@@ -95,7 +99,8 @@ function handleClickBottle() {
         stateIndex.getIn(['bottlePrepare', 'checkBottle', 'back']) === true &&
         stateIndex.getIn(['bottlePrepare', 'checkBottle', 'top']) === false
     ) {
-        stateIndex.setIn(['bottlePrepare', 'checkBottle', 'back'], false);
+        stateIndex.setIn(['bottlePrepare', 'checkBottle', 'top'], true);
+        stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.ON_TABLE);
     }
     else if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
@@ -125,7 +130,6 @@ export function handleNotifyBottle(nextState) {
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
-        currentState.bottlePrepare.position === bottle.position.IN_CUPBOARD &&
         nextState.bottlePrepare.position === bottle.position.IN_HAND &&
         currentState.bottlePrepare.checkBottle.front === false &&
         nextState.bottlePrepare.checkBottle.front === true
@@ -144,7 +148,8 @@ export function handleNotifyBottle(nextState) {
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
-        nextState.bottlePrepare.position === bottle.position.IN_HAND &&
+        currentState.bottlePrepare.position === bottle.position.IN_HAND &&
+        nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
         currentState.bottlePrepare.checkBottle.top === false &&
         nextState.bottlePrepare.checkBottle.top === true
     ) {
