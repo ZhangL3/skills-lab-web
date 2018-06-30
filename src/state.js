@@ -8,6 +8,7 @@ import { handleNotifyGlove } from './glove';
 import { handleNotifyClothInBottle } from "./disinfectionClothInBottle";
 import { handleNotifyClothOnTable } from "./disinfectionClothOnTable";
 import { handleNotifyHandDisinfection } from "./handDisinfection";
+import { handleNotifyBottle } from "./bottleNacl500";
 
 
 const initState = {
@@ -80,6 +81,7 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifyClothInBottle);
         this.headingsObserver.subscribe(handleNotifyClothOnTable);
         this.headingsObserver.subscribe(handleNotifyHandDisinfection);
+        this.headingsObserver.subscribe(handleNotifyBottle);
 
 
     }
