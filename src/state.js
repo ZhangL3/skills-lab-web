@@ -9,9 +9,11 @@ import { handleNotifyClothInBottle } from "./disinfectionClothInBottle";
 import { handleNotifyClothOnTable } from "./disinfectionClothOnTable";
 import { handleNotifyHandDisinfection } from "./handDisinfection";
 import { handleNotifyBottle } from "./bottleNacl500";
+import { handleNotifyWasteBinCap } from "./wasteBinCapOpen";
 
 
 const initState = {
+    wasteBinCapOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
@@ -82,8 +84,7 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifyClothOnTable);
         this.headingsObserver.subscribe(handleNotifyHandDisinfection);
         this.headingsObserver.subscribe(handleNotifyBottle);
-
-
+        this.headingsObserver.subscribe(handleNotifyWasteBinCap);
     }
 
     /**

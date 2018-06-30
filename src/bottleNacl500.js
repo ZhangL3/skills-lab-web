@@ -158,8 +158,9 @@ export function handleNotifyBottle(nextState) {
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
-        currentState.bottlePrepare.position === bottle.position.IN_HAND &&
-        nextState.bottlePrepare.position === bottle.position.ON_TABLE
+        nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
+        currentState.bottlePrepare.withCap === true &&
+        nextState.bottlePrepare.withCap === false
     ) {
         takeOffCap();
         // deep copy

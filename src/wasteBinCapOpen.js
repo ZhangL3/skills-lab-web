@@ -1,16 +1,51 @@
-import aAnimationWrapper from '../utils/aAnimationWrapper';
+import $ from 'jquery';
+import _ from 'lodash';
 
-AFRAME.registerComponent('waste_bin_cap_open', {
-    schema:{
-        open : {default: '0 0 -45'},
-        close :   {default: '0 0 0'},
-        dur : {default: 300},
-    },
+import aAnimationWrapper from '../utils/aAnimationWrapper';
+import stateIndex from './state';
+
+let element;
+let currentState;
+
+export default AFRAME.registerComponent('waste_bin_cap_open', {
 
     init: function(){
-        const { open, close, dur } = this.data;
+        element = this.el;
 
-        aAnimationWrapper(this.el, 'click', 'rotation', close, open, dur, 'alternate', false, 'forwards');
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
 
-    }
+        $(this.el).on('click', () => {
+            toggleOpenAndClose();
+        });
+    },
 });
+
+const schema = {
+    open : '0 0 -45',
+    close : '0 0 0',
+    dur : 300,
+};
+
+function toggleOpenAndClose() {
+    stateIndex.set('wasteBinCapOpen', !stateIndex.getState().wasteBinCapOpen);
+}
+
+function openCap() {
+    aAnimationWrapper(element, '', 'rotation', '', schema.open, schema.dur, '', true, 'forwards');
+}
+
+function closeCap() {
+    aAnimationWrapper(element, '', 'rotation', '', schema.close, schema.dur, '', true, 'forwards');
+}
+
+export function handleNotifyWasteBinCap(nextState) {
+    const { wasteBinCapOpen } = nextState;
+
+    if ( wasteBinCapOpen ) {
+        openCap();
+    }
+    else if ( !wasteBinCapOpen ) {
+        closeCap();
+    }
+}
