@@ -7,13 +7,13 @@ import {bottle} from "../utils/constants";
 let element;
 let bottleCap;
 let currentState;
-let plat30sec;
 
 AFRAME.registerComponent('bottle_nacl500', {
 
     init: function () {
 
         element = this.el;
+        bottleCap = $('#nacl500Cap');
 
         $(this.el).on('click', () => {
             handleClickBottle();
@@ -32,6 +32,9 @@ const schema = {
     checkTopSiteRotation: '0 120 90',
     onTablePosition: '-0.32 0.732 -0.83',
     onTableRotation: '0 90 0',
+    capOverBottlePosition: '0 1.99 0',
+    capOverBinPosition: '0.779 1.99 3.185',
+    capInBinPosition: '0.779 -0.288 3.185',
     dur: 500,
 };
 
@@ -58,6 +61,23 @@ function putOnTable() {
 
 function takeOffCap() {
     console.log("takeOffCap");
+    if (stateIndex.get('wasteBinCapOpen') === false) {
+        stateIndex.set('wasteBinCapOpen', true);
+        console.log("stateIndex.get('wasteBinCapOpen'): ", stateIndex.get('wasteBinCapOpen'), typeof(stateIndex.get('wasteBinCapOpen')));
+    }
+    aAnimationWrapper(bottleCap, '', 'position', '', schema.capOverBottlePosition, schema.dur, '', true, 'forwards');
+
+    setTimeout(() => {
+        aAnimationWrapper(bottleCap, '', 'position', '', schema.capOverBinPosition, schema.dur, '', true, 'forwards');
+    }, schema.dur);
+
+    setTimeout(() => {
+        aAnimationWrapper(bottleCap, '', 'position', '', schema.capInBinPosition, schema.dur, '', true, 'forwards');
+    }, schema.dur * 2);
+
+    setTimeout(() => {
+        stateIndex.set('wasteBinCapOpen', false);
+    }, schema.dur * 2.5);
 }
 
 function hangUp() {
