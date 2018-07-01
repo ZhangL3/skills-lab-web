@@ -1,0 +1,138 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0, 
+            "componentType" : 5121, 
+            "count" : 372, 
+            "max" : [
+                191
+            ], 
+            "min" : [
+                0
+            ], 
+            "type" : "SCALAR"
+        }, 
+        {
+            "bufferView" : 1, 
+            "componentType" : 5126, 
+            "count" : 192, 
+            "max" : [
+                0.5056667327880859, 
+                1.3826675415039062, 
+                0.4527871012687683
+            ], 
+            "min" : [
+                -0.5056667327880859, 
+                -1.3826618194580078, 
+                -0.452785849571228
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 2, 
+            "componentType" : 5126, 
+            "count" : 192, 
+            "max" : [
+                0.948357343673706, 
+                0.6314525008201599, 
+                0.8573964834213257
+            ], 
+            "min" : [
+                -0.948357343673706, 
+                -0.6314515471458435, 
+                -0.8573964238166809
+            ], 
+            "type" : "VEC3"
+        }
+    ], 
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter", 
+        "version" : "2.0"
+    }, 
+    "bufferViews" : [
+        {
+            "buffer" : 0, 
+            "byteLength" : 372, 
+            "byteOffset" : 0, 
+            "target" : 34963
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 2304, 
+            "byteOffset" : 372, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 2304, 
+            "byteOffset" : 2676, 
+            "target" : 34962
+        }
+    ], 
+    "buffers" : [
+        {
+            "byteLength" : 4980, 
+            "uri" : "2_Infusion_open_wheel.bin"
+        }
+    ], 
+    "materials" : [
+        {
+            "name" : "Plastic", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.44000001609325423, 
+                    0.44000001609325423, 
+                    0.44000001609325423, 
+                    1.0
+                ], 
+                "metallicFactor" : 0.0
+            }
+        }
+    ], 
+    "meshes" : [
+        {
+            "name" : "Cylinder.001", 
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2, 
+                        "POSITION" : 1
+                    }, 
+                    "indices" : 0, 
+                    "material" : 0
+                }
+            ]
+        }
+    ], 
+    "nodes" : [
+        {
+            "mesh" : 0, 
+            "name" : "decker.001", 
+            "rotation" : [
+                0.8742281198501587, 
+                0.20683501660823822, 
+                0.02640713006258011, 
+                0.4384599030017853
+            ], 
+            "scale" : [
+                0.18264515697956085, 
+                0.06682594865560532, 
+                0.18264515697956085
+            ], 
+            "translation" : [
+                -1.7922940254211426, 
+                0.5373509526252747, 
+                -1.3554643392562866
+            ]
+        }
+    ], 
+    "scene" : 0, 
+    "scenes" : [
+        {
+            "name" : "Scene", 
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}

@@ -1,0 +1,139 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0, 
+            "componentType" : 5123, 
+            "count" : 948, 
+            "max" : [
+                771
+            ], 
+            "min" : [
+                0
+            ], 
+            "type" : "SCALAR"
+        }, 
+        {
+            "bufferView" : 1, 
+            "componentType" : 5126, 
+            "count" : 772, 
+            "max" : [
+                1.0048223733901978, 
+                1.5788459777832031, 
+                1.0132594108581543
+            ], 
+            "min" : [
+                -1.0, 
+                -1.331850290298462, 
+                -1.0
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 2, 
+            "componentType" : 5126, 
+            "count" : 772, 
+            "max" : [
+                0.9951976537704468, 
+                1.0, 
+                0.9951783418655396
+            ], 
+            "min" : [
+                -0.995197594165802, 
+                -0.9998168349266052, 
+                -0.9951784014701843
+            ], 
+            "type" : "VEC3"
+        }
+    ], 
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter", 
+        "version" : "2.0"
+    }, 
+    "bufferViews" : [
+        {
+            "buffer" : 0, 
+            "byteLength" : 1896, 
+            "byteOffset" : 0, 
+            "target" : 34963
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 9264, 
+            "byteOffset" : 1896, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 9264, 
+            "byteOffset" : 11160, 
+            "target" : 34962
+        }
+    ], 
+    "buffers" : [
+        {
+            "byteLength" : 20424, 
+            "uri" : "7_2_Infusion_hanged_fill.bin"
+        }
+    ], 
+    "materials" : [
+        {
+            "alphaMode" : "BLEND", 
+            "name" : "wasser", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.0, 
+                    0.0019596729280041414, 
+                    0.4721655456880036, 
+                    0.2721739113330841
+                ], 
+                "metallicFactor" : 0.0
+            }
+        }
+    ], 
+    "meshes" : [
+        {
+            "name" : "Cylinder.004", 
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2, 
+                        "POSITION" : 1
+                    }, 
+                    "indices" : 0, 
+                    "material" : 0
+                }
+            ]
+        }
+    ], 
+    "nodes" : [
+        {
+            "mesh" : 0, 
+            "name" : "filling", 
+            "rotation" : [
+                0.11811947077512741, 
+                -0.10638359934091568, 
+                0.696958601474762, 
+                0.6992704272270203
+            ], 
+            "scale" : [
+                -0.16503480076789856, 
+                -0.158119335770607, 
+                -0.1645858883857727
+            ], 
+            "translation" : [
+                -6.9690046310424805, 
+                -0.0549423024058342, 
+                0.20482242107391357
+            ]
+        }
+    ], 
+    "scene" : 0, 
+    "scenes" : [
+        {
+            "name" : "Scene", 
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}
