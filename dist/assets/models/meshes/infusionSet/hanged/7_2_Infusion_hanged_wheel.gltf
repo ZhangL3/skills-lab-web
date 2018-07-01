@@ -1,0 +1,138 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0, 
+            "componentType" : 5121, 
+            "count" : 372, 
+            "max" : [
+                191
+            ], 
+            "min" : [
+                0
+            ], 
+            "type" : "SCALAR"
+        }, 
+        {
+            "bufferView" : 1, 
+            "componentType" : 5126, 
+            "count" : 192, 
+            "max" : [
+                0.5056667923927307, 
+                1.382664680480957, 
+                0.4527868330478668
+            ], 
+            "min" : [
+                -0.5056666731834412, 
+                -1.3826649188995361, 
+                -0.45278605818748474
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 2, 
+            "componentType" : 5126, 
+            "count" : 192, 
+            "max" : [
+                0.948357343673706, 
+                0.6314527988433838, 
+                0.8573963046073914
+            ], 
+            "min" : [
+                -0.9483572840690613, 
+                -0.6314513683319092, 
+                -0.8573964834213257
+            ], 
+            "type" : "VEC3"
+        }
+    ], 
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter", 
+        "version" : "2.0"
+    }, 
+    "bufferViews" : [
+        {
+            "buffer" : 0, 
+            "byteLength" : 372, 
+            "byteOffset" : 0, 
+            "target" : 34963
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 2304, 
+            "byteOffset" : 372, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 2304, 
+            "byteOffset" : 2676, 
+            "target" : 34962
+        }
+    ], 
+    "buffers" : [
+        {
+            "byteLength" : 4980, 
+            "uri" : "7_2_Infusion_hanged_wheel.bin"
+        }
+    ], 
+    "materials" : [
+        {
+            "name" : "Plastic.001", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.44000001609325423, 
+                    0.44000001609325423, 
+                    0.44000001609325423, 
+                    1.0
+                ], 
+                "metallicFactor" : 0.0
+            }
+        }
+    ], 
+    "meshes" : [
+        {
+            "name" : "Cylinder.001", 
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2, 
+                        "POSITION" : 1
+                    }, 
+                    "indices" : 0, 
+                    "material" : 0
+                }
+            ]
+        }
+    ], 
+    "nodes" : [
+        {
+            "mesh" : 0, 
+            "name" : "Rad", 
+            "rotation" : [
+                0.27725791931152344, 
+                -0.2630883455276489, 
+                -0.921984076499939, 
+                0.062112148851156235
+            ], 
+            "scale" : [
+                0.18264515697956085, 
+                0.06682594865560532, 
+                0.18264515697956085
+            ], 
+            "translation" : [
+                -4.047088623046875, 
+                0.023295894265174866, 
+                0.2866714596748352
+            ]
+        }
+    ], 
+    "scene" : 0, 
+    "scenes" : [
+        {
+            "name" : "Scene", 
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}
