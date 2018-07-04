@@ -54,7 +54,7 @@ const initState = {
         checkSet: {
             label: false,
         },
-        rollerClapOpen: false,
+        rollerClapOpen: true,
         withCap: true,
         dripChamber:false,
         tubeEmpty: false,
@@ -139,6 +139,8 @@ export default class stateIndex {
     static set (propString, value) {
         state[propString] = value;
         this.headingsObserver.notify(state);
+
+        console.log('state: ', stateIndex.getState());
     }
 
     /**
@@ -170,5 +172,9 @@ export default class stateIndex {
         }
 
         this.headingsObserver.notify(state);
+
+
+        console.log('state: ', stateIndex.getState());
+
     }
 }

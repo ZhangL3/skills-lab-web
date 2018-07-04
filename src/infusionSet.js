@@ -5,7 +5,12 @@ import stateIndex from './state';
 import {bottle, infusionSet} from "../utils/constants";
 
 let element;
+
 let infusionSetInPack;
+let infusionSetOpen;
+let infusionSetOpenCap;
+let infusionSetOpenWheel;
+
 let currentState;
 
 let isDrawerOpen = false;
@@ -21,9 +26,20 @@ AFRAME.registerComponent('infusion_set', {
 
         element = this.el;
         infusionSetInPack = $('#infusionSetInPack');
+        infusionSetOpen = $('#infusionSetOpen');
+        infusionSetOpenCap = $('#infusionSetOpenCap');
+        infusionSetOpenWheel = $('#infusionSetOpenWheel');
 
         infusionSetInPack.on('click', () => {
-            handleClickInfusionSet();
+            handleClickInfusionSetInPack();
+        });
+
+        infusionSetOpenCap.on('click', () => {
+            handleClickInfusionSetOpenCap();
+        });
+
+        infusionSetOpenWheel.on('click', () => {
+            handleClickInfusionSetOpenWheel();
         });
 
         // deep copy
@@ -76,7 +92,29 @@ function putInfusionSetOnTable() {
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
-function handleClickInfusionSet() {
+function openInfusionSet() {
+    console.log("openInfusionSet");
+    movable = false;
+    infusionSetInPack.remove();
+    infusionSetOpen.attr('visible', true);
+    setTimeout(()=>{ movable = true }, schema.dur);
+}
+
+function takeOffInfusionSetOpenCap() {
+    console.log("takeOffInfusionSetOpenCap");
+    movable = false;
+
+    setTimeout(()=>{ movable = true }, schema.dur);
+}
+
+function closeInfusionSetOpenWheel() {
+    console.log("closeInfusionSetOpenWheel");
+    movable = false;
+
+    setTimeout(()=>{ movable = true }, schema.dur);
+}
+
+function handleClickInfusionSetInPack() {
     console.log("click infusion set");
     if (// TODO: for product remove comment
         // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
@@ -90,38 +128,34 @@ function handleClickInfusionSet() {
     ) {
         stateIndex.setIn(['infusionSet', 'position'], infusionSet.position.ON_TABLE);
     }
-    // else if (
-    //     stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_HAND &&
-    //     stateIndex.getIn(['bottlePrepare', 'checkBottle', 'front']) === true &&
-    //     stateIndex.getIn(['bottlePrepare', 'checkBottle', 'back']) === false && movable
-    // ) {
-    //     stateIndex.setIn(['bottlePrepare', 'checkBottle', 'back'], true);
-    // }
-    // else if (
-    //     stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_HAND &&
-    //     stateIndex.getIn(['bottlePrepare', 'checkBottle', 'back']) === true &&
-    //     stateIndex.getIn(['bottlePrepare', 'checkBottle', 'top']) === false && movable
-    // ) {
-    //     stateIndex.setIn(['bottlePrepare', 'checkBottle', 'top'], true);
-    //     stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.ON_TABLE);
-    // }
-    // else if (
-    //     stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
-    //     stateIndex.getIn(['bottlePrepare', 'checkBottle', 'top']) === true &&
-    //     stateIndex.getIn(['bottlePrepare', 'withCap']) === true && movable
-    // ) {
-    //     stateIndex.setIn(['bottlePrepare', 'withCap'], false);
-    //
-    //     test = true;
-    // }
-    // else if (
-    //     stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
-    //     stateIndex.getIn(['bottlePrepare', 'withCap']) === false &&
-    //     // stateIndex.getIn(['bottlePrepare', 'withInfusionSet']) === true && movable
-    //     test === true && movable
-    // ) {
-    //     stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.HANGED);
-    // }
+    else if (
+        stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
+        stateIndex.getIn(['infusionSet', 'inPack']) === true && movable
+    ) {
+        stateIndex.setIn(['infusionSet', 'inPack'], false);
+    }
+}
+
+function handleClickInfusionSetOpenCap() {
+    console.log('click cap');
+    if (
+        stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
+        stateIndex.getIn(['infusionSet', 'inPack']) === false &&
+        stateIndex.getIn(['infusionSet', 'withCap']) === true && movable
+    ) {
+        stateIndex.setIn(['infusionSet', 'withCap'], false);
+    }
+}
+
+function handleClickInfusionSetOpenWheel() {
+    console.log('click wheel');
+    if (
+        stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
+        stateIndex.getIn(['infusionSet', 'inPack']) === false &&
+        stateIndex.getIn(['infusionSet', 'rollerClapOpen']) === true && movable
+    ) {
+        stateIndex.setIn(['infusionSet', 'rollerClapOpen'], false);
+    }
 }
 
 export function handleNotifyInfusionSet(nextState) {
@@ -142,34 +176,36 @@ export function handleNotifyInfusionSet(nextState) {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
-    // else if (
-    //     nextState.bottlePrepare.position === bottle.position.IN_HAND &&
-    //     currentState.bottlePrepare.checkBottle.back === false &&
-    //     nextState.bottlePrepare.checkBottle.back === true
-    // ) {
-    //     checkTop();
-    //     // deep copy
-    //     currentState = _.cloneDeep(stateIndex.getState());
-    // }
-    // else if (
-    //     currentState.bottlePrepare.position === bottle.position.IN_HAND &&
-    //     nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
-    //     currentState.bottlePrepare.checkBottle.top === false &&
-    //     nextState.bottlePrepare.checkBottle.top === true
-    // ) {
-    //     putOnTable();
-    //     // deep copy
-    //     currentState = _.cloneDeep(stateIndex.getState());
-    // }
-    // else if (
-    //     nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
-    //     currentState.bottlePrepare.withCap === true &&
-    //     nextState.bottlePrepare.withCap === false
-    // ) {
-    //     takeOffCap();
-    //     // deep copy
-    //     currentState = _.cloneDeep(stateIndex.getState());
-    // }
+    else if (
+        // currentState.infusionSet.position === infusionSet.position.ON_TABLE &&
+        nextState.infusionSet.position === infusionSet.position.ON_TABLE &&
+        currentState.infusionSet.inPack === true &&
+        nextState.infusionSet.inPack === false
+    ) {
+        openInfusionSet();
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+
+        console.log('currentState: ', currentState);
+    }
+    else if (
+        nextState.infusionSet.position === infusionSet.position.ON_TABLE &&
+        currentState.infusionSet.withCap === true &&
+        nextState.infusionSet.withCap === false
+    ) {
+        takeOffInfusionSetOpenCap();
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+    }
+    else if (
+        nextState.infusionSet.position === infusionSet.position.ON_TABLE &&
+        currentState.infusionSet.rollerClapOpen === true &&
+        nextState.infusionSet.rollerClapOpen === false
+    ) {
+        closeInfusionSetOpenWheel();
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+    }
     // else if (
     //     nextState.bottlePrepare.position === bottle.position.HANGED &&
     //     currentState.bottlePrepare.withInfusionSet === false &&
