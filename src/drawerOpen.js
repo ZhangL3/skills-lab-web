@@ -4,7 +4,7 @@ export default AFRAME.registerComponent('drawer_open',{
     schema: {
         open : {default: '1.8 0 0.1'},
         close : {default: '0 0 0.1'},
-        dur : {default: 300},
+        dur : {default: 500},
 
     },
     init: function (){
