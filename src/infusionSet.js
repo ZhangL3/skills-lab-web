@@ -142,43 +142,43 @@ export function handleNotifyInfusionSet(nextState) {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
-    else if (
-        nextState.bottlePrepare.position === bottle.position.IN_HAND &&
-        currentState.bottlePrepare.checkBottle.back === false &&
-        nextState.bottlePrepare.checkBottle.back === true
-    ) {
-        checkTop();
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
-    }
-    else if (
-        currentState.bottlePrepare.position === bottle.position.IN_HAND &&
-        nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
-        currentState.bottlePrepare.checkBottle.top === false &&
-        nextState.bottlePrepare.checkBottle.top === true
-    ) {
-        putOnTable();
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
-    }
-    else if (
-        nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
-        currentState.bottlePrepare.withCap === true &&
-        nextState.bottlePrepare.withCap === false
-    ) {
-        takeOffCap();
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
-    }
-    else if (
-        nextState.bottlePrepare.position === bottle.position.HANGED &&
-        currentState.bottlePrepare.withInfusionSet === false &&
-        nextState.bottlePrepare.finish === false &&
-        // nextState.bottlePrepare.withInfusionSet === true
-        test === true
-    ) {
-        hangUp();
-        // deep copy
-        // currentState = _.cloneDeep(stateIndex.getState());
-    }
+    // else if (
+    //     nextState.bottlePrepare.position === bottle.position.IN_HAND &&
+    //     currentState.bottlePrepare.checkBottle.back === false &&
+    //     nextState.bottlePrepare.checkBottle.back === true
+    // ) {
+    //     checkTop();
+    //     // deep copy
+    //     currentState = _.cloneDeep(stateIndex.getState());
+    // }
+    // else if (
+    //     currentState.bottlePrepare.position === bottle.position.IN_HAND &&
+    //     nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
+    //     currentState.bottlePrepare.checkBottle.top === false &&
+    //     nextState.bottlePrepare.checkBottle.top === true
+    // ) {
+    //     putOnTable();
+    //     // deep copy
+    //     currentState = _.cloneDeep(stateIndex.getState());
+    // }
+    // else if (
+    //     nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
+    //     currentState.bottlePrepare.withCap === true &&
+    //     nextState.bottlePrepare.withCap === false
+    // ) {
+    //     takeOffCap();
+    //     // deep copy
+    //     currentState = _.cloneDeep(stateIndex.getState());
+    // }
+    // else if (
+    //     nextState.bottlePrepare.position === bottle.position.HANGED &&
+    //     currentState.bottlePrepare.withInfusionSet === false &&
+    //     nextState.bottlePrepare.finish === false &&
+    //     // nextState.bottlePrepare.withInfusionSet === true
+    //     test === true
+    // ) {
+    //     hangUp();
+    //     // deep copy
+    //     // currentState = _.cloneDeep(stateIndex.getState());
+    // }
 }

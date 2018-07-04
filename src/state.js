@@ -50,6 +50,7 @@ const initState = {
     },
     infusionSet: {
         position: constants.infusionSet.position.IN_DRAWER, // 'in-drawer' || 'in-hand' || 'on-table' || 'in-bottle'
+        inPack: true,
         checkSet: {
             label: false,
         },
