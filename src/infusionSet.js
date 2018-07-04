@@ -19,18 +19,17 @@ AFRAME.registerComponent('infusion_set', {
 
         element = this.el;
         infusionSetInPack = $('#infusionSetInPack');
-        console.log("infusionSetInPack: ", infusionSetInPack, typeof(infusionSetInPack));
+
+        // console.log("infusionSetInPack: ", infusionSetInPack, typeof(infusionSetInPack));
         const infusionSetInPack2 = document.querySelector("#infusionSetInPack");
 
-        infusionSetInPack2.addEventListener('moveWithDrawerEvent', () => {
-            moveWithDrawer();
-        });
+        // infusionSetInPack2.addEventListener('moveWithDrawerEvent', () => {
+        //     moveWithDrawer();
+        // });
 
-        // eventMoveWithDrawer = new Event('moveWithDrawer');
-
-        infusionSetInPack.on('moveWithDrawerEvent', () => {
-            moveWithDrawer();
-        });
+        // infusionSetInPack.on('moveWithDrawerEvent', () => {
+        //     moveWithDrawer();
+        // });
 
         // $(this.el).on('click', () => {
         //     handleClickBottle();
@@ -44,7 +43,7 @@ AFRAME.registerComponent('infusion_set', {
 
 const schema = {
     infusionSetInDrawerClosePosition : '-0.215 0.466 -0.813',
-    infusionSetInDrawerOpenPosition : '-0.215 0.466 -0.639',
+    infusionSetInDrawerOpenPosition : '-0.215 0.466 -0.633',
 
     hangedRotation: '0 66.46 180',
     dur: 500,
