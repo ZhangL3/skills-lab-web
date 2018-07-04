@@ -95,6 +95,15 @@
         <img id="nacl500" src="./assets/models/meshes/bottle/label_nacl_500_122018.png"/>
         <img id="g51000" src="././assets/models/meshes/bottle/label-G5_1000_122018.png"/>
 
+        <!-- infusion set -->
+        <a-asset-item id="infusionSetInPackMesh" src="./assets/models/meshes/infusionSet/inPack/1_Infusion_packed.gltf"></a-asset-item>
+        <img id="infusionSetLabel" src="././assets/models/meshes/infusionSet/inPack/InfusionsbesteckEtikett512.jpg"/>
+
+        <a-asset-item id="infusionSetOpenMesh" src="./assets/models/meshes/infusionSet/open/2_Infusion_open.gltf"></a-asset-item>
+        <a-asset-item id="infusionSetOpenCapMesh" src="./assets/models/meshes/infusionSet/open/2_Infusion_open_cap.gltf"></a-asset-item>
+        <a-asset-item id="infusionSetOpenWheelMesh" src="./assets/models/meshes/infusionSet/open/2_Infusion_open_wheel.gltf"></a-asset-item>
+
+
     </a-assets>
 
     <!-- cabinets -->
@@ -122,10 +131,9 @@
             </a-gltf-model>
 
             <a-gltf-model id="drawerWithCutlery" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 4.1 0.037" drawer_open="open: 1.8 4.1 0.037; close: 0 4.1 0.037">
+                          position="0 4.1 0.037" drawer_open_with_infusion_set="open: 1.8 4.1 0.037; close: 0 4.1 0.037">
                 <a-gltf-model src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
                 <a-image src="#drawerLabelCutlery" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
-
             </a-gltf-model>
 
             <a-gltf-model src="#cabinetDrawer" mixin="cabinetSmallDrawer"
@@ -320,6 +328,17 @@
         <a-image portfolioCheck id="transparentCF" src="#transparent" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" visible="true"></a-image>
         <a-image id="hookCF" src="#hook" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" checked="false" visible="false"></a-image>
     </a-gltf-model>
+
+    <!-- infusionSet -->
+    <a-gltf-model id="infusionSetInPack" src="#infusionSetInPackMesh" position="-0.215 0.466 -0.813" rotation="0 90 0" scale="0.03 0.03 0.03" infusion_set>
+        <a-image src="#infusionSetLabel" scale="2.570 5.563 1.000" position="-0.232 -0.440 0.138" rotation="90 0 0"></a-image>
+    </a-gltf-model>
+
+    <a-gltf-model id="infusionSetOpen" src="#infusionSetOpenMesh" position="-0.161 0.674 -0.819" rotation="0 180 0" scale="0.03 0.03 0.03" visible="false">
+        <a-gltf-model id="infusionSetOpenCap" src="#infusionSetOpenCapMesh"></a-gltf-model>
+        <a-gltf-model id="infusionSetOpenWheel" src="#infusionSetOpenWheelMesh"></a-gltf-model>
+    </a-gltf-model>
+
 
 
     <!--camera -->

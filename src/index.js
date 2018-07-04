@@ -13,5 +13,7 @@ import * as glove from './glove';
 import * as disinfectionClothInBottle from './disinfectionClothInBottle';
 import * as disinfectionClothOnTable from './disinfectionClothOnTable';
 import * as bottleNacl500 from './bottleNacl500';
+import * as infusionSet from './infusionSet';
+import * as drawerOpenWithInfusionSet from './drawerOpenWithInfusionSet';
 
 stateIndex.init();

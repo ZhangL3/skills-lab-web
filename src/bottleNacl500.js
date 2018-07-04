@@ -22,7 +22,7 @@ AFRAME.registerComponent('bottle_nacl500', {
         $(this.el).on('click', () => {
             handleClickBottle();
         });
-
+        
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
 
