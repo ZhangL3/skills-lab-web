@@ -17,15 +17,13 @@ export default AFRAME.registerComponent('drawer_open_with_infusion_set',{
         const { close, open, dur }= this.data;
 
         const drawerWithInfusionSet = $("#drawerWithCutlery");
-        
+
         // Create event and add this event to infusionSetInPack, to move infusionSetInPack with drawer
         $.event.trigger({
-            type: "infusionSetMoveWithDrawer",
+            type: "infusionSetMoveWithDrawer"
         });
 
-        drawerWithInfusionSet.on('infusionSetMoveWithDrawer', () => {
-            moveWithDrawer();
-        });
+        drawerWithInfusionSet.on('infusionSetMoveWithDrawer', moveWithDrawer);
 
         drawerWithInfusionSet.on('click', () => {
             if (stateIndex.getIn(['infusionSet','position']) === infusionSet.position.IN_DRAWER) {

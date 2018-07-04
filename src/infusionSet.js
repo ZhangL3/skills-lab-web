@@ -2,11 +2,14 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import $ from 'jquery';
 
 import stateIndex from './state';
-import {bottle} from "../utils/constants";
+import {bottle, infusionSet} from "../utils/constants";
 
 let element;
 let infusionSetInPack;
 let currentState;
+
+let isDrawerOpen = false;
+
 // Don't active the action, if the animation is not finish
 let movable = true;
 // For product use withInfusionSet
@@ -50,9 +53,25 @@ const schema = {
 };
 
 export function moveWithDrawer() {
-    console.log("moveWithDrawer!!!");
+    console.log("isDrawerOpen: ", isDrawerOpen, typeof(isDrawerOpen));
+    console.log(stateIndex.getIn(['infusionSet', 'position']));
     // movable = false;
-    aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.infusionSetInDrawerOpenPosition, schema.dur, '', true, 'forwards');
+    if (
+        isDrawerOpen === false
+        && stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER
+    ) {
+        console.log("to open");
+        aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.infusionSetInDrawerOpenPosition, schema.dur, '', true, 'forwards');
+        isDrawerOpen = !isDrawerOpen;
+    }
+    else if (
+        isDrawerOpen === true
+        && stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER
+    ){
+        console.log("to close");
+        aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.infusionSetInDrawerClosePosition, schema.dur, '', true, 'forwards');
+        isDrawerOpen = !isDrawerOpen;
+    }
 }
 
 function moveawer() {
