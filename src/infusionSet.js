@@ -215,7 +215,8 @@ function handleClickInfusionSetOpen() {
     if (
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
         stateIndex.getIn(['infusionSet', 'withCap']) === false &&
-        stateIndex.getIn(['infusionSet', 'rollerClapOpen']) === false && movable
+        stateIndex.getIn(['infusionSet', 'rollerClapOpen']) === false && movable &&
+        stateIndex.getIn(['bottlePrepare', 'withCap']) === false
     ) {
         stateIndex.setIn(['infusionSet','position'], infusionSet.position.IN_BOTTLE);
     }

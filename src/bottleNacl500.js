@@ -2,10 +2,12 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import $ from 'jquery';
 
 import stateIndex from './state';
-import {bottle} from "../utils/constants";
+import {bottle, infusionSet} from "../utils/constants";
 
 let element;
 let bottleCap;
+let infusionSetInBottle;
+let infusionSetHanged;
 let currentState;
 // Don't active the action, if the animation is not finish
 let movable = true;
@@ -18,6 +20,8 @@ AFRAME.registerComponent('bottle_nacl500', {
 
         element = this.el;
         bottleCap = $('#nacl500Cap');
+        infusionSetInBottle = $('#infusionSetInBottle');
+        // infusionSetHanged = $('#inf')
 
         $(this.el).on('click', () => {
             handleClickBottle();
@@ -112,6 +116,8 @@ function hangUp() {
 
     aAnimationWrapper(element, '', 'rotation', '', schema.hangedRotation, schema.dur, '', true, 'forwards');
 
+    infusionSetInBottle.remove();
+
     stateIndex.setIn(['bottlePrepare', 'finish'], true);
 }
 
@@ -156,7 +162,7 @@ function handleClickBottle() {
     else if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
         stateIndex.getIn(['bottlePrepare', 'withCap']) === false &&
-        // stateIndex.getIn(['bottlePrepare', 'withInfusionSet']) === true && movable
+        stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_BOTTLE &&
         test === true && movable
     ) {
         stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.HANGED);
@@ -212,9 +218,9 @@ export function handleNotifyBottle(nextState) {
     }
     else if (
         nextState.bottlePrepare.position === bottle.position.HANGED &&
-        currentState.bottlePrepare.withInfusionSet === false &&
+        currentState.infusionSet.position !== infusionSet.position.IN_BOTTLE &&
         nextState.bottlePrepare.finish === false &&
-        // nextState.bottlePrepare.withInfusionSet === true
+        nextState.infusionSet.position === infusionSet.position.IN_BOTTLE &&
         test === true
     ) {
         hangUp();
