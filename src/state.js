@@ -45,7 +45,7 @@ const initState = {
             top: false,
         },
         withCap: true,
-        withInfusionSet: false,
+        // withInfusionSet: false,
         finish: false,
     },
     infusionSet: {

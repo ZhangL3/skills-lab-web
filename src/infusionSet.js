@@ -30,6 +30,7 @@ AFRAME.registerComponent('infusion_set', {
         infusionSetOpen = $('#infusionSetOpen');
         infusionSetOpenCap = $('#infusionSetOpenCap');
         infusionSetOpenWheel = $('#infusionSetOpenWheel');
+        infusionSetInBottle = $('#infusionSetInBottle');
 
         infusionSetInPack.on('click', () => {
             handleClickInfusionSetInPack();
@@ -41,6 +42,10 @@ AFRAME.registerComponent('infusion_set', {
 
         infusionSetOpenWheel.on('click', () => {
             handleClickInfusionSetOpenWheel();
+        });
+
+        infusionSetOpen.on('click', () => {
+            handleClickInfusionSetOpen();
         });
 
         // deep copy
@@ -150,6 +155,16 @@ function closeInfusionSetOpenWheel() {
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
+function pierceInfusionSetIntoBottle() {
+    console.log("closeInfusionSetOpenWheel");
+    movable = false;
+
+    infusionSetOpen.remove();
+    infusionSetInBottle.attr('visible', true);
+
+    setTimeout(()=>{ movable = true }, schema.dur);
+}
+
 function handleClickInfusionSetInPack() {
     console.log("click infusion set");
     if (// TODO: for product remove comment
@@ -191,6 +206,18 @@ function handleClickInfusionSetOpenWheel() {
         stateIndex.getIn(['infusionSet', 'rollerClapOpen']) === true && movable
     ) {
         stateIndex.setIn(['infusionSet', 'rollerClapOpen'], false);
+    }
+}
+
+function handleClickInfusionSetOpen() {
+    console.log("click infusion set open");
+
+    if (
+        stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
+        stateIndex.getIn(['infusionSet', 'withCap']) === false &&
+        stateIndex.getIn(['infusionSet', 'rollerClapOpen']) === false && movable
+    ) {
+        stateIndex.setIn(['infusionSet','position'], infusionSet.position.IN_BOTTLE);
     }
 }
 
@@ -239,6 +266,15 @@ export function handleNotifyInfusionSet(nextState) {
         nextState.infusionSet.rollerClapOpen === false
     ) {
         closeInfusionSetOpenWheel();
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+    }
+    else if (
+        currentState.infusionSet.position === infusionSet.position.ON_TABLE &&
+        nextState.infusionSet.position === infusionSet.position.IN_BOTTLE &&
+        nextState.bottlePrepare.withCap === false
+    ) {
+        pierceInfusionSetIntoBottle();
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
