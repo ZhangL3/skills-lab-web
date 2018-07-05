@@ -14,6 +14,9 @@ let infusionSetInBottle;
 let infusionSetHanged;
 let infusionSetHangedFill;
 let infusionSetHangedWheel;
+let infusionSetHangedFilled;
+let infusionSetHangedFilledWheel;
+let infusionSetFixed;
 
 let currentState;
 
@@ -37,6 +40,9 @@ AFRAME.registerComponent('infusion_set', {
         infusionSetHanged =$('#infusionSetHanged');
         infusionSetHangedFill =$('#infusionSetHangedFill');
         infusionSetHangedWheel =$('#infusionSetHangedWheel');
+        infusionSetHangedFilled = $('#infusionSetHangedFilled');
+        infusionSetHangedFilledWheel = $('#infusionSetHangedFilledWheel');
+        infusionSetFixed = $('#infusionSetFixed');
 
         infusionSetInPack.on('click', () => {
             handleClickInfusionSetInPack();
@@ -62,6 +68,10 @@ AFRAME.registerComponent('infusion_set', {
            handleClickInfusionSetHangedRoller();
         });
 
+        infusionSetHangedFilled.on('click', () => {
+           handleClickInfusionSetHangedFilled();
+        });
+
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
 
@@ -80,7 +90,7 @@ const schema = {
     infusionSetOpenCapOverCan: '-5.253 8.647 5.617',
     infusionSetOpenCapInCan: '-5.253 1.217 5.617',
     infusionSetOpenWheelClose: '-0.454 0 0.295',
-
+    infusionSetHangedWheelOpen: '-0.530 0.110 -0.060',
     dur: 500,
 };
 
@@ -182,15 +192,26 @@ function pierceInfusionSetIntoBottle() {
 function fillChamber() {
     console.log("fillChamber");
     infusionSetHangedFill.attr('visible', true);
+    console.log(infusionSetHangedFill.attr('visible'));
 }
 
 function openRoller() {
     console.log("openRoller");
 
     movable = false;
+    infusionSetHanged.remove();
+    infusionSetHangedFilled.attr('visible', true);
+    aAnimationWrapper(infusionSetHangedFilledWheel, '', 'position', '', schema.infusionSetHangedWheelOpen, schema.dur, '', true, 'forwards');
 
-    // infusionSetOpen.remove();
-    // infusionSetInBottle.attr('visible', true);
+    setTimeout(()=>{ movable = true }, schema.dur);
+}
+
+function fixTube() {
+    console.log("fixTube");
+
+    movable = false;
+    infusionSetHangedFilled.remove();
+    infusionSetFixed.attr('visible', true);
 
     setTimeout(()=>{ movable = true }, schema.dur);
 }
@@ -246,7 +267,7 @@ function handleClickInfusionSetHanged() {
     console.log(movable);
     if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
-        stateIndex.getIn(['infusionSet', 'chamberFilled']) === false &&
+        stateIndex.getIn(['infusionSet', 'chamberFilled']) === true &&
         movable
     ) {
         stateIndex.setIn(['infusionSet', 'chamberFilled'], true);
@@ -275,6 +296,21 @@ function handleClickInfusionSetOpen() {
         stateIndex.getIn(['bottlePrepare', 'withCap']) === false
     ) {
         stateIndex.setIn(['infusionSet','position'], infusionSet.position.IN_BOTTLE);
+    }
+}
+
+function handleClickInfusionSetHangedFilled() {
+    console.log("click hanged filled");
+    console.log(stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED);
+    console.log(stateIndex.getIn(['infusionSet', 'chamberFilled']) === true);
+    console.log(stateIndex.getIn(['infusionSet', 'tubeFilled']) === true);
+    if (
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
+        stateIndex.getIn(['infusionSet', 'chamberFilled']) === true &&
+        stateIndex.getIn(['infusionSet', 'tubeFilled']) === true &&
+        movable
+    ) {
+        stateIndex.setIn(['infusionSet','fixed'], true);
     }
 }
 
@@ -352,6 +388,16 @@ export function handleNotifyInfusionSet(nextState) {
         nextState.infusionSet.tubeFilled === true
     ) {
         openRoller();
+
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+    }
+    else if (
+        nextState.bottlePrepare.position === bottle.position.HANGED &&
+        currentState.infusionSet.fixed === false &&
+        nextState.infusionSet.fixed === true
+    ) {
+        fixTube();
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
