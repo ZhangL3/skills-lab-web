@@ -10,6 +10,7 @@ let infusionSetInPack;
 let infusionSetOpen;
 let infusionSetOpenCap;
 let infusionSetOpenWheel;
+let infusionSetInBottle;
 
 let currentState;
 
@@ -55,11 +56,18 @@ const schema = {
     inFrontOfCameraRotation: '-90.000 0 0',
     onTablePosition: '-0.161 0.698 -0.819',
     onTableRotation: '0 90 0',
+    infusionSetOpenCapOnTableOpen: '1.259 0 -0.554',
+    infusionSetOpenCapOverTableOpen: '1.259 8.647 -0.554',
+    infusionSetOpenCapOverCan: '-5.253 8.647 5.617',
+    infusionSetOpenCapInCan: '-5.253 1.217 5.617',
+    infusionSetOpenWheelClose: '-0.454 0 0.295',
 
     dur: 500,
 };
 
 export function moveWithDrawer() {
+    console.log("moveWithDrawer");
+    movable = false;
     if (
         isDrawerOpen === false
         && stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER
@@ -74,6 +82,7 @@ export function moveWithDrawer() {
         aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.infusionSetInDrawerClosePosition, schema.dur, '', true, 'forwards');
         isDrawerOpen = !isDrawerOpen;
     }
+    setTimeout(()=>{ movable = true }, schema.dur);
 }
 
 function takeInfusionSet() {
@@ -104,12 +113,39 @@ function takeOffInfusionSetOpenCap() {
     console.log("takeOffInfusionSetOpenCap");
     movable = false;
 
+    if (stateIndex.get('wasteBinCapOpen') === false) {
+        stateIndex.set('wasteBinCapOpen', true);
+    }
+    aAnimationWrapper(infusionSetOpenCap, '', 'position', '', schema.infusionSetOpenCapOnTableOpen, schema.dur, '', true, 'forwards');
+
+    setTimeout(() => {
+        aAnimationWrapper(infusionSetOpenCap, '', 'position', '', schema.infusionSetOpenCapOverTableOpen, schema.dur, '', true, 'forwards');
+    }, schema.dur);
+
+    setTimeout(() => {
+        aAnimationWrapper(infusionSetOpenCap, '', 'position', '', schema.infusionSetOpenCapOverCan, schema.dur, '', true, 'forwards');
+    }, schema.dur * 2);
+
+    setTimeout(() => {
+        aAnimationWrapper(infusionSetOpenCap, '', 'position', '', schema.infusionSetOpenCapInCan, schema.dur, '', true, 'forwards');
+    }, schema.dur * 3);
+
+    setTimeout(() => {
+        stateIndex.set('wasteBinCapOpen', false);
+        $(infusionSetOpenCap).remove();
+
+        movable = true;
+
+    }, schema.dur * 3.5);
+
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
 function closeInfusionSetOpenWheel() {
     console.log("closeInfusionSetOpenWheel");
     movable = false;
+
+    aAnimationWrapper(infusionSetOpenWheel, '', 'position', '', schema.infusionSetOpenWheelClose, schema.dur, '', true, 'forwards');
 
     setTimeout(()=>{ movable = true }, schema.dur);
 }

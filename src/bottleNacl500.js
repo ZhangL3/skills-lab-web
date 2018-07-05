@@ -97,7 +97,7 @@ function takeOffCap() {
 
     setTimeout(() => {
         stateIndex.set('wasteBinCapOpen', false);
-        $(bottleCap).attr('visible', false);
+        $(bottleCap).remove();
 
         movable = true;
 
