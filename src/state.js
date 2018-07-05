@@ -56,8 +56,8 @@ const initState = {
         },
         rollerClapOpen: true,
         withCap: true,
-        dripChamber:false,
-        tubeEmpty: false,
+        chamberFilled:false,
+        tubeFilled: false,
         fixed: false,
     },
     nameLabel: {

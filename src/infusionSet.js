@@ -11,6 +11,9 @@ let infusionSetOpen;
 let infusionSetOpenCap;
 let infusionSetOpenWheel;
 let infusionSetInBottle;
+let infusionSetHanged;
+let infusionSetHangedFill;
+let infusionSetHangedWheel;
 
 let currentState;
 
@@ -31,6 +34,9 @@ AFRAME.registerComponent('infusion_set', {
         infusionSetOpenCap = $('#infusionSetOpenCap');
         infusionSetOpenWheel = $('#infusionSetOpenWheel');
         infusionSetInBottle = $('#infusionSetInBottle');
+        infusionSetHanged =$('#infusionSetHanged');
+        infusionSetHangedFill =$('#infusionSetHangedFill');
+        infusionSetHangedWheel =$('#infusionSetHangedWheel');
 
         infusionSetInPack.on('click', () => {
             handleClickInfusionSetInPack();
@@ -46,6 +52,14 @@ AFRAME.registerComponent('infusion_set', {
 
         infusionSetOpen.on('click', () => {
             handleClickInfusionSetOpen();
+        });
+
+        infusionSetHanged.on('click', () => {
+           handleClickInfusionSetHanged();
+        });
+
+        infusionSetHangedWheel.on('click', () => {
+           handleClickInfusionSetHangedRoller();
         });
 
         // deep copy
@@ -165,6 +179,22 @@ function pierceInfusionSetIntoBottle() {
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
+function fillChamber() {
+    console.log("fillChamber");
+    infusionSetHangedFill.attr('visible', true);
+}
+
+function openRoller() {
+    console.log("openRoller");
+
+    movable = false;
+
+    // infusionSetOpen.remove();
+    // infusionSetInBottle.attr('visible', true);
+
+    setTimeout(()=>{ movable = true }, schema.dur);
+}
+
 function handleClickInfusionSetInPack() {
     console.log("click infusion set");
     if (// TODO: for product remove comment
@@ -206,6 +236,32 @@ function handleClickInfusionSetOpenWheel() {
         stateIndex.getIn(['infusionSet', 'rollerClapOpen']) === true && movable
     ) {
         stateIndex.setIn(['infusionSet', 'rollerClapOpen'], false);
+    }
+}
+
+function handleClickInfusionSetHanged() {
+    console.log('click chamber');
+    console.log(stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED);
+    console.log(stateIndex.getIn(['infusionSet', 'chamberFilled']) === false);
+    console.log(movable);
+    if (
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
+        stateIndex.getIn(['infusionSet', 'chamberFilled']) === false &&
+        movable
+    ) {
+        stateIndex.setIn(['infusionSet', 'chamberFilled'], true);
+    }
+}
+
+function handleClickInfusionSetHangedRoller() {
+    console.log('click roller');
+    if (
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
+        stateIndex.getIn(['infusionSet','chamberFilled']) === true &&
+        stateIndex.getIn(['infusionSet','tubeFilled']) === false &&
+        movable
+    ) {
+        stateIndex.setIn(['infusionSet', 'tubeFilled'], true);
     }
 }
 
@@ -276,6 +332,27 @@ export function handleNotifyInfusionSet(nextState) {
         nextState.bottlePrepare.withCap === false
     ) {
         pierceInfusionSetIntoBottle();
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+    }
+    else if (
+        nextState.bottlePrepare.position === bottle.position.HANGED &&
+        currentState.infusionSet.chamberFilled === false &&
+        nextState.infusionSet.chamberFilled === true
+    ) {
+        fillChamber();
+
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+    }
+    else if (
+       nextState.bottlePrepare.position === bottle.position.HANGED &&
+        currentState.infusionSet.chamberFilled === true &&
+        currentState.infusionSet.tubeFilled === false &&
+        nextState.infusionSet.tubeFilled === true
+    ) {
+        openRoller();
+
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }

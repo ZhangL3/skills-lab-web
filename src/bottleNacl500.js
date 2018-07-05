@@ -21,7 +21,7 @@ AFRAME.registerComponent('bottle_nacl500', {
         element = this.el;
         bottleCap = $('#nacl500Cap');
         infusionSetInBottle = $('#infusionSetInBottle');
-        // infusionSetHanged = $('#inf')
+        infusionSetHanged = $('#infusionSetHanged');
 
         $(this.el).on('click', () => {
             handleClickBottle();
@@ -115,6 +115,8 @@ function hangUp() {
     aAnimationWrapper(element, '', 'position', '', schema.hangedPosition, schema.dur, '', true, 'forwards');
 
     aAnimationWrapper(element, '', 'rotation', '', schema.hangedRotation, schema.dur, '', true, 'forwards');
+
+    setTimeout(()=>{infusionSetHanged.attr('visible', true)},schema.dur);
 
     infusionSetInBottle.remove();
 
