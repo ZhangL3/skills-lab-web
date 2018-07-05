@@ -261,13 +261,9 @@ function handleClickInfusionSetOpenWheel() {
 }
 
 function handleClickInfusionSetHanged() {
-    console.log('click chamber');
-    console.log(stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED);
-    console.log(stateIndex.getIn(['infusionSet', 'chamberFilled']) === false);
-    console.log(movable);
     if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
-        stateIndex.getIn(['infusionSet', 'chamberFilled']) === true &&
+        stateIndex.getIn(['infusionSet', 'chamberFilled']) === false &&
         movable
     ) {
         stateIndex.setIn(['infusionSet', 'chamberFilled'], true);
