@@ -68,8 +68,10 @@ AFRAME.registerComponent('infusion_set', {
            handleClickInfusionSetHangedRoller();
         });
 
+        // Problem: visible === false, but get click event
         infusionSetHangedFilled.on('click', () => {
            handleClickInfusionSetHangedFilled();
+           console.log("infusionSetHangedFilled: ", infusionSetHangedFilled, typeof(infusionSetHangedFilled));
         });
 
         // deep copy
@@ -261,6 +263,7 @@ function handleClickInfusionSetOpenWheel() {
 }
 
 function handleClickInfusionSetHanged() {
+    console.log("handleClickInfusionSetHanged");
     if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
         stateIndex.getIn(['infusionSet', 'chamberFilled']) === false &&
