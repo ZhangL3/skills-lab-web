@@ -93,7 +93,7 @@
         <a-asset-item id="liquidMesh" src="./assets/models/meshes/bottle/liquid.gltf"/>
         <a-asset-item id="bottleCapMesh" src="./assets/models/meshes/bottle/bottleCap.gltf"/>
         <img id="nacl500" src="./assets/models/meshes/bottle/label_nacl_500_122018.png"/>
-        <img id="g51000" src="././assets/models/meshes/bottle/label-G5_1000_122018.png"/>
+        <img id="g51000" src="./assets/models/meshes/bottle/label-G5_1000_122018.png"/>
 
         <!-- infusion set -->
         <a-asset-item id="infusionSetInPackMesh" src="./assets/models/meshes/infusionSet/inPack/1_Infusion_packed.gltf"></a-asset-item>
@@ -112,6 +112,12 @@
         <a-asset-item id="infusionSetHangedFilledMesh" src="./assets/models/meshes/infusionSet/filled/8_infusion_filled.gltf"></a-asset-item>
 
         <a-asset-item id="infusionSetFixedMesh" src="./assets/models/meshes/infusionSet/fixed/9_infusion_fixed.gltf"></a-asset-item>
+
+        <!-- sticker stamper -->
+        <a-asset-item id="stickerStamperMesh" src="./assets/models/meshes/stickerStamper/sticker_stamper.gltf"></a-asset-item>
+        <img id="nameLabelEmptyImg" src="./assets/models/meshes/stickerStamper/namelabelempty512.jpg"/>
+        <img id="nameLabelWroteImg" src="./assets/models/meshes/stickerStamper/namelabelwrote512.jpg"/>
+
 
     </a-assets>
 
@@ -364,6 +370,12 @@
         <a-gltf-model id="infusionSetHangedFixedWheel" src="#infusionSetHangedWheelMesh" position="-0.530 0.110 -0.060"></a-gltf-model>
         <a-gltf-model src="#infusionSetHangedFillMesh"></a-gltf-model>
     </a-gltf-model>
+
+    <!-- sticker stamper -->
+    <a-gltf-model id="stickerStamper" src="#stickerStamperMesh" position="0.457 0.681 -0.948" rotation="0 -90 0" scale="0.05 0.05 0.05"></a-gltf-model>
+    <a-image id="nameLabelEmpty" src="#nameLabelEmptyImg" scale="0.092 0.044 0.050" position="0.457 0.700 -0.948" rotation="-90 0 0"visible="true"></a-image>
+    <a-image id="nameLabelWrote" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="" rotation=""visible="true"></a-image>
+
 
 
 
