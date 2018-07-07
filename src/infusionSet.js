@@ -16,6 +16,7 @@ let infusionSetHangedFill;
 let infusionSetHangedWheel;
 let infusionSetHangedFilled;
 let infusionSetHangedFilledWheel;
+let infusionSetFilledFill;
 let infusionSetFixed;
 
 let currentState;
@@ -43,6 +44,7 @@ AFRAME.registerComponent('infusion_set', {
         infusionSetHangedFilled = $('#infusionSetHangedFilled');
         infusionSetHangedFilledWheel = $('#infusionSetHangedFilledWheel');
         infusionSetFixed = $('#infusionSetFixed');
+        infusionSetFilledFill = $('#infusionSetFilledFill');
 
         infusionSetInPack.on('click', () => {
             handleClickInfusionSetInPack();
@@ -203,6 +205,7 @@ function openRoller() {
     movable = false;
     infusionSetHanged.remove();
     infusionSetHangedFilled.attr('visible', true);
+    infusionSetFilledFill.attr('visible', true);
     aAnimationWrapper(infusionSetHangedFilledWheel, '', 'position', '', schema.infusionSetHangedWheelOpen, schema.dur, '', true, 'forwards');
 
     setTimeout(()=>{ movable = true }, schema.dur);
