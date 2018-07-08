@@ -111,7 +111,7 @@
 
         <a-asset-item id="infusionSetHangedFilledMesh" src="./assets/models/meshes/infusionSet/filled/8_infusion_filled.gltf"></a-asset-item>
 
-        <a-asset-item id="infusionSetFixedMesh" src="./assets/models/meshes/infusionSet/fixed/9_infusion_fixed.gltf"></a-asset-item>
+        <a-asset-item id="infusionSetFixedMesh" src="./assets/models/meshes/infusionSet/fixed/9_infusion_tube_fixed.gltf"></a-asset-item>
 
         <!-- sticker stamper -->
         <a-asset-item id="stickerStamperMesh" src="./assets/models/meshes/stickerStamper/sticker_stamper.gltf"></a-asset-item>
@@ -382,12 +382,19 @@
 
     <!--camera -->
     <a-camera position="0 1.1 -0.35">
-        <a-entity cursor="fuse: false; fuseTimeout: 1000;"
+        <!--<a-entity id="raycaster" raycaster="showLine: true; far: 100" line="color: orange; opacity: 0.9"></a-entity>-->
+
+        <a-entity id="cursor"
+                  cursor="fuse: false"
                   position="0.000 0.000 -0.1"
                   geometry="primitive: ring; radiusInner: 0.0008; radiusOuter: 0.0013"
                   material="color: black; shader: flat"
-                  cursor-submit>
+                  near="5"
+                  showLine="true"
+        >
         </a-entity>
+
+
         <!-- glove -->
         <!--<a-gltf-model id="gloveinfrontofcamera" visible="false" src="#handschuhe" scale="0.020 0.040 0.020" position="0.135 -0.118 -0.402" rotation="-57.009 -134.645 152.808"></a-gltf-model>-->
     </a-camera>
