@@ -80,6 +80,11 @@ function handleClickHandle () {
 }
 
 export function handleNotifyHandDisinfection(nextState) {
+
+    if(stateIndex.getIn(['handDisinfection', 'finish'])) {
+        return false;
+    }
+
     if (// TODO: for product remove comment
         // nextState.tableDisinfection.hasCloth === true &&
         nextState.handDisinfection.disinfecting === true &&

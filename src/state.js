@@ -2,24 +2,25 @@ import Observable from '../utils/observable';
 
 import * as sectionSelect from '../utils/sectionSelect';
 
-import { handleNotifyPortfolio } from './portfolio';
-import { handleNotifyPortfolioCheck } from './portfolioCheck';
-import { handleNotifyGlove } from './glove';
-import { handleNotifyClothInBottle } from "./disinfectionClothInBottle";
-import { handleNotifyClothOnTable } from "./disinfectionClothOnTable";
-import { handleNotifyHandDisinfection } from "./handDisinfection";
-import { handleNotifyBottle } from "./bottleNacl500";
-import { handleNotifyWasteBinCap } from "./wasteBinCapOpen";
-import { handleNotifyInfusionSet } from "./infusionSet";
-import { handleNotifyNameLabel } from "./nameLabelStamper";
+import {handleNotifyPortfolio} from './portfolio';
+import {handleNotifyPortfolioCheck} from './portfolioCheck';
+import {handleNotifyGlove} from './glove';
+import {handleNotifyClothInBottle} from "./disinfectionClothInBottle";
+import {handleNotifyClothOnTable} from "./disinfectionClothOnTable";
+import {handleNotifyHandDisinfection} from "./handDisinfection";
+import {handleNotifyBottle, initBottlePutOnTableTakeOffCap} from "./bottleNacl500";
+import {handleNotifyWasteBinCap} from "./wasteBinCapOpen";
+import {handleNotifyInfusionSet} from "./infusionSet";
+import {handleNotifyNameLabel} from "./nameLabelStamper";
+
 
 let state;
 
 export default class stateIndex {
 
     static init() {
-        state = sectionSelect.section0;
-
+        this.selectSection(0);
+        
         this.headingsObserver = new Observable();
         // Add function from observers
         this.headingsObserver.subscribe(handleNotifyPortfolio);
@@ -34,12 +35,71 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifyNameLabel);
     }
 
-    static selectSection (section) {
+    static selectSection(section) {
         switch (section) {
-            case 0: state = sectionSelect.section0;
+            case 0:
+                state = sectionSelect.section0;
                 break;
 
-            default: state = sectionSelect.section0;
+            case 1:
+                state = sectionSelect.section1;
+                this.setSceneToSection(1);
+                break;
+
+            case 2:
+                state = sectionSelect.section2;
+                this.setSceneToSection(2);
+                break;
+
+            case 3:
+                state = sectionSelect.section3;
+                this.setSceneToSection(3);
+                break;
+
+            case 4:
+                state = sectionSelect.section4;
+                console.log("state after clicking 4: ", state, typeof(state));
+                this.setSceneToSection(4);
+                break;
+
+            case 5:
+                state = sectionSelect.section5;
+                this.setSceneToSection(5);
+                break;
+
+            case 6:
+                state = sectionSelect.section6;
+                this.setSceneToSection(6);
+                break;
+
+            default:
+                state = sectionSelect.section0;
+        }
+    }
+
+    static setSceneToSection(section) {
+        switch (section) {
+            case 1:
+                console.log("1");
+                break;
+            case 2:
+                console.log("2");
+                break;
+            case 3:
+                console.log("3");
+                break;
+
+            case 4:
+                // put bottle on table and take off the cap
+                console.log("put bottle on table and take off the cap");
+                initBottlePutOnTableTakeOffCap();
+                break;
+            case 5:
+                // to fix the tube
+                console.log("to fix the tube");
+                break;
+            default:
+                console.log("nothing to do");
         }
     }
 
@@ -48,7 +108,7 @@ export default class stateIndex {
      *
      * @returns {*}
      */
-    static getState () {
+    static getState() {
         return state;
     }
 
@@ -58,7 +118,7 @@ export default class stateIndex {
      * @param propString
      * @returns {*}
      */
-    static get (propString) {
+    static get(propString) {
         return state[propString];
     }
 
@@ -68,14 +128,14 @@ export default class stateIndex {
      * @param propsArray
      * @returns {*}
      */
-    static getIn (propsArray) {
+    static getIn(propsArray) {
         const lengthOfProps = propsArray.length;
         let result = state[propsArray[0]];
-        if (lengthOfProps===1) {
+        if (lengthOfProps === 1) {
             return result;
         }
         else {
-            for(let i = 1; i < lengthOfProps; i++) {
+            for (let i = 1; i < lengthOfProps; i++) {
                 result = result[propsArray[i]];
             }
         }
@@ -88,7 +148,7 @@ export default class stateIndex {
      * @param propString
      * @param value
      */
-    static set (propString, value) {
+    static set(propString, value) {
         state[propString] = value;
         this.headingsObserver.notify(state);
 

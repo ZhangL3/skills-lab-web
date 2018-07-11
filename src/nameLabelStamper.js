@@ -116,6 +116,11 @@ function handleClickNameLabelWrote() {
 }
 
 export function handleNotifyNameLabel(nextState) {
+
+    if(stateIndex.getIn(['nameLabel', 'finish'])) {
+        return false;
+    }
+
     if(// for product remove comment
         // nextState.infusionSet.fixed === true &&
         currentState.nameLabel.position === nameLabel.position.IN_BOX &&

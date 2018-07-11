@@ -152,6 +152,11 @@ export function handleNotifyPortfolio(nextState) {
     // console.log("nextState: ", nextState.portfolio.position);
     // console.log("is5RChecked(): ", is5RChecked());
     // console.log("nextState: ", nextState, typeof(nextState));
+
+    if(stateIndex.getIn(['portfolio', 'finish'])) {
+        return false;
+    }
+
     if(
         (currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
             nextState.portfolio.position === constants.portfolio.position.IN_HAND) &&

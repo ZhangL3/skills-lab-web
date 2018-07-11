@@ -71,6 +71,11 @@ function showHook (state5R) {
 }
 
 export function handleNotifyPortfolioCheck(nextState) {
+
+    if(stateIndex.getIn(['portfolio', 'finish'])) {
+        return false;
+    }
+
     showHook(nextState.portfolio.checkPortfolio);
 }
 

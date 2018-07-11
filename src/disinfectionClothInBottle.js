@@ -73,6 +73,10 @@ function handleClickClothInBottle () {
 
 export function handleNotifyClothInBottle(nextState) {
 
+    if(stateIndex.getIn(['tableDisinfection', 'finish'])) {
+        return false;
+    }
+
     if (
         currentState.tableDisinfection.hasCloth === false &&
         nextState.tableDisinfection.hasCloth === true

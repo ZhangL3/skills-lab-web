@@ -12,7 +12,7 @@ let currentState;
 // Don't active the action, if the animation is not finish
 let movable = true;
 // For product us withInfusionSet
-let test = false;
+let test = true;
 
 AFRAME.registerComponent('bottle_nacl500', {
 
@@ -47,6 +47,12 @@ const schema = {
     hangedRotation: '0 66.46 180',
     dur: 500,
 };
+
+// Used in class state to init
+export function initBottlePutOnTableTakeOffCap() {
+    $(element).attr('position', schema.onTablePosition);
+    bottleCap.remove();
+}
 
 function takeBottle() {
     console.log("takeBottle");
@@ -125,6 +131,7 @@ function hangUp() {
 
 function handleClickBottle() {
     console.log("click bottle");
+    
     if (// TODO: for product remove comment
     // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
     stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD && movable
@@ -172,6 +179,10 @@ function handleClickBottle() {
 }
 
 export function handleNotifyBottle(nextState) {
+    if(stateIndex.getIn(['bottlePrepare', 'finish'])) {
+        return false;
+    }
+
     if (// TODO: for product remove comment
         // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
         currentState.bottlePrepare.position === bottle.position.IN_CUPBOARD &&
@@ -212,7 +223,8 @@ export function handleNotifyBottle(nextState) {
     else if (
         nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
         currentState.bottlePrepare.withCap === true &&
-        nextState.bottlePrepare.withCap === false
+        nextState.bottlePrepare.withCap === false &&
+        nextState.sectionSelected !== 4
     ) {
         takeOffCap();
         // deep copy
