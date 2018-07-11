@@ -17,4 +17,4 @@ import * as infusionSet from './infusionSet';
 import * as drawerOpenWithInfusionSet from './drawerOpenWithInfusionSet';
 import * as nameLabelStamper from './nameLabelStamper';
 
-stateIndex.init();
+stateIndex.init(0);
