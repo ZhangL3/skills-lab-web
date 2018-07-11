@@ -381,7 +381,7 @@
 
 
     <!--camera -->
-    <a-camera position="0 1.1 -0.35" wasd-controls-enabled="false">
+    <a-camera id="camera" position="0 1.1 -0.35" wasd-controls-enabled="false">
         <!--<a-entity id="raycaster" raycaster="showLine: true; far: 100" line="color: orange; opacity: 0.9"></a-entity>-->
 
         <a-entity id="cursor"
@@ -402,7 +402,7 @@
         <!--<a-gltf-model id="gloveinfrontofcamera" visible="false" src="#handschuhe" scale="0.020 0.040 0.020" position="0.135 -0.118 -0.402" rotation="-57.009 -134.645 152.808"></a-gltf-model>-->
     </a-camera>
 
-    <a-sky color="#ECECEC"></a-sky>
+    <!--<a-sky id="sky" scale="0.001 0.001 0.001" color="#ECECEC"></a-sky>-->
 </a-scene>
 </body>
 </html>
