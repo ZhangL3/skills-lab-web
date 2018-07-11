@@ -10,7 +10,7 @@ import {handleNotifyClothOnTable} from "./disinfectionClothOnTable";
 import {handleNotifyHandDisinfection} from "./handDisinfection";
 import {handleNotifyBottle, initBottlePutOnTableTakeOffCap} from "./bottleNacl500";
 import {handleNotifyWasteBinCap} from "./wasteBinCapOpen";
-import {handleNotifyInfusionSet} from "./infusionSet";
+import {handleNotifyInfusionSet, initInfusionSetOnTableOffCapOpenCloseWheel} from "./infusionSet";
 import {handleNotifyNameLabel} from "./nameLabelStamper";
 
 
@@ -95,6 +95,11 @@ export default class stateIndex {
                 initBottlePutOnTableTakeOffCap();
                 break;
             case 5:
+                // put on table, take off cap, close wheel
+                console.log("put on table, take off cap, close wheel");
+                initInfusionSetOnTableOffCapOpenCloseWheel();
+                break;
+            case 6:
                 // to fix the tube
                 console.log("to fix the tube");
                 break;

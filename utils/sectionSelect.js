@@ -330,15 +330,15 @@ export const section5 = {
         finish: true,
     },
     bottlePrepare: {
-        position: constants.bottle.position.ON_TABLE, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
+        position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
         checkBottle: {
-            front: true,
-            back: true,
-            top: true,
+            front: false,
+            back: false,
+            top: false,
         },
-        withCap: false,
+        withCap: true,
         // withInfusionSet: false,
-        finish: true,
+        finish: false,
     },
     infusionSet: {
         position: constants.infusionSet.position.ON_TABLE, // 'in-drawer' || 'in-hand' || 'on-table' || 'in-bottle'

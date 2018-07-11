@@ -98,6 +98,14 @@ const schema = {
     dur: 500,
 };
 
+export function initInfusionSetOnTableOffCapOpenCloseWheel() {
+    infusionSetInPack.remove();
+    infusionSetOpen.attr('visible', true);
+    infusionSetOpen.attr('position', schema.onTablePosition);
+    infusionSetOpenCap.remove();
+    infusionSetOpenWheel.attr('position', schema.infusionSetOpenWheelClose);
+}
+
 export function moveWithDrawer() {
     console.log("moveWithDrawer");
     movable = false;
