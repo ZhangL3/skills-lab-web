@@ -17,13 +17,8 @@ let state;
 
 export default class stateIndex {
 
-    static init(section) {
-        switch (section) {
-            case 0: state = sectionSelect.section0;
-            break;
-
-            default: state = sectionSelect.section0;
-        }
+    static init() {
+        state = sectionSelect.section0;
 
         this.headingsObserver = new Observable();
         // Add function from observers
@@ -37,6 +32,15 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifyWasteBinCap);
         this.headingsObserver.subscribe(handleNotifyInfusionSet);
         this.headingsObserver.subscribe(handleNotifyNameLabel);
+    }
+
+    static selectSection (section) {
+        switch (section) {
+            case 0: state = sectionSelect.section0;
+                break;
+
+            default: state = sectionSelect.section0;
+        }
     }
 
     /**

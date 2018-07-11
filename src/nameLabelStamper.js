@@ -92,7 +92,7 @@ function handleClickStickerStamper () {
 
 function handleClickNameLabelEmpty() {
     if (// for product remove comment
-    // stateIndex.getIn(['infusionSet','fixed']) === true &&
+    // stateIndex.getIn(['infusionSet','finish']) === true &&
     stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX && moveable
     ) {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.IN_HAND);
@@ -111,6 +111,7 @@ function handleClickNameLabelWrote() {
         stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_HAND
     ) {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.ON_BOTTLE);
+        stateIndex.setIn(['nameLabel', 'finish'], true);
     }
 }
 

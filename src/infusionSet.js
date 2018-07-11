@@ -285,6 +285,7 @@ function handleClickInfusionSetHangedRoller() {
         movable
     ) {
         stateIndex.setIn(['infusionSet', 'tubeFilled'], true);
+        stateIndex.setIn(['infusionSet', 'rollerClapOpen'], true);
     }
 }
 
@@ -313,6 +314,7 @@ function handleClickInfusionSetHangedFilled() {
         movable
     ) {
         stateIndex.setIn(['infusionSet','fixed'], true);
+        stateIndex.setIn(['infusionSet','finish'], true);
     }
 }
 
@@ -393,11 +395,14 @@ export function handleNotifyInfusionSet(nextState) {
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
+        console.log("after openRoller, current state: ", currentState);
     }
     else if (
         nextState.bottlePrepare.position === bottle.position.HANGED &&
         currentState.infusionSet.fixed === false &&
         nextState.infusionSet.fixed === true
+        // currentState.infusionSet.finish === false &&
+        // nextState.infusionSet.finish === true
     ) {
         fixTube();
 

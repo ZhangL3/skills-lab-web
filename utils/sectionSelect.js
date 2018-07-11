@@ -46,10 +46,12 @@ export const section0 = {
         chamberFilled:false,
         tubeFilled: false,
         fixed: false,
+        finish: false,
     },
     nameLabel: {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
+        finish: false,
     },
     showResult: {
         time: '0:00',
