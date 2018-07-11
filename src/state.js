@@ -8,9 +8,9 @@ import {handleNotifyGlove} from './glove';
 import {handleNotifyClothInBottle} from "./disinfectionClothInBottle";
 import {handleNotifyClothOnTable} from "./disinfectionClothOnTable";
 import {handleNotifyHandDisinfection} from "./handDisinfection";
-import {handleNotifyBottle, initBottlePutOnTableTakeOffCap} from "./bottleNacl500";
+import {handleNotifyBottle, initBottlePutOnTableTakeOffCap, initBottleHanged} from "./bottleNacl500";
 import {handleNotifyWasteBinCap} from "./wasteBinCapOpen";
-import {handleNotifyInfusionSet, initInfusionSetOnTableOffCapOpenCloseWheel} from "./infusionSet";
+import {handleNotifyInfusionSet, initInfusionSetOnTableOffCapOpenCloseWheel, initInfusionSetFixed} from "./infusionSet";
 import {handleNotifyNameLabel} from "./nameLabelStamper";
 
 
@@ -102,6 +102,8 @@ export default class stateIndex {
             case 6:
                 // to fix the tube
                 console.log("to fix the tube");
+                initInfusionSetFixed();
+                initBottleHanged();
                 break;
             default:
                 console.log("nothing to do");

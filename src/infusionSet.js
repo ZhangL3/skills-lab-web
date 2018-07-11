@@ -106,6 +106,16 @@ export function initInfusionSetOnTableOffCapOpenCloseWheel() {
     infusionSetOpenWheel.attr('position', schema.infusionSetOpenWheelClose);
 }
 
+export function initInfusionSetFixed() {
+    infusionSetHanged.remove();
+    infusionSetHangedFill.remove();
+    infusionSetHangedWheel.remove();
+    infusionSetHangedFilled.remove();
+    infusionSetHangedFilledWheel.remove();
+    infusionSetFilledFill.remove();
+    infusionSetFixed.attr('visible', true);
+}
+
 export function moveWithDrawer() {
     console.log("moveWithDrawer");
     movable = false;

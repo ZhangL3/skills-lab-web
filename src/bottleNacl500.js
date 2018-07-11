@@ -54,6 +54,12 @@ export function initBottlePutOnTableTakeOffCap() {
     bottleCap.remove();
 }
 
+export function initBottleHanged() {
+    $(element).attr('position', schema.hangedPosition);
+    $(element).attr('rotation', schema.hangedRotation);
+    bottleCap.remove();
+}
+
 function takeBottle() {
     console.log("takeBottle");
     movable = false;
