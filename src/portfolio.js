@@ -44,7 +44,7 @@ const schema = {
     closeRotation : '0 0 -122.728',
     onTablePosition : '-0.57 0.684 -0.980',
     onTableRotation : '0 -90 -1.43',
-    inFrontOfEyesPosition : '0 1.109 -0.45',
+    inFrontOfEyesPosition : '0 1 -0.52',
     inFrontOfEyesRotation : '0 -90 -70',
     dur : 500,
 };

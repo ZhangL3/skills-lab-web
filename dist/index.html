@@ -4,6 +4,7 @@
     <title>Hello, WebVR! - A-Frame</title>
     <meta name="description" content="Hello, WebVR! - A-Frame">
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+
     <title> Skill-Lab-Web</title>
 </head>
 <body>
@@ -121,6 +122,8 @@
 
     </a-assets>
 
+    <!-- By webVR mode should the positon 0 -6 2, 2D mode 0 0 2-->
+    <a-entity id="allThings"  position="0 -6 2" scale="6 6 6">
     <!-- cabinets -->
     <a-entity id="twoCabinets" position="0 0 -1">
         <a-gltf-model src="#cabinetBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
@@ -385,24 +388,35 @@
     <a-gltf-model id="stickerStamper" src="#stickerStamperMesh" position="0.457 0.681 -0.948" rotation="0 -90 0" scale="0.05 0.05 0.05" name_label_stamper></a-gltf-model>
     <a-image id="nameLabelEmpty" src="#nameLabelEmptyImg" scale="0.092 0.044 0.050" position="0.457 0.700 -0.948" rotation="-90 0 0"visible="true"></a-image>
     <a-image id="nameLabelWrote" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0.013 1.039 -0.7" rotation=""visible="false"></a-image>
-
+    </a-entity>
 
 
 
 
     <!--camera -->
-    <a-camera id="camera" position="0 1.1 -0.35" wasd-controls-enabled="false">
+    <a-camera id="camera" position="0 0 0" wasd-controls-enabled="false">
         <!--<a-entity id="raycaster" raycaster="showLine: true; far: 100" line="color: orange; opacity: 0.9"></a-entity>-->
 
-        <a-entity id="cursor"
-                  cursor="fuse: false"
-                  raycaster="showLine: true"
-                  line="color: orange; opacity: 0.5"
-                  position="0.000 0.000 -0.05"
+        <!--<a-entity id="cursor"-->
+                  <!--cursor="fuse: false"-->
+                  <!--material="color: black; shader: flat"-->
+                  <!--position="0.000 0.000 -0.05"-->
+                  <!--geometry="primitive: ring; radiusInner: 0.0005; radiusOuter: 0.0010;"-->
+                  <!--cursor-submit>-->
+        <!--</a-entity>-->
+
+        <!--<a-cursor id="cursor" position="0 0 0" fuse="false" cursor-submit></a-cursor>-->
+
+        <!--<a-entity cursor="fuse: false; fuseTimeout: 500"-->
+                  <!--position="0 0 -1"-->
+                  <!--geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"-->
+                  <!--material="color: black; shader: flat">-->
+        <a-entity cursor="fuse: true; fuseTimeout: 500"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
                   material="color: black; shader: flat"
-                  geometry="primitive: ring; radiusInner: 0.0005; radiusOuter: 0.0010;"
-                  cursor-submit
-        >
+                  gearvr-controls
+                  cursor-submit>
         </a-entity>
 
 
