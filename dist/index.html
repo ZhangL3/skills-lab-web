@@ -3,7 +3,9 @@
 <head>
     <title>Hello, WebVR! - A-Frame</title>
     <meta name="description" content="Hello, WebVR! - A-Frame">
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+
+    <!--<script src="https://rawgit.com/chenzlabs/gearvr-controls/master/dist/aframe-gearvr-controls-component.min.js"></script>-->
 
     <title> Skill-Lab-Web</title>
 </head>
@@ -122,8 +124,8 @@
 
     </a-assets>
 
-    <!-- By webVR mode should the positon 0 -6 2, 2D mode 0 0 2-->
-    <a-entity id="allThings"  position="0 -6 2" scale="6 6 6">
+    <!-- By webVR mode should the position 0 -6 2, 2D mode 0 0 2-->
+    <a-entity id="allThings"  position="0 -2 0.5" scale="2 2 2">
     <!-- cabinets -->
     <a-entity id="twoCabinets" position="0 0 -1">
         <a-gltf-model src="#cabinetBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
@@ -392,7 +394,10 @@
 
 
     <!-- controller -->
-    <a-entity gearvr-controls></a-entity>
+    <a-entity gearvr-controls position="0.2 -0.2 -0.2">
+        <a-entity id="testCube" geometry="primitive: box; width: 0.001; height: 0.001; depth: 2"></a-entity>
+    </a-entity>
+
 
     <!--camera -->
     <a-camera id="camera" position="0 0 0" wasd-controls-enabled="false">
@@ -413,19 +418,22 @@
                   <!--geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"-->
                   <!--material="color: black; shader: flat">-->
         <a-entity cursor="fuse: true; fuseTimeout: 500"
-                  position="0 0 -1"
-                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  position="0 0 -0.4"
+                  geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.008"
                   material="color: black; shader: flat"
                   gearvr-controls
                   cursor-submit>
         </a-entity>
 
 
-
-
         <!-- glove -->
         <!--<a-gltf-model id="gloveinfrontofcamera" visible="false" src="#handschuhe" scale="0.020 0.040 0.020" position="0.135 -0.118 -0.402" rotation="-57.009 -134.645 152.808"></a-gltf-model>-->
     </a-camera>
+
+    <!-- debug -->
+    <a-image id="debugger" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.639 0.988 0.000" rotation="0 90 0">
+            <a-entity id="debugger1" text="color:#000000; value: Debugger1" position="0.14 0.27 0" align="center" width="2"></a-entity>
+    </a-image>
 
     <!--<a-sky id="sky" scale="0.001 0.001 0.001" color="#ECECEC"></a-sky>-->
 </a-scene>
