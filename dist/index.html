@@ -125,7 +125,7 @@
     </a-assets>
 
     <!-- By webVR mode should the position 0 -6 2, 2D mode 0 0 2-->
-    <a-entity id="allThings"  position="0 0 0.5" scale="2 2 2">
+    <a-entity id="allThings"  position="0 -1 0.5" scale="2 2 2">
     <!-- cabinets -->
     <a-entity id="twoCabinets" position="0 0 -1">
         <a-gltf-model src="#cabinetBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
@@ -394,8 +394,7 @@
 
 
     <!-- controller -->
-    <a-entity gearvr-controls position="0.2 -0.2 -0.2">
-        <a-entity id="testCube" geometry="primitive: box; width: 0.001; height: 0.001; depth: 2"></a-entity>
+    <a-entity gearvr-controls="hand: right" laser-controls line="color: red; opacity: 0.75">
     </a-entity>
 
 
@@ -411,18 +410,18 @@
                   <!--cursor-submit>-->
         <!--</a-entity>-->
 
-        <!--<a-cursor id="cursor" position="0 0 -0.5" fuse="false" cursor-submit></a-cursor>-->
+        <a-cursor id="cursor" position="0 0 -0.5" fuse="false" cursor-submit></a-cursor>
 
         <!--<a-entity cursor="fuse: false; fuseTimeout: 500"-->
                   <!--position="0 0 -1"-->
                   <!--geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"-->
                   <!--material="color: black; shader: flat">-->
 
-        <a-entity cursor="fuse: true; fuseTimeout: 500"
-                  position="0 0 -0.4"
-                  geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.008"
-                  material="color: black; shader: flat"
-                  cursor-submit>
+        <!--<a-entity cursor="fuse: false; fuseTimeout: 500"-->
+                  <!--position="0 0 -0.4"-->
+                  <!--geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.008"-->
+                  <!--material="color: black; shader: flat"-->
+                  <!--cursor-submit>-->
         <!--</a-entity>-->
 
 
