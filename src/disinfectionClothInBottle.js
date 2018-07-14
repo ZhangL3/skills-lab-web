@@ -39,17 +39,17 @@ function putOnTable(){
     console.log("put on table: ");
     aAnimationWrapper(
         element, '', 'position', schema.inCan, schema.outOfCan, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
 
     const t = setTimeout(()=>{
         aAnimationWrapper(
             element, '', 'position', schema.outOfCan, schema.onDeskPosition, schema.dur,
-            '', true, 'forwards',
+            '', true, 'forwards'
         );
         aAnimationWrapper(
             element, '', 'rotation', '', schema.onDeskRotation, schema.dur,
-            '', true, 'forwards',
+            '', true, 'forwards'
         );
 
         setTimeout(() => {

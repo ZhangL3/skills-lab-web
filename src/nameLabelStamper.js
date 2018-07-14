@@ -53,11 +53,11 @@ function takeEmptyNameLabel () {
     moveable = false;
     aAnimationWrapper(
         nameLabelEmpty, '', 'position', '', schema.nameLabelInFrontOfCameraPosition, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
     aAnimationWrapper(
         nameLabelEmpty, '', 'rotation', '', schema.nameLabelInFrontOfCameraRotation, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
 
     setTimeout(() => {moveable=true}, schema.dur);
@@ -73,11 +73,11 @@ function stickNameLabel() {
     console.log("stickNameLabel");
     aAnimationWrapper(
         nameLabelWrote, '', 'position', '', schema.nameLabelOnBottlePosition, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
     aAnimationWrapper(
         nameLabelWrote, '', 'rotation', '', schema.nameLabelOnBottleRotation, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
 }
 

@@ -53,18 +53,18 @@ const schema = {
 function open () {
     aAnimationWrapper(
         foregroundOfPortfolio, 0, 'rotation', schema.closeRotation, schema.openRotation, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
 }
 
 function takeInHand () {
     aAnimationWrapper(
         element, '', 'position', schema.onTablePosition, schema.inFrontOfEyesPosition, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
     aAnimationWrapper(
         element, '', 'rotation', schema.onTableRotation, schema.inFrontOfEyesRotation, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
 }
 
@@ -74,22 +74,22 @@ function takeInHand () {
 function close () {
     // aAnimationWrapper(
     //     foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur,
-    //     '', true, 'forwards',
+    //     '', true, 'forwards'
     // );
     aAnimationWrapper(
         foregroundOfPortfolio, '', 'rotation', schema.openRotation, schema.closeRotation, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
 }
 
 function putOnTable(){
     aAnimationWrapper(
         element, '', 'position', schema.inFrontOfEyesPosition, schema.onTablePosition, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
     aAnimationWrapper(
         element, '', 'rotation', schema.inFrontOfEyesRotation, schema.onTableRotation, schema.dur,
-        '', true, 'forwards',
+        '', true, 'forwards'
     );
 }
 
