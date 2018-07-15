@@ -72,7 +72,7 @@ function scanGamePads() {
             }
         }
     }
-    console.log("controllers: ", controllers, typeof(controllers));
+    // console.log("controllers: ", controllers, typeof(controllers));
 }
 
 
