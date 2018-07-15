@@ -19,4 +19,8 @@ import * as nameLabelStamper from './nameLabelStamper';
 
 import * as sectionSelection from './sectionSelection';
 
+import * as controllerManage from '../utils/controllerManage';
+
+
+
 stateIndex.init();
