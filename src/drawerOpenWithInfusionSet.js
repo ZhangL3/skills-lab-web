@@ -5,16 +5,11 @@ import stateIndex from './state';
 import { infusionSet } from '../utils/constants';
 import { moveWithDrawer } from './infusionSet';
 
+export let isDrawerOpen = false;
+
 export default AFRAME.registerComponent('drawer_open_with_infusion_set',{
-    schema: {
-        open : {default: '1.8 0 0.1'},
-        close : {default: '0 0 0.1'},
-        dur : {default: 500},
-    },
 
     init: function (){
-        const { close, open, dur }= this.data;
-
         const drawerWithInfusionSet = $("#drawerWithCutlery");
 
         // Create event and add this event to infusionSetInPack, to move infusionSetInPack with drawer
@@ -25,15 +20,37 @@ export default AFRAME.registerComponent('drawer_open_with_infusion_set',{
         drawerWithInfusionSet.on('infusionSetMoveWithDrawer', moveWithDrawer);
 
         drawerWithInfusionSet.on('click', () => {
+
+            console.log("isDrawerOpen: ", isDrawerOpen, typeof(isDrawerOpen));
+
+            if(isDrawerOpen){
+                closeDrawer(this.el);
+            }
+            else if (!isDrawerOpen) {
+                openDrawer(this.el);
+            }
+
             if (stateIndex.getIn(['infusionSet','position']) === infusionSet.position.IN_DRAWER) {
                 drawerWithInfusionSet.trigger('infusionSetMoveWithDrawer');
             }
+            isDrawerOpen = !isDrawerOpen;
         });
-
-        // Add open and close animation of drawer
-        aAnimationWrapper(this.el, 'click', 'position', close, open, dur, 'alternate', false, 'forwards');
-
     }
 });
+
+const schema = {
+    open : '1.8 4.1 0.1',
+    close : '0 4.1 0.1',
+    dur :500
+};
+
+function openDrawer(el) {
+    aAnimationWrapper(el, '', 'position', '', schema.open, schema.dur, '', true, 'forwards');
+}
+
+function closeDrawer(el) {
+    aAnimationWrapper(el, '', 'position', '', schema.close, schema.dur, '', true, 'forwards');
+}
+
 
 

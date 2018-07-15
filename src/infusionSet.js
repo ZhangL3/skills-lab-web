@@ -4,6 +4,8 @@ import $ from 'jquery';
 import stateIndex from './state';
 import {bottle, infusionSet} from "../utils/constants";
 
+import {isDrawerOpen } from "./drawerOpenWithInfusionSet";
+
 let element;
 
 let infusionSetInPack;
@@ -20,8 +22,6 @@ let infusionSetFilledFill;
 let infusionSetFixed;
 
 let currentState;
-
-let isDrawerOpen = false;
 
 // Don't active the action, if the animation is not finish
 let movable = true;
@@ -124,14 +124,14 @@ export function moveWithDrawer() {
         && stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER
     ) {
         aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.infusionSetInDrawerOpenPosition, schema.dur, '', true, 'forwards');
-        isDrawerOpen = !isDrawerOpen;
+        // isDrawerOpen = !isDrawerOpen;
     }
     else if (
         isDrawerOpen === true
         && stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER
     ){
         aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.infusionSetInDrawerClosePosition, schema.dur, '', true, 'forwards');
-        isDrawerOpen = !isDrawerOpen;
+        // isDrawerOpen = !isDrawerOpen;
     }
     setTimeout(()=>{ movable = true }, schema.dur);
 }
