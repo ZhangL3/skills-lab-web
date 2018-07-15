@@ -14,6 +14,7 @@ function connectHandler(e) {
     console.log("cursor: ", cursor, typeof(cursor));
 
     if(controller === 'Gear VR Controller') {
+        console.log("remove cursor");
         $(cursor).remove();
     }
     // addGamePad(e.gamepad);
@@ -26,7 +27,8 @@ function addGamePad(gamePad) {
     cursor = document.querySelector("#cursor");
     console.log("cursor: ", cursor, typeof(cursor));
 
-    if(controller === 'Gear VR Controller') {
+    if(gamePad.id === 'Gear VR Controller') {
+        console.log("remove cursor");
         $(cursor).remove();
     }
 }
