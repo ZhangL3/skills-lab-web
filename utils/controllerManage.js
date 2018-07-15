@@ -1,18 +1,34 @@
+import $ from 'jquery';
+
 let haveEvents = 'ongamepadconnected' in window;
 let controllers = {};
 let controller;
 
+let cursor;
+
 function connectHandler(e) {
-    controller = event.detail.type;
-    alert("connectHandler");
-    alert(controller);
+    controller = e.gamepad.id;
+    console.log("connectHandler");
+    console.log(controller);
+    cursor = document.querySelector("#cursor");
+    console.log("cursor: ", cursor, typeof(cursor));
+
+    if(controller === 'Gear VR Controller') {
+        $(cursor).remove();
+    }
     // addGamePad(e.gamepad);
     // console.log("e: ", e, typeof(e));
 }
 
 function addGamePad(gamePad) {
     controllers[gamePad.index] = gamePad;
-    alert(gamePad);
+    console.log("addGamePad: ",gamePad.id);
+    cursor = document.querySelector("#cursor");
+    console.log("cursor: ", cursor, typeof(cursor));
+
+    if(controller === 'Gear VR Controller') {
+        $(cursor).remove();
+    }
 }
 
 function disconnectHandler(e) {
