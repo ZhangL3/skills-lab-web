@@ -1,13 +1,18 @@
 let haveEvents = 'ongamepadconnected' in window;
 let controllers = {};
+let controller;
 
 function connectHandler(e) {
-    addGamePad(e.gamepad);
-    console.log("e: ", e, typeof(e));
+    controller = event.detail.type;
+    alert("connectHandler");
+    alert(controller);
+    // addGamePad(e.gamepad);
+    // console.log("e: ", e, typeof(e));
 }
 
 function addGamePad(gamePad) {
     controllers[gamePad.index] = gamePad;
+    alert(gamePad);
 }
 
 function disconnectHandler(e) {
