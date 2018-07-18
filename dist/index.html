@@ -394,8 +394,13 @@
 
 
     <!-- controller -->
-    <a-entity gearvr-controls="hand: right" laser-controls line="color: red; opacity: 0.75">
+    <a-entity id="gearController" gearvr-controls="hand: right" laser-controls line="color: red; opacity: 0.75">
     </a-entity>
+
+    <a-entity id="viveControllerRight" vive-conrols="hand: right" debug_tool></a-entity>
+
+    <!--<a-entity vive-conrols="hand: left; model: true"></a-entity>-->
+    <!--<a-entity vive-conrols="hand: right; model: true"></a-entity>-->
 
 
     <!--camera -->
@@ -430,9 +435,6 @@
     </a-camera>
 
     <!-- debug -->
-    <!--<a-image id="debugger" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.639 0.988 0.000" rotation="0 90 0">-->
-            <!--<a-entity id="debugger1" text="color:#000000; value: Debugger1" position="0.14 0.27 0" align="center" width="2"></a-entity>-->
-    <!--</a-image>-->
 
     <!--<a-sky id="sky" scale="0.001 0.001 0.001" color="#ECECEC"></a-sky>-->
 </a-scene>

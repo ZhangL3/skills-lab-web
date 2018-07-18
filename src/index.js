@@ -22,5 +22,8 @@ import * as sectionSelection from './sectionSelection';
 import * as controllerManage from '../utils/controllerManage';
 
 
+import * as debugTool from './debugTool';
+
+
 
 stateIndex.init();

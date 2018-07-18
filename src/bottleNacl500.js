@@ -138,6 +138,11 @@ function hangUp() {
 function handleClickBottle() {
     console.log("click bottle");
     
+    //test!!!
+    const controllerModel = document.querySelector('#viveControllerRight');
+    console.log("controllerModel: ", controllerModel, typeof(controllerModel));
+    console.log("controllerModel.getAttribute('obj-model'): ", controllerModel.getAttribute('obj-model'), typeof(controllerModel.getAttribute('obj-model')));
+    
     if (// TODO: for product remove comment
     // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
     stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD && movable
