@@ -15,10 +15,16 @@ export default AFRAME.registerComponent('debug_tool', {
         // shallow copy
         element = this.el;
 
+        // this.el.setAttribute('obj-model', {
+        //     obj: 'https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj',
+        //     mtl: 'https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl'
+        // });
+
         console.log("vive obj-model: ", this.el.getAttribute('obj-model'));
 
-        $(this.el).on('click', () => {
-
+        $(this.el).on('triggerdown', () => {
+            console.log("triggerdown");
+            console.log("position:", this.el.getAttribute('position'));
         });
     }
 });
