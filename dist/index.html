@@ -394,11 +394,14 @@
 
 
     <!-- controller -->
-    <a-entity id="gearController" gearvr-controls="hand: right" laser-controls line="color: red; opacity: 0.75">
-    </a-entity>
+    <!--<a-entity id="gearController" gearvr-controls="hand: right" laser-controls line="color: red; opacity: 0.75">-->
+    <!--</a-entity>-->
 
-    <a-entity id="viveControllerRight" vive-controls="hand: right" debug_tool>
-    </a-entity>
+    <!--<a-entity id="viveControllerLeft" vive-controls="hand: left" debug_tool></a-entity>-->
+    <!--<a-entity id="viveControllerRight" vive-controls="hand: right" debug_tool></a-entity>-->
+
+    <a-entity id="leftHand" laser-controls="hand: left"></a-entity>
+    <a-entity id="rightHand" laser-controls="hand: right"></a-entity>
 
     <!--<a-entity vive-conrols="hand: left; model: true"></a-entity>-->
     <!--<a-entity vive-conrols="hand: right; model: true"></a-entity>-->
