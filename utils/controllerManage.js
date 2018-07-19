@@ -13,7 +13,7 @@ function connectHandler(e) {
     cursor = document.querySelector("#cursor");
     console.log("cursor: ", cursor, typeof(cursor));
 
-    if(controller === 'Gear VR Controller') {
+    if(controller === 'Gear VR Controller' || 'OpenVR Gamepad') {
         console.log("remove cursor");
         $(cursor).remove();
     }
