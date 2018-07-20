@@ -7,6 +7,7 @@ let controllers = {};
 let controller;
 
 let cursor;
+let allThings;
 
 function connectHandler(e) {
     controller = e.gamepad.id;
@@ -28,8 +29,6 @@ function connectHandler(e) {
 function addGamePad(gamePad) {
     controllers[gamePad.index] = gamePad;
     console.log("addGamePad: ",gamePad.id);
-    cursor = document.querySelector("#cursor");
-    console.log("cursor: ", cursor, typeof(cursor));
 }
 
 function disconnectHandler(e) {
@@ -46,6 +45,8 @@ function matchGearVRController() {
 
 function matchViveController() {
     console.log("match vive");
+    removeCursor();
+    adjustAllThingsScale('1.5 1.5 1.5')
 }
 
 function matchNoController() {
@@ -53,9 +54,19 @@ function matchNoController() {
 }
 
 function removeCursor() {
-    cursor = document.querySelector("#cursor");
+    const cursor = document.querySelector("#cursor");
     $(cursor).remove();
     console.log("cursor removed");
+}
+
+function adjustAllThingsPosition(position) {
+    const allThings = document.querySelector("#allThings");
+    $(allThings).attr("position", position)
+}
+
+function adjustAllThingsScale(scale) {
+    const allThings = document.querySelector("#allThings");
+    $(allThings).attr("scale", scale)
 }
 
 // function updateStatus() {
