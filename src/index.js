@@ -17,6 +17,8 @@ import * as infusionSet from './infusionSet';
 import * as drawerOpenWithInfusionSet from './drawerOpenWithInfusionSet';
 import * as nameLabelStamper from './nameLabelStamper';
 
+import * as getWorldBound from '../utils/getWorldPositionAndBound';
+
 import * as sectionSelection from './sectionSelection';
 
 import * as controllerManage from '../utils/controllerManage';
