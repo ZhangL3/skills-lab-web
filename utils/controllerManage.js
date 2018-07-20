@@ -46,7 +46,8 @@ function matchGearVRController() {
 function matchViveController() {
     console.log("match vive");
     removeCursor();
-    adjustAllThingsScale('1.5 1.5 1.5')
+    adjustAllThingsScale('1.5 1.5 1.5');
+    adjustAllThingsPosition('0 -0.15 0')
 }
 
 function matchNoController() {
@@ -61,12 +62,17 @@ function removeCursor() {
 
 function adjustAllThingsPosition(position) {
     const allThings = document.querySelector("#allThings");
-    $(allThings).attr("position", position)
+    $(allThings).attr("position", position);
 }
 
 function adjustAllThingsScale(scale) {
     const allThings = document.querySelector("#allThings");
-    $(allThings).attr("scale", scale)
+    $(allThings).attr("scale", scale);
+}
+
+function adjustCameraPosition(position) {
+    const camera = document.querySelector("#camera");
+    $(camera).attr('position', position);
 }
 
 // function updateStatus() {
