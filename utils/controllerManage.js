@@ -46,8 +46,8 @@ function matchGearVRController() {
 function matchViveController() {
     console.log("match vive");
     removeCursor();
-    adjustAllThingsScale('1.5 1.5 1.5');
-    adjustAllThingsPosition('0 -0.15 0')
+    adjustAllThingsScale('0.85 0.85 0.85');
+    adjustAllThingsPosition('0 0 0');
 }
 
 function matchNoController() {
