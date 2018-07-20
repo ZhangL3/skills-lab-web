@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+import { supportedController } from "./constants";
+
 let haveEvents = 'ongamepadconnected' in window;
 let controllers = {};
 let controller;
@@ -8,17 +10,19 @@ let cursor;
 
 function connectHandler(e) {
     controller = e.gamepad.id;
-    console.log("connectHandler");
-    console.log(controller);
-    cursor = document.querySelector("#cursor");
-    console.log("cursor: ", cursor, typeof(cursor));
+    console.log("connectHandler: ", controller);
 
-    if(controller === 'Gear VR Controller') {
-        console.log("remove cursor");
-        $(cursor).remove();
+    switch (controller) {
+        case supportedController.geaVRController:
+            matchGearVRController();
+            break;
+        case supportedController.ViveController:
+            matchViveController();
+            break;
+        default:
+            matchNoController();
     }
     addGamePad(e.gamepad);
-    // console.log("e: ", e, typeof(e));
 }
 
 function addGamePad(gamePad) {
@@ -26,11 +30,6 @@ function addGamePad(gamePad) {
     console.log("addGamePad: ",gamePad.id);
     cursor = document.querySelector("#cursor");
     console.log("cursor: ", cursor, typeof(cursor));
-
-    // if(gamePad.id === 'Gear VR Controller') {
-    //     console.log("remove cursor");
-    //     $(cursor).remove();
-    // }
 }
 
 function disconnectHandler(e) {
@@ -39,6 +38,24 @@ function disconnectHandler(e) {
 
 function removeGamePad(gamePad) {
     delete controllers[gamePad.index];
+}
+
+function matchGearVRController() {
+    console.log("match Gear VR");
+}
+
+function matchViveController() {
+    console.log("match vive");
+}
+
+function matchNoController() {
+    console.log("match no controller");
+}
+
+function removeCursor() {
+    cursor = document.querySelector("#cursor");
+    $(cursor).remove();
+    console.log("cursor removed");
 }
 
 // function updateStatus() {

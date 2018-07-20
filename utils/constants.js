@@ -30,3 +30,8 @@ export const nameLabel = {
         ON_BOTTLE: 'ON_BOTTLE',
     }
 };
+
+export const supportedController = {
+    geaVRController: 'Gear VR Controller',
+    ViveController: 'OpenVR Gamepad'
+}
