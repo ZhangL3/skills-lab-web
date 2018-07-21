@@ -1,21 +1,25 @@
 import $ from 'jquery';
 
 let element;
+let model;
 
 export default AFRAME.registerComponent('get_world_bound', {
 
     init: function(){
         element = this.el;
 
-        let boundingBoxInInit = new THREE.Box3().setFromObject(element.object3D);
-        console.log("boundingBoxInInit: ", boundingBoxInInit, typeof(boundingBoxInInit));
+        // let boundingBoxInInit = new THREE.Box3().setFromObject(element.object3D);
+        // console.log("boundingBoxInInit: ", boundingBoxInInit, typeof(boundingBoxInInit));
 
-        getWorldBound();
 
-        console.log("test: ", element.getAttribute('worldBoundMaxX'));
+        // console.log("test: ", element.getAttribute('worldBoundMaxX'));
 
         $(this.el).on('click', () => {
         });
+
+        $(this.el).on('model-loaded', ()=> {
+            getWorldBound();
+        })
     },
 });
 
@@ -35,5 +39,7 @@ function getWorldBound() {
     $(element).attr('worldBoundMinX', boundingBox.min.x);
     $(element).attr('worldBoundMinY', boundingBox.min.y);
     $(element).attr('worldBoundMinZ', boundingBox.min.z);
+
+
     console.log("element got wordBound: ", element);
 }
