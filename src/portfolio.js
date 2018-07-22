@@ -52,7 +52,11 @@ const schema = {
 // open portfolio
 function open () {
     aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'rotation', schema.closeRotation, schema.openRotation, schema.dur,
+        foregroundOfPortfolio, 0, 'rotation', '', schema.openRotation, schema.dur,
+        '', true, 'forwards'
+    );
+    aAnimationWrapper(
+        foregroundOfPortfolio, 0, 'position', '', schema.openPosition, schema.dur,
         '', true, 'forwards'
     );
 }
