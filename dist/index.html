@@ -399,21 +399,26 @@
     <!-- controller -->
 
     <!-- laser controllers -->
-    <a-entity id="leftHand" laser-controls="hand: left" raycaster="far:1">
-        <!--<a-box color="#0000ff" scale="0.05 0.05 0.05"></a-box>-->
-    </a-entity>
+    <!--<a-entity id="leftHand" laser-controls="hand: left" raycaster="far:1">-->
+        <!--&lt;!&ndash;<a-box color="#0000ff" scale="0.05 0.05 0.05"></a-box>&ndash;&gt;-->
+    <!--</a-entity>-->
 
-    <a-entity id="rightHand" laser-controls="hand: right" raycaster="far:1">
-        <!--<a-box color="#ff0000" scale="0.05 0.05 0.05"></a-box>-->
-    </a-entity>
+    <!--<a-entity id="rightHand" laser-controls="hand: right" raycaster="far:1">-->
+        <!--&lt;!&ndash;<a-box color="#ff0000" scale="0.05 0.05 0.05"></a-box>&ndash;&gt;-->
+    <!--</a-entity>-->
+
+    <!-- test cube -->
+    <a-box id="testCube" color="#0000ff" scale="0.05 0.05 0.05" position="-0.339 1.758 -0.703"></a-box>
+    <a-box id="testCube2" color="#ff0000" scale="0.05 0.05 0.05" position="-0.679 1.35 -0.730"></a-box>
+
 
     <!-- Vive controlers-->
-    <!--<a-entity id="viveControllerLeft" vive-controls="hand: left" debug_tool>-->
-        <!--<a-box color="#0000ff" scale="0.05 0.05 0.05"></a-box>-->
-    <!--</a-entity>-->
-    <!--<a-entity id="viveControllerRight" vive-controls="hand: right" debug_tool>-->
-        <!--<a-box color="#ff0000" scale="0.05 0.05 0.05"></a-box>-->
-    <!--</a-entity>-->
+    <a-entity id="viveControllerLeft" vive-controls="hand: left" debug_tool>
+        <a-box color="#0000ff" scale="0.05 0.05 0.05"></a-box>
+    </a-entity>
+    <a-entity id="viveControllerRight" vive-controls="hand: right" debug_tool>
+        <a-box color="#ff0000" scale="0.05 0.05 0.05"></a-box>
+    </a-entity>
 
 
     <!--camera -->

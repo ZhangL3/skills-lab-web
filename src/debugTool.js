@@ -33,6 +33,7 @@ export default AFRAME.registerComponent('debug_tool', {
             console.log("position:", this.el.getAttribute('position'));
             if(judgeTriggerObject(triggerPosition, leftCupboardLeftDoor)) {
                 console.log("leftCupboardLeftDoor triggered!!!");
+                $(leftCupboardLeftDoor).trigger('click');
             }
         });
     }
@@ -40,6 +41,7 @@ export default AFRAME.registerComponent('debug_tool', {
 
 function judgeTriggerObject(position, element) {
     const obj = $(element);
+    console.log("element: ", element, typeof(element));
     console.log('minX: ',obj.attr('worldBoundMinX'));
     console.log('maxX: ',obj.attr('worldBoundMaxX'));
     if(position.x < Number(obj.attr('worldBoundMinX')) || position.x > Number(obj.attr('worldBoundMaxX'))) {

@@ -1,17 +1,13 @@
 import $ from 'jquery';
 
-let element;
-
 export default AFRAME.registerComponent('get_world_bound', {
 
     init: function(){
-        element = this.el;
-
         $(this.el).on('click', () => {
         });
 
         $(this.el).on('model-loaded', ()=> {
-            getWorldBound();
+            getWorldBound(this.el);
         })
     },
 });
@@ -19,11 +15,10 @@ export default AFRAME.registerComponent('get_world_bound', {
 function getWordPosition() {
     let worldPos = new THREE.Vector3();
     worldPos.setFromMatrixPosition(element.object3D.matrixWorld);
-    // $(element).attr('worldPosition', worldPos);
-    
+
 }
 
-function getWorldBound() {
+function getWorldBound(element) {
     let boundingBox = new THREE.Box3().setFromObject(element.object3D);
 
     $(element).attr('worldBoundMaxX', boundingBox.max.x);
