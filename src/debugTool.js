@@ -25,7 +25,11 @@ export default AFRAME.registerComponent('debug_tool', {
 
             const triggerPosition = this.el.getAttribute('position');
 
-            const triggerEvent = { eventName: 'triggerDown', position: triggerPosition };
+            const triggerEvent = {
+                eventName: 'triggerDown',
+                position: triggerPosition,
+                activeController: this.el
+            };
 
             this.viveObserver.notify(triggerEvent);
 

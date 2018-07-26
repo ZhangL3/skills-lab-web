@@ -13,11 +13,15 @@ let element;
 let currentState;
 let foregroundOfPortfolio;
 
+let activeController;
+
 let hookName;
 let hookDrug;
 let hookDose;
 let hookIV;
 let hookCF;
+
+let ViveController;
 
 export default AFRAME.registerComponent('portfolio', {
 
@@ -197,7 +201,12 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
 
     if(isEmitted(element, triggerEvent.position)){
         if(triggerEvent.eventName === 'triggerDown') {
-            console.log("trigger down portfolio");
+            activeController = triggerEvent.activeController;
+            let activePosition = activeController.getAttribute('position');
+            console.log("trigger down portfolio: ", activeController.getAttribute('position'));
+            let t = setInterval(() => {
+                element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`)
+            }, 40);
         }
     }
 }
