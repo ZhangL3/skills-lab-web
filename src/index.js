@@ -16,6 +16,7 @@ import * as bottleNacl500 from './bottleNacl500';
 import * as infusionSet from './infusionSet';
 import * as drawerOpenWithInfusionSet from './drawerOpenWithInfusionSet';
 import * as nameLabelStamper from './nameLabelStamper';
+import * as drawerOpenWithHandle from './drawerOpenWithHandle';
 
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
 

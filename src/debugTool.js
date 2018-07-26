@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Observable from '../utils/observable';
 
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
+import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
 
 let element;
 
@@ -16,6 +17,7 @@ export default AFRAME.registerComponent('debug_tool', {
 
         // Add function from observers
         this.viveObserver.subscribe(handleControllerNotifyCupboardDoor);
+        this.viveObserver.subscribe(handleControllerNotifyCabinetDrawer);
 
         $(this.el).on('triggerdown', () => {
 
