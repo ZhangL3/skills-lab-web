@@ -4,6 +4,10 @@ import _ from 'lodash';
 import stateIndex from './state';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+import { getActiveController } from "../utils/controllerManage";
+import { supportedController } from '../utils/constants';
+import { getWorldBound } from "../utils/getWorldPositionAndBound";
+import { isEmitted } from "../utils/isEmitted";
 
 let element;
 let currentState;
@@ -184,5 +188,17 @@ export function handleNotifyPortfolio(nextState) {
     }
     // deep copy
     currentState = _.cloneDeep(stateIndex.getState());
+}
+
+
+export function handleControllerNotifyPortfolio ( triggerEvent ) {
+
+    getWorldBound.apply(element);
+
+    if(isEmitted(element, triggerEvent.position)){
+        if(triggerEvent.eventName === 'triggerDown') {
+            console.log("trigger down portfolio");
+        }
+    }
 }
 
