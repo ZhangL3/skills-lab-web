@@ -79,6 +79,10 @@ function adjustCameraPosition(position) {
     $(camera).attr('position', position);
 }
 
+export function getActiveController() {
+    return controller;
+}
+
 // function updateStatus() {
 //     if (!haveEvents) {
 //         scanGamePads();
