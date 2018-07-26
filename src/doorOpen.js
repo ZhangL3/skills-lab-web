@@ -1,4 +1,10 @@
+import $ from 'jquery';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+import { getWorldBound } from "../utils/getWorldPositionAndBound";
+import { isEmitted } from '../utils/isEmitted';
+
+const allDoors = [];
+let allDoorsElements;
 
 export default AFRAME.registerComponent('door_open', {
     schema: {
@@ -8,8 +14,11 @@ export default AFRAME.registerComponent('door_open', {
     },
 
     init: function () {
+        allDoors.push(this.el);
+
+        allDoorsElements = $('.cupboardDoor');
+
         const { close, open, dur }= this.data;
-        // const twoCupboards = document.querySelector("#twoCupboards");
 
         this.el.addEventListener('click', () => {
             // twoCabinets.components.sound.playSound();
@@ -20,3 +29,21 @@ export default AFRAME.registerComponent('door_open', {
 
     }
 });
+
+/**
+ * Handle the notify form controller
+ *
+ * @param triggerEvent
+ */
+export function handleControllerNotifyCupboardDoor ( triggerEvent ) {
+
+    allDoors.forEach((door)=>{
+       getWorldBound.apply(door);
+    });
+
+    allDoorsElements.each((index, doorElement) => {
+        if(isEmitted(doorElement, triggerEvent.position)){
+            doorElement.emit('click');
+        }
+    });
+}
