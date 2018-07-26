@@ -14,6 +14,7 @@ let currentState;
 let foregroundOfPortfolio;
 
 let activeController;
+let boundingBoxOnTable;
 
 let hookName;
 let hookDrug;
@@ -197,7 +198,7 @@ export function handleNotifyPortfolio(nextState) {
 
 export function handleControllerNotifyPortfolio ( triggerEvent ) {
 
-    getWorldBound.apply(element);
+    boundingBoxOnTable = getWorldBound.apply(element);
 
     if(isEmitted(element, triggerEvent.position)){
         if(triggerEvent.eventName === 'triggerDown') {
@@ -210,4 +211,5 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
         }
     }
 }
+
 
