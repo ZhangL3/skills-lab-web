@@ -11,8 +11,6 @@ export function isEmitted(element, triggerPosition) {
     const minY = Number(el.attr('worldboundminy'));
     const minZ = Number(el.attr('worldboundminz'));
 
-    console.log(maxX, maxY, maxZ, minX, minY, minZ);
-
     if (triggerPosition.x > maxX || triggerPosition.x < minX) {
         console.log("x wrong");
         return false;
