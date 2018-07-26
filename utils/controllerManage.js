@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+
 import { supportedController } from "./constants";
 
 let haveEvents = 'ongamepadconnected' in window;
@@ -47,9 +48,10 @@ function matchViveController() {
     console.log("match vive");
     removeCursor();
     adjustAllThingsScale('1 1 1');
-    // adjustAllThingsScale('0.85 0.85 0.85');
     adjustAllThingsPosition('0 0 0');
-    adjustCameraPosition('0 0 0');
+    adjustCameraPosition('0 1 0');
+
+
 }
 
 function matchNoController() {
