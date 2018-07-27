@@ -62,12 +62,18 @@ const schema = {
 // open portfolio
 function open () {
     aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'rotation', '', schema.openRotation, schema.dur,
+        foregroundOfPortfolio, '', 'rotation', '', schema.openRotation, schema.dur,
         '', true, 'forwards'
     );
     aAnimationWrapper(
-        foregroundOfPortfolio, 0, 'position', '', schema.openPosition, schema.dur,
+        foregroundOfPortfolio, '', 'position', '', schema.openPosition, schema.dur,
         '', true, 'forwards'
+    );
+}
+
+function faceToCamera() {
+    aAnimationWrapper(
+        element, '', 'rotation', '0 0 -55', schema.dur, '', true, 'forwards'
     );
 }
 
@@ -81,8 +87,6 @@ function takeInHand () {
         '', true, 'forwards'
     );
 }
-
-
 
 // close portfolio
 function close () {
@@ -210,12 +214,49 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
 
 export function handleControllerStateNotifyPortfolio () {
     if (controllerStateIndex.getControllerState('portfolioInHand')) {
-        let activePosition = activeController.getAttribute('position');
-        console.log("trigger down portfolio: ", activeController.getAttribute('position'));
-        let t = setInterval(() => {
-            element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`)
-        }, 40);
+
+        // const viveLeftBox=document.querySelector('#viveLeftBox');
+        // const viveRightBox=document.querySelector('#viveRightBox');
+
+        // dragInHand(activeController, '5000 5000 5000');
+
+        //TODO: how to move element to other parent element, and adjust the attr???
+
+        $(element).appendTo(activeController);
+        const newElement = document.querySelector('#portfolioBackSiteModel');
+        console.log("newElement: ", newElement, typeof(newElement));
+        newElement.setAttribute('position', '0 0 0');
+
+
+        open();
+
+        // A-Frame 0.8.2 has bug, so not works. If fixed, not needed.
+        // Seems not works.
+        // faceToCamera();
     }
+}
+
+function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
+
+    // let activePosition = activeController.getAttribute('position');
+    //
+    //
+    // let t = setInterval(() => {
+    //     element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`);
+    //
+    // }, 40);
+
+    // A-Frame 0.8.2 has bug, so not works. If fixed, use this.
+
+    // element.setAttribute('scale', '1 1 1');
+    // element.setAttribute('position', '0 0 0 ');
+
+    console.log("element: ", element, typeof(element));
+    console.log("targetParent: ", targetParent, typeof(targetParent));
+    $(element).attr('position', '0 0 0').appendTo(targetParent);
+
+    // $(element).attr('scale', scale);
+    // $(element).attr('position', position);
 }
 
 
