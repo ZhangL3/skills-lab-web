@@ -1,4 +1,5 @@
 import stateIndex from './state';
+import controllerStateIndex from '../utils/controllerState';
 
 import * as cursorSubmit from './cursorSubmit';
 import * as drawerOpen from './drawerOpen';
@@ -27,6 +28,5 @@ import * as controllerManage from '../utils/controllerManage';
 
 import * as debugTool from './debugTool';
 
-
-
 stateIndex.init();
+controllerStateIndex.initControllerState();

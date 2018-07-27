@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import stateIndex from './state';
+import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getActiveController } from "../utils/controllerManage";
@@ -195,7 +196,6 @@ export function handleNotifyPortfolio(nextState) {
     currentState = _.cloneDeep(stateIndex.getState());
 }
 
-
 export function handleControllerNotifyPortfolio ( triggerEvent ) {
 
     boundingBoxOnTable = getWorldBound.apply(element);
@@ -203,12 +203,18 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
     if(isEmitted(element, triggerEvent.position)){
         if(triggerEvent.eventName === 'triggerDown') {
             activeController = triggerEvent.activeController;
-            let activePosition = activeController.getAttribute('position');
-            console.log("trigger down portfolio: ", activeController.getAttribute('position'));
-            let t = setInterval(() => {
-                element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`)
-            }, 40);
+            controllerStateIndex.setControllerState('portfolioInHand', true);
         }
+    }
+}
+
+export function handleControllerStateNotifyPortfolio () {
+    if (controllerStateIndex.getControllerState('portfolioInHand')) {
+        let activePosition = activeController.getAttribute('position');
+        console.log("trigger down portfolio: ", activeController.getAttribute('position'));
+        let t = setInterval(() => {
+            element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`)
+        }, 40);
     }
 }
 
