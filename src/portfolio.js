@@ -24,6 +24,7 @@ let hookIV;
 let hookCF;
 
 let ViveController;
+let currentControllerState;
 
 export default AFRAME.registerComponent('portfolio', {
 
@@ -41,6 +42,10 @@ export default AFRAME.registerComponent('portfolio', {
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
+
+        // deep copy
+        currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
+
         $(this.el).on('click', () => {
             handleClickPortfolio();
         });
@@ -212,23 +217,25 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
     }
 }
 
-export function handleControllerStateNotifyPortfolio () {
-    if (controllerStateIndex.getControllerState('portfolioInHand')) {
-
-        // const viveLeftBox=document.querySelector('#viveLeftBox');
-        // const viveRightBox=document.querySelector('#viveRightBox');
-
-        // dragInHand(activeController, '5000 5000 5000');
-
-        //TODO: how to move element to other parent element, and adjust the attr???
-
-        $(element).appendTo(activeController);
-        const newElement = document.querySelector('#portfolioBackSiteModel');
-        console.log("newElement: ", newElement, typeof(newElement));
-        newElement.setAttribute('position', '0 0 0');
-
+export function handleControllerStateNotifyPortfolio (nextControllerState) {
+    if (nextControllerState.portfolioInHand && !currentControllerState.portfolioInHand) {
 
         open();
+
+        dragInHand();
+
+        currentControllerState = _.cloneDeep(nextControllerState);
+
+
+        //TODO: how adjust the attribute after attaching element to controller element?
+
+        // element.setAttribute('position', '0 0 0');
+        // $(element).appendTo(activeController);
+        // element.setAttribute('position', '0 0 0');
+        // const portfolioElementOnController = document.querySelector('#portfolioBackSiteModel');
+        // portfolioElementOnController.setAttribute('position', '0 0 0');
+
+
 
         // A-Frame 0.8.2 has bug, so not works. If fixed, not needed.
         // Seems not works.
@@ -238,22 +245,22 @@ export function handleControllerStateNotifyPortfolio () {
 
 function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
 
-    // let activePosition = activeController.getAttribute('position');
-    //
-    //
-    // let t = setInterval(() => {
-    //     element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`);
-    //
-    // }, 40);
+    let activePosition = activeController.getAttribute('position');
+
+
+    let t = setInterval(() => {
+        element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`);
+
+    }, 40);
 
     // A-Frame 0.8.2 has bug, so not works. If fixed, use this.
 
     // element.setAttribute('scale', '1 1 1');
     // element.setAttribute('position', '0 0 0 ');
 
-    console.log("element: ", element, typeof(element));
-    console.log("targetParent: ", targetParent, typeof(targetParent));
-    $(element).attr('position', '0 0 0').appendTo(targetParent);
+    // console.log("element: ", element, typeof(element));
+    // console.log("targetParent: ", targetParent, typeof(targetParent));
+    // $(element).attr('position', '0 0 0').appendTo(targetParent);
 
     // $(element).attr('scale', scale);
     // $(element).attr('position', position);
