@@ -6,13 +6,9 @@ import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
 import { handleControllerNotifyPortfolio } from './portfolio';
 
-let element;
-
 export default AFRAME.registerComponent('debug_tool', {
 
     init: function(){
-        // shallow copy
-        element = this.el;
 
         this.viveObserver = new Observable();
 
@@ -23,6 +19,8 @@ export default AFRAME.registerComponent('debug_tool', {
 
         $(this.el).on('triggerdown', () => {
 
+            console.log("triggerDown");
+            
             const triggerPosition = this.el.getAttribute('position');
 
             const triggerEvent = {
