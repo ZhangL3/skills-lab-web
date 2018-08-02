@@ -204,7 +204,7 @@ export function handleNotifyPortfolio(nextState) {
 
 export function handleControllerNotifyPortfolio ( triggerEvent ) {
 
-    boundingBoxOnTable = getWorldBound.apply(element);
+    boundingBoxOnTable = getWorldBound(element);
 
     if(isEmitted(element, triggerEvent.position)){
         if(triggerEvent.eventName === 'triggerDown') {

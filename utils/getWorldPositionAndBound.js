@@ -13,15 +13,15 @@ export function getWordPosition() {
     worldPos.setFromMatrixPosition(element.object3D.matrixWorld);
 }
 
-export function getWorldBound() {
-    let boundingBox = new THREE.Box3().setFromObject(this.object3D);
+export function getWorldBound(element) {
+    let boundingBox = new THREE.Box3().setFromObject(element.object3D);
 
-    $(this).attr('worldBoundMaxX', boundingBox.max.x);
-    $(this).attr('worldBoundMaxY', boundingBox.max.y);
-    $(this).attr('worldBoundMaxZ', boundingBox.max.z);
-    $(this).attr('worldBoundMinX', boundingBox.min.x);
-    $(this).attr('worldBoundMinY', boundingBox.min.y);
-    $(this).attr('worldBoundMinZ', boundingBox.min.z);
+    $(element).attr('worldBoundMaxX', boundingBox.max.x);
+    $(element).attr('worldBoundMaxY', boundingBox.max.y);
+    $(element).attr('worldBoundMaxZ', boundingBox.max.z);
+    $(element).attr('worldBoundMinX', boundingBox.min.x);
+    $(element).attr('worldBoundMinY', boundingBox.min.y);
+    $(element).attr('worldBoundMinZ', boundingBox.min.z);
 
     return boundingBox;
 }

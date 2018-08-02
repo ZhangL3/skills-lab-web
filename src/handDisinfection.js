@@ -114,3 +114,11 @@ export function handleNotifyHandDisinfection(nextState) {
 
 }
 
+export function handleControllerNotifyHandDisinfection( triggerEvent ) {
+
+}
+
+export function handleControllerStateNotifyHandDisinfection (nextControllerState) {
+
+}
+

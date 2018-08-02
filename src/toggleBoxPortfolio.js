@@ -39,7 +39,7 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
         $(element).attr('material', "color:#00ffff; transparent: true; opacity: 0.5")
     }
 
-    getWorldBound.apply(element);
+    getWorldBound(element);
 
     if(isEmitted(element, triggerEvent.position)){
         if(portfolioChecked) {

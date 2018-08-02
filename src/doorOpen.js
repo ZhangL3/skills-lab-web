@@ -38,7 +38,7 @@ export default AFRAME.registerComponent('door_open', {
 export function handleControllerNotifyCupboardDoor ( triggerEvent ) {
 
     allDoors.forEach((door)=>{
-       getWorldBound.apply(door);
+       getWorldBound(door);
     });
 
     allDoorsElements.each((index, doorElement) => {

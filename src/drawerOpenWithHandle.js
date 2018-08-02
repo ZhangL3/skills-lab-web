@@ -24,7 +24,7 @@ export default AFRAME.registerComponent('drawer_open_with_handle',{
 export function handleControllerNotifyCabinetDrawer( triggerEvent ) {
 
     allDrawersHandles.forEach((drawerHandle)=>{
-        getWorldBound.apply(drawerHandle);
+        getWorldBound(drawerHandle);
         if(isEmitted(drawerHandle, triggerEvent.position)){
             $(drawerHandle).parent().trigger('click');
         }

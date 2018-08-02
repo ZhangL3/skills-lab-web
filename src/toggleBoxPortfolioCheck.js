@@ -48,7 +48,7 @@ function toggleHookBox(hookToggleBox){
 export function handleControllerNotifyPortfolioCheckVive( triggerEvent ) {
 
     $(hookToggleBoxes).each((index, hookToggleBox)=>{
-        getWorldBound.apply(hookToggleBox);
+        getWorldBound(hookToggleBox);
         if(isEmitted(hookToggleBox, triggerEvent.position)){
             if(controllerStateIndex.getControllerState('portfolioInHand')) {
                 toggleHookBox(hookToggleBox);
