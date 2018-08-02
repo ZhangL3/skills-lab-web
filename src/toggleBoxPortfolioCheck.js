@@ -5,49 +5,51 @@ import { isEmitted } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 
-let hookBoxes;
+let hookToggleBoxes;
 
-export default AFRAME.registerComponent('portfolio_check_vive', {
+export default AFRAME.registerComponent('toggle_box_portfolio_check', {
 
     init: function(){
 
+        console.log("init toggle box porfolio");
+        
         // boxName = document.querySelector("#boxName");
         // boxDrug = document.querySelector("#boxDrug");
         // boxDose = document.querySelector("#boxDose");
         // boxIV = document.querySelector("#boxIV");
         // boxCF = document.querySelector("#boxCF");
         //
-        // hookBoxes.appendChild(boxName);
-        // hookBoxes.appendChild(boxDrug);
-        // hookBoxes.appendChild(boxDose);
-        // hookBoxes.appendChild(boxIV);
-        // hookBoxes.appendChild(boxCF);
+        // hookToggleBoxes.appendChild(boxName);
+        // hookToggleBoxes.appendChild(boxDrug);
+        // hookToggleBoxes.appendChild(boxDose);
+        // hookToggleBoxes.appendChild(boxIV);
+        // hookToggleBoxes.appendChild(boxCF);
         
-        hookBoxes=$('.hookBox');
+        hookToggleBoxes=$('.hookToggleBox');
 
     },
 
 });
 
-function toggleHookBox(hookBox){
+function toggleHookBox(hookToggleBox){
 
-    const id = hookBox.getAttribute('id');
+    const id = hookToggleBox.getAttribute('id');
 
     switch(id){
 
-        case "boxName":
+        case "toggleBoxName":
             stateIndex.setIn(['portfolio', 'checkPortfolio', 'name'], true);
             break;
-        case "boxDrug":
+        case "toggleBoxDrug":
             stateIndex.setIn(['portfolio', 'checkPortfolio', 'drug'], true);
             break;
-        case "boxDose":
+        case "toggleBoxDose":
             stateIndex.setIn(['portfolio', 'checkPortfolio', 'dose'], true);
             break;
-        case "boxIV":
+        case "toggleBoxIV":
             stateIndex.setIn(['portfolio', 'checkPortfolio', 'IV'], true);
             break;
-        case "boxCF":
+        case "toggleBoxCF":
             stateIndex.setIn(['portfolio', 'checkPortfolio', 'CF'], true);
             break;
         default:
@@ -57,11 +59,12 @@ function toggleHookBox(hookBox){
 
 export function handleControllerNotifyPortfolioCheckVive( triggerEvent ) {
 
-    $(hookBoxes).each((index, hookBox)=>{
-        getWorldBound.apply(hookBox);
-        if(isEmitted(hookBox, triggerEvent.position)){
-            console.log("toggle hookBox: ", hookBox);
-            toggleHookBox(hookBox);
+    $(hookToggleBoxes).each((index, hookToggleBox)=>{
+        getWorldBound.apply(hookToggleBox);
+        if(isEmitted(hookToggleBox, triggerEvent.position)){
+            if(controllerStateIndex.getControllerState('portfolioInHand')) {
+                toggleHookBox(hookToggleBox);
+            }
         }
     });
 }

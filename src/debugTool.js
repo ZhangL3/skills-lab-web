@@ -5,7 +5,7 @@ import Observable from '../utils/observable';
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
 import { handleControllerNotifyPortfolio } from './portfolio';
-import { handleControllerNotifyPortfolioCheckVive } from './portfolioCheckVive';
+import { handleControllerNotifyPortfolioCheckVive } from './toggleBoxPortfolioCheck';
 
 export default AFRAME.registerComponent('debug_tool', {
 

@@ -18,7 +18,7 @@ import * as infusionSet from './infusionSet';
 import * as drawerOpenWithInfusionSet from './drawerOpenWithInfusionSet';
 import * as nameLabelStamper from './nameLabelStamper';
 import * as drawerOpenWithHandle from './drawerOpenWithHandle';
-import * as portfolioCheckVive from './portfolioCheckVive';
+import * as toggleBoxPortfolioCheck from './toggleBoxPortfolioCheck';
 
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
 
