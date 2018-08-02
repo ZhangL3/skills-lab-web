@@ -1,7 +1,12 @@
-import aAnimationWrapper from '../utils/aAnimationWrapper';
 import $ from 'jquery';
-
+import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
+
+import controllerStateIndex from '../utils/controllerState';
+import * as constants from '../utils/constants';
+import { getWorldBound } from "../utils/getWorldPositionAndBound";
+import { isEmitted } from "../utils/isEmitted";
+
 
 let element;
 let clock;
@@ -115,7 +120,10 @@ export function handleNotifyHandDisinfection(nextState) {
 }
 
 export function handleControllerNotifyHandDisinfection( triggerEvent ) {
-
+    getWorldBound(element);
+    if (isEmitted(element, triggerEvent.position)) {
+        $(element).trigger('click');
+    }
 }
 
 export function handleControllerStateNotifyHandDisinfection (nextControllerState) {
