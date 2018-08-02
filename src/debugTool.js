@@ -6,6 +6,7 @@ import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
 import { handleControllerNotifyPortfolio } from './portfolio';
 import { handleControllerNotifyPortfolioCheckVive } from './toggleBoxPortfolioCheck';
+import { handleControllerNotifyToggleBoxPortfolio } from './toggleBoxPortfolio';
 
 export default AFRAME.registerComponent('debug_tool', {
 
@@ -18,6 +19,7 @@ export default AFRAME.registerComponent('debug_tool', {
         this.viveObserver.subscribe(handleControllerNotifyCabinetDrawer);
         this.viveObserver.subscribe(handleControllerNotifyPortfolio);
         this.viveObserver.subscribe(handleControllerNotifyPortfolioCheckVive);
+        this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolio);
 
         $(this.el).on('triggerdown', () => {
 

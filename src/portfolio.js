@@ -26,6 +26,8 @@ let hookCF;
 let ViveController;
 let currentControllerState;
 
+let timeInterval;
+
 export default AFRAME.registerComponent('portfolio', {
 
     init: function(){
@@ -116,7 +118,7 @@ function putOnTable(){
     );
 }
 
-function is5RChecked () {
+export function is5RChecked () {
     const status5R = stateIndex.getIn(['portfolio', 'checkPortfolio']);
     const checkValues = Object.values(status5R);
     for(let i = 0; i < checkValues.length; i++) {
@@ -177,6 +179,10 @@ export function handleNotifyPortfolio(nextState) {
     // console.log("nextState: ", nextState, typeof(nextState));
 
     if(stateIndex.getIn(['portfolio', 'finish'])) {
+        // vive
+        if (timeInterval) {
+            drop();
+        }
         return false;
     }
 
@@ -222,7 +228,7 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
 
         open();
 
-        // dragInHand();
+        dragInHand();
 
         currentControllerState = _.cloneDeep(nextControllerState);
 
@@ -248,7 +254,7 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
     let activePosition = activeController.getAttribute('position');
 
 
-    let t = setInterval(() => {
+    timeInterval = setInterval(() => {
         element.setAttribute('position', `${activePosition.x} ${activePosition.y + 0.04} ${activePosition.z}`);
 
     }, 40);
@@ -264,6 +270,10 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
 
     // $(element).attr('scale', scale);
     // $(element).attr('position', position);
+}
+
+function drop() {
+    clearInterval(timeInterval);
 }
 
 

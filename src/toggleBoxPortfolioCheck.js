@@ -13,18 +13,6 @@ export default AFRAME.registerComponent('toggle_box_portfolio_check', {
 
         console.log("init toggle box porfolio");
         
-        // boxName = document.querySelector("#boxName");
-        // boxDrug = document.querySelector("#boxDrug");
-        // boxDose = document.querySelector("#boxDose");
-        // boxIV = document.querySelector("#boxIV");
-        // boxCF = document.querySelector("#boxCF");
-        //
-        // hookToggleBoxes.appendChild(boxName);
-        // hookToggleBoxes.appendChild(boxDrug);
-        // hookToggleBoxes.appendChild(boxDose);
-        // hookToggleBoxes.appendChild(boxIV);
-        // hookToggleBoxes.appendChild(boxCF);
-        
         hookToggleBoxes=$('.hookToggleBox');
 
     },

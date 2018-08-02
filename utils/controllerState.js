@@ -1,6 +1,7 @@
 import Observable from '../utils/observable';
 
 import { handleControllerStateNotifyPortfolio } from '../src/portfolio';
+import { handleControllerStateNotifyToggleBoxPortfolio } from '../src/toggleBoxPortfolio';
 
 const controllerState = {
     connectedController: '',
@@ -14,7 +15,8 @@ export default class controllerStateIndex {
         this.controllerObserver = new Observable();
         // Add function from observers
         this.controllerObserver.subscribe(handleControllerStateNotifyPortfolio);
-        
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxPortfolio);
+
         console.log("controllerState init");
 
     }
