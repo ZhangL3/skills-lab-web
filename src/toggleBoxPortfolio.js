@@ -14,7 +14,7 @@ export default AFRAME.registerComponent('toggle_box_portfolio', {
 
         element = this.el;
 
-        console.log("init toggle box portfolio: ", element);
+        // console.log("init toggle box portfolio: ", element);
 
     },
 
@@ -30,8 +30,8 @@ function hideToggleBoxPortfolio () {
 
 export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
 
-    console.log("toggleBoxPortfolio.triggerEvent", triggerEvent);
-    console.log("toggleBoxPortfolio.element", element);
+    // console.log("toggleBoxPortfolio.triggerEvent", triggerEvent);
+    // console.log("toggleBoxPortfolio.element", element);
 
     const portfolioChecked = controllerStateIndex.getControllerState('portfolioInHand') && is5RChecked();
 
@@ -44,13 +44,13 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
     if(isEmitted(element, triggerEvent.position)){
         if(portfolioChecked) {
             stateIndex.setIn(['portfolio', 'finish'], true);
-            controllerStateIndex.set('portfolioInHand', false);
+            controllerStateIndex.setControllerState('portfolioInHand', false);
         }
     }
 }
 
 export function handleControllerStateNotifyToggleBoxPortfolio (nextControllerState) {
-    console.log("handleControllerStateNotifyToggleBoxPortfolio", nextControllerState);
+    // console.log("handleControllerStateNotifyToggleBoxPortfolio", nextControllerState);
     if (nextControllerState.portfolioInHand) {
         showToggleBoxPortfolio();
     }

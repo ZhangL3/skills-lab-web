@@ -135,20 +135,13 @@ function handleClickPortfolio () {
         stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.ON_TABLE &&
         !is5RChecked()
     ) {
-        // console.log("take in hand: ");
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.IN_HAND);
-
     }
     else if (
         stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.IN_HAND &&
         is5RChecked()
     ) {
-        // why here already true? before setIn.
-        // console.log("to checkFinish: ", stateIndex.getState());
-        // console.log("put on table: ");
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.ON_TABLE);
-
-        // console.log("currentState!!!: ", currentState.portfolio.position);
     }
     else if (
         currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
@@ -161,15 +154,13 @@ function handleClickPortfolio () {
 }
 
 // hide the hooks for 5R
-function hideHooks(){
+function hideHooks() {
     console.log("hide!!!!: ");
-    console.log("hookName: ", hookName, typeof(hookName));
-    // $(hookName).attr('visible', 'false');
     hookName.setAttribute('visible', 'false');
-    $(hookDrug).attr('visible', 'false');
-    $(hookDose).attr('visible', 'false');
-    $(hookIV).attr('visible', 'false');
-    $(hookCF).attr('visible', 'false');
+    hookDrug.setAttribute('visible', 'false');
+    hookDose.setAttribute('visible', 'false');
+    hookIV.setAttribute('visible', 'false');
+    hookCF.setAttribute('visible', 'false');
 }
 
 export function handleNotifyPortfolio(nextState) {
@@ -274,6 +265,7 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
 
 function drop() {
     clearInterval(timeInterval);
+    element.setAttribute('position', '-0.564 0.682 -0.939');
 }
 
 
