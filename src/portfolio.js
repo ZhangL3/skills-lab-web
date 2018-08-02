@@ -5,10 +5,9 @@ import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getActiveController } from "../utils/controllerManage";
-import { supportedController } from '../utils/constants';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
+// import { dragByController, drop } from "../utils/dragByController";
 
 let element;
 let currentState;
@@ -64,6 +63,7 @@ const schema = {
     inFrontOfEyesPosition : '0 1 -0.52',
     inFrontOfEyesRotation : '0 -90 -70',
     dur : 500,
+    positionAfterCheckVive: '-0.564 0.682 -0.939',
 };
 
 // open portfolio
@@ -172,7 +172,7 @@ export function handleNotifyPortfolio(nextState) {
     if(stateIndex.getIn(['portfolio', 'finish'])) {
         // vive
         if (timeInterval) {
-            drop();
+            drop(element);
         }
         return false;
     }
@@ -263,9 +263,9 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
     // $(element).attr('position', position);
 }
 
-function drop() {
+function drop(element) {
     clearInterval(timeInterval);
-    element.setAttribute('position', '-0.564 0.682 -0.939');
+    element.setAttribute('position', schema.positionAfterCheckVive);
 }
 
 
