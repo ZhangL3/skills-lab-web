@@ -5,6 +5,7 @@ import Observable from '../utils/observable';
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
 import { handleControllerNotifyPortfolio } from './portfolio';
+import { handleControllerNotifyPortfolioCheckVive } from './portfolioCheckVive';
 
 export default AFRAME.registerComponent('debug_tool', {
 
@@ -16,6 +17,7 @@ export default AFRAME.registerComponent('debug_tool', {
         this.viveObserver.subscribe(handleControllerNotifyCupboardDoor);
         this.viveObserver.subscribe(handleControllerNotifyCabinetDrawer);
         this.viveObserver.subscribe(handleControllerNotifyPortfolio);
+        this.viveObserver.subscribe(handleControllerNotifyPortfolioCheckVive);
 
         $(this.el).on('triggerdown', () => {
 

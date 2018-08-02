@@ -222,7 +222,7 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
 
         open();
 
-        dragInHand();
+        // dragInHand();
 
         currentControllerState = _.cloneDeep(nextControllerState);
 
@@ -249,7 +249,7 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
 
 
     let t = setInterval(() => {
-        element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`);
+        element.setAttribute('position', `${activePosition.x} ${activePosition.y + 0.04} ${activePosition.z}`);
 
     }, 40);
 
