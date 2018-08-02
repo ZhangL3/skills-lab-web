@@ -22,6 +22,7 @@ export const section0 = {
     },
     handDisinfection: {
         disinfecting: false,
+        disinfected: false,
         finish: false,
     },
     bottlePrepare: {
@@ -83,6 +84,7 @@ export const section1 = {
     },
     handDisinfection: {
         disinfecting: false,
+        disinfected: false,
         finish: false,
     },
     bottlePrepare: {
@@ -144,6 +146,7 @@ export const section2 = {
     },
     handDisinfection: {
         disinfecting: false,
+        disinfected: false,
         finish: false,
     },
     bottlePrepare: {
@@ -205,6 +208,7 @@ export const section3 = {
     },
     handDisinfection: {
         disinfecting: true,
+        disinfected: true,
         finish: true,
     },
     bottlePrepare: {
@@ -266,6 +270,7 @@ export const section4 = {
     },
     handDisinfection: {
         disinfecting: true,
+        disinfected: true,
         finish: true,
     },
     bottlePrepare: {
@@ -327,6 +332,7 @@ export const section5 = {
     },
     handDisinfection: {
         disinfecting: true,
+        disinfected: true,
         finish: true,
     },
     bottlePrepare: {
@@ -388,6 +394,7 @@ export const section6 = {
     },
     handDisinfection: {
         disinfecting: true,
+        disinfected: true,
         finish: true,
     },
     bottlePrepare: {

@@ -7,6 +7,7 @@ let element;
 let clock;
 let currentState;
 let plat30sec;
+let handDisinfectionTime = 3000;
 
 AFRAME.registerComponent('hand_disinfection', {
     schema:{
@@ -58,7 +59,8 @@ function showClockIndicate() {
 }
 
 function hideClockIndicate() {
-    $(plat30sec).attr('visible', false);
+    console.log("hide clock indicate");
+    $(plat30sec).remove();
 }
 
 function getPlat30Rotation(){
@@ -81,6 +83,8 @@ function handleClickHandle () {
 
 export function handleNotifyHandDisinfection(nextState) {
 
+    console.log("handleNotifyHandDisinfection", nextState);
+
     if(stateIndex.getIn(['handDisinfection', 'finish'])) {
         return false;
     }
@@ -97,14 +101,16 @@ export function handleNotifyHandDisinfection(nextState) {
         // active handle, after 30sec chang state
         handDisinfection();
         setTimeout(()=>{
-            stateIndex.setIn(['handDisinfection', 'finish'], true);
-        }, 3000);
+            stateIndex.setIn(['handDisinfection', 'disinfected'], true);
+        }, handDisinfectionTime);
     }
     else if (
         nextState.handDisinfection.disinfecting === true &&
-        nextState.handDisinfection.finish === true
+        nextState.handDisinfection.disinfected === true
     ) {
         hideClockIndicate();
+        stateIndex.setIn(['handDisinfection', 'finish'], true)
     }
 
 }
+
