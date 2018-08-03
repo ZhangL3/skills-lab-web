@@ -6,6 +6,7 @@ import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
+import { controllerStateIndex } from '../utils/controllerState';
 
 // let element;
 let gloveL;
@@ -48,10 +49,12 @@ export default AFRAME.registerComponent('glove', {
                 if(activeController.getAttribute('id') == 'viveControllerLeft') {
                     console.log("show glove left!");
                     gloveLeft.attr('visible', true);
+                    controllerStateIndex.setControllerState('hasGloveLeft', true);
                 }
                 else if (activeController.getAttribute('id') == 'viveControllerRight') {
                     console.log("show glove right!");
                     gloveRight.attr('visible', true);
+                    controllerStateIndex.setControllerState('hasGloveRight', true);
                 }
             }
 

@@ -5,7 +5,11 @@ import { handleControllerStateNotifyToggleBoxPortfolio } from '../src/toggleBoxP
 
 const controllerState = {
     connectedController: '',
-    portfolioInHand: false
+    portfolioInHand: false,
+    hasGloveLeft: false,
+    hasGloveRight: false,
+    hasDisinfectionCloth: false,
+    deskDisinfection: false
 };
 
 export default class controllerStateIndex {
