@@ -9,6 +9,7 @@ import { handleControllerNotifyPortfolioCheckVive } from './toggleBoxPortfolioCh
 import { handleControllerNotifyToggleBoxPortfolio } from './toggleBoxPortfolio';
 import { handleControllerNotifyHandDisinfection } from './handDisinfection';
 import { handleControllerNotifyGlove } from './glove';
+import { handleControllerNotifyClothInBottle } from './clothBottleCapVive';
 
 export default AFRAME.registerComponent('debug_tool', {
 
@@ -24,6 +25,7 @@ export default AFRAME.registerComponent('debug_tool', {
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolio);
         this.viveObserver.subscribe(handleControllerNotifyHandDisinfection);
         this.viveObserver.subscribe(handleControllerNotifyGlove);
+        this.viveObserver.subscribe(handleControllerNotifyClothInBottle);
 
         $(this.el).on('triggerdown', () => {
 
