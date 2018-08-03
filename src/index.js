@@ -20,6 +20,8 @@ import * as nameLabelStamper from './nameLabelStamper';
 import * as drawerOpenWithHandle from './drawerOpenWithHandle';
 import * as toggleBoxPortfolioCheck from './toggleBoxPortfolioCheck';
 
+import * as disinfectionClothOnTableVive from './disinfectionClothOnTableVive';
+
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
 
 import * as sectionSelection from './sectionSelection';
