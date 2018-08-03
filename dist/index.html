@@ -290,7 +290,10 @@
     <!-- cloth -->
     <a-gltf-model id="clothOnTable" src="#clothMesh" position="0 0.681 -0.81" rotation="" scale="0.1 0.1 0.1" visible="false" disinfection_cloth_on_table disinfection_cloth_on_table_vive></a-gltf-model>
 
-    <!-- glove shelf -->
+    <a-box id="toggleBoxTableDisinfection" scale="1.322 0.067 0.157" position="0.002 0.711 -0.805" material="color:#ff0000; transparent: true; opacity: 0.5" visible="true"></a-box>
+
+
+        <!-- glove shelf -->
     <a-gltf-model src="#gloveShelfBody" position="0.570 0.979 -1.000" scale="0.15 0.15 0.15">
         <a-gltf-model src="#gloveShelfBox" position="0.015 1.125 0.000" scale="1.115 1.115 1" >
             <a-image src="#gloveBoxL" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
@@ -336,7 +339,9 @@
     </a-image>
 
     <!-- trash can -->
-    <a-gltf-model src="#trashCan" position="-0.926 0.152 -0.836" scale="0.250 0.300 0.250"></a-gltf-model>
+    <a-gltf-model id="trashCan" src="#trashCan" position="-0.926 0.152 -0.836" scale="0.250 0.300 0.250"></a-gltf-model>
+    <a-cylinder id="toggleBoxTrashCan" position="-0.926 0.536 -0.836" height="0.47" radius="0.1"    material="color:#ff0000; transparent: true; opacity: 0.5" visible="true"></a-cylinder>
+
 
     <!-- portfolio -->
     <a-gltf-model id="portfolioBackSiteModel"  src="#portfolioBacksite" scale="0.1 0.1 0.1" position="-0.57 0.684 -0.980" rotation="0 -90 -1.43" portfolio>
