@@ -2,6 +2,7 @@ import Observable from '../utils/observable';
 
 import { handleControllerStateNotifyPortfolio } from '../src/portfolio';
 import { handleControllerStateNotifyToggleBoxPortfolio } from '../src/toggleBoxPortfolio';
+import { handleControllerStateNotifyToggleBoxTrashCan } from '../src/toggleBoxTrashCan';
 
 const controllerState = {
     connectedController: '',
@@ -9,7 +10,8 @@ const controllerState = {
     hasGloveLeft: false,
     hasGloveRight: false,
     hasDisinfectionCloth: false,
-    deskDisinfection: false
+    deskDisinfection: false,
+    deskDisinfectionAllFinish: false,
 };
 
 export default class controllerStateIndex {
@@ -20,6 +22,7 @@ export default class controllerStateIndex {
         // Add function from observers
         this.controllerObserver.subscribe(handleControllerStateNotifyPortfolio);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxPortfolio);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxTrashCan);
 
         console.log("controllerState init");
 

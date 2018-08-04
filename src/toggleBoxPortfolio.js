@@ -4,6 +4,7 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
+import { setVisibleTrue, setVisibleFalse } from "../utils/setVisible";
 import { is5RChecked } from './portfolio';
 
 let element;
@@ -52,10 +53,12 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
 export function handleControllerStateNotifyToggleBoxPortfolio (nextControllerState) {
     // console.log("handleControllerStateNotifyToggleBoxPortfolio", nextControllerState);
     if (nextControllerState.portfolioInHand) {
-        showToggleBoxPortfolio();
+        // showToggleBoxPortfolio();
+        setVisibleTrue(element);
     }
     else {
-        hideToggleBoxPortfolio();
+        // hideToggleBoxPortfolio();
+        setVisibleFalse(element);
     }
 }
 

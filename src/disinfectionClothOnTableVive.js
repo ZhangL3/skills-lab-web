@@ -17,6 +17,10 @@ AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
         console.log("clothInBottle: ", clothInBottle, typeof(clothInBottle));
 
         clothOnTable = this.el;
+
+        clothOnTable.addEventListener('drop', () => {
+            drop();
+        })
     }
 });
 
@@ -35,8 +39,6 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
 
     let activePosition = activeController.getAttribute('position');
 
-    console.log("activePosition: ", activePosition, typeof(activePosition));
-
     clothOnTable.setAttribute('visible', true);
 
     timeInterval = setInterval(() => {
@@ -45,7 +47,6 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
     }, 40);
 }
 
-function drop(element) {
+function drop() {
     clearInterval(timeInterval);
-    element.setAttribute('position', schema.positionAfterCheckVive);
 }
