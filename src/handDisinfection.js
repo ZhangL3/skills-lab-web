@@ -64,7 +64,6 @@ function showClockIndicate() {
 }
 
 function hideClockIndicate() {
-    console.log("hide clock indicate");
     $(plat30sec).remove();
 }
 
@@ -87,8 +86,6 @@ function handleClickHandle () {
 }
 
 export function handleNotifyHandDisinfection(nextState) {
-
-    console.log("handleNotifyHandDisinfection", nextState);
 
     if(stateIndex.getIn(['handDisinfection', 'finish'])) {
         return false;
