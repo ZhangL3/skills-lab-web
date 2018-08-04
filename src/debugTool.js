@@ -13,6 +13,7 @@ import { handleControllerNotifyClothInBottle } from './clothBottleCapVive';
 import { handleControllerNotifyClothOnTable } from './disinfectionClothOnTableVive';
 import { handleControllerNotifyToggleBoxDesk } from './toggleBoxDesk';
 import { handleControllerNotifyToggleBoxTrashCan } from './toggleBoxTrashCan';
+import { handleControllerNotifyBottleNacl500Vive } from './bottleNacl500Vive';
 
 export default AFRAME.registerComponent('debug_tool', {
 
@@ -32,6 +33,7 @@ export default AFRAME.registerComponent('debug_tool', {
         this.viveObserver.subscribe(handleControllerNotifyClothOnTable);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxDesk);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxTrashCan);
+        this.viveObserver.subscribe(handleControllerNotifyBottleNacl500Vive);
 
         $(this.el).on('triggerdown', () => {
 

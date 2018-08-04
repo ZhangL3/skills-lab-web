@@ -251,7 +251,7 @@
     </a-entity>
 
     <!-- bottles -->
-    <a-gltf-model id="nacl500Bottle" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1" bottle_nacl500>
+    <a-gltf-model bottle_nacl_500_vive id="nacl500Bottle" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1" bottle_nacl500>
         <a-gltf-model id="nacl500Cap" src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
         <a-gltf-model src="#liquidMesh"></a-gltf-model>
         <a-image src="#nacl500" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
@@ -422,11 +422,11 @@
     <!--</a-entity>-->
 
     <!-- Vive controlers-->
-    <a-entity id="viveControllerLeft" vive-controls="hand: left" debug_tool>
+    <a-entity id="viveControllerLeft" vive-controls="hand: left; model: false;" debug_tool>
         <a-box color="#0000ff" scale="0.02 0.02 0.02"></a-box>
         <a-gltf-model id="gloveLeft" visible="false" src="#gloveMesh" position="0.007 0.026 -0.004" rotation="-22.57 151.04 -17.77" scale="0.02 0.02 0.02"></a-gltf-model>
     </a-entity>
-    <a-entity id="viveControllerRight" vive-controls="hand: right" debug_tool>
+    <a-entity id="viveControllerRight" vive-controls="hand: right; model: false;" debug_tool>
         <a-box color="#ff0000" scale="0.02 0.02 0.02"></a-box>
         <a-gltf-model id="gloveRight" visible="false" src="#gloveMesh" position="-0.002 0.021 -0.01" rotation="-23.70 -140.70 -168.42" scale="0.02 0.02 0.02"></a-gltf-model>
     </a-entity>
