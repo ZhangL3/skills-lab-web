@@ -46,6 +46,10 @@ export function handleNotifyBottleNacl500Vive(nextState) {
 
 export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
+    //test
+    controllerStateIndex.setControllerState('nacl500InHand', true);
+
+
     getWorldBound(element);
 
     if(isEmitted(element, triggerEvent.position)){
@@ -97,7 +101,10 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
 
     // console.log("element: ", element, typeof(element));
     // console.log("targetParent: ", targetParent, typeof(targetParent));
-    $(element).attr('position', '0 0 0').appendTo(activeController);
+    debugger;
+    $(element).attr('position', '0 0 0');
+    $(element).appendTo(activeController);
+    $(element).attr('position', '0 0 0');
 
     // $(element).attr('scale', scale);
     // $(element).attr('position', position);
