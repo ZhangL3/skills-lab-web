@@ -12,17 +12,17 @@ export function isEmitted(element, triggerPosition) {
     const minZ = Number(el.attr('worldboundminz'));
 
     if (triggerPosition.x > maxX || triggerPosition.x < minX) {
-        console.log("x wrong");
+        // console.log("x wrong");
         return false;
     }
 
     if (triggerPosition.y > maxY || triggerPosition.y < minY) {
-        console.log("y wrong");
+        // console.log("y wrong");
         return false;
     }
 
     if (triggerPosition.z > maxZ || triggerPosition.z < minZ) {
-        console.log("z wrong");
+        // console.log("z wrong");
         return false;
     }
 
