@@ -2,6 +2,7 @@ import $ from 'jquery';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import controllerStateIndex from '../utils/controllerState';
+import { checkIsCapOpen } from "./clothBottleCapOpen";
 
 let clothInBottle;
 let clothOnTable;
@@ -28,7 +29,7 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
     getWorldBound(clothInBottle);
     activeController = triggerEvent.activeController;
 
-    if (isEmitted(clothInBottle, triggerEvent.position)) {
+    if (checkIsCapOpen() && isEmitted(clothInBottle, triggerEvent.position)) {
         dragInHand();
         controllerStateIndex.setControllerState('hasDisinfectionCloth', true);
     }
