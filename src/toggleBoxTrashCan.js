@@ -1,20 +1,28 @@
 import $ from 'jquery';
+import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from '../utils/isEmitted';
+import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
-import {setVisibleFalse} from "../utils/setVisible";
+import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 
 let element;
 
 let clothOnTable;
+
+let currentControllerState;
 
 export default AFRAME.registerComponent('toggle_box_trash_can', {
 
     init: function(){
 
         element = this.el;
+
+        // deep copy
+        currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
+
         clothOnTable = document.querySelector('#clothOnTable');
 
     },
@@ -49,15 +57,23 @@ export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
 }
 
 export function handleControllerStateNotifyToggleBoxTrashCan (nextControllerState) {
-    console.log("handleControllerStateNotifyToggleBoxTrashCan: ", nextControllerState);
-    if (nextControllerState.deskDisinfection) {
+
+    if (nextControllerState.hasDisinfectionCloth && !currentControllerState.hasDisinfectionCloth) {
+        setVisibleTrue(element);
+    }
+
+    if (nextControllerState.deskDisinfection && !currentControllerState.deskDisinfection) {
         $(element).attr('material', "color:#00ffff; transparent: true; opacity: 0.5");
     }
 
-    if(nextControllerState.deskDisinfectionAllFinish) {
+    if(nextControllerState.deskDisinfectionAllFinish && !currentControllerState.deskDisinfectionAllFinish) {
         dropGloveCloth();
         setVisibleFalse(element);
+        stateIndex.setIn(['tableDisinfection', 'finish'], true);
     }
+
+    // deep copy
+    currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
 

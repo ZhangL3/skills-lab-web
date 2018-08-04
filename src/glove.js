@@ -6,7 +6,8 @@ import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
-import { controllerStateIndex } from '../utils/controllerState';
+import controllerStateIndex from '../utils/controllerState';
+
 
 // let element;
 let gloveL;
@@ -39,8 +40,6 @@ export default AFRAME.registerComponent('glove', {
 
         $(el).on('controllerEmit', (event, data) => {
             getWorldBound(el);
-
-
 
             if(isEmitted(el, data.position)) {
                 // show glove

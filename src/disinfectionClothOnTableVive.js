@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
-import { controllerStateIndex } from '../utils/controllerState';
+import controllerStateIndex from '../utils/controllerState';
 
 let clothInBottle;
 let clothOnTable;
@@ -18,7 +18,7 @@ AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
 
         clothOnTable = this.el;
 
-        clothOnTable.addEventListener('drop', () => {
+        $(clothOnTable).on('drop', () => {
             drop();
         })
     }
