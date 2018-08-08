@@ -35,5 +35,7 @@ import * as controllerManage from '../utils/controllerManage';
 
 import * as debugTool from './debugTool';
 
+import * as controllerActions from '../utils/controllerActions';
+
 stateIndex.init();
 controllerStateIndex.initControllerState();
