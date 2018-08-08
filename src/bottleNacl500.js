@@ -11,7 +11,7 @@ let infusionSetHanged;
 let currentState;
 // Don't active the action, if the animation is not finish
 let movable = true;
-// For product us withInfusionSet
+// For product use withInfusionSet
 let test = true;
 
 AFRAME.registerComponent('bottle_nacl500', {
