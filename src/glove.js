@@ -17,14 +17,14 @@ let gloveLeft;
 let gloveRight;
 
 
-let gloveImage;
+let gloveInFrontOfCamera;
 
 export default AFRAME.registerComponent('glove', {
 
     init: function(){
         // shallow copy
         const el = this.el;
-        gloveImage = document.querySelector('#gloveImage');
+        gloveInFrontOfCamera = document.querySelector('#gloveInFrontOfCamera');
         gloveL = $('#gloveL');
         gloveM = $('#gloveM');
         gloveS = $('#gloveS');
@@ -70,29 +70,23 @@ function handleClickGlove () {
     }
 }
 
-function showGlove(element) {
-
+function showGloveInFrontOfCamera() {
+    $(gloveInFrontOfCamera).attr('visible', 'true');
 }
 
-function showGloveImage() {
-    $(gloveImage).attr('visible', 'true');
-}
-
-function hideGloveImage() {
-    $(gloveImage).attr('visible', 'false');
+function hideGloveInFrontOfCamera() {
+    $(gloveInFrontOfCamera).attr('visible', 'false');
 }
 
 export function handleNotifyGlove(nextState) {
     const { hasGlove, finish } = nextState.tableDisinfection;
-    // console.log("hasGlove: ", hasGlove, typeof(hasGlove));
-    // console.log("finish: ", finish, typeof(finish));
 
-    /*if(!hasGlove && !finish) {
-        showGloveImage();
+    if(!hasGlove && !finish) {
+        showGloveInFrontOfCamera();
     }
     else if (finish) {
-        hideGloveImage();
-    }*/
+        hideGloveInFrontOfCamera();
+    }
 }
 
 
