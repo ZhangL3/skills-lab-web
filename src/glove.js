@@ -81,7 +81,7 @@ function hideGloveInFrontOfCamera() {
 export function handleNotifyGlove(nextState) {
     const { hasGlove, finish } = nextState.tableDisinfection;
 
-    if(!hasGlove && !finish) {
+    if(hasGlove && !finish) {
         showGloveInFrontOfCamera();
     }
     else if (finish) {
