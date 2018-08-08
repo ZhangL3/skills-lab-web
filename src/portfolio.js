@@ -8,6 +8,8 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 // import { dragByController, drop } from "../utils/dragByController";
+import { controllerActions } from "../utils/controllerActions";
+
 
 let element;
 let currentState;
@@ -27,6 +29,9 @@ let currentControllerState;
 
 let timeInterval;
 
+let controllerActivities;
+
+
 export default AFRAME.registerComponent('portfolio', {
 
     init: function(){
@@ -41,11 +46,15 @@ export default AFRAME.registerComponent('portfolio', {
         hookIV = document.querySelector("#hookIV");
         hookCF = document.querySelector("#hookCF");
 
+        controllerActivities = null;
+
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
 
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
+        
+        console.log("currentControllerState: ", currentControllerState, typeof(currentControllerState));
 
         $(this.el).on('click', () => {
             handleClickPortfolio();
@@ -169,11 +178,15 @@ export function handleNotifyPortfolio(nextState) {
     // console.log("is5RChecked(): ", is5RChecked());
     // console.log("nextState: ", nextState, typeof(nextState));
 
-    if(stateIndex.getIn(['portfolio', 'finish'])) {
+    // if(stateIndex.getIn(['portfolio', 'finish'])) {
+    if(nextState.portfolio.finish) {
         // vive
-        if (timeInterval) {
-            drop(element);
-        }
+        // if (timeInterval) {
+        //     drop(element);
+        // }
+        // if (controllerStateIndex.getAllControllerState('portfolioInHand')) {
+        //     drop();
+        // }
         return false;
     }
 
@@ -223,49 +236,23 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
 
         currentControllerState = _.cloneDeep(nextControllerState);
 
-
-        //TODO: how adjust the attribute after attaching element to controller element?
-
-        // element.setAttribute('position', '0 0 0');
-        // $(element).appendTo(activeController);
-        // element.setAttribute('position', '0 0 0');
-        // const portfolioElementOnController = document.querySelector('#portfolioBackSiteModel');
-        // portfolioElementOnController.setAttribute('position', '0 0 0');
-
-
-
-        // A-Frame 0.8.2 has bug, so not works. If fixed, not needed.
-        // Seems not works.
-        // faceToCamera();
+    }
+    if (!nextControllerState.portfolioInHand && currentControllerState != null && currentControllerState.portfolioInHand) {
+        console.log("should drop portfolio");
+        drop();
+        currentControllerState = _.cloneDeep(nextControllerState);
     }
 }
 
-function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
-
-    let activePosition = activeController.getAttribute('position');
-
-
-    timeInterval = setInterval(() => {
-        element.setAttribute('position', `${activePosition.x} ${activePosition.y + 0.04} ${activePosition.z}`);
-
-    }, 40);
-
-    // A-Frame 0.8.2 has bug, so not works. If fixed, use this.
-
-    // element.setAttribute('scale', '1 1 1');
-    // element.setAttribute('position', '0 0 0 ');
-
-    // console.log("element: ", element, typeof(element));
-    // console.log("targetParent: ", targetParent, typeof(targetParent));
-    // $(element).attr('position', '0 0 0').appendTo(targetParent);
-
-    // $(element).attr('scale', scale);
-    // $(element).attr('position', position);
+function dragInHand() {
+    controllerActivities = new controllerActions(element, activeController);
+    controllerActivities.drag();
 }
 
-function drop(element) {
-    clearInterval(timeInterval);
-    element.setAttribute('position', schema.positionAfterCheckVive);
+function drop() {
+    console.log("drop portfolio");
+    controllerActivities = new controllerActions(element, activeController);
+    controllerActivities.drop();
 }
 
 
