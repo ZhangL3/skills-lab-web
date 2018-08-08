@@ -6,7 +6,6 @@ const observerOptions = {
 export class controllerActions {
 
     constructor (element, activeController) {
-        this.isInHand = false;
         this.el = element;
         this.scene = null;
         this.activeController = activeController;
@@ -17,13 +16,15 @@ export class controllerActions {
     buildObserver(element) {
         return (
             new MutationObserver((event) => {
-                console.log("element: ", element, typeof(element));
-                if (this.isInHand) {
+                let nodeAdded = event[0].addedNodes.length;
+                let nodeRemoved = event[0].removedNodes.length;
+                if (nodeAdded) {
                     element.setAttribute('position', '0 0 0');
                 }
-                else {
+                if (nodeRemoved) {
                     console.log("this.activeController: ", this.activeController, typeof(this.activeController));
-                    // el.setAttribute('position',)
+                    let activePosition = this.activeController.getAttribute('position');
+                    element.setAttribute('position', `${activePosition.x} ${activePosition.y + 0.04} ${activePosition.z}`);
                 }
             })
         );
@@ -35,13 +36,11 @@ export class controllerActions {
 
     drag() {
         this.activeController.appendChild(this.el);
-        this.isInHand = true;
     }
 
     drop() {
-        this.scene = document.querySelector('#scene');
+        this.scene = document.querySelector('#allThings');
         this.scene.appendChild(this.el);
-        this.isInHand = false;
     }
 
 }
