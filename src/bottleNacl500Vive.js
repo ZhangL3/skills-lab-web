@@ -8,6 +8,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 // import { dragByController, drop } from "../utils/dragByController";
+import { controllerActions } from "../utils/controllerActions";
 
 let element;
 let currentState;
@@ -17,6 +18,14 @@ let activeController;
 let currentControllerState;
 
 let timeInterval;
+
+// MutationObserver
+// let observerOptions = {childList: true};
+// let observer;
+// let isInHand = false;
+
+let controllerActivities;
+
 
 export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
@@ -32,12 +41,21 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
         $(this.el).on('click', () => {
         });
+
+        // MutationObserver
+        // observer = new MutationObserver((event) => {
+        //     console.log("MutationObserver emit: ", event);
+        //     if(isInHand) {
+        //         element.setAttribute('position', '0 0 0');
+        //     }
+        //     else {
+        //
+        //     }
+        // });
+
+        controllerActivities = null;
     }
 });
-
-function takeInHand () {
-
-}
 
 export function handleNotifyBottleNacl500Vive(nextState) {
     // deep copy
@@ -45,10 +63,6 @@ export function handleNotifyBottleNacl500Vive(nextState) {
 }
 
 export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
-
-    //test
-    controllerStateIndex.setControllerState('nacl500InHand', true);
-
 
     getWorldBound(element);
 
@@ -62,6 +76,11 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
     if (nextControllerState.nacl500InHand && !currentControllerState.nacl500InHand) {
+
+
+        // console.log("element before: ", element, typeof(element));
+        // element.object3D.position.set(0, 0, 0);
+        // console.log("element after: ", element, typeof(element));
 
         dragInHand();
 
@@ -84,7 +103,15 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
     }
 }
 
-function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
+function dragInHand() {
+
+    controllerActivities = new controllerActions(element, activeController);
+    controllerActivities.drag();
+
+
+    // isInHand = true;
+    // observer.observe(activeController, observerOptions);
+    // $(element).appendTo(activeController);
 
     // let activePosition = activeController.getAttribute('position');
     //
@@ -101,18 +128,20 @@ function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
 
     // console.log("element: ", element, typeof(element));
     // console.log("targetParent: ", targetParent, typeof(targetParent));
-    debugger;
-    $(element).attr('position', '0 0 0');
-    $(element).appendTo(activeController);
-    $(element).attr('position', '0 0 0');
+    // $(element).attr('position', '0 0 0');
+    // element.attributes.position='0 0 0';
+    // $(element).prop('attributes', 'newAttr');
+    // element.object3D.position.set(0, 0, 0);
+    // $(element).attr('position', '0 0 0');
 
     // $(element).attr('scale', scale);
     // $(element).attr('position', position);
 }
 
-function drop(element) {
-    clearInterval(timeInterval);
-    element.setAttribute('position', schema.positionAfterCheckVive);
+function drop() {
+    // clearInterval(timeInterval);
+    // element.setAttribute('position', schema.positionAfterCheckVive);
+    controllerActivities.drop();
 }
 
 
