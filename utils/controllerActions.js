@@ -16,13 +16,14 @@ export class controllerActions {
     buildObserver(element) {
         return (
             new MutationObserver((event) => {
-                let nodeAdded = event[0].addedNodes.length;
-                let nodeRemoved = event[0].removedNodes.length;
+                let nodeAdded = event[0].addedNodes.length > 0;
+                let nodeRemoved = event[0].removedNodes.length > 0;
                 if (nodeAdded) {
                     element.setAttribute('position', '0 0 0');
+                    element.setAttribute('visible', true);
                 }
                 if (nodeRemoved) {
-                    console.log("this.activeController: ", this.activeController, typeof(this.activeController));
+                    element.setAttribute('visible', true);
                     let activePosition = this.activeController.getAttribute('position');
                     element.setAttribute('position', `${activePosition.x} ${activePosition.y + 0.04} ${activePosition.z}`);
                 }
@@ -35,10 +36,12 @@ export class controllerActions {
     }
 
     drag() {
+        console.log("drag:", this.el);
         this.activeController.appendChild(this.el);
     }
 
     drop() {
+        console.log("drop:", this.el);
         this.scene = document.querySelector('#allThings');
         this.scene.appendChild(this.el);
     }

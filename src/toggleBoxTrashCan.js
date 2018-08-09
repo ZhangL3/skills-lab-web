@@ -11,8 +11,11 @@ import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 let element;
 
 let clothOnTable;
+let gloveInHandLeft;
+let gloveInHandRight;
 
 let currentControllerState;
+
 
 export default AFRAME.registerComponent('toggle_box_trash_can', {
 
@@ -24,21 +27,32 @@ export default AFRAME.registerComponent('toggle_box_trash_can', {
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 
         clothOnTable = document.querySelector('#clothOnTable');
-
+        gloveInHandLeft = document.querySelector('#gloveLeft');
+        gloveInHandRight = document.querySelector('#gloveRight');
     },
 
 });
 
 const schema = {
-    inCan : '-0.89 0.1 -0.81',
+    inCan : '-0.89 0.1 -0.84',
     dur : 500,
 };
 
 function dropGloveCloth() {
     $(clothOnTable).trigger('drop');
+    $(gloveInHandLeft).trigger('drop');
+    $(gloveInHandRight).trigger('drop');
 
     if(clothOnTable) {
         aAnimationWrapper(clothOnTable, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
+    }
+
+    if(gloveInHandLeft) {
+        aAnimationWrapper(gloveInHandLeft, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
+    }
+
+    if(gloveInHandRight) {
+        aAnimationWrapper(gloveInHandRight, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
     }
 }
 

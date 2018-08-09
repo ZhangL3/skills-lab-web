@@ -89,8 +89,6 @@ export function handleNotifyGlove(nextState) {
     }
 }
 
-
-
 export function handleControllerNotifyGlove ( triggerEvent ) {
     gloveL.trigger('controllerEmit', [triggerEvent]);
     gloveM.trigger('controllerEmit', [triggerEvent]);
@@ -101,21 +99,5 @@ export function handleControllerStateNotifyGlove (nextControllerState) {
 
 }
 
-/*function dragInHand(targetParent=null, scale='1 1 1', position='0 0 0') {
-
-    let activePosition = activeController.getAttribute('position');
-
-
-    timeInterval = setInterval(() => {
-        element.setAttribute('position', `${activePosition.x} ${activePosition.y + 0.04} ${activePosition.z}`);
-
-    }, 40);
-
-}
-
-function drop(element) {
-    clearInterval(timeInterval);
-    element.setAttribute('position', schema.positionAfterCheckVive);
-}*/
 
 

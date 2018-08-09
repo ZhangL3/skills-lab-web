@@ -26,6 +26,8 @@ import * as toggleBoxTrashCan from './toggleBoxTrashCan';
 
 import * as disinfectionClothOnTableVive from './disinfectionClothOnTableVive';
 
+import * as gloveInHand from './gloveInHand';
+
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
 
 import * as sectionSelection from './sectionSelection';

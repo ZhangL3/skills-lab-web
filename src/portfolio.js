@@ -7,7 +7,6 @@ import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
-// import { dragByController, drop } from "../utils/dragByController";
 import { controllerActions } from "../utils/controllerActions";
 
 
@@ -24,10 +23,7 @@ let hookDose;
 let hookIV;
 let hookCF;
 
-let ViveController;
 let currentControllerState;
-
-let timeInterval;
 
 let controllerActivities;
 
@@ -173,20 +169,7 @@ function hideHooks() {
 }
 
 export function handleNotifyPortfolio(nextState) {
-    // console.log("currentState: ", currentState.portfolio.position);
-    // console.log("nextState: ", nextState.portfolio.position);
-    // console.log("is5RChecked(): ", is5RChecked());
-    // console.log("nextState: ", nextState, typeof(nextState));
-
-    // if(stateIndex.getIn(['portfolio', 'finish'])) {
     if(nextState.portfolio.finish) {
-        // vive
-        // if (timeInterval) {
-        //     drop(element);
-        // }
-        // if (controllerStateIndex.getAllControllerState('portfolioInHand')) {
-        //     drop();
-        // }
         return false;
     }
 
@@ -199,12 +182,8 @@ export function handleNotifyPortfolio(nextState) {
         open();
     }
     else if (
-        // (currentState.portfolio.position === constants.portfolio.position.IN_HAND &&
-        //     nextState.portfolio.position === constants.portfolio.position.ON_TABLE) &&
-        // is5RChecked()
         nextState.portfolio.checkFinish === true && nextState.portfolio.finish === false
     ) {
-        // console.log("putOnTable: ");
         putOnTable();
         close();
         hideHooks();
