@@ -4,6 +4,7 @@ import { handleControllerStateNotifyPortfolio } from '../src/portfolio';
 import { handleControllerStateNotifyToggleBoxPortfolio } from '../src/toggleBoxPortfolio';
 import { handleControllerStateNotifyToggleBoxTrashCan } from '../src/toggleBoxTrashCan';
 import { handleControllerStateNotifyBottleNacl500Vive } from '../src/bottleNacl500Vive';
+import { handleControllerStateNotifyToggleBoxNacl500OnDesk } from '../src/toggleBoxNacl500OnDesk';
 
 const controllerState = {
     connectedController: '',
@@ -13,7 +14,11 @@ const controllerState = {
     hasDisinfectionCloth: false,
     deskDisinfection: false,
     deskDisinfectionAllFinish: false,
-    nacl500InHand: false
+    nacl500InHandToDesk: false,
+    nacl500LabelChecked: false,
+    nacl500LiquidChecked: false,
+    nacl500CapChecked: false,
+    nacl500OnDesk: false
 };
 
 export default class controllerStateIndex {
@@ -26,6 +31,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxPortfolio);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxTrashCan);
         this.controllerObserver.subscribe(handleControllerStateNotifyBottleNacl500Vive);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500OnDesk);
 
         console.log("controllerState init");
 

@@ -254,10 +254,16 @@
     <!-- bottles -->
     <a-gltf-model bottle_nacl_500_vive id="nacl500Bottle" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1" bottle_nacl500>
         <a-gltf-model id="nacl500Cap" src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
+        <a-image id="hookBottleLabel" src="#hook" scale="0.5 0.5 0.5" position='-0.324 0 0' rotation="0 -90 0" checked="false" visible="true"></a-image>
         <a-gltf-model src="#liquidMesh"></a-gltf-model>
+        <a-image id="hookBottleLiquid" src="#hook" scale="0.5 0.5 0.5" position="0.324 0 0" rotation="0 -90 0" checked="false" visible="true"></a-image>
         <a-image src="#nacl500" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
+        <a-image id="hookBottleCap" src="#hook" scale="0.5 0.5 0.5" position="0 0.5 0" rotation="-90 -90 0" checked="false" visible="true"></a-image>
     </a-gltf-model>
-    <a-gltf-model id="g51000Bottle" src="#bottleMesh" position="-0.272 1.420 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1">
+    <a-box toggle_box_nacl500_on_desk id="toggleBoxNacl500OnDesk" scale="0.114 0.149 0.104" position="-0.320 0.752 -0.829" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
+
+
+        <a-gltf-model id="g51000Bottle" src="#bottleMesh" position="-0.272 1.420 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1">
         <a-gltf-model src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
 
         <a-gltf-model src="#liquidMesh"></a-gltf-model>
