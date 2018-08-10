@@ -3,6 +3,8 @@ import _ from 'lodash';
 
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
+import { isEmitted } from "../utils/isEmitted";
+import { getWorldBound } from "../utils/getWorldPositionAndBound";
 
 let element;
 let currentState;
@@ -47,5 +49,14 @@ export function handleNotifyWasteBinCap(nextState) {
     }
     else if ( !wasteBinCapOpen ) {
         closeCap();
+    }
+}
+
+export function handleControllerNotifyWasteBinCap( triggerEvent ) {
+
+    getWorldBound(element);
+
+    if(isEmitted(element, triggerEvent.position)){
+        toggleOpenAndClose();
     }
 }
