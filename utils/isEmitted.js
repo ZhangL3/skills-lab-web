@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export function isEmitted(element, triggerPosition) {
+export function isEmitted(element, triggerPosition, modifier = 0) {
     const el = $(element);
 
     const maxX = Number(el.attr('worldboundmaxx'));
@@ -11,17 +11,17 @@ export function isEmitted(element, triggerPosition) {
     const minY = Number(el.attr('worldboundminy'));
     const minZ = Number(el.attr('worldboundminz'));
 
-    if (triggerPosition.x > maxX || triggerPosition.x < minX) {
+    if (triggerPosition.x > maxX - modifier || triggerPosition.x < minX + modifier) {
         // console.log("x wrong");
         return false;
     }
 
-    if (triggerPosition.y > maxY || triggerPosition.y < minY) {
+    if (triggerPosition.y > maxY - modifier || triggerPosition.y < minY + modifier) {
         // console.log("y wrong");
         return false;
     }
 
-    if (triggerPosition.z > maxZ || triggerPosition.z < minZ) {
+    if (triggerPosition.z > maxZ- modifier || triggerPosition.z < minZ + modifier) {
         // console.log("z wrong");
         return false;
     }
