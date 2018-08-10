@@ -7,6 +7,7 @@ import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
+import { isBottleChecked } from './bottleNacl500Vive';
 
 let element;
 let bottleNacl500;
@@ -33,19 +34,6 @@ const schema = {
     onDeskPosition: '-0.32 0.732 -0.83',
     dur: '500'
 };
-
-function isBottleChecked() {
-    if (!controllerStateIndex.getControllerState('nacl500LabelChecked')) {
-        return false;
-    }
-    if (!controllerStateIndex.getControllerState('nacl500LiquidChecked')) {
-        return false;
-    }
-    if (!controllerStateIndex.getControllerState('nacl500CapChecked')) {
-        return false;
-    }
-    return true;
-}
 
 export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
 

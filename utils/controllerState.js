@@ -8,6 +8,7 @@ import { handleControllerStateNotifyToggleBoxNacl500OnDesk } from '../src/toggle
 import { handleControllerStateNotifyHookNacl500Label } from '../src/hookNacl500Label';
 import { handleControllerStateNotifyHookNacl500Cap } from '../src/hookNacl500Cap';
 import { handleControllerStateNotifyHookNacl500Liquid } from '../src/hookNacl500Liquid';
+import { handleControllerStateNotifyToggleBoxNacl500Cap } from '../src/toggleBoxNacl500Cap';
 
 const controllerState = {
     connectedController: '',
@@ -22,7 +23,9 @@ const controllerState = {
     nacl500LabelChecked: false,
     nacl500LiquidChecked: false,
     nacl500CapChecked: false,
-    nacl500OnDesk: false
+    nacl500OnDesk: false,
+    bottleNacl500CapInHand: false,
+    bottleOpened: false
 };
 
 export default class controllerStateIndex {
@@ -39,6 +42,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyHookNacl500Label);
         this.controllerObserver.subscribe(handleControllerStateNotifyHookNacl500Cap);
         this.controllerObserver.subscribe(handleControllerStateNotifyHookNacl500Liquid);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500Cap);
 
         console.log("controllerState init");
 

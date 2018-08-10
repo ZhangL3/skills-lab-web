@@ -86,4 +86,17 @@ function drop() {
     controllerActivities.drop();
 }
 
+export function isBottleChecked() {
+    if (!controllerStateIndex.getControllerState('nacl500LabelChecked')) {
+        return false;
+    }
+    if (!controllerStateIndex.getControllerState('nacl500LiquidChecked')) {
+        return false;
+    }
+    if (!controllerStateIndex.getControllerState('nacl500CapChecked')) {
+        return false;
+    }
+    return true;
+}
+
 
