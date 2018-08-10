@@ -17,6 +17,7 @@ const controllerState = {
     hasDisinfectionCloth: false,
     deskDisinfection: false,
     deskDisinfectionAllFinish: false,
+    nacl500Dragable: true,
     nacl500InHandToDesk: false,
     nacl500LabelChecked: false,
     nacl500LiquidChecked: false,

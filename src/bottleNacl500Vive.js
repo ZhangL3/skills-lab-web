@@ -39,6 +39,7 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
         $(element).on('putOnDesk', () => {
             drop();
             controllerStateIndex.setControllerState('nacl500OnDesk', true);
+            controllerStateIndex.setControllerState('nacl500Dragable', true);
         });
 
     }
@@ -56,8 +57,10 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
     if(isEmitted(element, triggerEvent.position)){
         if(triggerEvent.eventName === 'triggerDown') {
             if (!controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
-                activeController = triggerEvent.activeController;
-                controllerStateIndex.setControllerState('nacl500InHandToDesk', true);
+                if (controllerStateIndex.getControllerState('nacl500Dragable')) {
+                    activeController = triggerEvent.activeController;
+                    controllerStateIndex.setControllerState('nacl500InHandToDesk', true);
+                }
             }
         }
     }

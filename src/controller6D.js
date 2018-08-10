@@ -19,7 +19,7 @@ import { handleControllerNotifyToggleBoxNacl500Label } from './toggleBoxNacl500L
 import { handleControllerNotifyToggleBoxNacl500Cap } from './toggleBoxNacl500Cap';
 import { handleControllerNotifyToggleBoxNacl500Liquid } from './toggleBoxNacl500Liquid';
 
-export default AFRAME.registerComponent('debug_tool', {
+export default AFRAME.registerComponent('controller_6_d', {
 
     init: function(){
 

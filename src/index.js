@@ -40,7 +40,7 @@ import * as sectionSelection from './sectionSelection';
 import * as controllerManage from '../utils/controllerManage';
 
 
-import * as debugTool from './debugTool';
+import * as controller6D from './controller6D';
 
 import * as controllerActions from '../utils/controllerActions';
 
