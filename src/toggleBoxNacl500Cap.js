@@ -10,7 +10,7 @@ let element;
 let currentControllerState;
 
 
-export default AFRAME.registerComponent('toggle_box_nach500_label', {
+export default AFRAME.registerComponent('toggle_box_nach500_cap', {
 
     init: function(){
 
@@ -26,19 +26,19 @@ export default AFRAME.registerComponent('toggle_box_nach500_label', {
 const schema = {
 };
 
-export function handleControllerNotifyToggleBoxNacl500Label( triggerEvent ) {
+export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
 
-    if (!controllerStateIndex.getControllerState('nacl500LabelChecked')) {
+    if (!controllerStateIndex.getControllerState('nacl500CapChecked')) {
         if(controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
             getWorldBound(element);
             if(isEmitted(element, triggerEvent.position)){
-                controllerStateIndex.setControllerState('nacl500LabelChecked', true);
+                controllerStateIndex.setControllerState('nacl500CapChecked', true);
             }
         }
     }
 }
 
-export function handleControllerStateNotifyToggleBoxNacl500Label (nextControllerState) {
+export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerState) {
 
     // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
