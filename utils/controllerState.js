@@ -7,6 +7,7 @@ import { handleControllerStateNotifyBottleNacl500Vive } from '../src/bottleNacl5
 import { handleControllerStateNotifyToggleBoxNacl500OnDesk } from '../src/toggleBoxNacl500OnDesk';
 import { handleControllerStateNotifyHookNacl500Label } from '../src/hookNacl500Label';
 import { handleControllerStateNotifyHookNacl500Cap } from '../src/hookNacl500Cap';
+import { handleControllerStateNotifyHookNacl500Liquid } from '../src/hookNacl500Liquid';
 
 const controllerState = {
     connectedController: '',
@@ -36,6 +37,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500OnDesk);
         this.controllerObserver.subscribe(handleControllerStateNotifyHookNacl500Label);
         this.controllerObserver.subscribe(handleControllerStateNotifyHookNacl500Cap);
+        this.controllerObserver.subscribe(handleControllerStateNotifyHookNacl500Liquid);
 
         console.log("controllerState init");
 
