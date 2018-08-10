@@ -51,17 +51,14 @@ export function handleNotifyBottleNacl500Vive(nextState) {
 
 export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
-    // test
-    activeController = triggerEvent.activeController;
-    controllerStateIndex.setControllerState('nacl500InHandToDesk', true);
-    // test end
-
     getWorldBound(element);
 
     if(isEmitted(element, triggerEvent.position)){
         if(triggerEvent.eventName === 'triggerDown') {
-            activeController = triggerEvent.activeController;
-            controllerStateIndex.setControllerState('nacl500InHandToDesk', true);
+            if (!controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
+                activeController = triggerEvent.activeController;
+                controllerStateIndex.setControllerState('nacl500InHandToDesk', true);
+            }
         }
     }
 }
