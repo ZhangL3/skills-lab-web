@@ -34,6 +34,19 @@ const schema = {
     dur: '500'
 };
 
+function isBottleChecked() {
+    if (!controllerStateIndex.getControllerState('nacl500LabelChecked')) {
+        return false;
+    }
+    if (!controllerStateIndex.getControllerState('nacl500LiquidChecked')) {
+        return false;
+    }
+    if (!controllerStateIndex.getControllerState('nacl500CapChecked')) {
+        return false;
+    }
+    return true;
+}
+
 export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
 
     if(controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
@@ -45,8 +58,6 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
             $(bottleNacl500).trigger('putOnDesk');
 
             aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
-
-
         }
     }
 }
@@ -55,6 +66,10 @@ export function handleControllerStateNotifyToggleBoxNacl500OnDesk (nextControlle
 
     if (nextControllerState.nacl500InHandToDesk && !currentControllerState.nacl500InHandToDesk) {
         setVisibleTrue(element);
+    }
+
+    if (isBottleChecked()) {
+        element.setAttribute('material', 'color:#00ffff; transparent: true; opacity: 0.5')
     }
 
     if (nextControllerState.nacl500OnDesk && !currentControllerState.nacl500OnDesk) {
