@@ -56,10 +56,11 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
     if(isEmitted(element, triggerEvent.position)){
         if(triggerEvent.eventName === 'triggerDown') {
-            if (!controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
+            if (controllerStateIndex.getControllerState('nacl500InHandToDesk') === null) {
                 if (controllerStateIndex.getControllerState('nacl500Dragable')) {
                     activeController = triggerEvent.activeController;
-                    controllerStateIndex.setControllerState('nacl500InHandToDesk', true);
+                    let activeControllerId =  activeController.getAttribute('id');
+                    controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
                 }
             }
         }
@@ -67,7 +68,7 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 }
 
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
-    if (nextControllerState.nacl500InHandToDesk && !currentControllerState.nacl500InHandToDesk) {
+    if (nextControllerState.nacl500InHandToDesk !== null && currentControllerState.nacl500InHandToDesk === null) {
 
         dragInHand();
 

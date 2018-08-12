@@ -21,13 +21,14 @@ import * as drawerOpenWithHandle from './drawerOpenWithHandle';
 import * as toggleBoxPortfolioCheck from './toggleBoxPortfolioCheck';
 import * as bottle_nacl_500_vive from './bottleNacl500Vive';
 
-import * as toggleBoxDesk from './toggleBoxDesk';
+import * as toggleBoxDeskDisinfection from './toggleBoxDeskDisinfection';
 import * as toggleBoxTrashCan from './toggleBoxTrashCan';
 import * as toggleBoxNacl500OnDesk from './toggleBoxNacl500OnDesk';
 import * as toggleBoxNacl500Label from './toggleBoxNacl500Label';
 import * as hookNacl500Label from './hookNacl500Label';
 import * as toggleBoxNacl500Cap from './toggleBoxNacl500Cap';
 import * as hoolNacl500Cap from './hookNacl500Cap';
+import * as toggleBoxWasteBin from './toggleBoxWasteBin';
 
 import * as disinfectionClothOnTableVive from './disinfectionClothOnTableVive';
 

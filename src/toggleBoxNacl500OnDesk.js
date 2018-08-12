@@ -37,11 +37,14 @@ const schema = {
 
 export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
 
-    if(controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
+    if(controllerStateIndex.getControllerState('nacl500InHandToDesk') !== null) {
 
         getWorldBound(element);
 
-        if(isEmitted(element, triggerEvent.position)){
+        if(
+            isEmitted(element, triggerEvent.position)
+            && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
+        ){
 
             $(bottleNacl500).trigger('putOnDesk');
 
