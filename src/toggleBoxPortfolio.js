@@ -43,9 +43,12 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
     getWorldBound(element);
 
     if(isEmitted(element, triggerEvent.position)){
+
+        let activeControllerId = triggerEvent.activeController.getAttribute('id');
+        if (activeControllerId === controllerStateIndex.getControllerState('portfolioInHand'))
         if(portfolioChecked) {
             stateIndex.setIn(['portfolio', 'finish'], true);
-            controllerStateIndex.setControllerState('portfolioInHand', false);
+            controllerStateIndex.setControllerState('portfolioInHand', null);
         }
     }
 }

@@ -199,15 +199,17 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
     boundingBoxOnTable = getWorldBound(element);
 
     if(isEmitted(element, triggerEvent.position)){
-        if(triggerEvent.eventName === 'triggerDown') {
+        // Store activeControllerId only if portfolio not dragged
+        if(controllerStateIndex.getControllerState('portfolioInHand') === null) {
             activeController = triggerEvent.activeController;
-            controllerStateIndex.setControllerState('portfolioInHand', true);
+            let activeControllerId = activeController.getAttribute('id');
+            controllerStateIndex.setControllerState('portfolioInHand', activeControllerId);
         }
     }
 }
 
 export function handleControllerStateNotifyPortfolio (nextControllerState) {
-    if (nextControllerState.portfolioInHand && !currentControllerState.portfolioInHand) {
+    if (nextControllerState.portfolioInHand !== null && currentControllerState.portfolioInHand === null) {
 
         open();
 
@@ -216,7 +218,11 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
         currentControllerState = _.cloneDeep(nextControllerState);
 
     }
-    if (!nextControllerState.portfolioInHand && currentControllerState != null && currentControllerState.portfolioInHand) {
+    if (
+        nextControllerState.portfolioInHand === null
+        && currentControllerState != null
+        && currentControllerState.portfolioInHand !== null
+    ) {
         console.log("should drop portfolio");
         drop();
         currentControllerState = _.cloneDeep(nextControllerState);
