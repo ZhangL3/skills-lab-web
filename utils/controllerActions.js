@@ -5,7 +5,7 @@ const observerOptions = {
 
 export class controllerActions {
 
-    constructor (element, activeController, scale = 1) {
+    constructor (element, activeController, scale = -1) {
         this.el = element;
         this.scene = null;
         this.activeController = activeController;
@@ -21,8 +21,10 @@ export class controllerActions {
                 let nodeRemoved = event[0].removedNodes.length > 0;
                 if (nodeAdded) {
                     element.setAttribute('position', '0 0 0');
-                    element.setAttribute('scale', `${this.scale} ${this.scale} ${this.scale}`);
                     element.setAttribute('visible', true);
+                    if (this.scale > 0) {
+                        element.setAttribute('scale', `${this.scale} ${this.scale} ${this.scale}`);
+                    }
                 }
                 if (nodeRemoved) {
                     element.setAttribute('visible', true);
