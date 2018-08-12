@@ -38,7 +38,7 @@ export function handleControllerStateNotifyHookNacl500Liquid (nextControllerStat
         return false;
     }
 
-    if (nextControllerState.nacl500LiquidChecked && nextControllerState.nacl500InHandToDesk) {
+    if (nextControllerState.nacl500LiquidChecked && nextControllerState.nacl500InHandToDesk !== null) {
         element.setAttribute('visible', true);
     }
     else {

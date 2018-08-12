@@ -44,18 +44,22 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
         if(
             isEmitted(element, triggerEvent.position)
             && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
+            && !controllerStateIndex.getControllerState('nacl500OnDesk')
         ){
 
             $(bottleNacl500).trigger('putOnDesk');
 
             aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
+
+            controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
+            controllerStateIndex.setControllerState('nacl500Dragable', false);
         }
     }
 }
 
 export function handleControllerStateNotifyToggleBoxNacl500OnDesk (nextControllerState) {
 
-    if (nextControllerState.nacl500InHandToDesk && !currentControllerState.nacl500InHandToDesk) {
+    if (nextControllerState.nacl500InHandToDesk !== null && !currentControllerState.nacl500InHandToDesk) {
         setVisibleTrue(element);
     }
 
