@@ -62,7 +62,10 @@ export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
 
         getWorldBound(element);
 
-        if(isEmitted(element, triggerEvent.position)){
+        if(
+            isEmitted(element, triggerEvent.position)
+            && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
+        ){
 
             controllerStateIndex.setControllerState('deskDisinfectionAllFinish', true);
 
@@ -72,7 +75,7 @@ export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
 
 export function handleControllerStateNotifyToggleBoxTrashCan (nextControllerState) {
 
-    if (nextControllerState.hasDisinfectionCloth && !currentControllerState.hasDisinfectionCloth) {
+    if (nextControllerState.disinfectionClothInHand !== null && currentControllerState.disinfectionClothInHand === null) {
         setVisibleTrue(element);
     }
 

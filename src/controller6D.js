@@ -11,7 +11,7 @@ import { handleControllerNotifyHandDisinfection } from './handDisinfection';
 import { handleControllerNotifyGlove } from './glove';
 import { handleControllerNotifyClothInBottle } from './clothBottleCapVive';
 import { handleControllerNotifyClothOnTable } from './disinfectionClothOnTableVive';
-import { handleControllerNotifyToggleBoxDesk } from './toggleBoxDesk';
+import { handleControllerNotifyToggleBoxDeskDisinfection } from './toggleBoxDeskDisinfection';
 import { handleControllerNotifyToggleBoxTrashCan } from './toggleBoxTrashCan';
 import { handleControllerNotifyBottleNacl500Vive } from './bottleNacl500Vive';
 import { handleControllerNotifyToggleBoxNacl500OnDesk } from './toggleBoxNacl500OnDesk';
@@ -37,7 +37,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyGlove);
         this.viveObserver.subscribe(handleControllerNotifyClothInBottle);
         this.viveObserver.subscribe(handleControllerNotifyClothOnTable);
-        this.viveObserver.subscribe(handleControllerNotifyToggleBoxDesk);
+        this.viveObserver.subscribe(handleControllerNotifyToggleBoxDeskDisinfection);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxTrashCan);
         this.viveObserver.subscribe(handleControllerNotifyBottleNacl500Vive);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500OnDesk);

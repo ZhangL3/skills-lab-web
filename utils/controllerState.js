@@ -16,7 +16,7 @@ const controllerState = {
     portfolioInHand: null,
     hasGloveLeft: false,
     hasGloveRight: false,
-    hasDisinfectionCloth: false,
+    disinfectionClothInHand: null,
     deskDisinfection: false,
     deskDisinfectionAllFinish: false,
     nacl500Dragable: true,

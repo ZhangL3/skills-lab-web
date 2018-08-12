@@ -6,7 +6,7 @@ import controllerStateIndex from '../utils/controllerState';
 
 let element;
 
-export default AFRAME.registerComponent('toggle_box_desk', {
+export default AFRAME.registerComponent('toggle_box_desk_disinfection', {
 
     init: function(){
 
@@ -16,13 +16,16 @@ export default AFRAME.registerComponent('toggle_box_desk', {
 
 });
 
-export function handleControllerNotifyToggleBoxDesk( triggerEvent ) {
+export function handleControllerNotifyToggleBoxDeskDisinfection( triggerEvent ) {
 
-    if(controllerStateIndex.getControllerState('hasDisinfectionCloth')) {
+    if(controllerStateIndex.getControllerState('disinfectionClothInHand')) {
 
         getWorldBound(element);
 
-        if(isEmitted(element, triggerEvent.position)){
+        if(
+            isEmitted(element, triggerEvent.position)
+            && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
+        ){
             controllerStateIndex.setControllerState('deskDisinfection', true);
         }
     }

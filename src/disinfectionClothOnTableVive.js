@@ -33,10 +33,11 @@ AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
 export function handleControllerNotifyClothOnTable ( triggerEvent ) {
     getWorldBound(clothInBottle);
     activeController = triggerEvent.activeController;
+    let activeControllerId = activeController.getAttribute('id');
 
     if (checkIsCapOpen() && isEmitted(clothInBottle, triggerEvent.position)) {
         dragInHand();
-        controllerStateIndex.setControllerState('hasDisinfectionCloth', true);
+        controllerStateIndex.setControllerState('disinfectionClothInHand', activeControllerId);
     }
 }
 
