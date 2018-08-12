@@ -36,24 +36,18 @@ const schema = {
 };
 
 export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
+    getWorldBound(element);
+    if(!isEmitted(element, triggerEvent.position)) {
+        return false;
+    }
 
-    if(controllerStateIndex.getControllerState('nacl500InHandToDesk') !== null) {
-
-        getWorldBound(element);
-
-        if(
-            isEmitted(element, triggerEvent.position)
-            && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
-            && !controllerStateIndex.getControllerState('nacl500OnDesk')
-        ){
-
-            $(bottleNacl500).trigger('putOnDesk');
-
-            aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
-
-            controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
-            controllerStateIndex.setControllerState('nacl500Dragable', false);
-        }
+    if(
+        controllerStateIndex.getControllerState('nacl500InHandToDesk') !== null
+        &&triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
+        && !controllerStateIndex.getControllerState('nacl500OnDesk')
+    ) {
+        $(bottleNacl500).trigger('putOnDesk');
+        aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
     }
 }
 

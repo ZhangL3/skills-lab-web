@@ -34,33 +34,39 @@ const schema = {
 
 export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
     //test
-    activeController = triggerEvent.activeController;
-    controllerStateIndex.setControllerState('nacl500CapChecked', true);
+    // activeController = triggerEvent.activeController;
+    // controllerStateIndex.setControllerState('nacl500CapChecked', true);
     //test end
+    getWorldBound(element);
+    if (!isEmitted(element, triggerEvent.position)) {
+        return false;
+    }
 
     if (!controllerStateIndex.getControllerState('nacl500CapChecked')) {
         if(controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
-            getWorldBound(element);
-            if(isEmitted(element, triggerEvent.position)){
-                activeController = triggerEvent.activeController;
-                controllerStateIndex.setControllerState('nacl500CapChecked', true);
-            }
+            controllerStateIndex.setControllerState('nacl500CapChecked', true);
         }
+    }
+
+    if (controllerStateIndex.getControllerState('nacl500OnDesk')
+        && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
+        // && controllerStateIndex.getControllerState('bottleOpened')
+    ) {
+        activeController = triggerEvent.activeController;
+        let activeControllerId = activeController.getAttribute('id');
+        controllerStateIndex.setControllerState('bottleNacl500CapInHand', activeControllerId);
     }
 }
 
 export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerState) {
 
     //test
-    dragInHand();
+    // dragInHand();
     //test end
 
-    if (isBottleChecked()
-        && nextControllerState.nacl500OnDesk
-        && nextControllerState.bottleNacl500CapInHand
-        && !nextControllerState.bottleOpened
+    if (nextControllerState.bottleNacl500CapInHand !== null
+        && currentControllerState.bottleNacl500CapInHand === null
     ) {
-        controllerStateIndex.setControllerState('bottleNacl500CapInHand', true);
         dragInHand();
     }
 

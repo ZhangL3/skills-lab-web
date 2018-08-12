@@ -11,16 +11,11 @@ let clothInBottle;
 let clothOnTable;
 
 let activeController;
-let timeInterval;
-let controllerActivities;
-
 
 AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
 
     init: function(){
         clothInBottle = document.querySelector('#clothInBottle');
-
-        controllerActivities = null;
 
         clothOnTable = this.el;
 
@@ -42,11 +37,11 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
 }
 
 function dragInHand() {
-    controllerActivities = new controllerActions(clothOnTable, activeController);
+    let controllerActivities = new controllerActions(clothOnTable, activeController);
     controllerActivities.drag();
 }
 
 function drop() {
-    controllerActivities = new controllerActions(clothOnTable, activeController);
+    let controllerActivities = new controllerActions(clothOnTable, activeController);
     controllerActivities.drop();
 }

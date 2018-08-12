@@ -56,7 +56,8 @@ export function handleControllerNotifyWasteBinCap( triggerEvent ) {
 
     getWorldBound(element);
 
-    if(isEmitted(element, triggerEvent.position)){
-        toggleOpenAndClose();
+    if(!isEmitted(element, triggerEvent.position)){
+        return false;
     }
+    toggleOpenAndClose();
 }

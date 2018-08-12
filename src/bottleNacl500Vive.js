@@ -16,16 +16,11 @@ let activeController;
 
 let currentControllerState;
 
-let controllerActivities;
-
-
 export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
     init: function(){
         // shallow copy
         element = this.el;
-
-        controllerActivities = null;
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -37,9 +32,11 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
         });
 
         $(element).on('putOnDesk', () => {
+            console.log("triggle putOnDesk");
             drop();
+            controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
             controllerStateIndex.setControllerState('nacl500OnDesk', true);
-            controllerStateIndex.setControllerState('nacl500Dragable', true);
+            controllerStateIndex.setControllerState('nacl500Dragable', false);
         });
 
     }
@@ -53,22 +50,28 @@ export function handleNotifyBottleNacl500Vive(nextState) {
 export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
     getWorldBound(element);
+    if (!isEmitted(element, triggerEvent.position)) {
+       return false;
+    }
 
-    if(isEmitted(element, triggerEvent.position)){
-        if(triggerEvent.eventName === 'triggerDown') {
-            if (controllerStateIndex.getControllerState('nacl500InHandToDesk') === null) {
-                if (controllerStateIndex.getControllerState('nacl500Dragable')) {
-                    activeController = triggerEvent.activeController;
-                    let activeControllerId =  activeController.getAttribute('id');
-                    controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
-                }
+    if(triggerEvent.eventName === 'triggerDown') {
+        if (controllerStateIndex.getControllerState('nacl500InHandToDesk') === null) {
+            if (controllerStateIndex.getControllerState('nacl500Dragable')) {
+                console.log("emmit triggerDown to bottle");
+                activeController = triggerEvent.activeController;
+                let activeControllerId =  activeController.getAttribute('id');
+                controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
             }
         }
     }
 }
 
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
-    if (nextControllerState.nacl500InHandToDesk !== null && currentControllerState.nacl500InHandToDesk === null) {
+    if (
+        nextControllerState.nacl500InHandToDesk !== null
+        && currentControllerState.nacl500InHandToDesk === null
+        && nextControllerState.nacl500Dragable
+    ) {
 
         dragInHand();
 
@@ -78,12 +81,13 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
 }
 
 function dragInHand() {
-    controllerActivities = new controllerActions(element, activeController);
+    let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drag();
 }
 
 function drop() {
-    controllerActivities = new controllerActions(element, activeController);
+    console.log("drop bottle");
+    let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drop();
 }
 

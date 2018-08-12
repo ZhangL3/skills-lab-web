@@ -10,7 +10,7 @@ export class controllerActions {
         this.scene = null;
         this.activeController = activeController;
         this.scale = scale;
-        this.observer = this.buildObserver(this.el, this.scale);
+        this.observer = this.buildObserver(this.el);
         this.bindController(this.activeController);
     }
 
@@ -20,6 +20,7 @@ export class controllerActions {
                 let nodeAdded = event[0].addedNodes.length > 0;
                 let nodeRemoved = event[0].removedNodes.length > 0;
                 if (nodeAdded) {
+                    console.log("element to 0 0 0:", element);
                     element.setAttribute('position', '0 0 0');
                     element.setAttribute('visible', true);
                     if (this.scale > 0) {

@@ -25,7 +25,7 @@ const controllerState = {
     nacl500LiquidChecked: false,
     nacl500CapChecked: false,
     nacl500OnDesk: false,
-    bottleNacl500CapInHand: false,
+    bottleNacl500CapInHand: null,
     bottleNacl500CapDroped: false,
     bottleOpened: false
 };

@@ -25,9 +25,6 @@ let hookCF;
 
 let currentControllerState;
 
-let controllerActivities;
-
-
 export default AFRAME.registerComponent('portfolio', {
 
     init: function(){
@@ -41,8 +38,6 @@ export default AFRAME.registerComponent('portfolio', {
         hookDose = document.querySelector("#hookDose");
         hookIV = document.querySelector("#hookIV");
         hookCF = document.querySelector("#hookCF");
-
-        controllerActivities = null;
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -199,7 +194,7 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
     boundingBoxOnTable = getWorldBound(element);
 
     if(isEmitted(element, triggerEvent.position)){
-        // Store activeControllerId only if portfolio not dragged
+        // Store activeControllerId only if portfolio not draged
         if(controllerStateIndex.getControllerState('portfolioInHand') === null) {
             activeController = triggerEvent.activeController;
             let activeControllerId = activeController.getAttribute('id');
@@ -230,13 +225,12 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
 }
 
 function dragInHand() {
-    controllerActivities = new controllerActions(element, activeController);
+    let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drag();
 }
 
 function drop() {
-    console.log("drop portfolio");
-    controllerActivities = new controllerActions(element, activeController);
+    let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drop();
 }
 

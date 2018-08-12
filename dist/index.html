@@ -262,7 +262,7 @@
 
         <a-image src="#nacl500" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
         <a-image hook_nach500_cap id="hookBottleCap" src="#hook" scale="0.2 0.2 0.2" position="0 0.922 0" rotation="-90 -90 0" visible="false" material="alphaTest: 0.32"></a-image>
-        <a-box toggle_box_nach500_cap id="toggleBoxNack500Cap" scale="0.355 0.228 0.41" position="0 0.975 0" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+        <a-box toggle_box_nach500_cap id="toggleBoxNacl500Cap" scale="0.355 0.228 0.41" position="0 0.975 0" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
     </a-gltf-model>
     <a-box toggle_box_nacl500_on_desk id="toggleBoxNacl500OnDesk" scale="0.114 0.149 0.104" position="-0.320 0.752 -0.829" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
 
@@ -292,8 +292,10 @@
     <a-gltf-model src="#wasteBinBody" position="0.00 0.746 -0.93" scale="0.06 0.06 0.06 " rotation="0 45 0">
         <a-gltf-model src="#wasteBinCap" position="0.594 1.264 -0.020" waste_bin_cap_open></a-gltf-model>
     </a-gltf-model>
+    <a-cylinder id="toggleBoxWasteBin" toggle_box_waste_bin position="0.00 0.881 -0.93" height="0.170" radius="0.060" material="color:#ff0000; transparent: true; opacity: 0.5" visible="true"></a-cylinder>
 
-    <!-- cloth bottle -->
+
+        <!-- cloth bottle -->
     <a-gltf-model src="#clothBottleBody" position="0.22 0.678 -0.9" rotation="0 180 0" scale="0.15 0.15 0.15">
         <a-gltf-model id="clothBottleCap" src="#clothBottleCap" position="-0.017 0.851 0.322" cloth_bottle_cap_open cloth_bottle_cap_vive></a-gltf-model>
         <a-gltf-model id="clothInBottle" src="#clothBottleCloth" position="-0.053 0.599 0.145" scale="0.8 1 1" disinfection_cloth_in_bottle></a-gltf-model>
@@ -302,7 +304,7 @@
     <!-- cloth -->
     <a-gltf-model id="clothOnTable" src="#clothMesh" position="0 0.681 -0.81" rotation="" scale="0.1 0.1 0.1" visible="false" disinfection_cloth_on_table disinfection_cloth_on_table_vive></a-gltf-model>
 
-    <a-box id="toggleBoxDesk" toggle_box_desk scale="1.322 0.067 0.157" position="0.002 0.711 -0.805" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
+    <a-box id="toggleBoxDesk" toggle_box_desk_disinfection scale="1.322 0.067 0.157" position="0.002 0.711 -0.805" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
 
 
         <!-- glove shelf -->

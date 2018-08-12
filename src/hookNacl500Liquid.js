@@ -32,8 +32,6 @@ export function handleControllerNotifyHookNacl500Liquid( triggerEvent ) {
 
 export function handleControllerStateNotifyHookNacl500Liquid (nextControllerState) {
 
-    console.log("nextControllerState: ", nextControllerState, typeof(nextControllerState));
-
     if (!element) {
         return false;
     }
