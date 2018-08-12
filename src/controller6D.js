@@ -19,6 +19,7 @@ import { handleControllerNotifyToggleBoxNacl500Label } from './toggleBoxNacl500L
 import { handleControllerNotifyToggleBoxNacl500Cap } from './toggleBoxNacl500Cap';
 import { handleControllerNotifyToggleBoxNacl500Liquid } from './toggleBoxNacl500Liquid';
 import { handleControllerNotifyWasteBinCap } from './wasteBinCapOpen';
+import { handleControllerNotifyToggleBoxWasteBin } from './toggleBoxWasteBin';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -44,6 +45,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Cap);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Liquid);
         this.viveObserver.subscribe(handleControllerNotifyWasteBinCap);
+        this.viveObserver.subscribe(handleControllerNotifyToggleBoxWasteBin);
 
         $(this.el).on('triggerdown', () => {
 
