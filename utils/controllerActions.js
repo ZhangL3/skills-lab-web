@@ -17,10 +17,9 @@ export class controllerActions {
     buildObserver(element) {
         return (
             new MutationObserver((event) => {
-                let nodeAdded = event[0].addedNodes.length > 0;
-                let nodeRemoved = event[0].removedNodes.length > 0;
+                let nodeAdded = event[0].addedNodes[0] === element;
+                let nodeRemoved = event[0].removedNodes[0] === element;
                 if (nodeAdded) {
-                    console.log("element to 0 0 0:", element);
                     element.setAttribute('position', '0 0 0');
                     element.setAttribute('visible', true);
                     if (this.scale > 0) {
