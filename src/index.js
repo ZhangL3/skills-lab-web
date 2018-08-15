@@ -29,6 +29,7 @@ import * as hookNacl500Label from './hookNacl500Label';
 import * as toggleBoxNacl500Cap from './toggleBoxNacl500Cap';
 import * as hoolNacl500Cap from './hookNacl500Cap';
 import * as toggleBoxWasteBin from './toggleBoxWasteBin';
+import * as bottleNacl500Cap from './bottleNacl500Cap';
 
 import * as disinfectionClothOnTableVive from './disinfectionClothOnTableVive';
 

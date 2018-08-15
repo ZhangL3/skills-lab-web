@@ -13,6 +13,8 @@ let bottleNacl500Cap;
 
 let currentControllerState;
 
+let activeController;
+
 
 export default AFRAME.registerComponent('toggle_box_waste_bin', {
 
@@ -20,6 +22,8 @@ export default AFRAME.registerComponent('toggle_box_waste_bin', {
 
         element = this.el;
         bottleNacl500Cap = document.querySelector('#nacl500Cap');
+
+        activeController = null;
 
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
@@ -30,17 +34,14 @@ export default AFRAME.registerComponent('toggle_box_waste_bin', {
 });
 
 const schema = {
-    capInBinPosition: '0.779 -0.288 3.185',
+    capInBinPosition: '0 0.679 -0.93',
     dur : 500,
 };
 
-function dropBottleNacl500Cap() {
-    $(bottleNacl500Cap).trigger('drop', );
-
-    if(bottleNacl500Cap) {
-        aAnimationWrapper(nacl500Cap, '', 'position', '', schema.capInBinPosition, schema.dur, '',true , 'forwards');
-    }
-
+function dropBottleNacl500Cap(activeController) {
+    $(bottleNacl500Cap).trigger('drop', [activeController]);
+    aAnimationWrapper(bottleNacl500Cap, '', 'position', '', schema.capInBinPosition, schema.dur, '', true, 'forwards');
+    console.log("should animated");
 }
 
 export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
@@ -52,8 +53,11 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
 
         getWorldBound(element);
 
-        if(isEmitted(element, triggerEvent.position)){
-
+        if(
+            isEmitted(element, triggerEvent.position)
+            && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === triggerEvent.activeController.getAttribute('id')
+        ) {
+            activeController = triggerEvent.activeController;
             controllerStateIndex.setControllerState('bottleNacl500CapDroped', true);
 
         }
@@ -62,8 +66,12 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
 
 export function handleControllerStateNotifyToggleBoxWasteBin (nextControllerState) {
 
-    if (nextControllerState.bottleNacl500CapInHand && nextControllerState.bottleNacl500CapDroped) {
-        dropBottleNacl500Cap();
+    if (
+        nextControllerState.bottleNacl500CapInHand
+        && nextControllerState.bottleNacl500CapDroped
+        && !currentControllerState.bottleNacl500CapDroped
+    ) {
+        dropBottleNacl500Cap(activeController);
     }
 
 
