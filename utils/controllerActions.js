@@ -28,6 +28,9 @@ export class controllerActions {
                     }
                 }
                 if (nodeRemoved) {
+                    if (!element) {
+                        return fasle;
+                    }
                     element.setAttribute('visible', true);
                     let activePosition = this.activeController.getAttribute('position');
                     element.setAttribute('position', `${activePosition.x} ${activePosition.y + 0.04} ${activePosition.z}`);
