@@ -32,18 +32,16 @@ import * as toggleBoxWasteBin from './toggleBoxWasteBin';
 import * as bottleNacl500Cap from './bottleNacl500Cap';
 
 import * as disinfectionClothOnTableVive from './disinfectionClothOnTableVive';
-
 import * as gloveInHand from './gloveInHand';
 
+import * as infusionSetInPackVive from './infusionSetInPackVive';
+import * as toggleBoxInfusionSetInPack from './toggleBoxInfusionSetInPack';
+import * as toggleBoxInfusionSetOnDesk from './toggleBoxInfusionSetOnDesk';
+
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
-
 import * as sectionSelection from './sectionSelection';
-
 import * as controllerManage from '../utils/controllerManage';
-
-
 import * as controller6D from './controller6D';
-
 import * as controllerActions from '../utils/controllerActions';
 
 stateIndex.init();

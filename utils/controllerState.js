@@ -10,6 +10,8 @@ import { handleControllerStateNotifyHookNacl500Cap } from '../src/hookNacl500Cap
 import { handleControllerStateNotifyHookNacl500Liquid } from '../src/hookNacl500Liquid';
 import { handleControllerStateNotifyToggleBoxNacl500Cap } from '../src/toggleBoxNacl500Cap';
 import { handleControllerStateNotifyToggleBoxWasteBin } from '../src/toggleBoxWasteBin';
+import { handleControllerStateNotifyInfusionSetInPack } from '../src/infusionSetInPackVive';
+import { handleControllerStateNotifyToggleBoxInfusionSetInPack } from '../src/toggleBoxInfusionSetInPack';
 
 const controllerState = {
     connectedController: '',
@@ -27,7 +29,12 @@ const controllerState = {
     nacl500OnDesk: false,
     bottleNacl500CapInHand: null,
     bottleNacl500CapDroped: false,
-    bottleOpened: false
+    bottleOpened: false,
+    infusionSetInPackInHand: null,
+    infusionSetChecked: false,
+    infusionSetOnDeskOpened: false,
+    infusionSetCapOff: false,
+    infusionSetWheelClose: false,
 };
 
 export default class controllerStateIndex {
@@ -46,6 +53,8 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyHookNacl500Liquid);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500Cap);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxWasteBin);
+        this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetInPack);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetInPack);
 
         console.log("controllerState init");
 
