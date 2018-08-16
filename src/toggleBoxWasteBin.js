@@ -34,7 +34,7 @@ export default AFRAME.registerComponent('toggle_box_waste_bin', {
 
 const schema = {
     naCl500CapInBinPosition: '0 0.679 -0.93',
-    infusionSetCapInBinPosition: '-0.03 0.679 -0.86',
+    infusionSetCapInBinPosition: '-0.03 0.689 -0.83',
     dur : 500,
 };
 
