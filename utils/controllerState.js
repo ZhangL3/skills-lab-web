@@ -12,6 +12,9 @@ import { handleControllerStateNotifyToggleBoxNacl500Cap } from '../src/toggleBox
 import { handleControllerStateNotifyToggleBoxWasteBin } from '../src/toggleBoxWasteBin';
 import { handleControllerStateNotifyInfusionSetInPack } from '../src/infusionSetInPackVive';
 import { handleControllerStateNotifyToggleBoxInfusionSetInPack } from '../src/toggleBoxInfusionSetInPack';
+import { handleControllerStateNotifyInfusionSetOpen } from '../src/infusionSetOpenVive';
+import { handleControllerStateNotifyToggleBoxInfusionSetOnDesk } from '../src/toggleBoxInfusionSetOnDesk';
+import { handleControllerStateNotifyInfusionSetCap } from '../src/infusionSetCap';
 
 const controllerState = {
     connectedController: '',
@@ -33,8 +36,11 @@ const controllerState = {
     infusionSetInPackInHand: null,
     infusionSetChecked: false,
     infusionSetOnDeskOpened: false,
+    infusionSetCapInHand: null,
     infusionSetCapOff: false,
-    infusionSetWheelClose: false,
+    infusionSetWheelClosed: false,
+    infusionSetOpenInHand: null,
+    infusionSetInBottle: false,
 };
 
 export default class controllerStateIndex {
@@ -55,6 +61,9 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxWasteBin);
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetInPack);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetInPack);
+        this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetOpen);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetOnDesk);
+        this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetCap);
 
         console.log("controllerState init");
 

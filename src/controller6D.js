@@ -23,6 +23,9 @@ import { handleControllerNotifyToggleBoxWasteBin } from './toggleBoxWasteBin';
 import { handleControllerNotifyInfusionSetInPack } from './infusionSetInPackVive';
 import { handleControllerNotifyToggleBoxInfusionSetInPack } from './toggleBoxInfusionSetInPack';
 import { handleControllerNotifyToggleBoxInfusionSetOnDesk } from './toggleBoxInfusionSetOnDesk';
+import { handleControllerNotifyInfusionSetOpen } from './infusionSetOpenVive';
+import { handleControllerNotifyToggleBoxInfusionSetCap } from './toggleBoxInfusionSetOpenWheel';
+import { handleControllerNotifyInfusionSetCap } from './infusionSetCap';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -52,6 +55,9 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPack);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetInPack);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetOnDesk);
+        this.viveObserver.subscribe(handleControllerNotifyInfusionSetOpen);
+        this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetCap);
+        this.viveObserver.subscribe(handleControllerNotifyInfusionSetCap);
 
         $(this.el).on('triggerdown', () => {
 

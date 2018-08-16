@@ -9,7 +9,6 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
-
 let currentState;
 let currentControllerState;
 let element;
@@ -36,62 +35,6 @@ export default AFRAME.registerComponent('infusion_set_in_pack_vive', {
         });
     }
 });
-
-const schema = {
-    dur : 500,
-};
-
-// open portfolio
-function open () {
-    aAnimationWrapper(
-        foregroundOfPortfolio, '', 'rotation', '', schema.openRotation, schema.dur,
-        '', true, 'forwards'
-    );
-    aAnimationWrapper(
-        foregroundOfPortfolio, '', 'position', '', schema.openPosition, schema.dur,
-        '', true, 'forwards'
-    );
-}
-
-function faceToCamera() {
-    aAnimationWrapper(
-        element, '', 'rotation', '0 0 -55', schema.dur, '', true, 'forwards'
-    );
-}
-
-function takeInHand () {
-    aAnimationWrapper(
-        element, '', 'position', schema.onTablePosition, schema.inFrontOfEyesPosition, schema.dur,
-        '', true, 'forwards'
-    );
-    aAnimationWrapper(
-        element, '', 'rotation', schema.onTableRotation, schema.inFrontOfEyesRotation, schema.dur,
-        '', true, 'forwards'
-    );
-}
-
-// close portfolio
-function close () {
-    // aAnimationWrapper(
-    //     foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur,
-    //     '', true, 'forwards'
-    // );
-    aAnimationWrapper(
-        foregroundOfPortfolio, '', 'rotation', schema.openRotation, schema.closeRotation, schema.dur,
-        '', true, 'forwards'
-    );
-}
-
-function putOnTable(){
-    aAnimationWrapper(
-        element, '', 'position', schema.inFrontOfEyesPosition, schema.onTablePosition, schema.dur,
-        '', true, 'forwards'
-    );
-    aAnimationWrapper(
-        element, '', 'rotation', schema.inFrontOfEyesRotation, schema.onTableRotation, schema.dur,
-        '', true, 'forwards'
-    );
-}
 
 export function handleNotifyInfusionSetInPack(nextState) {
 

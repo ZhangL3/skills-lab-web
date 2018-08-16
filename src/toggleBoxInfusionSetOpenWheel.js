@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
+import { isBottleChecked } from "./bottleNacl500Vive";
 import { controllerActions } from "../utils/controllerActions";
 
 let element;
@@ -12,11 +13,12 @@ let currentControllerState;
 let activeController;
 
 
-export default AFRAME.registerComponent('toggle_box_infusion_set_on_desk', {
+export default AFRAME.registerComponent('toggle_box_infusion_set_open_wheel', {
 
     init: function(){
 
         element = this.el;
+        activeController = null;
 
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
@@ -28,25 +30,21 @@ export default AFRAME.registerComponent('toggle_box_infusion_set_on_desk', {
 const schema = {
 };
 
-export function handleControllerNotifyToggleBoxInfusionSetOnDesk ( triggerEvent ) {
+export function handleControllerNotifyToggleBoxInfusionSetCap( triggerEvent ) {
     getWorldBound(element);
 
-    if(
+    // close wheel
+    if (
         isEmitted(element, triggerEvent.position)
-        && triggerEvent.activeController === controllerStateIndex.getControllerState('infusionSetInPackInHand')
-    ){
-        controllerStateIndex.setControllerState('infusionSetOnDeskOpened', true);
+        && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
+        && !controllerStateIndex.getControllerState('infusionSetWheelClosed')
+    ) {
+        console.log("trigger wheel");
+        controllerStateIndex.setControllerState('infusionSetWheelClosed', true)
     }
 }
 
-export function handleControllerStateNotifyToggleBoxInfusionSetOnDesk (nextControllerState) {
-    
-    if (
-        nextControllerState.infusionSetOnDeskOpened
-        && !currentControllerState.infusionSetOnDeskOpened
-    ) {
-        element.setAttribute('visible', false);
-    }
+export function handleControllerStateNotifyToggleBoxInfusionSetCap (nextControllerState) {
 
     // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());

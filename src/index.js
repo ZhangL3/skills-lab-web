@@ -37,6 +37,9 @@ import * as gloveInHand from './gloveInHand';
 import * as infusionSetInPackVive from './infusionSetInPackVive';
 import * as toggleBoxInfusionSetInPack from './toggleBoxInfusionSetInPack';
 import * as toggleBoxInfusionSetOnDesk from './toggleBoxInfusionSetOnDesk';
+import * as infusionSetOpenVive from './infusionSetOpenVive';
+import * as toggleBoxInfusionSetOpenWheel from './toggleBoxInfusionSetOpenWheel';
+import * as infusionSetCap from './infusionSetCap';
 
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
 import * as sectionSelection from './sectionSelection';
