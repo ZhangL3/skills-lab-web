@@ -42,12 +42,14 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
         return false;
     }
 
+    // check cap
     if (!controllerStateIndex.getControllerState('nacl500CapChecked')) {
         if(controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
             controllerStateIndex.setControllerState('nacl500CapChecked', true);
         }
     }
 
+    // drag cap
     if (controllerStateIndex.getControllerState('nacl500OnDesk')
         && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
         // && controllerStateIndex.getControllerState('bottleOpened')
