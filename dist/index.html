@@ -128,7 +128,6 @@
     <!-- By webVR mode should the position 0 -6 2, 2D mode 0 0 2-->
     <a-entity id="allThings"  position="0 0 0" scale="1 1 1">
 
-        <a-box scale="0.3 0.3 0.3" position="0 0 -1.5"></a-box>
     <!-- cabinets -->
     <a-entity id="twoCabinets" position="0 0 -1">
         <a-gltf-model src="#cabinetBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
@@ -327,17 +326,17 @@
     <a-gltf-model src="#holder" position="0.975 0 -0.65" rotation="0 41.59 0" scale="0.5 0.45 0.5"></a-gltf-model>
 
     <!-- walls -->
-    <a-image id="wallfront" src="#wallTexture" scale="4.833 2.155 1.000" position="-0.233 1.075 -1.004" rotation=""></a-image>
-    <a-image id="wallleft" src="#wallTexture" scale="3.385 2.155 1.000" position="-2.649 1.075 0.696" rotation="0 90 0"></a-image>
-    <a-image id="wallright" src="#wallTexture" scale="3.385 2.155 1.000" position="2.188 1.075 0.696" rotation="0 90 0"></a-image>
-    <a-image id="walltop" src="#wallTexture" scale="4.871 3.423 1.000" position="-0.255 2.121 0.663" rotation="90 0 0"></a-image>
-    <a-image id="wallback" src="#wallTexture" scale="4.833 2.155 1.000" position="-0.233 1.075 2.383" rotation=""></a-image>
+    <a-image id="wallfront" src="#wallTexture" scale="4.480 2.145 1.000" position="-0.009 1.075 -1.004" rotation=""></a-image>
+    <a-image id="wallleft" src="#wallTexture" scale="3.716 2.155 1.000" position="-2.188 1.075 0.513" rotation="0 90 0"></a-image>
+    <a-image id="wallright" src="#wallTexture" scale="3.716 2.155 1.000" position="2.188 1.075 0.513" rotation="0 90 0"></a-image>
+    <a-image id="walltop" src="#wallTexture" scale="4.388 3.423 1.000" position="-0.027 2.121 0.710" rotation="90 0 0"></a-image>
+    <a-image id="wallback" src="#wallTexture" scale="4.385 2.155 1.000" position="0.003 1.075 2.383" rotation=""></a-image>
 
     <!-- floor -->
-    <a-image id="floor" src="#floorTexture" scale="4.801 3.402 1.268" position="-0.212 0.001 0.686" rotation="90 0 0"></a-image>
+    <a-image id="floor" src="#floorTexture" scale="4.459 3.402 0.986" position="-0.027 0.001 0.686" rotation="90 0 0"></a-image>
 
     <!-- whiteboard -->
-    <a-image id="whiteboard" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.639 0.988 0.000" rotation="0 90 0">
+    <a-image id="whiteboard" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.173 0.988 0" rotation="0 90 0">
         <!-- TODO: give to i-image? -->
         <a-image id="note" src="#noteTexture" scale="0.3 0.3 0.3" position="0.273 -0.223 0.017" rotation="0 0 0" ></a-image>
         <a-entity id="initText" text="color:#000000; value: If ready, click the portfolio to begin.\n Or select a chapter to begin."
