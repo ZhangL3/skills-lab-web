@@ -21,8 +21,6 @@ export default AFRAME.registerComponent('drawer_open_with_infusion_set',{
 
         drawerWithInfusionSet.on('click', () => {
 
-            console.log("isDrawerOpen: ", isDrawerOpen, typeof(isDrawerOpen));
-
             if(isDrawerOpen){
                 closeDrawer(this.el);
             }

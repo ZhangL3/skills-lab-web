@@ -57,9 +57,11 @@ export function handleControllerNotifyInfusionSetOpen ( triggerEvent ) {
         isEmitted(element, triggerEvent.position)
         && controllerStateIndex.getControllerState('infusionSetCapOff')
         && controllerStateIndex.getControllerState('infusionSetWheelClosed')
+        && !controllerStateIndex.getControllerState('infusionSetOpenInHand')
     ) {
         activeController = triggerEvent.activeController;
-        controllerStateIndex.setControllerState('infusionSetOpenInHand', activeController);
+        let activeControllerId = activeController.getAttribute('id');
+        controllerStateIndex.setControllerState('infusionSetOpenInHand', activeControllerId);
     }
 }
 

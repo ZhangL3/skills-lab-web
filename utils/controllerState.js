@@ -15,6 +15,7 @@ import { handleControllerStateNotifyToggleBoxInfusionSetInPack } from '../src/to
 import { handleControllerStateNotifyInfusionSetOpen } from '../src/infusionSetOpenVive';
 import { handleControllerStateNotifyToggleBoxInfusionSetOnDesk } from '../src/toggleBoxInfusionSetOnDesk';
 import { handleControllerStateNotifyInfusionSetCap } from '../src/infusionSetCap';
+import { handleControllerStateNotifyToggleBoxNacl500Hanged } from '../src/toggleBoxNacl500Hanged';
 
 const controllerState = {
     connectedController: '',
@@ -38,9 +39,14 @@ const controllerState = {
     infusionSetOnDeskOpened: false,
     infusionSetCapInHand: null,
     infusionSetCapOff: false,
-    infusionSetWheelClosed: false,
     infusionSetOpenInHand: null,
     infusionSetInBottle: false,
+
+    nacl500InHandToStand: null,
+    nacl500Hanged: false,
+    dripChamberSqueezed: false,
+    infusionSetWheelClosed: false,
+    tubeFixed: false
 };
 
 export default class controllerStateIndex {
@@ -64,6 +70,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetOpen);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetOnDesk);
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetCap);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500Hanged);
 
         console.log("controllerState init");
 

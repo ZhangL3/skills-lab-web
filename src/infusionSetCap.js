@@ -47,7 +47,8 @@ export function handleControllerNotifyInfusionSetCap ( triggerEvent ) {
     getWorldBound(element);
 
     if (
-        isEmitted(infusionSetOpenCap, triggerEvent.position)
+        // isEmitted(infusionSetOpenCap, triggerEvent.position)
+        isEmitted(element, triggerEvent.position)
         && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
     ) {
         console.log("take infusion set cap");

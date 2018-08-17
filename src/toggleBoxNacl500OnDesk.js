@@ -18,14 +18,11 @@ let currentControllerState;
 export default AFRAME.registerComponent('toggle_box_nacl500_on_desk', {
 
     init: function(){
-
         element = this.el;
         bottleNacl500 = document.querySelector('#nacl500Bottle');
 
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
-
     },
 
 });
@@ -53,15 +50,27 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
 
 export function handleControllerStateNotifyToggleBoxNacl500OnDesk (nextControllerState) {
 
-    if (nextControllerState.nacl500InHandToDesk !== null && !currentControllerState.nacl500InHandToDesk) {
+    console.log("nextControllerState: ", nextControllerState, typeof(nextControllerState));
+    console.log("currentControllerState: ", currentControllerState, typeof(currentControllerState));
+
+    if (
+        nextControllerState.nacl500InHandToDesk !== null
+        && currentControllerState.nacl500InHandToDesk === null
+    ) {
         setVisibleTrue(element);
     }
 
-    if (isBottleChecked()) {
+    if (
+        isBottleChecked()
+        && nextControllerState.nacl500InHandToDesk
+    ) {
         element.setAttribute('material', 'color:#00ffff; transparent: true; opacity: 0.5')
     }
 
-    if (nextControllerState.nacl500OnDesk && !currentControllerState.nacl500OnDesk) {
+    if (
+        nextControllerState.nacl500OnDesk
+        && !currentControllerState.nacl500OnDesk
+    ) {
         setVisibleFalse(element);
     }
 

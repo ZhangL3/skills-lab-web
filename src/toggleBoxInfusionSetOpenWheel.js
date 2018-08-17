@@ -39,7 +39,6 @@ export function handleControllerNotifyToggleBoxInfusionSetCap( triggerEvent ) {
         && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
         && !controllerStateIndex.getControllerState('infusionSetWheelClosed')
     ) {
-        console.log("trigger wheel");
         controllerStateIndex.setControllerState('infusionSetWheelClosed', true)
     }
 }

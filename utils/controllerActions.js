@@ -21,7 +21,17 @@ export class controllerActions {
     buildObserver(element) {
         return (
             new MutationObserver((event) => {
+                console.log("event: ", event, typeof(event));
+                console.log("element: ", element, typeof(element));
                 let nodeAdded = event[0].addedNodes[0] === element;
+                // more time to drag, made more MutationRecord. Use trick
+                for (let i = 0; i < event.length; i++) {
+                    if (i % 2 !== 0) {
+                        nodeAdded = event[i].addedNodes[0] === element;
+                    }
+                }
+
+
                 let nodeRemoved = event[0].removedNodes[0] === element;
                 if (nodeAdded) {
                     element.setAttribute('position', `${this.positionX} ${this.positionY} ${this.positionZ}`);

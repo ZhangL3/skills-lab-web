@@ -41,6 +41,8 @@ import * as infusionSetOpenVive from './infusionSetOpenVive';
 import * as toggleBoxInfusionSetOpenWheel from './toggleBoxInfusionSetOpenWheel';
 import * as infusionSetCap from './infusionSetCap';
 
+import * as toggleBoxNacl500Hanged from './toggleBoxNacl500Hanged';
+
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
 import * as sectionSelection from './sectionSelection';
 import * as controllerManage from '../utils/controllerManage';
