@@ -33,7 +33,7 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
         $(element).on('putOnDesk', () => {
             console.log("triggle putOnDesk");
-            drop();
+            dropBottle();
             controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
             controllerStateIndex.setControllerState('nacl500OnDesk', true);
             controllerStateIndex.setControllerState('nacl500Dragable', false);
@@ -72,7 +72,6 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
         ) {
             controllerStateIndex.setControllerState('nacl500InHandToStand',
                 triggerEvent.activeController.getAttribute('id'));
-            console.log("nacl500InHandToStand true");
         }
     }
 
@@ -80,6 +79,7 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 }
 
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
+    // drag to desk
     if (
         nextControllerState.nacl500InHandToDesk !== null
         && currentControllerState.nacl500InHandToDesk === null
@@ -92,15 +92,19 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
 
     }
 
+    // drag to stand
     if (
         nextControllerState.nacl500InHandToStand !== null
         && currentControllerState.nacl500InHandToStand === null
         && nextControllerState.nacl500Dragable
     ) {
-        dragInHand();
+        dragInHandToHang();
+
         // toggleBoxNacl500OnDesk is shown here, but don't know the reason. So hide it. NOT good.
         let toggleBoxNacl500OnDesk = document.querySelector('#toggleBoxNacl500OnDesk');
         toggleBoxNacl500OnDesk.setAttribute('visible', false);
+
+
         console.log("should drag bottle in hand to hang");
     }
 
@@ -110,16 +114,26 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
 function dragInHand() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drag();
+    console.log("controllerActivities drag: ", controllerActivities, typeof(controllerActivities));
+    // drag(element, activeController);
+    // element = document.querySelector('#nacl500Bottle');
 }
 
 function dragInHandToHang() {
+    // drag(element, activeController);
+    // element = document.querySelector('#nacl500Bottle');
+
+    // trickDrag(element, activeController);
+
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drag();
 }
 
-function drop() {
+function dropBottle() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drop();
+    // drop(element, activeController);
+    // element = document.querySelector('#nacl500Bottle');
 }
 
 export function isBottleChecked() {
