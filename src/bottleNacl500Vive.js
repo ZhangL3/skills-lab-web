@@ -43,8 +43,10 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
         $(element).on('hangToStand', () => {
             console.log("hang to stand");
-            dropBottle();
+            dropBottleToHang();
             controllerStateIndex.setControllerState('nacl500InHandToStand', null);
+            controllerStateIndex.setControllerState('nacl500Hanged', true);
+            stateIndex.setIn(['bottlePrepare', 'finish'], true);
             controllerStateIndex.setControllerState('nacl500Dragable', false);
         });
 
@@ -79,8 +81,9 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
             controllerStateIndex.getControllerState('infusionSetInBottle')
             && controllerStateIndex.getControllerState('nacl500InHandToStand') === null
         ) {
-            controllerStateIndex.setControllerState('nacl500InHandToStand',
-                triggerEvent.activeController.getAttribute('id'));
+            activeController = triggerEvent.activeController;
+            let activeControllerId =  activeController.getAttribute('id');
+            controllerStateIndex.setControllerState('nacl500InHandToStand', activeControllerId);
         }
     }
 
@@ -142,8 +145,11 @@ function dragInHandToHang() {
 function dropBottle() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drop();
-    // drop(element, activeController);
-    // element = document.querySelector('#nacl500Bottle');
+}
+
+function dropBottleToHang() {
+    let controllerActivities = new controllerActions(element, activeController);
+    controllerActivities.drop();
 }
 
 export function isBottleChecked() {

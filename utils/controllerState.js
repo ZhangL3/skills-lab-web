@@ -17,6 +17,7 @@ import { handleControllerStateNotifyToggleBoxInfusionSetOnDesk } from '../src/to
 import { handleControllerStateNotifyInfusionSetCap } from '../src/infusionSetCap';
 import { handleControllerStateNotifyToggleBoxNacl500Hanged } from '../src/toggleBoxNacl500Hanged';
 
+
 const controllerState = {
     connectedController: '',
     portfolioInHand: null,

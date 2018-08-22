@@ -26,6 +26,7 @@ import { handleControllerNotifyToggleBoxInfusionSetOnDesk } from './toggleBoxInf
 import { handleControllerNotifyInfusionSetOpen } from './infusionSetOpenVive';
 import { handleControllerNotifyToggleBoxInfusionSetCap } from './toggleBoxInfusionSetOpenWheel';
 import { handleControllerNotifyInfusionSetCap } from './infusionSetCap';
+import { handleControllerNotifyToggleBoxNacl500Hanged } from './toggleBoxNacl500Hanged';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -58,6 +59,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetOpen);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetCap);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetCap);
+        this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Hanged);
 
         $(this.el).on('triggerdown', () => {
 
@@ -74,6 +76,21 @@ export default AFRAME.registerComponent('controller_6_d', {
             this.viveObserver.notify(triggerEvent);
 
         });
+
+        $(this.el).on('teleported', (event, data) => {
+            console.log("event: ", event, typeof(event));
+            if (data) {
+                console.log("data: ", data, typeof(data));
+            }
+        });
+
+        // $(this.el).on('trackpaddown', (event) => {
+        //     console.log("trackpaddown: ", event);
+        // });
+        //
+        // $(this.el).on('trackpadchanged', (event) => {
+        //     console.log("trackpadchanged: ", event);
+        // });
     }
 });
 

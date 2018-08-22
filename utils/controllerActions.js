@@ -57,7 +57,7 @@ export class controllerActions {
                     }
                     element.setAttribute('visible', true);
                     let activePosition = this.activeController.getAttribute('position');
-                    element.setAttribute('position', `${activePosition.x} ${activePosition.y + 0.04} ${activePosition.z}`);
+                    element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`);
                     if (this.removedScale > 0) {
                         element.setAttribute('scale', `${this.removedScale} ${this.removedScale} ${this.removedScale}`);
                     }
