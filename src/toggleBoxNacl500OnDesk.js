@@ -11,7 +11,6 @@ import { isBottleChecked } from './bottleNacl500Vive';
 
 let element;
 let bottleNacl500;
-
 let currentControllerState;
 
 
@@ -50,9 +49,6 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
 
 export function handleControllerStateNotifyToggleBoxNacl500OnDesk (nextControllerState) {
 
-    console.log("nextControllerState: ", nextControllerState, typeof(nextControllerState));
-    console.log("currentControllerState: ", currentControllerState, typeof(currentControllerState));
-
     if (
         nextControllerState.nacl500InHandToDesk !== null
         && currentControllerState.nacl500InHandToDesk === null
@@ -72,10 +68,6 @@ export function handleControllerStateNotifyToggleBoxNacl500OnDesk (nextControlle
         && !currentControllerState.nacl500OnDesk
     ) {
         setVisibleFalse(element);
-    }
-
-    if(nextControllerState.deskDisinfectionAllFinish && !currentControllerState.deskDisinfectionAllFinish) {
-
     }
 
     // deep copy
