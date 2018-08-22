@@ -35,10 +35,6 @@ export class controllerActions {
                 }
 
                 if (nodeAdded) {
-                    console.log("position in");
-                    console.log(this.positionX);
-                    console.log(this.positionY);
-                    console.log(this.positionZ);
 
                     if (!element) {
                         return false;
