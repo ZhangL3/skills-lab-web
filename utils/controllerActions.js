@@ -11,36 +11,51 @@ export class controllerActions {
         this.activeController = activeController;
         this.addedScale = addedScale;
         this.removedScale = removedScale;
-        this.observer = this.buildObserver(this.el);
-        this.bindController(this.activeController);
         this.positionX = positionX;
         this.positionY = positionY;
         this.positionZ = positionZ;
+
+        this.observer = this.buildObserver(this.el);
+        this.bindController(this.activeController);
     }
 
     buildObserver(element) {
         return (
             new MutationObserver((event) => {
                 console.log("event: ", event, typeof(event));
-                console.log("element: ", element, typeof(element));
                 let nodeAdded = event[0].addedNodes[0] === element;
-                // more time to drag, made more MutationRecord. Use trick
                 for (let i = 0; i < event.length; i++) {
-                    if (i % 2 !== 0) {
                         nodeAdded = event[i].addedNodes[0] === element;
-                    }
                 }
 
 
                 let nodeRemoved = event[0].removedNodes[0] === element;
+                for (let i = 0; i < event.length; i++) {
+                    nodeRemoved = event[i].removedNodes[0] === element;
+                }
+
                 if (nodeAdded) {
+                    console.log("position in");
+                    console.log(this.positionX);
+                    console.log(this.positionY);
+                    console.log(this.positionZ);
+
+                    if (!element) {
+                        return false;
+                    }
+                    // test setTimeout 1sec ok, 0.5 sec not. 0.7 sec not. 1 sed ok
+                    setTimeout(()=>{
                     element.setAttribute('position', `${this.positionX} ${this.positionY} ${this.positionZ}`);
+                    }, 1000);
+                    element.setAttribute('position', `${this.positionX} ${this.positionY} ${this.positionZ}`);
+
+                    console.log("set position finish:", element);
                     element.setAttribute('visible', true);
                     if (this.addedScale > 0) {
                         element.setAttribute('scale', `${this.addedScale} ${this.addedScale} ${this.addedScale}`);
                     }
                 }
-                if (nodeRemoved) {
+                else if (nodeRemoved) {
                     if (!element) {
                         return fasle;
                     }
@@ -60,8 +75,10 @@ export class controllerActions {
     }
 
     drag() {
-        console.log("drag:", this.el);
-        this.activeController.appendChild(this.el);
+        // use fragment to accelerate the modify of DOM
+        const fragment = document.createDocumentFragment();
+        fragment.appendChild(this.el);
+        this.activeController.appendChild(fragment);
     }
 
     drop() {
