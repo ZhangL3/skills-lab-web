@@ -13,6 +13,7 @@ let element;
 let currentState;
 
 let activeController;
+let infusionSetInBottle;
 
 let currentControllerState;
 
@@ -21,6 +22,7 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
     init: function(){
         // shallow copy
         element = this.el;
+        infusionSetInBottle = document.querySelector('#infusionSetInBottle');
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -36,6 +38,13 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
             dropBottle();
             controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
             controllerStateIndex.setControllerState('nacl500OnDesk', true);
+            controllerStateIndex.setControllerState('nacl500Dragable', false);
+        });
+
+        $(element).on('hangToStand', () => {
+            console.log("hang to stand");
+            dropBottle();
+            controllerStateIndex.setControllerState('nacl500InHandToStand', null);
             controllerStateIndex.setControllerState('nacl500Dragable', false);
         });
 
@@ -87,6 +96,7 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
     ) {
 
         dragInHand();
+        infusionSetInBottle.setAttribute('visible', false);
 
         currentControllerState = _.cloneDeep(nextControllerState);
 
