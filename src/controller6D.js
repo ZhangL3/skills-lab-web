@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 import Observable from '../utils/observable';
+import { getWordPosition } from "../utils/getWorldPositionAndBound";
 
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
@@ -65,7 +66,7 @@ export default AFRAME.registerComponent('controller_6_d', {
 
             console.log("triggerDown");
             
-            const triggerPosition = this.el.getAttribute('position');
+            const triggerPosition = getWordPosition(this.el);
 
             const triggerEvent = {
                 eventName: 'triggerDown',
@@ -77,20 +78,18 @@ export default AFRAME.registerComponent('controller_6_d', {
 
         });
 
-        $(this.el).on('teleported', (event, data) => {
-            console.log("event: ", event, typeof(event));
-            if (data) {
-                console.log("data: ", data, typeof(data));
-            }
-        });
+        this.el.addEventListener('teleported', (event) => {
+            // console.log("teleported.event: ", event);
+            // const activeControllerId = event.target.getAttribute('id');
+            // const activeController = document.querySelector(`#${activeControllerId}`);
+            // const newPosition = event.detail.newPosition;
+            // console.log("newPositionString: ", `${newPosition.x} ${newPosition.y} ${newPosition.z}`, typeof(`${newPosition.x} ${newPosition.y} ${newPosition.z}`));
+            //
+            // activeController.setAttribute('position', newPosition);
+            // console.log("newPosition: ", newPosition, typeof(newPosition));
+            // console.log("activeController: ", activeController, typeof(activeController));
 
-        // $(this.el).on('trackpaddown', (event) => {
-        //     console.log("trackpaddown: ", event);
-        // });
-        //
-        // $(this.el).on('trackpadchanged', (event) => {
-        //     console.log("trackpadchanged: ", event);
-        // });
+        });
     }
 });
 
