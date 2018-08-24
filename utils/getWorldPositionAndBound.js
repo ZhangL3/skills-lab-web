@@ -8,9 +8,10 @@ export default AFRAME.registerComponent('get_world_bound', {
     },
 });
 
-export function getWordPosition() {
+export function getWordPosition(element) {
     let worldPos = new THREE.Vector3();
     worldPos.setFromMatrixPosition(element.object3D.matrixWorld);
+    return worldPos;
 }
 
 export function getWorldBound(element) {
