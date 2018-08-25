@@ -39,12 +39,13 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
 
     if(
         controllerStateIndex.getControllerState('nacl500InHandToDesk') !== null
-        &&triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
+        && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
         && !controllerStateIndex.getControllerState('nacl500OnDesk')
     ) {
         console.log("put on table");
         $(bottleNacl500).trigger('putOnDesk');
-        aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
+        // aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
+        bottleNacl500.setAttribute('position', schema.onDeskPosition);
     }
 }
 

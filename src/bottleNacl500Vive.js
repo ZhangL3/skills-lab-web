@@ -17,6 +17,11 @@ let infusionSetInBottle;
 
 let currentControllerState;
 
+const schema = {
+    onDeskPosition: '-0.32 0.732 -0.83',
+    dur: '500'
+};
+
 export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
     init: function(){
@@ -39,6 +44,7 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
             controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
             controllerStateIndex.setControllerState('nacl500OnDesk', true);
             controllerStateIndex.setControllerState('nacl500Dragable', false);
+
         });
 
         $(element).on('hangToStand', () => {
