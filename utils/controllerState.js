@@ -18,6 +18,7 @@ import { handleControllerStateNotifyInfusionSetCap } from '../src/infusionSetCap
 import { handleControllerStateNotifyToggleBoxNacl500Hanged } from '../src/toggleBoxNacl500Hanged';
 import { handleControllerStateNotifyInfusionSetHanged } from '../src/infusionSetHangedVive';
 import { handleControllerStateNotifyToggleBoxInfusionSetHangedChamber } from '../src/toggleBoxInfusionSetHangedChamber';
+import { handleControllerStateNotifyToggleBoxInfusionSetHangedWheel } from '../src/toggleBoxInfusionSetHangedWheel';
 
 
 const controllerState = {
@@ -76,6 +77,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500Hanged);
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetHanged);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetHangedChamber);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetHangedWheel);
 
         console.log("controllerState init");
 

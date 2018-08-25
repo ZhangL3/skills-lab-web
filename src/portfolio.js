@@ -53,7 +53,7 @@ export default AFRAME.registerComponent('portfolio', {
     }
 });
 
-const schema = {
+export const schema = {
     openPosition : '0 0 0',
     openRotation : '0 0 0',
     closePosition :   '0.08 -0.015 0',
@@ -62,12 +62,12 @@ const schema = {
     onTableRotation : '0 -90 -1.43',
     inFrontOfEyesPosition : '0 1 -0.52',
     inFrontOfEyesRotation : '0 -90 -70',
-    dur : 500,
     positionAfterCheckVive: '-0.564 0.682 -0.939',
+    dur : 500,
 };
 
 // open portfolio
-function open () {
+export function open () {
     aAnimationWrapper(
         foregroundOfPortfolio, '', 'rotation', '', schema.openRotation, schema.dur,
         '', true, 'forwards'
@@ -96,7 +96,7 @@ function takeInHand () {
 }
 
 // close portfolio
-function close () {
+export function close () {
     // aAnimationWrapper(
     //     foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur,
     //     '', true, 'forwards'
@@ -154,7 +154,7 @@ function handleClickPortfolio () {
 }
 
 // hide the hooks for 5R
-function hideHooks() {
+export function hideHooks() {
     console.log("hide!!!!: ");
     hookName.setAttribute('visible', 'false');
     hookDrug.setAttribute('visible', 'false');

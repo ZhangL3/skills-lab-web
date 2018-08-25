@@ -53,6 +53,7 @@ export function handleControllerNotifyToggleBoxNacl500Hanged( triggerEvent ) {
         console.log("hang to stand");
         $(nacl500Bottle).trigger('hangToStand');
         aAnimationWrapper(nacl500Bottle, '', 'position', '', schema.hangedPosition, schema.dur, '',true , 'forwards');
+        nacl500Bottle.setAttribute('position', schema.hangedPosition);
         aAnimationWrapper(nacl500Bottle, '', 'rotation', '', schema.hangedRotation, schema.dur, '',true , 'forwards');
     }
 
