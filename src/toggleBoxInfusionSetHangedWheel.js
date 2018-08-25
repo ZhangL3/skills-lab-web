@@ -27,7 +27,8 @@ export default AFRAME.registerComponent('toggle_box_infusion_set_hanged_wheel', 
 
 const schema = {
     infusionSetHangedWheelOpenPosition: '-0.530 0.110 -0.060',
-    dur: 500
+    dur: 500,
+    fillTime: 800
 };
 
 export function handleControllerNotifyToggleBoxInfusionSetHangedWheel( triggerEvent ) {
@@ -39,20 +40,22 @@ export function handleControllerNotifyToggleBoxInfusionSetHangedWheel( triggerEv
     }
 
     getWorldBound(element);
-    if (
-        isEmitted(element, triggerEvent.position)
-        && controllerStateIndex.getControllerState('infusionSetWheelClosed')
-    ) {
-        controllerStateIndex.setControllerState('infusionSetWheelClosed', false);
+    if (isEmitted(element, triggerEvent.position)) {
+
+        if (
+            controllerStateIndex.getControllerState('infusionSetWheelClosed')
+        ) {
+            controllerStateIndex.setControllerState('infusionSetWheelClosed', false);
+        }
     }
 }
 
 export function handleControllerStateNotifyToggleBoxInfusionSetHangedWheel (nextControllerState) {
 
     if (
-        nextControllerState.dripChamberFilled
-        && !nextControllerState.infusionSetWheelClosed
-        && currentControllerState.dripChamberFilled
+        !nextControllerState.infusionSetWheelClosed
+        && nextControllerState.dripChamberFilled
+        && currentControllerState.infusionSetWheelClosed
     ) {
         openWheel();
     }
@@ -64,5 +67,3 @@ export function handleControllerStateNotifyToggleBoxInfusionSetHangedWheel (next
 function openWheel() {
     aAnimationWrapper(infusionSetHangedWheel, '', 'position', '', schema.infusionSetHangedWheelOpenPosition, schema.dur, '', true, 'forwards');
 }
-
-

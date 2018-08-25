@@ -30,23 +30,37 @@ export default AFRAME.registerComponent('infusion_set_hanged_vive', {
     }
 });
 
-export function handleNotifyInfusionSetHanged(nextState) {
+const schema = {
+  dur: 800
+};
+
+export function handleNotifyInfusionSetHangedVive(nextState) {
 
     // deep copy
     currentState = _.cloneDeep(stateIndex.getState());
 }
 
-export function handleControllerNotifyInfusionSetHanged ( triggerEvent ) {
+export function handleControllerNotifyInfusionSetHangedVive ( triggerEvent ) {
 
 }
 
-export function handleControllerStateNotifyInfusionSetHanged (nextControllerState) {
+export function handleControllerStateNotifyInfusionSetHangedVive (nextControllerState) {
 
     if (
         nextControllerState.nacl500Hanged
         && !currentControllerState.nacl500Hanged
     ) {
         element.setAttribute('visible', true);
+    }
+
+    if (
+        nextControllerState.dripChamberFilled
+        && !nextControllerState.infusionSetWheelClosed
+        && currentControllerState.dripChamberFilled
+    ) {
+        setTimeout(() => {
+            element.setAttribute('visible', false);
+        }, schema.dur);
     }
 
     // deep copy

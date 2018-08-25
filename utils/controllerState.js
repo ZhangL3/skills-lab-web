@@ -16,9 +16,10 @@ import { handleControllerStateNotifyInfusionSetOpen } from '../src/infusionSetOp
 import { handleControllerStateNotifyToggleBoxInfusionSetOnDesk } from '../src/toggleBoxInfusionSetOnDesk';
 import { handleControllerStateNotifyInfusionSetCap } from '../src/infusionSetCap';
 import { handleControllerStateNotifyToggleBoxNacl500Hanged } from '../src/toggleBoxNacl500Hanged';
-import { handleControllerStateNotifyInfusionSetHanged } from '../src/infusionSetHangedVive';
+import { handleControllerStateNotifyInfusionSetHangedVive } from '../src/infusionSetHangedVive';
 import { handleControllerStateNotifyToggleBoxInfusionSetHangedChamber } from '../src/toggleBoxInfusionSetHangedChamber';
 import { handleControllerStateNotifyToggleBoxInfusionSetHangedWheel } from '../src/toggleBoxInfusionSetHangedWheel';
+import { handleControllerStateNotifyInfusionSetHangedFilledVive } from '../src/infusionSetHangedFilledVive';
 
 
 const controllerState = {
@@ -75,9 +76,10 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetOnDesk);
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetCap);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500Hanged);
-        this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetHanged);
+        this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetHangedVive);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetHangedChamber);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetHangedWheel);
+        this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetHangedFilledVive);
 
         console.log("controllerState init");
 

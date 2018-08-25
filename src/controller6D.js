@@ -30,6 +30,7 @@ import { handleControllerNotifyInfusionSetCap } from './infusionSetCap';
 import { handleControllerNotifyToggleBoxNacl500Hanged } from './toggleBoxNacl500Hanged';
 import { handleControllerNotifyToggleBoxInfusionSetHangedChamber } from './toggleBoxInfusionSetHangedChamber';
 import { handleControllerNotifyToggleBoxInfusionSetHangedWheel } from './toggleBoxInfusionSetHangedWheel';
+import { handleControllerNotifyInfusionSetHangedFilledVive } from './infusionSetHangedFilledVive';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -65,6 +66,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Hanged);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetHangedChamber);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetHangedWheel);
+        this.viveObserver.subscribe(handleControllerNotifyInfusionSetHangedFilledVive);
 
         $(this.el).on('triggerdown', () => {
 

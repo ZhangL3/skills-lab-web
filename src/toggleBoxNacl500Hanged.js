@@ -55,6 +55,7 @@ export function handleControllerNotifyToggleBoxNacl500Hanged( triggerEvent ) {
         aAnimationWrapper(nacl500Bottle, '', 'position', '', schema.hangedPosition, schema.dur, '',true , 'forwards');
         nacl500Bottle.setAttribute('position', schema.hangedPosition);
         aAnimationWrapper(nacl500Bottle, '', 'rotation', '', schema.hangedRotation, schema.dur, '',true , 'forwards');
+        element.setAttribute('visible', false);
     }
 
 }
