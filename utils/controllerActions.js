@@ -1,3 +1,4 @@
+import { getWordPosition } from "./getWorldPositionAndBound";
 
 const observerOptions = {
     childList: true,
@@ -56,7 +57,8 @@ export class controllerActions {
                         return fasle;
                     }
                     element.setAttribute('visible', true);
-                    let activePosition = this.activeController.getAttribute('position');
+                    // let activePosition = this.activeController.getAttribute('position');
+                    let activePosition = getWordPosition(this.activeController);
                     element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`);
                     if (this.removedScale > 0) {
                         element.setAttribute('scale', `${this.removedScale} ${this.removedScale} ${this.removedScale}`);
