@@ -28,6 +28,7 @@ import { handleControllerNotifyInfusionSetOpen } from './infusionSetOpenVive';
 import { handleControllerNotifyToggleBoxInfusionSetCap } from './toggleBoxInfusionSetOpenWheel';
 import { handleControllerNotifyInfusionSetCap } from './infusionSetCap';
 import { handleControllerNotifyToggleBoxNacl500Hanged } from './toggleBoxNacl500Hanged';
+import { handleControllerNotifyToggleBoxInfusionSetHangedChamber } from './toggleBoxInfusionSetHangedChamber';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -61,6 +62,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetCap);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetCap);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Hanged);
+        this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetHangedChamber);
 
         $(this.el).on('triggerdown', () => {
 
@@ -79,15 +81,6 @@ export default AFRAME.registerComponent('controller_6_d', {
         });
 
         this.el.addEventListener('teleported', (event) => {
-            // console.log("teleported.event: ", event);
-            // const activeControllerId = event.target.getAttribute('id');
-            // const activeController = document.querySelector(`#${activeControllerId}`);
-            // const newPosition = event.detail.newPosition;
-            // console.log("newPositionString: ", `${newPosition.x} ${newPosition.y} ${newPosition.z}`, typeof(`${newPosition.x} ${newPosition.y} ${newPosition.z}`));
-            //
-            // activeController.setAttribute('position', newPosition);
-            // console.log("newPosition: ", newPosition, typeof(newPosition));
-            // console.log("activeController: ", activeController, typeof(activeController));
 
         });
     }

@@ -12,14 +12,12 @@ import { controllerActions } from "../utils/controllerActions";
 let currentState;
 let currentControllerState;
 let element;
-let infusionSetHangedFill;
 
 export default AFRAME.registerComponent('infusion_set_hanged_vive', {
 
     init: function(){
         // shallow copy
         element = this.el;
-        infusionSetHangedFill = document.querySelector('infusionSetHangedFill');
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -40,11 +38,6 @@ export function handleNotifyInfusionSetHanged(nextState) {
 
 export function handleControllerNotifyInfusionSetHanged ( triggerEvent ) {
 
-    getWorldBound(infusionSetHangedFill);
-
-    if(isEmitted(infusionSetHangedFill, triggerEvent.position)){
-        controllerStateIndex.setControllerState('dripChamberFilled', true);
-    }
 }
 
 export function handleControllerStateNotifyInfusionSetHanged (nextControllerState) {
@@ -54,13 +47,6 @@ export function handleControllerStateNotifyInfusionSetHanged (nextControllerStat
         && !currentControllerState.nacl500Hanged
     ) {
         element.setAttribute('visible', true);
-    }
-
-    if (
-        nextControllerState.dripChamberFilled
-        && currentControllerState.dripChamberFilled
-    ) {
-        infusionSetHangedFill.setAttribute('visible', true);
     }
 
     // deep copy

@@ -43,6 +43,7 @@ import * as infusionSetCap from './infusionSetCap';
 
 import * as toggleBoxNacl500Hanged from './toggleBoxNacl500Hanged';
 import * as infusionSetHangedVive from './infusionSetHangedVive';
+import * as toggleBoxInfusionSetHangedChamber from './toggleBoxInfusionSetHangedChamber';
 
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
 import * as sectionSelection from './sectionSelection';
