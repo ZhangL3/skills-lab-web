@@ -33,7 +33,7 @@ import { handleControllerNotifyToggleBoxInfusionSetHangedWheel } from './toggleB
 import { handleControllerNotifyInfusionSetHangedFilledVive } from './infusionSetHangedFilledVive';
 import { handleControllerNotifyNameLabelStamperVive } from './nameLabelStamperVive';
 import { handleControllerNotifyToggleBoxNacl500NameLabel } from './toggleBoxNacl500NameLabel';
-import { handleControllerNotifyToggleBoxNameLabelEmpty } from './toggelBoxNameLabelEmpty';
+import { handleControllerNotifyToggleBoxNameLabelEmpty } from './toggleBoxNameLabelEmpty';
 
 export default AFRAME.registerComponent('controller_6_d', {
 

@@ -62,6 +62,10 @@ export function handleControllerNotifyToggleBoxNacl500Hanged( triggerEvent ) {
 
 export function handleControllerStateNotifyToggleBoxNacl500Hanged (nextControllerState) {
 
+    if (nextControllerState.nacl500Hanged) {
+        return false;
+    }
+
     if (
         nextControllerState.nacl500InHandToStand
         && !currentControllerState.nacl500InHandToStand

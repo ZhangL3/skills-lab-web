@@ -22,7 +22,7 @@ import { handleControllerStateNotifyToggleBoxInfusionSetHangedWheel } from '../s
 import { handleControllerStateNotifyInfusionSetHangedFilledVive } from '../src/infusionSetHangedFilledVive';
 import { handleControllerStateNotifyNameLabelStamperVive } from '../src/nameLabelStamperVive';
 import { handleControllerStateNotifyToggleBoxNacl500NameLabel } from '../src/toggleBoxNacl500NameLabel';
-import { handleControllerStateNotifyToggleBoxNameLabelEmpty } from '../src/toggelBoxNameLabelEmpty';
+import { handleControllerStateNotifyToggleBoxNameLabelEmpty } from '../src/toggleBoxNameLabelEmpty';
 
 
 const controllerState = {
