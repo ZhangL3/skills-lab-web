@@ -20,6 +20,8 @@ import { handleControllerStateNotifyInfusionSetHangedVive } from '../src/infusio
 import { handleControllerStateNotifyToggleBoxInfusionSetHangedChamber } from '../src/toggleBoxInfusionSetHangedChamber';
 import { handleControllerStateNotifyToggleBoxInfusionSetHangedWheel } from '../src/toggleBoxInfusionSetHangedWheel';
 import { handleControllerStateNotifyInfusionSetHangedFilledVive } from '../src/infusionSetHangedFilledVive';
+import { handleControllerStateNotifyNameLabelStamperVive } from '../src/nameLabelStamperVive';
+import { handleControllerStateNotifyToggleBoxNacl500NameLabel } from '../src/toggleBoxNacl500NameLabel';
 
 
 const controllerState = {
@@ -51,7 +53,11 @@ const controllerState = {
     nacl500Hanged: false,
     dripChamberFilled: false,
     infusionSetWheelClosed: false,
-    tubeFixed: false
+    tubeFixed: false,
+
+    nameLabelInHand: null,
+    nameLabelFilled: false,
+    nameLabelPasted: false
 };
 
 export default class controllerStateIndex {
@@ -80,6 +86,8 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetHangedChamber);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetHangedWheel);
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetHangedFilledVive);
+        this.controllerObserver.subscribe(handleControllerStateNotifyNameLabelStamperVive);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500NameLabel);
 
         console.log("controllerState init");
 
