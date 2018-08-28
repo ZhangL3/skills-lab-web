@@ -19,6 +19,9 @@ let nameLabelWroteRight;
 let activeController;
 let infusionSetWheel;
 
+// take empty name label and write can not at same time done
+export let canWrite;
+
 export default AFRAME.registerComponent('name_label_stamper_vive', {
 
     init: function(){
@@ -29,6 +32,7 @@ export default AFRAME.registerComponent('name_label_stamper_vive', {
         nameLabelWroteRight = document.querySelector('#nameLabelWroteRight');
         activeController = null;
         infusionSetWheel = document.querySelector('#infusionSetOpenWheel');
+        canWrite = false;
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -75,6 +79,10 @@ export function handleControllerNotifyNameLabelStamperVive ( triggerEvent ) {
             activeController = triggerEvent.activeController;
             let activeControllerId = activeController.getAttribute('id');
             controllerStateIndex.setControllerState('nameLabelInHand', activeControllerId);
+            // after 2 second can write name label
+            setTimeout(()=>{
+                canWrite = true;
+            }, 2000);
         }
     }
 
