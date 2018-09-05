@@ -130,317 +130,315 @@
     <!-- By webVR mode should the position 0 -6 2, 2D mode 0 0 2-->
     <a-entity id="allThings"  position="0 0 0" scale="1 1 1">
 
-    <!-- cabinets -->
-    <a-entity id="twoCabinets" position="0 0 -1">
-        <a-gltf-model src="#cabinetBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
+        <!-- cabinets -->
+        <a-entity id="twoCabinets" position="0 0 -1">
+            <a-gltf-model src="#cabinetBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
 
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 5.44 3.41" drawer_open="open: 1.8 5.44 3.41; close: 0 5.44 3.41">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 5.44 3.41" drawer_open="open: 1.8 5.44 3.41; close: 0 5.44 3.41">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 4.1 3.41" drawer_open="open: 1.8 4.1 3.41; close: 0 4.1 3.41">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 2.8 3.41" drawer_open="open: 1.8 2.8 3.41; close: 0 2.8 3.41">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 5.44 0.037" drawer_open="open: 1.8 5.44 0.037; close: 0 5.44 0.037">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model id="drawerWithCutlery" class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 4.1 0.037" drawer_open_with_infusion_set>
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                    <a-image src="#drawerLabelCutlery" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 2.8 0.037" drawer_open="open: 1.8 2.8 0.037; close: 0 2.8 0.037">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" position="0 1.4 0.1" scale="1 1 1" rotation="0 0 0"
+                              drawer_open="open: 1.8 1.4 0.1; close: 0 1.4 0.1">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" position="0 0 0.1" scale="1 1 1" rotation="0 0 0" drawer_open>
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle"></a-gltf-model>
+                </a-gltf-model>
+
             </a-gltf-model>
 
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 4.1 3.41" drawer_open="open: 1.8 4.1 3.41; close: 0 4.1 3.41">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-            </a-gltf-model>
+            <a-gltf-model src="#cabinetBody" position="0.675 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
 
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 2.8 3.41" drawer_open="open: 1.8 2.8 3.41; close: 0 2.8 3.41">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-            </a-gltf-model>
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 5.44 3.41" drawer_open="open: 1.8 5.44 3.41; close: 0 5.44 3.41">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                    <a-image src="#drawerLabelVenen" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
 
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 5.44 0.037" drawer_open="open: 1.8 5.44 0.037; close: 0 5.44 0.037">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-            </a-gltf-model>
+                </a-gltf-model>
 
-            <a-gltf-model id="drawerWithCutlery" class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 4.1 0.037" drawer_open_with_infusion_set>
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-                <a-image src="#drawerLabelCutlery" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
-            </a-gltf-model>
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 4.1 3.41" drawer_open="open: 1.8 4.1 3.41; close: 0 4.1 3.41">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                    <a-image src="#drawerLabelSprizen" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
 
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 2.8 0.037" drawer_open="open: 1.8 2.8 0.037; close: 0 2.8 0.037">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-            </a-gltf-model>
+                </a-gltf-model>
 
-            <a-gltf-model class="drawer" src="#cabinetDrawer" position="0 1.4 0.1" scale="1 1 1" rotation="0 0 0"
-                          drawer_open="open: 1.8 1.4 0.1; close: 0 1.4 0.1">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle"></a-gltf-model>
-            </a-gltf-model>
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 2.8 3.41" drawer_open="open: 1.8 2.8 3.41; close: 0 2.8 3.41">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                    <a-image src="#drawerLabelMandrins" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
 
-            <a-gltf-model class="drawer" src="#cabinetDrawer" position="0 0 0.1" scale="1 1 1" rotation="0 0 0" drawer_open>
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 5.44 0.037" drawer_open="open: 1.8 5.44 0.037; close: 0 5.44 0.037">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 4.1 0.037" drawer_open="open: 1.8 4.1 0.037; close: 0 4.1 0.037">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
+                              position="0 2.8 0.037" drawer_open="open: 1.8 2.8 0.037; close: 0 2.8 0.037">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" position="0 1.4 0.1" scale="1 1 1" rotation="0 0 0"
+                              drawer_open="open: 1.8 1.4 0.1; close: 0 1.4 0.1">
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model class="drawer" src="#cabinetDrawer" position="0 0 0.1" scale="1 1 1" rotation="0 0 0" drawer_open>
+                    <a-gltf-model drawer_open_with_handle src="#cabinetHandle"></a-gltf-model>
+                </a-gltf-model>
+
             </a-gltf-model>
+        </a-entity>
+
+        <!-- cupboard -->
+        <a-entity id="twoCupboard" position="0 1.35 -1">
+            <a-gltf-model src="#cupboardBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
+                <a-gltf-model id="leftCupboardLeftDoor" class="cupboardDoor" src="#cupboardLeftDoor" position="2.7 0 6.8" door_open>
+                    <a-gltf-model src="#cupboardLeftDoorHandle"></a-gltf-model>
+                    <a-gltf-model src="#cupboardLeftDoorGlass"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model id="leftCupboardRightDoor" class="cupboardDoor" src="#cupboardRightDoor" position="2.7 0 0" door_open="open:0 75 0">
+                    <a-gltf-model src="#cupboardRightDoorHandle"></a-gltf-model>
+                    <a-gltf-model src="#cupboardRightDoorGlass"></a-gltf-model>
+                </a-gltf-model>
+            </a-gltf-model>
+            <a-gltf-model src="#cupboardBody" position="0.676 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
+                <a-gltf-model id="rightCupboardLeftDoor" class="cupboardDoor" src="#cupboardLeftDoor" position="2.7 0 6.8" door_open="open:0 -75 0">
+                    <a-gltf-model src="#cupboardLeftDoorHandle"></a-gltf-model>
+                    <a-gltf-model src="#cupboardLeftDoorGlass"></a-gltf-model>
+                </a-gltf-model>
+
+                <a-gltf-model id="rightCupboardRightDoor" class="cupboardDoor" src="#cupboardRightDoor" position="2.7 0 0" door_open="open:0 90 0">
+                    <a-gltf-model src="#cupboardRightDoorHandle"></a-gltf-model>
+                    <a-gltf-model src="#cupboardRightDoorGlass"></a-gltf-model>
+                </a-gltf-model>
+            </a-gltf-model>
+        </a-entity>
+
+        <!-- bottles -->
+        <a-gltf-model bottle_nacl_500_vive id="nacl500Bottle" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1" bottle_nacl500>
+            <a-gltf-model bottle_nacl500_cap id="nacl500Cap" src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
+            <a-image hook_nach500_label id="hookNach500Label" src="#hook" scale="0.5 0.5 0.5" position='-0.324 0 0' rotation="0 -90 0" visible="false" material="alphaTest: 0.32"></a-image>
+            <a-box toggle_box_nach500_label id="toggleBoxNacl500Label" scale="0.200 0.919 0.681" position='-0.387 0.085 0.024' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+
+            <a-gltf-model toggle_box_nach500_liquid src="#liquidMesh"></a-gltf-model>
+            <a-image hook_nach500_liquid id="hookBottleLiquid" src="#hook" scale="0.5 0.5 0.5" position="0.295 0.060 -0.385" rotation="0.000 149.203 0.000" visible="false" material="alphaTest: 0.32"></a-image>
+
+            <a-image src="#nacl500" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
+            <a-image hook_nach500_cap id="hookBottleCap" src="#hook" scale="0.2 0.2 0.2" position="0 0.922 0" rotation="-90 -90 0" visible="false" material="alphaTest: 0.32"></a-image>
+            <a-box toggle_box_nach500_cap id="toggleBoxNacl500Cap" scale="0.355 0.228 0.41" position="0 0.975 0" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+
+            <a-box toggle_box_nach500_name_label id="toggleBoxNacl500NameLabel" visible="false" scale="0.200 0.919 0.681" position='0.358 0.085 0.024' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+
+            <a-image id="nameLabelWroteOnBottle" src="#nameLabelWroteImg" scale="0.5 0.25 0" position="0.314 0.141 0.001" rotation="0 90 180" visible="false"></a-image>
+
 
         </a-gltf-model>
-
-        <a-gltf-model src="#cabinetBody" position="0.675 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
-
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 5.44 3.41" drawer_open="open: 1.8 5.44 3.41; close: 0 5.44 3.41">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-                <a-image src="#drawerLabelVenen" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
-
-            </a-gltf-model>
-
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 4.1 3.41" drawer_open="open: 1.8 4.1 3.41; close: 0 4.1 3.41">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-                <a-image src="#drawerLabelSprizen" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
-
-            </a-gltf-model>
-
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 2.8 3.41" drawer_open="open: 1.8 2.8 3.41; close: 0 2.8 3.41">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-                <a-image src="#drawerLabelMandrins" position="2.719 0.648 1.594" scale="2.832 1.000 1.000" rotation="0 90 0"></a-image>
-
-            </a-gltf-model>
-
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 5.44 0.037" drawer_open="open: 1.8 5.44 0.037; close: 0 5.44 0.037">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-            </a-gltf-model>
-
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 4.1 0.037" drawer_open="open: 1.8 4.1 0.037; close: 0 4.1 0.037">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-            </a-gltf-model>
-
-            <a-gltf-model class="drawer" src="#cabinetDrawer" mixin="cabinetSmallDrawer"
-                          position="0 2.8 0.037" drawer_open="open: 1.8 2.8 0.037; close: 0 2.8 0.037">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle" mixin="cabinetSmallDrawerHandle"></a-gltf-model>
-            </a-gltf-model>
-
-            <a-gltf-model class="drawer" src="#cabinetDrawer" position="0 1.4 0.1" scale="1 1 1" rotation="0 0 0"
-                          drawer_open="open: 1.8 1.4 0.1; close: 0 1.4 0.1">
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle"></a-gltf-model>
-            </a-gltf-model>
-
-            <a-gltf-model class="drawer" src="#cabinetDrawer" position="0 0 0.1" scale="1 1 1" rotation="0 0 0" drawer_open>
-                <a-gltf-model drawer_open_with_handle src="#cabinetHandle"></a-gltf-model>
-            </a-gltf-model>
-
-        </a-gltf-model>
-    </a-entity>
-
-    <!-- cupboard -->
-    <a-entity id="twoCupboard" position="0 1.35 -1">
-        <a-gltf-model src="#cupboardBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
-            <a-gltf-model id="leftCupboardLeftDoor" class="cupboardDoor" src="#cupboardLeftDoor" position="2.7 0 6.8" door_open>
-                <a-gltf-model src="#cupboardLeftDoorHandle"></a-gltf-model>
-                <a-gltf-model src="#cupboardLeftDoorGlass"></a-gltf-model>
-            </a-gltf-model>
-
-            <a-gltf-model id="leftCupboardRightDoor" class="cupboardDoor" src="#cupboardRightDoor" position="2.7 0 0" door_open="open:0 75 0">
-                <a-gltf-model src="#cupboardRightDoorHandle"></a-gltf-model>
-                <a-gltf-model src="#cupboardRightDoorGlass"></a-gltf-model>
-            </a-gltf-model>
-        </a-gltf-model>
-        <a-gltf-model src="#cupboardBody" position="0.676 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
-            <a-gltf-model id="rightCupboardLeftDoor" class="cupboardDoor" src="#cupboardLeftDoor" position="2.7 0 6.8" door_open="open:0 -75 0">
-                <a-gltf-model src="#cupboardLeftDoorHandle"></a-gltf-model>
-                <a-gltf-model src="#cupboardLeftDoorGlass"></a-gltf-model>
-            </a-gltf-model>
-
-            <a-gltf-model id="rightCupboardRightDoor" class="cupboardDoor" src="#cupboardRightDoor" position="2.7 0 0" door_open="open:0 90 0">
-                <a-gltf-model src="#cupboardRightDoorHandle"></a-gltf-model>
-                <a-gltf-model src="#cupboardRightDoorGlass"></a-gltf-model>
-            </a-gltf-model>
-        </a-gltf-model>
-    </a-entity>
-
-    <!-- bottles -->
-    <a-gltf-model bottle_nacl_500_vive id="nacl500Bottle" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1" bottle_nacl500>
-        <a-gltf-model bottle_nacl500_cap id="nacl500Cap" src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
-        <a-image hook_nach500_label id="hookNach500Label" src="#hook" scale="0.5 0.5 0.5" position='-0.324 0 0' rotation="0 -90 0" visible="false" material="alphaTest: 0.32"></a-image>
-        <a-box toggle_box_nach500_label id="toggleBoxNacl500Label" scale="0.200 0.919 0.681" position='-0.387 0.085 0.024' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
-
-        <a-gltf-model toggle_box_nach500_liquid src="#liquidMesh"></a-gltf-model>
-        <a-image hook_nach500_liquid id="hookBottleLiquid" src="#hook" scale="0.5 0.5 0.5" position="0.295 0.060 -0.385" rotation="0.000 149.203 0.000" visible="false" material="alphaTest: 0.32"></a-image>
-
-        <a-image src="#nacl500" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
-        <a-image hook_nach500_cap id="hookBottleCap" src="#hook" scale="0.2 0.2 0.2" position="0 0.922 0" rotation="-90 -90 0" visible="false" material="alphaTest: 0.32"></a-image>
-        <a-box toggle_box_nach500_cap id="toggleBoxNacl500Cap" scale="0.355 0.228 0.41" position="0 0.975 0" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
-
-        <a-box toggle_box_nach500_name_label id="toggleBoxNacl500NameLabel" visible="false" scale="0.200 0.919 0.681" position='0.358 0.085 0.024' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
-
-        <a-image id="nameLabelWroteOnBottle" src="#nameLabelWroteImg" scale="0.5 0.25 0" position="0.314 0.141 0.001" rotation="0 90 180" visible="false"></a-image>
-
-
-    </a-gltf-model>
-    <a-box toggle_box_nacl500_on_desk id="toggleBoxNacl500OnDesk" scale="0.114 0.149 0.104" position="-0.320 0.752 -0.829" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
-    <a-box toggle_box_nacl500_hanged id="toggleBoxNacl500Hanged" scale="0.114 0.149 0.104" position="0.841 1.36 -0.539" material="color:#00ffff; transparent: true; opacity: 0.5" visible="false"></a-box>
+        <a-box toggle_box_nacl500_on_desk id="toggleBoxNacl500OnDesk" scale="0.114 0.149 0.104" position="-0.320 0.752 -0.829" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
+        <a-box toggle_box_nacl500_hanged id="toggleBoxNacl500Hanged" scale="0.114 0.149 0.104" position="0.841 1.36 -0.539" material="color:#00ffff; transparent: true; opacity: 0.5" visible="false"></a-box>
 
 
         <a-gltf-model id="g51000Bottle" src="#bottleMesh" position="-0.272 1.420 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1">
-        <a-gltf-model src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
+            <a-gltf-model src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
 
-        <a-gltf-model src="#liquidMesh"></a-gltf-model>
-        <a-image src="#g51000" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
-    </a-gltf-model>
-
-
-    <!-- hand disinfection dispenser -->
-    <a-gltf-model src="#dispenserBody" position="-1.18 0.742 -0.9" scale="0.4 0.4 0.4">
-        <a-gltf-model src="#dispenserHandle" hand_disinfection></a-gltf-model>
-        <a-image src="#disinfectionLabel" position="0 -0.13 0" scale="0.266 0.301 1"></a-image>
-    </a-gltf-model>
-
-    <!-- clock -->
-    <a-gltf-model id="clockBody" src="#clockBodyMesh" position="-1.2 1.35 -1" scale="0.2 0.2 0.2" rotation="0 270 0">
-        <a-gltf-model id="secHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.9 0.9 " rotation="90 0 0" clock_hand_roll></a-gltf-model>
-        <a-gltf-model id="minHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.725 1.026 " rotation="90 0 0" clock_hand_roll="minuteClockHand"></a-gltf-model>
-        <a-gltf-model id="hHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.624 1.353" rotation="90 0 0" clock_hand_roll="hourClockHand"></a-gltf-model>
-    </a-gltf-model>
-
-    <!-- waste bin-->
-    <a-gltf-model src="#wasteBinBody" position="0.00 0.746 -0.93" scale="0.06 0.06 0.06 " rotation="0 45 0">
-        <a-gltf-model src="#wasteBinCap" position="0.594 1.264 -0.020" waste_bin_cap_open></a-gltf-model>
-    </a-gltf-model>
-    <a-cylinder id="toggleBoxWasteBin" toggle_box_waste_bin position="0.00 0.881 -0.93" height="0.170" radius="0.060" material="color:#ff0000; transparent: true; opacity: 0.5" visible="true"></a-cylinder>
-
-
-        <!-- cloth bottle -->
-    <a-gltf-model src="#clothBottleBody" position="0.22 0.678 -0.9" rotation="0 180 0" scale="0.15 0.15 0.15">
-        <a-gltf-model id="clothBottleCap" src="#clothBottleCap" position="-0.017 0.851 0.322" cloth_bottle_cap_open cloth_bottle_cap_vive></a-gltf-model>
-        <a-gltf-model id="clothInBottle" src="#clothBottleCloth" position="-0.053 0.599 0.145" scale="0.8 1 1" disinfection_cloth_in_bottle></a-gltf-model>
-    </a-gltf-model>
-
-    <!-- cloth -->
-    <a-gltf-model id="clothOnTable" src="#clothMesh" position="0 0.681 -0.81" rotation="" scale="0.1 0.1 0.1" visible="false" disinfection_cloth_on_table disinfection_cloth_on_table_vive></a-gltf-model>
-
-    <a-box id="toggleBoxDesk" toggle_box_desk_disinfection scale="1.322 0.067 0.157" position="0.002 0.711 -0.805" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
-
-
-        <!-- glove shelf -->
-    <a-gltf-model src="#gloveShelfBody" position="0.570 0.979 -1.000" scale="0.15 0.15 0.15">
-        <a-gltf-model src="#gloveShelfBox" position="0.015 1.125 0.000" scale="1.115 1.115 1" >
-            <a-image src="#gloveBoxL" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
-            <a-gltf-model glove id="gloveL" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
+            <a-gltf-model src="#liquidMesh"></a-gltf-model>
+            <a-image src="#g51000" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
         </a-gltf-model>
-        <a-gltf-model src="#gloveShelfBox" position="0.015 0.625 0.000" scale="1.115 1.115 1" >
-            <a-image src="#gloveBoxM" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
-            <a-gltf-model glove id="gloveM" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
+
+
+        <!-- hand disinfection dispenser -->
+        <a-gltf-model src="#dispenserBody" position="-1.18 0.742 -0.9" scale="0.4 0.4 0.4">
+            <a-gltf-model src="#dispenserHandle" hand_disinfection></a-gltf-model>
+            <a-image src="#disinfectionLabel" position="0 -0.13 0" scale="0.266 0.301 1"></a-image>
         </a-gltf-model>
-        <a-gltf-model src="#gloveShelfBox" position="0.015 0.039 0.000" scale="1.115 1.115 1" glove>
-            <a-image src="#gloveBoxS" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
-            <a-gltf-model glove id="gloveS" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
+
+        <!-- clock -->
+        <a-gltf-model id="clockBody" src="#clockBodyMesh" position="-1.2 1.35 -1" scale="0.2 0.2 0.2" rotation="0 270 0">
+            <a-gltf-model id="secHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.9 0.9 " rotation="90 0 0" clock_hand_roll></a-gltf-model>
+            <a-gltf-model id="minHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.725 1.026 " rotation="90 0 0" clock_hand_roll="minuteClockHand"></a-gltf-model>
+            <a-gltf-model id="hHand" src="#clockHand" position="0.1 0 0" scale="0.9 0.624 1.353" rotation="90 0 0" clock_hand_roll="hourClockHand"></a-gltf-model>
         </a-gltf-model>
-    </a-gltf-model>
 
-    <!-- holder -->
-    <a-gltf-model src="#holder" position="0.975 0 -0.65" rotation="0 41.59 0" scale="0.5 0.45 0.5"></a-gltf-model>
-
-    <!-- walls -->
-    <a-image id="wallfrontforplace" src="#wallTexture" scale="4.480 2.145 1.000" position="-0.009 1.075 -1.3" rotation=""></a-image>
-
-    <a-image id="wallfront" src="#wallTexture" scale="4.480 2.145 1.000" position="-0.009 1.075 -1.004" rotation=""></a-image>
-    <a-image id="wallleft" src="#wallTexture" scale="3.716 2.155 1.000" position="-2.188 1.075 0.513" rotation="0 90 0"></a-image>
-    <a-image id="wallright" src="#wallTexture" scale="3.716 2.155 1.000" position="2.188 1.075 0.513" rotation="0 90 0"></a-image>
-    <a-image id="walltop" src="#wallTexture" scale="4.388 3.423 1.000" position="-0.027 2.121 0.710" rotation="90 0 0"></a-image>
-    <a-image id="wallback" src="#wallTexture" scale="4.385 2.155 1.000" position="0.003 1.075 2.383" rotation=""></a-image>
-
-    <!-- floor -->
-    <a-image id="floor" src="#floorTexture" scale="4.459 3.741 0.986" position="-0.027 0.001 0.529" rotation="90 0 0"></a-image>
-
-    <!-- whiteboard -->
-    <a-image id="whiteboard" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.173 0.988 0" rotation="0 90 0">
-        <!-- TODO: give to i-image? -->
-        <a-image id="note" src="#noteTexture" scale="0.3 0.3 0.3" position="0.273 -0.223 0.017" rotation="0 0 0" ></a-image>
-        <a-entity id="initText" text="color:#000000; value: If ready, click the portfolio to begin.\n Or select a chapter to begin."
-                  position="0.140, 0.28 0" align="left" width="2" rotation="0 0 0" visible="true"></a-entity>
-        <a-entity id="section" position="0 -0.15 0" section_selection>
-            <a-entity id="section1" text="color:#000000; value: Section1" position="0.14 0.27 0" align="center" width="2"></a-entity>
-            <a-entity id="section2" text="color:#000000; value: Section2" position="0.14 0.17 0" align="center" width="2"></a-entity>
-            <a-entity id="section3" text="color:#000000; value: Section3" position="0.14 0.07 0" align="center" width="2"></a-entity>
-            <a-entity id="section4" text="color:#000000; value: Section4" position="0.14 -0.03 0" align="center" width="2"></a-entity>
-            <a-entity id="section5" text="color:#000000; value: Section5" position="0.14 -0.13 0" align="center" width="2"></a-entity>
-            <a-entity id="section6" text="color:#000000; value: Section6" position="0.14 -0.23 0" align="center" width="2"></a-entity>
-        </a-entity>
-    </a-image>
-
-    <!-- trash can -->
-    <a-gltf-model id="trashCan" src="#trashCan" position="-0.926 0.152 -0.836" scale="0.250 0.300 0.250"></a-gltf-model>
-    <a-cylinder id="toggleBoxTrashCan" toggle_box_trash_can position="-0.926 0.536 -0.836" height="0.47" radius="0.1" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-cylinder>
+        <!-- waste bin-->
+        <a-gltf-model src="#wasteBinBody" position="0.00 0.746 -0.93" scale="0.06 0.06 0.06 " rotation="0 45 0">
+            <a-gltf-model src="#wasteBinCap" position="0.594 1.264 -0.020" waste_bin_cap_open></a-gltf-model>
+        </a-gltf-model>
+        <a-cylinder id="toggleBoxWasteBin" toggle_box_waste_bin position="0.00 0.881 -0.93" height="0.170" radius="0.060" material="color:#ff0000; transparent: true; opacity: 0.5" visible="true"></a-cylinder>
 
 
-    <!-- portfolio -->
-    <a-gltf-model id="portfolioBackSiteModel"  src="#portfolioBacksite" scale="0.1 0.1 0.1" position="-0.57 0.684 -0.980" rotation="0 -90 -1.43" portfolio>
-        <a-gltf-model visible="true" id="portfolioFrontSiteModel" src="#portfolioFrontsite" position="-0.08 -0.015 0" rotation="0 0 -122.728"></a-gltf-model>
+            <!-- cloth bottle -->
+        <a-gltf-model src="#clothBottleBody" position="0.22 0.678 -0.9" rotation="0 180 0" scale="0.15 0.15 0.15">
+            <a-gltf-model id="clothBottleCap" src="#clothBottleCap" position="-0.017 0.851 0.322" cloth_bottle_cap_open cloth_bottle_cap_vive></a-gltf-model>
+            <a-gltf-model id="clothInBottle" src="#clothBottleCloth" position="-0.053 0.599 0.145" scale="0.8 1 1" disinfection_cloth_in_bottle></a-gltf-model>
+        </a-gltf-model>
 
-        <a-image src="#filledPortfolio" scale="1.8 1 1" position="0.485 0.008 -0.027" rotation="-90.000 180.000 -90.000"></a-image>
-        <a-image src="#colorStreak" scale="0.792 0.161 1.000" position="1.070 0.003 -0.486" rotation="-90 -90 180"></a-image>
+        <!-- cloth -->
+        <a-gltf-model id="clothOnTable" src="#clothMesh" position="0 0.681 -0.81" rotation="" scale="0.1 0.1 0.1" visible="false" disinfection_cloth_on_table disinfection_cloth_on_table_vive></a-gltf-model>
 
-        <a-image portfolioCheck id="transparentName" src="#transparent" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" visible="true"></a-image>
-        <a-image id="hookName" src="#hook" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" checked="false" visible="false"></a-image>
-        <a-box toggle_box_portfolio_check id="toggleBoxName" class="hookToggleBox" scale="0.2 0.3 0.2" position="0.147 0.027 0.671" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
-
-        <a-image portfolioCheck id="transparentDrug" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" visible="true"></a-image>
-        <a-image id="hookDrug" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" checked="false" visible="false"></a-image>
-        <a-box id="toggleBoxDrug" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.899 0.043 0.700" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
-
-        <a-image portfolioCheck id="transparentDose" src="#transparent" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" visible="true"></a-image>
-        <a-image id="hookDose" src="#hook" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" checked="false" visible="false"></a-image>
-        <a-box id="toggleBoxDose" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.894 0.057 0.541" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
+        <a-box id="toggleBoxDesk" toggle_box_desk_disinfection scale="1.322 0.067 0.157" position="0.002 0.711 -0.805" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
 
 
-        <a-image portfolioCheck id="transparentIV" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" visible="true"></a-image>
-        <a-image id="hookIV" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" checked="false" visible="false"></a-image>
-        <a-box id="toggleBoxIV" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.899 0.060 0.426" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
+            <!-- glove shelf -->
+        <a-gltf-model id="gloveShelf" src="#gloveShelfBody" position="0.570 0.979 -1.000" scale="0.15 0.15 0.15">
+            <a-gltf-model src="#gloveShelfBox" position="0.015 1.125 0.000" scale="1.115 1.115 1" >
+                <a-image src="#gloveBoxL" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+                <a-gltf-model glove id="gloveL" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
+            </a-gltf-model>
+            <a-gltf-model src="#gloveShelfBox" position="0.015 0.625 0.000" scale="1.115 1.115 1" >
+                <a-image src="#gloveBoxM" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+                <a-gltf-model glove id="gloveM" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
+            </a-gltf-model>
+            <a-gltf-model src="#gloveShelfBox" position="0.015 0.039 0.000" scale="1.115 1.115 1" glove>
+                <a-image src="#gloveBoxS" position="0 -0.530 0.219" scale="0.777 0.349 1.000"></a-image>
+                <a-gltf-model glove id="gloveS" src="#gloveMesh" position="0.112 -0.529 0.194" rotation="-8.169 144.708 5.738" scale="0.08 0.08 0.08"></a-gltf-model>
+            </a-gltf-model>
+        </a-gltf-model>
+
+        <!-- holder -->
+        <a-gltf-model src="#holder" position="0.975 0 -0.65" rotation="0 41.59 0" scale="0.5 0.45 0.5"></a-gltf-model>
+
+        <!-- walls -->
+        <a-image id="wallfront" src="#wallTexture" scale="4.480 2.145 1.000" position="-0.009 1.075 -1.004" rotation=""></a-image>
+        <a-image id="wallleft" src="#wallTexture" scale="3.437 2.155 1.000" position="-2.188 1.075 0.699" rotation="0 90 0"></a-image>
+        <a-image id="wallright" src="#wallTexture" scale="3.437 2.155 1.000" position="2.188 1.075 0.699" rotation="0 90 0"></a-image>
+        <a-image id="walltop" src="#wallTexture" scale="4.388 3.423 1.000" position="-0.027 2.121 0.710" rotation="90 0 0"></a-image>
+        <a-image id="wallback" src="#wallTexture" scale="4.385 2.155 1.000" position="0.003 1.075 2.383" rotation=""></a-image>
+
+        <!-- floor -->
+        <a-image id="floor" src="#floorTexture" scale="4.459 3.504 0.986" position="-0.027 0.001 0.677" rotation="90 0 0"></a-image>
+
+        <!-- whiteboard -->
+        <a-image id="whiteboard" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.173 0.988 0" rotation="0 90 0">
+            <!-- TODO: give to i-image? -->
+            <a-image id="note" src="#noteTexture" scale="0.3 0.3 0.3" position="0.273 -0.223 0.017" rotation="0 0 0" ></a-image>
+            <a-entity id="initText" text="color:#000000; value: If ready, click the portfolio to begin.\n Or select a chapter to begin."
+                      position="0.140, 0.28 0" align="left" width="2" rotation="0 0 0" visible="true"></a-entity>
+            <a-entity id="section" position="0 -0.15 0" section_selection>
+                <a-entity id="section1" text="color:#000000; value: Section1" position="0.14 0.27 0" align="center" width="2"></a-entity>
+                <a-entity id="section2" text="color:#000000; value: Section2" position="0.14 0.17 0" align="center" width="2"></a-entity>
+                <a-entity id="section3" text="color:#000000; value: Section3" position="0.14 0.07 0" align="center" width="2"></a-entity>
+                <a-entity id="section4" text="color:#000000; value: Section4" position="0.14 -0.03 0" align="center" width="2"></a-entity>
+                <a-entity id="section5" text="color:#000000; value: Section5" position="0.14 -0.13 0" align="center" width="2"></a-entity>
+                <a-entity id="section6" text="color:#000000; value: Section6" position="0.14 -0.23 0" align="center" width="2"></a-entity>
+            </a-entity>
+        </a-image>
+
+        <!-- trash can -->
+        <a-gltf-model id="trashCan" src="#trashCan" position="-0.926 0.152 -0.836" scale="0.250 0.300 0.250"></a-gltf-model>
+        <a-cylinder id="toggleBoxTrashCan" toggle_box_trash_can position="-0.926 0.536 -0.836" height="0.47" radius="0.1" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-cylinder>
 
 
-        <a-image portfolioCheck id="transparentCF" src="#transparent" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" visible="true"></a-image>
-        <a-image id="hookCF" src="#hook" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" checked="false" visible="false"></a-image>
-        <a-box id="toggleBoxCF" class="hookToggleBox" scale="0.2 0.3 0.2" position="0.908 0.040 -0.28" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
+        <!-- portfolio -->
+        <a-gltf-model id="portfolioBackSiteModel"  src="#portfolioBacksite" scale="0.1 0.1 0.1" position="-0.57 0.684 -0.980" rotation="0 -90 -1.43" portfolio>
+            <a-gltf-model visible="true" id="portfolioFrontSiteModel" src="#portfolioFrontsite" position="-0.08 -0.015 0" rotation="0 0 -122.728"></a-gltf-model>
 
-    </a-gltf-model>
-    <a-box toggle_box_portfolio id="toggleBoxPortfolio" scale="0.2 0.1 0.181" position="-0.563 0.725 -0.905" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
+            <a-image src="#filledPortfolio" scale="1.8 1 1" position="0.485 0.008 -0.027" rotation="-90.000 180.000 -90.000"></a-image>
+            <a-image src="#colorStreak" scale="0.792 0.161 1.000" position="1.070 0.003 -0.486" rotation="-90 -90 180"></a-image>
 
-    <!-- infusionSet -->
-    <a-gltf-model infusion_set_in_pack_vive id="infusionSetInPack" src="#infusionSetInPackMesh" position="-0.215 0.466 -0.813" rotation="0 90 0" scale="0.03 0.03 0.03" infusion_set>
-        <a-image src="#infusionSetLabel" scale="2.570 5.563 1.000" position="-0.232 -0.440 0.138" rotation="90 0 0"></a-image>
-        <a-box toggle_box_infusion_set_in_pack id="toggleBoxInfusionSetInPack" visible="true" scale="1.725 0.805 1.880" position="-0.36 -1.2 0.735" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
-        <a-image id="hookInfusionSetInPack" src="#hook" scale="0.750 0.75 0.75" position='-0.769 -0.618 0.901' rotation="90 0 0" visible="true" material="alphaTest: 0.32"></a-image>
-    </a-gltf-model>
+            <a-image portfolioCheck id="transparentName" src="#transparent" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" visible="true"></a-image>
+            <a-image id="hookName" src="#hook" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-box toggle_box_portfolio_check id="toggleBoxName" class="hookToggleBox" scale="0.2 0.3 0.2" position="0.147 0.027 0.671" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
-    <a-gltf-model infusion_set_open_vive id="infusionSetOpen" src="#infusionSetOpenMesh" position="-0.161 0.674 -0.819" rotation="0 180 0" scale="0.03 0.03 0.03" visible="false">
-        <a-gltf-model infusion_set_cap id="infusionSetOpenCap" src="#infusionSetOpenCapMesh"></a-gltf-model>
-        <a-gltf-model id="infusionSetOpenWheel" src="#infusionSetOpenWheelMesh"></a-gltf-model>
-    </a-gltf-model>
-    <a-box toggle_box_infusion_set_on_desk id="toggleBoxInfusionSetOnDesk" visible="false" scale="0.219 0.046 0.126" position="-0.168 0.700 -0.795" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
-    <a-box toggle_box_infusion_set_open_wheel id="toggleBoxInfusionSetCap" visible="true" scale="0.044 0.021 0.026" position="-0.106 0.697 -0.770" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+            <a-image portfolioCheck id="transparentDrug" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" visible="true"></a-image>
+            <a-image id="hookDrug" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-box id="toggleBoxDrug" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.899 0.043 0.700" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
-    <a-gltf-model id="infusionSetInBottle" src="#infusionSetInBottleMesh" position="-0.138 0.692 -0.794" rotation="0  -14.725 0" scale="0.045 0.045 0.045" visible="false"></a-gltf-model>
-
-            <!-- text -->
-    <a-gltf-model infusion_set_hanged_vive id="infusionSetHanged" src="#infusionSetHangedMesh" position="0.795 0.921 -0.504" rotation="5.414 169.455 -84.240" scale="0.045 0.045 0.045" visible="false">
-        <a-gltf-model id="infusionSetHangedFill" src="#infusionSetHangedFillMesh" visible="false"></a-gltf-model>
-        <a-gltf-model id="infusionSetHangedWheel" src="#infusionSetHangedWheelMesh"></a-gltf-model>
-    </a-gltf-model>
-    <a-box toggle_box_infusion_set_hanged_chamber id="toggleBoxInfusionSetHangedChamber" visible="false" scale="0.044 0.042 0.026" position="0.838 1.231 -0.538" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
-    <a-box toggle_box_infusion_set_hanged_wheel id="toggleBoxInfusionSetHangedWheel" visible="false" scale="0.029 0.042 0.026" position="0.825 1.109 -0.538" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+            <a-image portfolioCheck id="transparentDose" src="#transparent" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" visible="true"></a-image>
+            <a-image id="hookDose" src="#hook" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-box id="toggleBoxDose" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.894 0.057 0.541" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
 
-    <a-gltf-model infusion_set_hanged_filled_vive id="infusionSetHangedFilled" src="#infusionSetHangedFilledMesh" position="0.795 0.921 -0.504" rotation="5.414 169.455 -84.240" scale="0.045 0.045 0.045" visible="false">
-        <a-gltf-model id="infusionSetHangedFilledWheel" src="#infusionSetHangedWheelMesh"></a-gltf-model>
-        <a-gltf-model id="infusionSetFilledFill" src="#infusionSetHangedFillMesh" visible="false"></a-gltf-model>
-    </a-gltf-model>
+            <a-image portfolioCheck id="transparentIV" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" visible="true"></a-image>
+            <a-image id="hookIV" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-box id="toggleBoxIV" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.899 0.060 0.426" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
 
-    <a-gltf-model id="infusionSetFixed" src="#infusionSetFixedMesh" position="0.795 0.921 -0.504" rotation="5.414 169.455 -84.240" scale="0.045 0.045 0.045" visible="false">
-        <a-gltf-model id="infusionSetHangedFixedWheel" src="#infusionSetHangedWheelMesh" position="-0.530 0.110 -0.060"></a-gltf-model>
-        <a-gltf-model src="#infusionSetHangedFillMesh"></a-gltf-model>
-    </a-gltf-model>
+            <a-image portfolioCheck id="transparentCF" src="#transparent" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" visible="true"></a-image>
+            <a-image id="hookCF" src="#hook" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-box id="toggleBoxCF" class="hookToggleBox" scale="0.2 0.3 0.2" position="0.908 0.040 -0.28" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
-    <!-- sticker stamper -->
-    <a-gltf-model name_label_stamper_vive id="stickerStamper" src="#stickerStamperMesh" position="0.457 0.681 -0.948" rotation="0 -90 0" scale="0.05 0.05 0.05" name_label_stamper></a-gltf-model>
-    <a-image id="nameLabelEmpty" src="#nameLabelEmptyImg" scale="0.092 0.044 0.050" position="0.457 0.700 -0.948" rotation="-90 0 0"visible="true">
-        <a-box toggle_box_name_label_empty id="toggleBoxNameLabelEmpty" scale="1.033 1.057 0.681" position='-0.004 0.017 0.269' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
-    </a-image>
-    <a-image id="nameLabelWrote" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0.013 1.039 -0.7" rotation=""visible="false"></a-image>
+        </a-gltf-model>
+        <a-box toggle_box_portfolio id="toggleBoxPortfolio" scale="0.2 0.1 0.181" position="-0.563 0.725 -0.905" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
+
+        <!-- infusionSet -->
+        <a-gltf-model infusion_set_in_pack_vive id="infusionSetInPack" src="#infusionSetInPackMesh" position="-0.215 0.466 -0.813" rotation="0 90 0" scale="0.03 0.03 0.03" infusion_set>
+            <a-image src="#infusionSetLabel" scale="2.570 5.563 1.000" position="-0.232 -0.440 0.138" rotation="90 0 0"></a-image>
+            <a-box toggle_box_infusion_set_in_pack id="toggleBoxInfusionSetInPack" visible="true" scale="1.725 0.805 1.880" position="-0.36 -1.2 0.735" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+            <a-image id="hookInfusionSetInPack" src="#hook" scale="0.750 0.75 0.75" position='-0.769 -0.618 0.901' rotation="90 0 0" visible="true" material="alphaTest: 0.32"></a-image>
+        </a-gltf-model>
+
+        <a-gltf-model infusion_set_open_vive id="infusionSetOpen" src="#infusionSetOpenMesh" position="-0.161 0.674 -0.819" rotation="0 180 0" scale="0.03 0.03 0.03" visible="false">
+            <a-gltf-model infusion_set_cap id="infusionSetOpenCap" src="#infusionSetOpenCapMesh"></a-gltf-model>
+            <a-gltf-model id="infusionSetOpenWheel" src="#infusionSetOpenWheelMesh"></a-gltf-model>
+        </a-gltf-model>
+        <a-box toggle_box_infusion_set_on_desk id="toggleBoxInfusionSetOnDesk" visible="false" scale="0.219 0.046 0.126" position="-0.168 0.700 -0.795" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+        <a-box toggle_box_infusion_set_open_wheel id="toggleBoxInfusionSetCap" visible="true" scale="0.044 0.021 0.026" position="-0.106 0.697 -0.770" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+
+        <a-gltf-model id="infusionSetInBottle" src="#infusionSetInBottleMesh" position="-0.138 0.692 -0.794" rotation="0  -14.725 0" scale="0.045 0.045 0.045" visible="false"></a-gltf-model>
+
+        <!-- text -->
+        <a-gltf-model infusion_set_hanged_vive id="infusionSetHanged" src="#infusionSetHangedMesh" position="0.795 0.921 -0.504" rotation="5.414 169.455 -84.240" scale="0.045 0.045 0.045" visible="false">
+            <a-gltf-model id="infusionSetHangedFill" src="#infusionSetHangedFillMesh" visible="false"></a-gltf-model>
+            <a-gltf-model id="infusionSetHangedWheel" src="#infusionSetHangedWheelMesh"></a-gltf-model>
+        </a-gltf-model>
+        <a-box toggle_box_infusion_set_hanged_chamber id="toggleBoxInfusionSetHangedChamber" visible="false" scale="0.044 0.042 0.026" position="0.838 1.231 -0.538" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+        <a-box toggle_box_infusion_set_hanged_wheel id="toggleBoxInfusionSetHangedWheel" visible="false" scale="0.029 0.042 0.026" position="0.825 1.109 -0.538" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+
+
+        <a-gltf-model infusion_set_hanged_filled_vive id="infusionSetHangedFilled" src="#infusionSetHangedFilledMesh" position="0.795 0.921 -0.504" rotation="5.414 169.455 -84.240" scale="0.045 0.045 0.045" visible="false">
+            <a-gltf-model id="infusionSetHangedFilledWheel" src="#infusionSetHangedWheelMesh"></a-gltf-model>
+            <a-gltf-model id="infusionSetFilledFill" src="#infusionSetHangedFillMesh" visible="false"></a-gltf-model>
+        </a-gltf-model>
+
+
+        <a-gltf-model id="infusionSetFixed" src="#infusionSetFixedMesh" position="0.795 0.921 -0.504" rotation="5.414 169.455 -84.240" scale="0.045 0.045 0.045" visible="false">
+            <a-gltf-model id="infusionSetHangedFixedWheel" src="#infusionSetHangedWheelMesh" position="-0.530 0.110 -0.060"></a-gltf-model>
+            <a-gltf-model src="#infusionSetHangedFillMesh"></a-gltf-model>
+        </a-gltf-model>
+
+        <!-- sticker stamper -->
+        <a-gltf-model name_label_stamper_vive id="stickerStamper" src="#stickerStamperMesh" position="0.457 0.681 -0.948" rotation="0 -90 0" scale="0.05 0.05 0.05" name_label_stamper></a-gltf-model>
+        <a-image id="nameLabelEmpty" src="#nameLabelEmptyImg" scale="0.092 0.044 0.050" position="0.457 0.700 -0.948" rotation="-90 0 0"visible="true">
+            <a-box toggle_box_name_label_empty id="toggleBoxNameLabelEmpty" scale="1.033 1.057 0.681" position='-0.004 0.017 0.269' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+        </a-image>
+        <a-image id="nameLabelWrote" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0.013 1.039 -0.7" rotation=""visible="false"></a-image>
 
     </a-entity>
 
