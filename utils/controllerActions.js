@@ -4,6 +4,9 @@ const observerOptions = {
     childList: true,
 };
 
+// 1/1.3(scale of allThings) = 0.769
+const adjustmentSizeScale = 0.769;
+
 export class controllerActions {
 
     constructor (element, activeController, addedScale = -1, removedScale = -1, positionX = 0, positionY = 0, positionZ = 0) {
@@ -59,7 +62,7 @@ export class controllerActions {
                     element.setAttribute('visible', true);
                     // let activePosition = this.activeController.getAttribute('position');
                     let activePosition = getWordPosition(this.activeController);
-                    element.setAttribute('position', `${activePosition.x} ${activePosition.y} ${activePosition.z}`);
+                    element.setAttribute('position', `${activePosition.x * adjustmentSizeScale} ${activePosition.y * adjustmentSizeScale} ${activePosition.z * adjustmentSizeScale}`);
                     if (this.removedScale > 0) {
                         element.setAttribute('scale', `${this.removedScale} ${this.removedScale} ${this.removedScale}`);
                     }

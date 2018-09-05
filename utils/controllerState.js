@@ -27,12 +27,15 @@ import { handleControllerStateNotifyToggleBoxNameLabelEmpty } from '../src/toggl
 
 const controllerState = {
     connectedController: '',
+
     portfolioInHand: null,
+
     hasGloveLeft: false,
     hasGloveRight: false,
     disinfectionClothInHand: null,
     deskDisinfection: false,
     deskDisinfectionAllFinish: false,
+
     nacl500Dragable: true,
     nacl500InHandToDesk: null,
     nacl500LabelChecked: false,
@@ -42,6 +45,7 @@ const controllerState = {
     bottleNacl500CapInHand: null,
     bottleNacl500CapDroped: false,
     bottleOpened: false,
+
     infusionSetInPackInHand: null,
     infusionSetChecked: false,
     infusionSetOnDeskOpened: false,

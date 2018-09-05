@@ -50,7 +50,6 @@ function matchViveController() {
     removeCursor();
     adjustAllThingsScale('1.3 1.3 1.3');
     adjustAllThingsPosition('0 0 0');
-    adjustCameraPosition('0 1 0');
 }
 
 function matchNoController() {
