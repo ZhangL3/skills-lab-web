@@ -50,7 +50,10 @@ export function handleControllerStateNotifyInfusionSetHangedVive (nextController
         nextControllerState.nacl500Hanged
         && !currentControllerState.nacl500Hanged
     ) {
-        element.setAttribute('visible', true);
+        // Wait until nacl 500 bottle hanged
+        setTimeout(()=>{
+            element.setAttribute('visible', true);
+        }, 1000);
     }
 
     if (

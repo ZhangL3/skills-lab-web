@@ -44,8 +44,11 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
     ) {
         console.log("put on table");
         $(bottleNacl500).trigger('putOnDesk');
-        // aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
-        bottleNacl500.setAttribute('position', schema.onDeskPosition);
+        // After the change of DOM, run the animation.
+        setTimeout(()=>{
+            aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
+        }, 500);
+        // bottleNacl500.setAttribute('position', schema.onDeskPosition);
     }
 }
 

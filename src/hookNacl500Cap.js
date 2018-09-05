@@ -36,10 +36,16 @@ export function handleControllerStateNotifyHookNacl500Cap (nextControllerState) 
         return false;
     }
 
-    if (nextControllerState.nacl500CapChecked && nextControllerState.nacl500InHandToDesk !== null) {
+    if (
+        nextControllerState.nacl500CapChecked
+        && !currentControllerState.nacl500CapChecked
+        && nextControllerState.nacl500InHandToDesk !== null) {
         element.setAttribute('visible', true);
     }
-    else {
+
+    if(
+        nextControllerState.nacl500NoHookAnymore
+    ) {
         element.setAttribute('visible', false);
     }
 

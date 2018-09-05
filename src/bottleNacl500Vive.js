@@ -22,6 +22,8 @@ const schema = {
     dur: '500'
 };
 
+export let canLiquidCheck = false;
+
 export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
     init: function(){
@@ -44,6 +46,7 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
             controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
             controllerStateIndex.setControllerState('nacl500OnDesk', true);
             controllerStateIndex.setControllerState('nacl500Dragable', false);
+            controllerStateIndex.setControllerState('nacl500NoHookAnymore', true);
 
         });
 
@@ -79,6 +82,10 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
                 activeController = triggerEvent.activeController;
                 let activeControllerId =  activeController.getAttribute('id');
                 controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
+                // After 1 second taking bottle in hand, can liquid be checked
+                setTimeout(()=>{
+                    canLiquidCheck = true;
+                }, 1000);
             }
         }
 

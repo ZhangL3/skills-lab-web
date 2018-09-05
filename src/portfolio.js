@@ -68,6 +68,7 @@ export const schema = {
 
 // open portfolio
 export function open () {
+    console.log("open");
     aAnimationWrapper(
         foregroundOfPortfolio, '', 'rotation', '', schema.openRotation, schema.dur,
         '', true, 'forwards'
@@ -97,10 +98,7 @@ function takeInHand () {
 
 // close portfolio
 export function close () {
-    // aAnimationWrapper(
-    //     foregroundOfPortfolio, 0, 'position', schema.openPosition, schema.closePosition, schema.dur,
-    //     '', true, 'forwards'
-    // );
+    console.log("close");
     aAnimationWrapper(
         foregroundOfPortfolio, '', 'rotation', schema.openRotation, schema.closeRotation, schema.dur,
         '', true, 'forwards'
@@ -177,7 +175,9 @@ export function handleNotifyPortfolio(nextState) {
         open();
     }
     else if (
-        nextState.portfolio.checkFinish === true && nextState.portfolio.finish === false
+        nextState.portfolio.checkFinish === true
+        && nextState.portfolio.finish === false
+        && nextState.portfolio.position === constants.portfolio.position.IN_HAND
     ) {
         putOnTable();
         close();
@@ -204,14 +204,21 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
 }
 
 export function handleControllerStateNotifyPortfolio (nextControllerState) {
-    if (nextControllerState.portfolioInHand !== null && currentControllerState.portfolioInHand === null) {
+    if (
+        controllerStateIndex.getControllerState('portfolioInHand')
+        && stateIndex.getIn(['portfolio', 'finish'])
+    ) {
+        return false;
+    }
 
+
+    if (
+        nextControllerState.portfolioInHand !== null
+        && currentControllerState.portfolioInHand === null
+    ) {
         open();
-
         dragInHand();
-
         currentControllerState = _.cloneDeep(nextControllerState);
-
     }
     if (
         nextControllerState.portfolioInHand === null
@@ -220,6 +227,7 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
     ) {
         console.log("should drop portfolio");
         drop();
+        dropOnDesk();
         currentControllerState = _.cloneDeep(nextControllerState);
     }
 }
@@ -232,6 +240,19 @@ function dragInHand() {
 function drop() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drop();
+}
+
+function dropOnDesk() {
+    // After changing of DOM, run the animation
+    setTimeout(()=>{
+        const droppedPosition = element.getAttribute('position');
+        const onDeskPosition = `${droppedPosition.x} 0.685 ${droppedPosition.z}`;
+        // element.setAttribute('position', `${droppedPosition.x} 0.685 ${droppedPosition.z}`);
+        aAnimationWrapper(
+            element, '', 'position', '', onDeskPosition, schema.dur,
+            '', true, 'forwards'
+        );
+    }, 500);
 }
 
 
