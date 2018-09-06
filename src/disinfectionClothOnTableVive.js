@@ -31,7 +31,9 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
     let activeControllerId = activeController.getAttribute('id');
 
     if (
-        checkIsCapOpen()
+        // Must have glove, before taking disinfection cloth
+        controllerStateIndex.getControllerState('hasGloveLeft') || controllerStateIndex.getControllerState('hasGloveRight')
+        &&checkIsCapOpen()
         && isEmitted(clothInBottle, triggerEvent.position)
     ) {
         dragInHand();

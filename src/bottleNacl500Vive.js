@@ -106,7 +106,9 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
     // drag to desk
     if (
-        nextControllerState.nacl500InHandToDesk !== null
+        // Must hand disinfection, before take bottle
+        stateIndex.getIn(['handDisinfection', 'finish'])
+        &&nextControllerState.nacl500InHandToDesk !== null
         && currentControllerState.nacl500InHandToDesk === null
         && nextControllerState.nacl500Dragable
     ) {

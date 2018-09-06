@@ -41,19 +41,27 @@ export default AFRAME.registerComponent('glove', {
         $(el).on('controllerEmit', (event, data) => {
             getWorldBound(el);
 
-            if(isEmitted(el, data.position)) {
-                // show glove
-                activeController = data.activeController;
+            if(
+                isEmitted(el, data.position)
+            ) {
+                // Must check portfolio before taking glove
+                if (stateIndex.getIn(['portfolio', 'finish'])  === true) {
+                    // show glove
+                    activeController = data.activeController;
 
-                if(activeController.getAttribute('id') == 'viveControllerLeft') {
-                    console.log("show glove left!");
-                    gloveLeft.attr('visible', true);
-                    controllerStateIndex.setControllerState('hasGloveLeft', true);
+                    if(activeController.getAttribute('id') == 'viveControllerLeft') {
+                        console.log("show glove left!");
+                        gloveLeft.attr('visible', true);
+                        controllerStateIndex.setControllerState('hasGloveLeft', true);
+                    }
+                    else if (activeController.getAttribute('id') == 'viveControllerRight') {
+                        console.log("show glove right!");
+                        gloveRight.attr('visible', true);
+                        controllerStateIndex.setControllerState('hasGloveRight', true);
+                    }
                 }
-                else if (activeController.getAttribute('id') == 'viveControllerRight') {
-                    console.log("show glove right!");
-                    gloveRight.attr('visible', true);
-                    controllerStateIndex.setControllerState('hasGloveRight', true);
+                else {
+                        console.log("portfolio not finish: ");
                 }
             }
 

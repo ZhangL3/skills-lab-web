@@ -18,6 +18,7 @@ export default AFRAME.registerComponent('toggle_box_desk_disinfection', {
 
 export function handleControllerNotifyToggleBoxDeskDisinfection( triggerEvent ) {
 
+    // Must have cloth in hand, before disinfection
     if(controllerStateIndex.getControllerState('disinfectionClothInHand')) {
 
         getWorldBound(element);

@@ -54,7 +54,9 @@ export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
 
 export function handleControllerStateNotifyInfusionSetInPack (nextControllerState) {
     if (
-        nextControllerState.infusionSetInPackInHand !== null
+        // Must hand disinfection, before taking infusion set
+        stateIndex.getIn(['handDisinfection', 'finish'])
+        &&nextControllerState.infusionSetInPackInHand !== null
         && currentControllerState.infusionSetInPackInHand === null
     ) {
         toggleBoxInfusionSetOnDesk.setAttribute('visible', true);
