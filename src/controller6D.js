@@ -34,6 +34,7 @@ import { handleControllerNotifyInfusionSetHangedFilledVive } from './infusionSet
 import { handleControllerNotifyNameLabelStamperVive } from './nameLabelStamperVive';
 import { handleControllerNotifyToggleBoxNacl500NameLabel } from './toggleBoxNacl500NameLabel';
 import { handleControllerNotifyToggleBoxNameLabelEmpty } from './toggleBoxNameLabelEmpty';
+import { handleControllerNotifyToggleBoxSelectSection } from './toggleBoxSelectSection';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -73,6 +74,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyNameLabelStamperVive);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500NameLabel);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNameLabelEmpty);
+        this.viveObserver.subscribe(handleControllerNotifyToggleBoxSelectSection);
 
         $(this.el).on('triggerdown', () => {
 

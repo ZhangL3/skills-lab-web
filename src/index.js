@@ -51,6 +51,8 @@ import * as nameLabelStamperVive from './nameLabelStamperVive';
 import * as toggleBoxNacl500NameLabel from './toggleBoxNacl500NameLabel';
 import * as toggleBoxNameLabelEmpty from './toggleBoxNameLabelEmpty';
 
+import * as toggleBoxSelectSection from './toggleBoxSelectSection';
+
 import * as getWorldBound from '../utils/getWorldPositionAndBound';
 import * as sectionSelection from './sectionSelection';
 import * as controllerManage from '../utils/controllerManage';
