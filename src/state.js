@@ -12,6 +12,7 @@ import {handleNotifyBottle, initBottlePutOnTableTakeOffCap, initBottleHanged} fr
 import {handleNotifyWasteBinCap} from "./wasteBinCapOpen";
 import {handleNotifyInfusionSet, initInfusionSetOnTableOffCapOpenCloseWheel, initInfusionSetFixed} from "./infusionSet";
 import {handleNotifyNameLabel} from "./nameLabelStamper";
+import {handleNotifyClothBottleCapOpen} from "./clothBottleCapOpen";
 
 
 let state;
@@ -33,6 +34,7 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifyWasteBinCap);
         this.headingsObserver.subscribe(handleNotifyInfusionSet);
         this.headingsObserver.subscribe(handleNotifyNameLabel);
+        this.headingsObserver.subscribe(handleNotifyClothBottleCapOpen);
     }
 
     static selectSection(section) {

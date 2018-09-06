@@ -1,28 +1,42 @@
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+import stateIndex from './state';
 
-let isCapOpen;
+let element;
+let canTakeCloth;
 
 AFRAME.registerComponent('cloth_bottle_cap_open', {
-    schema:{
-        close :   {default: '0 0 0'},
-        open : {default: '60 0 0'},
-        dur : {default: 500},
-    },
 
     init: function(){
-        isCapOpen = false;
-
-        const { close, open, dur } = this.data;
-
-        aAnimationWrapper(this.el, 'click', 'rotation', close, open, dur, 'alternate', false, 'forwards');
+        element = this.el;
+        console.log("this.data: ", this.data, typeof(this.data));
+        canTakeCloth = false;
         this.el.addEventListener('click', () => {
-           isCapOpen = !isCapOpen;
-           console.log("isCapOpen: ", isCapOpen, typeof(isCapOpen));
+            stateIndex.set('trashCanCapOpen', !stateIndex.get('trashCanCapOpen'));
         });
-
     }
 });
 
+const schema = {
+    close: '0 0 0',
+    dur: 500,
+    open: '60 0 0'
+};
+
+export function handleNotifyClothBottleCapOpen(nextState) {
+    if (nextState.trashCanCapOpen) {
+        aAnimationWrapper(element, '', 'rotation', '', schema.open, schema.dur, '', true, 'forwards');
+        setTimeout(()=>{
+            canTakeCloth = true;
+        }, 500);
+    }
+    else {
+        aAnimationWrapper(element, '', 'rotation', '', schema.close, schema.dur, '', true, 'forwards');
+        setTimeout(()=>{
+            canTakeCloth = false;
+        }, 500);
+    }
+}
+
 export function checkIsCapOpen() {
-    return isCapOpen;
+    return canTakeCloth;
 }

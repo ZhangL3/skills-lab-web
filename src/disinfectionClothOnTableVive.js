@@ -30,7 +30,10 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
     activeController = triggerEvent.activeController;
     let activeControllerId = activeController.getAttribute('id');
 
-    if (checkIsCapOpen() && isEmitted(clothInBottle, triggerEvent.position)) {
+    if (
+        checkIsCapOpen()
+        && isEmitted(clothInBottle, triggerEvent.position)
+    ) {
         dragInHand();
         controllerStateIndex.setControllerState('disinfectionClothInHand', activeControllerId);
     }

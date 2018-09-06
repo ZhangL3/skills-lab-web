@@ -9,6 +9,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 
 let element;
+let activeController;
 
 let clothOnTable;
 let gloveInHandLeft;
@@ -22,6 +23,7 @@ export default AFRAME.registerComponent('toggle_box_trash_can', {
     init: function(){
 
         element = this.el;
+        activeController = null;
 
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
@@ -40,20 +42,21 @@ const schema = {
 
 function dropGloveCloth() {
     $(clothOnTable).trigger('drop');
-    $(gloveInHandLeft).trigger('drop');
-    $(gloveInHandRight).trigger('drop');
 
-    if(clothOnTable) {
-        aAnimationWrapper(clothOnTable, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
-    }
+    setTimeout(()=>{
+        if(clothOnTable) {
+            $(gloveInHandLeft).trigger('drop');
+            aAnimationWrapper(clothOnTable, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
+        }
+        if(gloveInHandLeft) {
+            aAnimationWrapper(gloveInHandLeft, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
+        }
+        if(gloveInHandRight) {
+            $(gloveInHandRight).trigger('drop');
+            aAnimationWrapper(gloveInHandRight, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
+        }
+    }, 500);
 
-    if(gloveInHandLeft) {
-        aAnimationWrapper(gloveInHandLeft, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
-    }
-
-    if(gloveInHandRight) {
-        aAnimationWrapper(gloveInHandRight, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
-    }
 }
 
 export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
@@ -66,7 +69,7 @@ export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
             isEmitted(element, triggerEvent.position)
             && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
         ){
-
+            activeController = triggerEvent.activeController;
             controllerStateIndex.setControllerState('deskDisinfectionAllFinish', true);
 
         }

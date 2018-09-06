@@ -27,12 +27,13 @@ export class controllerActions {
         return (
             new MutationObserver((event) => {
                 console.log("event: ", event, typeof(event));
+                // Append element to controller
                 let nodeAdded = event[0].addedNodes[0] === element;
                 for (let i = 0; i < event.length; i++) {
                         nodeAdded = event[i].addedNodes[0] === element;
                 }
 
-
+                // Remove element from controller
                 let nodeRemoved = event[0].removedNodes[0] === element;
                 for (let i = 0; i < event.length; i++) {
                     nodeRemoved = event[i].removedNodes[0] === element;

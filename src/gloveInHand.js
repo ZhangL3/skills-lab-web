@@ -7,8 +7,8 @@ export default AFRAME.registerComponent('glove_in_hand', {
         // shallow copy
         const el = this.el;
 
-        const leftController = document.querySelector('#gloveLeft');
-        const rightController = document.querySelector('#gloveRight');
+        const leftController = document.querySelector('#viveControllerLeft');
+        const rightController = document.querySelector('#viveControllerRight');
 
         $(el).on('drag', () => {
             $(el).attr('visible', true);
