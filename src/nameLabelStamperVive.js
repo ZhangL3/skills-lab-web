@@ -118,7 +118,3 @@ function dragNameLabelWroteInHand() {
         nameLabelWroteRight.setAttribute('visible', true);
     }
 }
-
-function pastNameLabelWrote() {
-
-}

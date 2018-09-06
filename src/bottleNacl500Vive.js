@@ -76,17 +76,20 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
     if(triggerEvent.eventName === 'triggerDown') {
         // to desk
-        if (controllerStateIndex.getControllerState('nacl500InHandToDesk') === null) {
-            if (controllerStateIndex.getControllerState('nacl500Dragable')) {
-                console.log("emmit triggerDown to bottle");
-                activeController = triggerEvent.activeController;
-                let activeControllerId =  activeController.getAttribute('id');
-                controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
-                // After 1 second taking bottle in hand, can liquid be checked
-                setTimeout(()=>{
-                    canLiquidCheck = true;
-                }, 1000);
-            }
+        if (
+            // Must hand disinfection, before take bottle
+            stateIndex.getIn(['handDisinfection', 'finish'])
+            &&controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
+            && controllerStateIndex.getControllerState('nacl500Dragable')
+        ) {
+            console.log("emmit triggerDown to bottle");
+            activeController = triggerEvent.activeController;
+            let activeControllerId =  activeController.getAttribute('id');
+            controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
+            // After 1 second taking bottle in hand, can liquid be checked
+            setTimeout(()=>{
+                canLiquidCheck = true;
+            }, 1000);
         }
 
         // to stand
@@ -106,9 +109,7 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
     // drag to desk
     if (
-        // Must hand disinfection, before take bottle
-        stateIndex.getIn(['handDisinfection', 'finish'])
-        &&nextControllerState.nacl500InHandToDesk !== null
+        nextControllerState.nacl500InHandToDesk !== null
         && currentControllerState.nacl500InHandToDesk === null
         && nextControllerState.nacl500Dragable
     ) {

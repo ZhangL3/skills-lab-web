@@ -43,6 +43,10 @@ export function handleNotifyInfusionSetInPack(nextState) {
 }
 
 export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
+    // Must hand disinfection, before taking infusion set
+    if (!stateIndex.getIn(['handDisinfection', 'finish'])) {
+        return false;
+    }
 
     getWorldBound(element);
 
@@ -54,9 +58,7 @@ export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
 
 export function handleControllerStateNotifyInfusionSetInPack (nextControllerState) {
     if (
-        // Must hand disinfection, before taking infusion set
-        stateIndex.getIn(['handDisinfection', 'finish'])
-        &&nextControllerState.infusionSetInPackInHand !== null
+        nextControllerState.infusionSetInPackInHand !== null
         && currentControllerState.infusionSetInPackInHand === null
     ) {
         toggleBoxInfusionSetOnDesk.setAttribute('visible', true);

@@ -32,10 +32,12 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
 
     if (
         // Must have glove, before taking disinfection cloth
-        controllerStateIndex.getControllerState('hasGloveLeft') || controllerStateIndex.getControllerState('hasGloveRight')
-        &&checkIsCapOpen()
+        (controllerStateIndex.getControllerState('hasGloveLeft')
+        || controllerStateIndex.getControllerState('hasGloveRight'))
+        && checkIsCapOpen()
         && isEmitted(clothInBottle, triggerEvent.position)
     ) {
+        console.log("isEmitted(clothInBottle, triggerEvent.position): ", isEmitted(clothInBottle, triggerEvent.position), typeof(isEmitted(clothInBottle, triggerEvent.position)));
         dragInHand();
         controllerStateIndex.setControllerState('disinfectionClothInHand', activeControllerId);
     }

@@ -73,11 +73,6 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
 
 export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerState) {
 
-    // console.log(nextControllerState.infusionSetInBottle === true);
-    // console.log(currentControllerState.infusionSetOpenInHand === false);
-    // console.log("nextControllerState: ", nextControllerState, typeof(nextControllerState));
-    // console.log("currentControllerState: ", currentControllerState, typeof(currentControllerState));
-
     // drag cap in hand
     if (
         nextControllerState.bottleNacl500CapInHand !== null
@@ -88,6 +83,7 @@ export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerSt
 
     // pierce infusion set in bottle nacl 500
     if (
+        // nextControllerState.bottleOpened
         nextControllerState.infusionSetInBottle === true
         && currentControllerState.infusionSetInBottle === false
     ) {
