@@ -91,6 +91,7 @@ export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerSt
         // nextControllerState.bottleOpened
         nextControllerState.infusionSetInBottle === true
         && currentControllerState.infusionSetInBottle === false
+        && !controllerStateIndex.getControllerState('nacl500Hanged')
     ) {
         pierceInfusionSetInBottle();
     }

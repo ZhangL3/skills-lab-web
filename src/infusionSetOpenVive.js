@@ -69,6 +69,7 @@ export function handleControllerStateNotifyInfusionSetOpen (nextControllerState)
     if (
         nextControllerState.infusionSetOnDeskOpened
         && !currentControllerState.infusionSetOnDeskOpened
+        && !nextControllerState.infusionSetInBottle
     ) {
         element.setAttribute('visible', true);
     }
