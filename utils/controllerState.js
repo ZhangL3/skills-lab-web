@@ -66,6 +66,55 @@ const controllerState = {
     nameLabelPasted: false
 };
 
+export function setControllerStateToSection(section) {
+    let selectedControllerstate = {
+
+        portfolioInHand: null,
+
+        hasGloveLeft: false,
+        hasGloveRight: false,
+        disinfectionClothInHand: null,
+        deskDisinfection: section >= 2,
+        deskDisinfectionAllFinish: section >= 2 ,
+
+        // important
+        nacl500Dragable: section <= 3,
+
+        nacl500InHandToDesk: null,
+        nacl500LabelChecked: section >= 4,
+        nacl500LiquidChecked: section >= 4,
+        nacl500CapChecked: section >= 4,
+        nacl500OnDesk: section >= 4,
+        nacl500NoHookAnymore: section >= 4,
+        bottleNacl500CapInHand: null,
+        bottleNacl500CapDroped: section >= 5,
+        bottleOpened: false, // seem not needed
+
+        infusionSetInPackInHand: null,
+        infusionSetChecked: section >= 5,
+        infusionSetOnDeskOpened: section >= 5,
+        infusionSetCapInHand: null,
+        infusionSetCapOff: section >= 5,
+        infusionSetOpenInHand: null,
+        infusionSetInBottle: section >= 6,
+
+        nacl500InHandToStand: null,
+        nacl500Hanged: section >= 6,
+        dripChamberFilled: section >= 6,
+        infusionSetWheelClosed: section === 5,
+        tubeFixed: section >= 6,
+
+        nameLabelInHand: null,
+        nameLabelFilled: section > 6,
+        nameLabelPasted: section > 6
+    };
+
+    Object.assign(controllerState, selectedControllerstate);
+    
+    console.log("controllerState: ", controllerState, typeof(controllerState));
+}
+
+
 export default class controllerStateIndex {
 
     static initControllerState() {
@@ -149,6 +198,7 @@ export default class controllerStateIndex {
         controllerState[propString] = value;
         this.controllerObserver.notify(controllerState);
         console.log("setControllerState", propString, value);
+        console.log("controllerState: ", controllerState, typeof(controllerState));
     }
 
     /**

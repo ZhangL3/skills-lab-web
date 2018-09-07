@@ -86,7 +86,11 @@ export function handleControllerStateNotifyToggleBoxTrashCan (nextControllerStat
         $(element).attr('material', "color:#00ffff; transparent: true; opacity: 0.5");
     }
 
-    if(nextControllerState.deskDisinfectionAllFinish && !currentControllerState.deskDisinfectionAllFinish) {
+    if(
+        nextControllerState.deskDisinfectionAllFinish
+        && !currentControllerState.deskDisinfectionAllFinish
+        && !stateIndex.getIn(['tableDisinfection', 'finish'])
+    ) {
         dropGloveCloth();
         setVisibleFalse(element);
         stateIndex.setIn(['tableDisinfection', 'finish'], true);

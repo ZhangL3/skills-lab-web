@@ -26,6 +26,10 @@ export default AFRAME.registerComponent('toggle_box_nach500_cap', {
         infusionSetOpen = document.querySelector('#infusionSetOpen');
         infusionSetInBottle =document.querySelector('#infusionSetInBottle');
 
+        $(element).on('removeCap', ()=>{
+           bottleNacl500Cap = null;
+        });
+
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 
@@ -51,7 +55,8 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
     }
 
     // drag cap
-    if (controllerStateIndex.getControllerState('nacl500OnDesk')
+    if (bottleNacl500Cap
+        &&controllerStateIndex.getControllerState('nacl500OnDesk')
         && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
         // && controllerStateIndex.getControllerState('bottleOpened')
     ) {

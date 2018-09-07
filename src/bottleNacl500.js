@@ -9,6 +9,8 @@ let bottleCap;
 let infusionSetInBottle;
 let infusionSetHanged;
 let currentState;
+
+let toggleBoxNacl500Cap;
 // Don't active the action, if the animation is not finish
 let movable = true;
 // For product use withInfusionSet
@@ -22,6 +24,7 @@ AFRAME.registerComponent('bottle_nacl500', {
         bottleCap = $('#nacl500Cap');
         infusionSetInBottle = $('#infusionSetInBottle');
         infusionSetHanged = $('#infusionSetHanged');
+        toggleBoxNacl500Cap = $('#toggleBoxNacl500Cap');
 
         $(this.el).on('click', () => {
             handleClickBottle();
@@ -52,6 +55,9 @@ const schema = {
 export function initBottlePutOnTableTakeOffCap() {
     $(element).attr('position', schema.onTablePosition);
     bottleCap.remove();
+    if (toggleBoxNacl500Cap) {
+        toggleBoxNacl500Cap.trigger('removeCap');
+    }
 }
 
 export function initBottleHanged() {

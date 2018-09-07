@@ -1,6 +1,7 @@
 import Observable from '../utils/observable';
 
 import * as sectionSelect from '../utils/sectionSelect';
+import {setControllerStateToSection} from '../utils/controllerState';
 
 import {handleNotifyPortfolio} from './portfolio';
 import {handleNotifyPortfolioCheck} from './portfolioCheck';
@@ -46,32 +47,37 @@ export default class stateIndex {
             case 1:
                 state = sectionSelect.section1;
                 this.setSceneToSection(1);
+                setControllerStateToSection(1);
                 break;
 
             case 2:
                 state = sectionSelect.section2;
                 this.setSceneToSection(2);
+                setControllerStateToSection(2);
                 break;
 
             case 3:
                 state = sectionSelect.section3;
                 this.setSceneToSection(3);
+                setControllerStateToSection(3);
                 break;
 
             case 4:
                 state = sectionSelect.section4;
-                console.log("state after clicking 4: ", state, typeof(state));
                 this.setSceneToSection(4);
+                setControllerStateToSection(4);
                 break;
 
             case 5:
                 state = sectionSelect.section5;
                 this.setSceneToSection(5);
+                setControllerStateToSection(5);
                 break;
 
             case 6:
                 state = sectionSelect.section6;
                 this.setSceneToSection(6);
+                setControllerStateToSection(6);
                 break;
 
             default:
@@ -99,6 +105,7 @@ export default class stateIndex {
             case 5:
                 // put on table, take off cap, close wheel
                 console.log("put on table, take off cap, close wheel");
+                initBottlePutOnTableTakeOffCap();
                 initInfusionSetOnTableOffCapOpenCloseWheel();
                 break;
             case 6:
