@@ -202,7 +202,7 @@ export default class stateIndex {
         this.headingsObserver.notify(state);
 
 
-        console.log('state: ', stateIndex.getState());
+        console.log('state changed: ', propsArray, value);
 
     }
 }
