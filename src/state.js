@@ -22,6 +22,11 @@ export default class stateIndex {
 
     static init() {
         this.selectSection(0);
+
+        // const selectedSection = Number(this.getSectionSelectionFromURL());
+        // if (selectedSection > 0 && selectedSection <= 6) {
+        //     // this.selectSection(selectedSection);
+        // }
         
         this.headingsObserver = new Observable();
         // Add function from observers
@@ -205,4 +210,18 @@ export default class stateIndex {
         console.log('state changed: ', propsArray, value);
 
     }
+
+    /**
+     * Get selected section number as string from URL
+     */
+    static getSectionSelectionFromURL() {
+        const url = window.location.href;
+        const urlArray = url.split('?section=');
+        const section = urlArray[urlArray.length-1];
+        console.log("selected section: ", section, typeof(section));
+        return section;
+    }
+
 }
+
+

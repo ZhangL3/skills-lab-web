@@ -33,8 +33,15 @@ const schema = {
 };
 
 export function handleControllerNotifyToggleBoxNacl500NameLabel( triggerEvent ) {
+    if (!controllerStateIndex.getControllerState('nameLabelFilled')) {
+        return false;
+    }
+
+    // TODO: Is correct hand?
+    getWorldBound(element);
     if (
-        controllerStateIndex.getControllerState('nameLabelFilled')
+        isEmitted(element, triggerEvent.position)
+        && controllerStateIndex.getControllerState('nameLabelFilled')
         && !stateIndex.getIn(['nameLabel', 'finish'])
     ) {
         controllerStateIndex.setControllerState('nameLabelPasted', true);
