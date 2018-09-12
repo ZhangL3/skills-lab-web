@@ -177,7 +177,8 @@ export function handleNotifyPortfolio(nextState) {
     else if (
         nextState.portfolio.checkFinish === true
         && nextState.portfolio.finish === false
-        && nextState.portfolio.position === constants.portfolio.position.IN_HAND
+        // && nextState.portfolio.position === constants.portfolio.position.IN_HAND
+        && nextState.portfolio.position === constants.portfolio.position.ON_TABLE
     ) {
         putOnTable();
         close();
