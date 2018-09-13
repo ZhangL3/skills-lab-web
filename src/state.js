@@ -27,9 +27,22 @@ export default class stateIndex {
         if (selectedSection > 0 && selectedSection <= 6) {
             let setSectionStillElementsLoaded = setInterval(()=>{
                 if (
+                    // for section 4
                     document.querySelector('#nacl500Bottle')
                     && document.querySelector('#nacl500Cap')
                     && document.querySelector('#toggleBoxNacl500Cap')
+                    // for section 5
+                    && document.querySelector('#infusionSetInPack')
+                    && document.querySelector('#infusionSetOpen')
+                    && document.querySelector('#infusionSetOpenCap')
+                    && document.querySelector('#infusionSetOpenWheel')
+                    // for section 6
+                    && document.querySelector('#infusionSetHanged')
+                    && document.querySelector('#infusionSetHangedFill')
+                    && document.querySelector('#infusionSetHangedWheel')
+                    && document.querySelector('#infusionSetHangedFilled')
+                    && document.querySelector('#infusionSetHangedFilledWheel')
+                    && document.querySelector('#infusionSetFixed')
                 ) {
                     console.log("set Section after loading!!!!!!!!!");
                     this.selectSection(selectedSection);
