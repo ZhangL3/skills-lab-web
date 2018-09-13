@@ -61,7 +61,3 @@ import * as controllerActions from '../utils/controllerActions';
 
 stateIndex.init();
 controllerStateIndex.initControllerState();
-
-window.onload = function(){
-    stateIndex.selectSection(stateIndex.getSectionSelectionFromURL());
-};

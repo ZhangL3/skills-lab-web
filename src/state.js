@@ -23,10 +23,20 @@ export default class stateIndex {
     static init() {
         this.selectSection(0);
 
-        // const selectedSection = Number(this.getSectionSelectionFromURL());
-        // if (selectedSection > 0 && selectedSection <= 6) {
-        //     // this.selectSection(selectedSection);
-        // }
+        const selectedSection = Number(this.getSectionSelectionFromURL());
+        if (selectedSection > 0 && selectedSection <= 6) {
+            let setSectionStillElementsLoaded = setInterval(()=>{
+                if (
+                    document.querySelector('#nacl500Bottle')
+                    && document.querySelector('#nacl500Cap')
+                    && document.querySelector('#toggleBoxNacl500Cap')
+                ) {
+                    console.log("set Section after loading!!!!!!!!!");
+                    this.selectSection(selectedSection);
+                    window.clearInterval(setSectionStillElementsLoaded);
+                }
+            }, 500);
+        }
         
         this.headingsObserver = new Observable();
         // Add function from observers
@@ -91,6 +101,7 @@ export default class stateIndex {
     }
 
     static setSceneToSection(section) {
+
         switch (section) {
             case 1:
                 console.log("1");

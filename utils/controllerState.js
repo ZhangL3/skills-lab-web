@@ -87,7 +87,7 @@ export function setControllerStateToSection(section) {
         nacl500OnDesk: section >= 4,
         nacl500NoHookAnymore: section >= 4,
         bottleNacl500CapInHand: null,
-        bottleNacl500CapDroped: section >= 5,
+        bottleNacl500CapDroped: section >= 4,
         bottleOpened: false, // seem not needed
 
         infusionSetInPackInHand: null,
