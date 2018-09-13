@@ -67,7 +67,7 @@ export function handleControllerStateNotifyInfusionSetInPack (nextControllerStat
 
     if (
         nextControllerState.infusionSetChecked
-        && !currentControllerState.infusionSetChecked
+        && (!currentControllerState || !currentControllerState.infusionSetChecked)
         && nextControllerState.infusionSetInPackInHand !== null
     ) {
         hookInfusionSetInPack.setAttribute('visible', true);
