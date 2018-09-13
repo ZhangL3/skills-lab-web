@@ -390,9 +390,10 @@ export function handleNotifyInfusionSet(nextState) {
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
-        currentState.infusionSet.position === infusionSet.position.ON_TABLE &&
-        nextState.infusionSet.position === infusionSet.position.IN_BOTTLE &&
-        nextState.bottlePrepare.withCap === false
+        // currentState is not stable, because of the selection of section
+        (currentState.infusionSet.position === infusionSet.position.ON_TABLE || nextState.sectionSelected === 5)
+        && nextState.infusionSet.position === infusionSet.position.IN_BOTTLE
+        && nextState.bottlePrepare.withCap === false
     ) {
         pierceInfusionSetIntoBottle();
         // deep copy

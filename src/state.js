@@ -230,8 +230,8 @@ export default class stateIndex {
 
         this.headingsObserver.notify(state);
 
-
         console.log('state changed: ', propsArray, value);
+        console.log("state: ", state, typeof(state));
 
     }
 

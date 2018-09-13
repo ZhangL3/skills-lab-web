@@ -195,6 +195,7 @@ export function handleNotifyBottle(nextState) {
         return false;
     }
 
+    // take bottle in hand
     if (// TODO: for product remove comment
         // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
         currentState.bottlePrepare.position === bottle.position.IN_CUPBOARD &&
@@ -204,6 +205,7 @@ export function handleNotifyBottle(nextState) {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
+    // check back side
     else if (
         nextState.bottlePrepare.position === bottle.position.IN_HAND &&
         currentState.bottlePrepare.checkBottle.front === false &&
@@ -213,6 +215,7 @@ export function handleNotifyBottle(nextState) {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
+    // check top side
     else if (
         nextState.bottlePrepare.position === bottle.position.IN_HAND &&
         currentState.bottlePrepare.checkBottle.back === false &&
@@ -222,6 +225,7 @@ export function handleNotifyBottle(nextState) {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
+    // put on table
     else if (
         currentState.bottlePrepare.position === bottle.position.IN_HAND &&
         nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
@@ -232,16 +236,19 @@ export function handleNotifyBottle(nextState) {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
+    // take off cap of bottle
     else if (
         nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
         currentState.bottlePrepare.withCap === true &&
         nextState.bottlePrepare.withCap === false &&
-        nextState.sectionSelected !== 4
+        // if === 5, currentState.bottlePrepare.withCap === true. copy state before setting section
+        nextState.sectionSelected !== 5
     ) {
         takeOffCap();
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
+    // hang up bottle
     else if (
         nextState.bottlePrepare.position === bottle.position.HANGED &&
         currentState.infusionSet.position !== infusionSet.position.IN_BOTTLE &&
