@@ -59,5 +59,7 @@ import * as controllerManage from '../utils/controllerManage';
 import * as controller6D from './controller6D';
 import * as controllerActions from '../utils/controllerActions';
 
+import * as controllerHand from './controllerHand';
+
 stateIndex.init();
 controllerStateIndex.initControllerState();
