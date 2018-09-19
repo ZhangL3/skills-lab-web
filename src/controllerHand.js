@@ -5,12 +5,14 @@ import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 
 let controllerRightHand;
+let controllerLeftHand;
 
 export default AFRAME.registerComponent('controller_hand', {
 
     init: function(){
         // shallow copy
-        controllerRightHand = this.el;
+        controllerRightHand = document.querySelector('#rightHand');
+        controllerLeftHand = document.querySelector('#leftHand');
 
         // deep copy
         // currentState = _.cloneDeep(stateIndex.getState());
@@ -19,13 +21,19 @@ export default AFRAME.registerComponent('controller_hand', {
         // currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 
         $(controllerRightHand).on('click', () => {
-            console.log("click controller hand");
             controllerRightHand.setAttribute("animation-mixer", "loop: once");
         });
 
         controllerRightHand.addEventListener('animation-finished', ()=>{
-           console.log("animation-loop");
             controllerRightHand.removeAttribute("animation-mixer");
+        });
+
+        $(controllerLeftHand).on('click', () => {
+            controllerLeftHand.setAttribute("animation-mixer", "loop: once");
+        });
+
+        controllerLeftHand.addEventListener('animation-finished', ()=>{
+            controllerLeftHand.removeAttribute("animation-mixer");
         });
     }
 });
@@ -37,7 +45,12 @@ export function handleNotifyControllerHand(nextState) {
 }
 
 export function handleControllerNotifyControllerHand ( triggerEvent ) {
-    $(controllerRightHand).trigger('click');
+    if (triggerEvent.activeController.getAttribute('id')==='viveControllerRight') {
+        $(controllerRightHand).trigger('click');
+    }
+    else if (triggerEvent.activeController.getAttribute('id')==='viveControllerLeft') {
+        $(controllerLeftHand).trigger('click');
+    }
 
 }
 
