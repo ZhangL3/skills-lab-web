@@ -92,6 +92,8 @@ function haveSthInHand(controllerElement){
             children[i].nodeType === 1
             && children[i].getAttribute('id') !== 'leftHand'
             && children[i].getAttribute('id') !== 'rightHand'
+            && children[i].getAttribute('id') !== 'leftHandIndicator'
+            && children[i].getAttribute('id') !== 'rightHandIndicator'
             && children[i].getAttribute('visible')
         ) {
             return true;
