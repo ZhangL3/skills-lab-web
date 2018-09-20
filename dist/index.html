@@ -25,6 +25,8 @@
         <a-asset-item id="cabinetHandle" src="./assets/models/meshes/cabinet/handle/handle.gltf"/>
         <a-mixin id="cabinetSmallDrawer" scale="1 1 0.5"></a-mixin>
         <a-mixin id="cabinetSmallDrawerHandle" scale="1 1 2.083" position="0 0 -3.5"></a-mixin>
+        <a-mixin id="opacity" material="opacity: 0.6; depthTest: false"></a-mixin>
+        <a-mixin id="transparentFalse" transparent="false"></a-mixin>
         <img id="drawerLabelCutlery" src="./assets/models/meshes/cabinet/labels/Infusionsbesteck512.png">
         <img id="drawerLabelMandrins" src="./assets/models/meshes/cabinet/labels/Mandrins512.png">
         <img id="drawerLabelSprizen" src="./assets/models/meshes/cabinet/labels/Sprizen512.png">
@@ -126,7 +128,7 @@
         <img id="nameLabelWroteImg" src="./assets/models/meshes/stickerStamper/namelabelwrote512.jpg"/>
 
         <!-- hand -->
-        <a-asset-item id="rightHandMesh" src="./assets/models/meshes/hands/rightHand/hand_grasp_release.gltf"/>
+        <a-asset-item id="rightHandMesh" src="./assets/models/meshes/hands/rightHand/hand_grasp_release_right.gltf"/>
         <a-asset-item id="leftHandMesh" src="./assets/models/meshes/hands/leftHand/hand_grasp_release_mirror.gltf"/>
 
     </a-assets>
@@ -257,7 +259,7 @@
         </a-entity>
 
         <!-- bottles -->
-        <a-gltf-model bottle_nacl_500_vive id="nacl500Bottle" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1" bottle_nacl500>
+        <a-gltf-model bottle_nacl_500_vive id="nacl500Bottle" material="opacity: 0.6; depthTest: false" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1" bottle_nacl500>
             <a-gltf-model bottle_nacl500_cap id="nacl500Cap" src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
             <a-image hook_nach500_label id="hookNach500Label" src="#hook" scale="0.5 0.5 0.5" position='-0.324 0 0' rotation="0 -90 0" visible="false" material="alphaTest: 0.32"></a-image>
             <a-box toggle_box_nach500_label visible="false" id="toggleBoxNacl500Label" scale="0.200 0.919 0.681" position='-0.387 0.085 0.024' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
@@ -382,32 +384,32 @@
 
 
         <!-- portfolio -->
-        <a-gltf-model id="portfolioBackSiteModel"  src="#portfolioBacksite" scale="0.1 0.1 0.1" position="-0.57 0.684 -0.980" rotation="0 -90 -1.43" portfolio>
+        <a-gltf-model id="portfolioBackSiteModel" src="#portfolioBacksite" scale="0.1 0.1 0.1" position="-0.57 0.684 -0.980" rotation="0 -90 -1.43" portfolio>
             <a-gltf-model visible="true" id="portfolioFrontSiteModel" src="#portfolioFrontsite" position="-0.08 -0.015 0" rotation="0 0 -122.728"></a-gltf-model>
 
-            <a-image src="#filledPortfolio" scale="1.8 1 1" position="0.485 0.008 -0.027" rotation="-90.000 180.000 -90.000"></a-image>
-            <a-image src="#colorStreak" scale="0.792 0.161 1.000" position="1.070 0.003 -0.486" rotation="-90 -90 180"></a-image>
+            <a-image id="filledPortfolioPaper" src="#filledPortfolio" material="transparent: false;" scale="1.8 1 1" position="0.485 0.008 -0.027" rotation="-90.000 180.000 -90.000"></a-image>
+            <a-image src="#colorStreak" material="transparent: false;" scale="0.792 0.161 1.000" position="1.070 0.003 -0.486" rotation="-90 -90 180"></a-image>
 
             <a-image portfolioCheck id="transparentName" src="#transparent" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" visible="true"></a-image>
-            <a-image id="hookName" src="#hook" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-image id="hookName" minxin="opacity" src="#hook" scale="0.1 0.1 0.1" position="0.147 0.027 0.671" rotation="-90 90 0" checked="false" visible="false"></a-image>
             <a-box toggle_box_portfolio_check visible="false" id="toggleBoxName" class="hookToggleBox" scale="0.2 0.3 0.2" position="0.147 0.027 0.671" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
             <a-image portfolioCheck id="transparentDrug" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" visible="true"></a-image>
-            <a-image id="hookDrug" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-image id="hookDrug" minxin="opacity" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.043 0.700" rotation="-90 90 0" checked="false" visible="false"></a-image>
             <a-box visible="false" id="toggleBoxDrug" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.899 0.043 0.700" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
             <a-image portfolioCheck id="transparentDose" src="#transparent" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" visible="true"></a-image>
-            <a-image id="hookDose" src="#hook" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-image id="hookDose" minxin="opacity" src="#hook" scale="0.1 0.1 0.1" position="0.894 0.057 0.541" rotation="-90 90 0" checked="false" visible="false"></a-image>
             <a-box visible="false" id="toggleBoxDose" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.894 0.057 0.541" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
 
             <a-image portfolioCheck id="transparentIV" src="#transparent" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" visible="true"></a-image>
-            <a-image id="hookIV" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-image id="hookIV" minxin="opacity" src="#hook" scale="0.1 0.1 0.1" position="0.899 0.060 0.426" rotation="-90 90 0" checked="false" visible="false"></a-image>
             <a-box visible="false" id="toggleBoxIV" class="hookToggleBox" scale="0.1 0.3 0.1" position="0.899 0.060 0.426" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
 
             <a-image portfolioCheck id="transparentCF" src="#transparent" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" visible="true"></a-image>
-            <a-image id="hookCF" src="#hook" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" checked="false" visible="false"></a-image>
+            <a-image id="hookCF" material="opacity: 0.6; depthTest: false" src="#hook" scale="0.1 0.1 0.1" position="0.908 0.040 -0.28" rotation="-90 90 0" checked="false" visible="false"></a-image>
             <a-box visible="false" id="toggleBoxCF" class="hookToggleBox" scale="0.2 0.3 0.2" position="0.908 0.040 -0.28" material="color:#0000ff; transparent: true; opacity: 0.5"></a-box>
 
         </a-gltf-model>
@@ -474,14 +476,14 @@
         <!-- Vive controlers-->
         <a-entity id="viveControllerLeft" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" vive-controls="hand: left; model: false;" controller_6_d>
             <!--<a-box color="#0000ff" scale="0.02 0.02 0.02"></a-box>-->
-            <a-gltf-model controller_hand id="leftHand" src="#leftHandMesh" scale="0.2 0.2 0.2" rotation="180 -90 180"></a-gltf-model>
+            <a-gltf-model controller_hand id="leftHand" src="#leftHandMesh" material="color:#ff0000; transparent: true; opacity: 0.5" scale="0.2 0.2 0.2" rotation="180 -90 180"></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveLeft" visible="false" src="#gloveMesh" position="0.007 0.026 -0.004" rotation="-22.57 151.04 -17.77" scale="0.02 0.02 0.02"></a-gltf-model>
             <a-image id="nameLabelWroteLeft" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
 
         </a-entity>
         <a-entity id="viveControllerRight" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" vive-controls="hand: right; model: false;" controller_6_d>
             <!--<a-box color="#ff0000" scale="0.02 0.02 0.02"></a-box>-->
-            <a-gltf-model controller_hand id="rightHand" src="#rightHandMesh" scale="0.2 0.2 0.2" rotation="180 90 180"></a-gltf-model>
+            <a-gltf-model controller_hand id="rightHand" src="#rightHandMesh" scale="0.2 0.2 0.2" rotation="180 90 180" material="alpha-test:0.5; transparent: true; opacity: 0.5"></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveRight" visible="false" src="#gloveMesh" position="-0.002 0.021 -0.01" rotation="-23.70 -140.70 -168.42" scale="0.02 0.02 0.02"></a-gltf-model>
             <a-image id="nameLabelWroteRight" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
 
