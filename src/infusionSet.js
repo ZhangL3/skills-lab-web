@@ -202,7 +202,6 @@ function closeInfusionSetOpenWheel() {
 }
 
 function pierceInfusionSetIntoBottle() {
-    console.log("closeInfusionSetOpenWheel");
     movable = false;
 
     infusionSetOpen.remove();
@@ -341,22 +340,24 @@ export function handleNotifyInfusionSet(nextState) {
     if(stateIndex.getIn(['infusionSet', 'finish'])) {
         return false;
     }
-
+    
     if (// TODO: for product remove comment
     // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
     currentState.infusionSet.position === infusionSet.position.IN_DRAWER &&
     nextState.infusionSet.position === infusionSet.position.IN_HAND
     ) {
+        // take in hand
         takeInfusionSet();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
         currentState.infusionSet.position === infusionSet.position.IN_HAND &&
         nextState.infusionSet.position === infusionSet.position.ON_TABLE
     ) {
+        // put on table
         putInfusionSetOnTable();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
@@ -365,19 +366,19 @@ export function handleNotifyInfusionSet(nextState) {
         currentState.infusionSet.inPack === true &&
         nextState.infusionSet.inPack === false
     ) {
+        // open pack
         openInfusionSet();
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
 
-        console.log('currentState: ', currentState);
+        currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
         nextState.infusionSet.position === infusionSet.position.ON_TABLE &&
         currentState.infusionSet.withCap === true &&
         nextState.infusionSet.withCap === false
     ) {
+        // take of the cap of infusion set
         takeOffInfusionSetOpenCap();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
@@ -385,18 +386,22 @@ export function handleNotifyInfusionSet(nextState) {
         currentState.infusionSet.rollerClapOpen === true &&
         nextState.infusionSet.rollerClapOpen === false
     ) {
+        // open the roller clamp
         closeInfusionSetOpenWheel();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
-        // currentState is not stable, because of the selection of section
-        (currentState.infusionSet.position === infusionSet.position.ON_TABLE || nextState.sectionSelected === 5)
+        // currentState is not stable, because of the selection of section.
+        (currentState.infusionSet.position === infusionSet.position.ON_TABLE ||
+            nextState.sectionSelected === 5)
         && nextState.infusionSet.position === infusionSet.position.IN_BOTTLE
         && nextState.bottlePrepare.withCap === false
+        && nextState.bottlePrepare.position !== bottle.position.HANGED
     ) {
+        // pierce infusion set in bottle
         pierceInfusionSetIntoBottle();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
@@ -404,9 +409,9 @@ export function handleNotifyInfusionSet(nextState) {
         currentState.infusionSet.chamberFilled === false &&
         nextState.infusionSet.chamberFilled === true
     ) {
+        // fill chamber
         fillChamber();
 
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (

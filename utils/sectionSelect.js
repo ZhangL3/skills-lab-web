@@ -379,7 +379,7 @@ export const section5 = {
         time: '0:00',
         hintTimes: 0,
     },
-        hint: 'Please paste the name label.',
+        hint: 'Please prepare for infusion',
     sectionSelected: 5,
     started: false
 };
@@ -443,7 +443,7 @@ export const section6 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'If ready, please check the portfolio at first.',
+    hint: 'Please paste the name label.',
     sectionSelected: 6,
     started: false
 };
