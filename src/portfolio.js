@@ -134,6 +134,7 @@ function handleClickPortfolio () {
         !is5RChecked()
     ) {
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.IN_HAND);
+        stateIndex.set('started', true);
     }
     else if (
         stateIndex.getIn(['portfolio','position']) === constants.portfolio.position.IN_HAND &&

@@ -8,6 +8,8 @@ import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 
+let section;
+
 let toggleBoxSection1;
 let toggleBoxSection2;
 let toggleBoxSection3;
@@ -21,6 +23,9 @@ let currentControllerState;
 export default AFRAME.registerComponent('toggle_box_select_section', {
 
     init: function(){
+
+        // section = document.querySelector('#section');
+        section = this.el;
 
         toggleBoxSection1 = document.querySelector('#toggleBoxSection1');
         toggleBoxSection2 = document.querySelector('#toggleBoxSection2');
@@ -36,6 +41,12 @@ export default AFRAME.registerComponent('toggle_box_select_section', {
 
 });
 
+export function handleNotifyToggleBoxSelectSection(nextState) {
+    if (nextState.started) {
+        section.setAttribute('visible', false);
+    }
+}
+
 export function handleControllerNotifyToggleBoxSelectSection( triggerEvent ) {
 
     getWorldBound(toggleBoxSection1);
@@ -47,21 +58,27 @@ export function handleControllerNotifyToggleBoxSelectSection( triggerEvent ) {
 
     if (isEmitted(toggleBoxSection1, triggerEvent.position)) {
         stateIndex.selectSection(1);
+        stateIndex.set('started', true);
     }
     else if (isEmitted(toggleBoxSection2, triggerEvent.position)) {
         stateIndex.selectSection(2);
+        stateIndex.set('started', true);
     }
     else if (isEmitted(toggleBoxSection3, triggerEvent.position)) {
         stateIndex.selectSection(3);
+        stateIndex.set('started', true);
     }
     else if (isEmitted(toggleBoxSection4, triggerEvent.position)) {
         stateIndex.selectSection(4);
+        stateIndex.set('started', true);
     }
     else if (isEmitted(toggleBoxSection5, triggerEvent.position)) {
         stateIndex.selectSection(5);
+        stateIndex.set('started', true);
     }
     else if (isEmitted(toggleBoxSection6, triggerEvent.position)) {
         stateIndex.selectSection(6);
+        stateIndex.set('started', true);
     }
 }
 

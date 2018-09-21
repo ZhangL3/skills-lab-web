@@ -5,8 +5,9 @@ import stateIndex from './state';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 
-let element;
 let currentState;
+
+let section;
 
 let section1;
 let section2;
@@ -19,7 +20,7 @@ export default AFRAME.registerComponent('section_selection', {
 
     init: function(){
         // shallow copy
-        element = this.el;
+        section = this.el;
 
         section1 = $("#section1");
         section2 = $("#section2");
@@ -33,26 +34,38 @@ export default AFRAME.registerComponent('section_selection', {
 
         section1.on('click', () => {
             stateIndex.selectSection(1);
+            stateIndex.set('started', true);
         });
 
         section2.on('click', () => {
             stateIndex.selectSection(2);
+            stateIndex.set('started', true);
         });
 
         section3.on('click', () => {
             stateIndex.selectSection(3);
+            stateIndex.set('started', true);
         });
 
         section4.on('click', () => {
             stateIndex.selectSection(4);
+            stateIndex.set('started', true);
         });
 
         section5.on('click', () => {
             stateIndex.selectSection(5);
+            stateIndex.set('started', true);
         });
 
         section6.on('click', () => {
             stateIndex.selectSection(6);
+            stateIndex.set('started', true);
         });
     }
 });
+
+export function handleNotifySectionSelection(nextState) {
+    if (nextState.started) {
+        section.setAttribute('visible', false);
+    }
+}

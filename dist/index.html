@@ -25,8 +25,6 @@
         <a-asset-item id="cabinetHandle" src="./assets/models/meshes/cabinet/handle/handle.gltf"/>
         <a-mixin id="cabinetSmallDrawer" scale="1 1 0.5"></a-mixin>
         <a-mixin id="cabinetSmallDrawerHandle" scale="1 1 2.083" position="0 0 -3.5"></a-mixin>
-        <a-mixin id="opacity" material="opacity: 0.6; depthTest: false"></a-mixin>
-        <a-mixin id="transparentFalse" transparent="false"></a-mixin>
         <img id="drawerLabelCutlery" src="./assets/models/meshes/cabinet/labels/Infusionsbesteck512.png">
         <img id="drawerLabelMandrins" src="./assets/models/meshes/cabinet/labels/Mandrins512.png">
         <img id="drawerLabelSprizen" src="./assets/models/meshes/cabinet/labels/Sprizen512.png">
@@ -354,8 +352,7 @@
         <a-image id="whiteboard" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.173 0.988 0" rotation="0 90 0">
             <!-- TODO: give to i-image? -->
             <a-image id="note" src="#noteTexture" scale="0.3 0.3 0.3" position="0.273 -0.223 0.017" rotation="0 0 0" ></a-image>
-            <a-entity id="initText" text="color:#000000; value: If ready, click the portfolio to begin.\n Or select a chapter to begin."
-                      position="0.140, 0.28 0" align="left" width="2" rotation="0 0 0" visible="true"></a-entity>
+            <a-text tips_text_edit="If ready, click the portfolio to begin.\n Or select a chapter to begin." id="tipsText" value="" wrap-count="70" line-height="60" color="#000000" position="-0.403 0.347 0.000" width="2" baseline="top"></a-text>
             <a-entity id="section" position="0 -0.15 0" section_selection toggle_box_select_section>
                 <a-entity id="section1" text="color:#000000; value: Section1" position="0.14 0.27 0" align="center" width="2"></a-entity>
                 <a-box visible="false" id="toggleBoxSection1" scale="0.317 0.096 0.292" position='-0.256 0.270 0.105' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
@@ -461,16 +458,7 @@
     </a-entity>
 
 
-    <!-- controller -->
-
-    <!-- laser controllers -->
-    <!--<a-entity id="leftHand" laser-controls="hand: left" raycaster="far:1">-->
-        <!--&lt;!&ndash;<a-box color="#0000ff" scale="0.05 0.05 0.05"></a-box>&ndash;&gt;-->
-    <!--</a-entity>-->
-
-    <!--<a-entity id="rightHand" laser-controls="hand: right" raycaster="far:1">-->
-        <!--<a-box color="#ff0000" scale="0.05 0.05 0.05"></a-box>-->
-    <!--</a-entity>-->
+    <!-- controller and camera -->
 
     <a-entity id="cameraRig">
         <!-- Vive controlers-->
@@ -494,6 +482,12 @@
         <a-camera id="camera" position="0 1 -0.4" wasd-controls-enabled="false">
 
             <a-cursor id="cursor" position="0 0 -0.1" geometry="primitive: ring; radiusInner: 0.0015; radiusOuter: 0.0025;" cursor-submit></a-cursor>
+
+            <!-- tips board -->
+            <!-- slow the speed of loading badly -->
+            <!--<a-box id="tipsBoard" material="transparent: true; opacity: 0.5; alphaTest: 0.1;" visible="true" scale="0.070 0.035 0.001" position='-0.140 -0.060 -0.100'>-->
+                <!--<a-text tips_text_edit id="tipsText" value="testtesttesttesttesttest" color="#272727" opacity="0.7" position="-0.45 0.370 0.056" width="2" baseline="top"></a-text>-->
+            <!--</a-box>-->
 
             <!-- glove -->
             <a-gltf-model id="gloveInFrontOfCamera" visible="false" src="#gloveMesh" position="0.141 -0.062 -0.441" rotation="-57.009 -134.645 152.808" scale="0.02 0.02 0.02"></a-gltf-model>

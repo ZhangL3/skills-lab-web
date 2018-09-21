@@ -59,8 +59,9 @@ export const section0 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'If ready, please check the portfolio at first.',
+    hint: 'Please check the portfolio at first.',
     sectionSelected: 0,
+    started: false
 };
 
 export const section1 = {
@@ -122,8 +123,9 @@ export const section1 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'If ready, please check the portfolio at first.',
+    hint: 'Please disinfect the work desk at first.',
     sectionSelected: 1,
+    started: false
 };
 
 export const section2 = {
@@ -185,8 +187,9 @@ export const section2 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'If ready, please check the portfolio at first.',
+    hint: 'Please disinfect hands at first.',
     sectionSelected: 2,
+    started: false
 };
 
 export const section3 = {
@@ -248,8 +251,9 @@ export const section3 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'If ready, please check the portfolio at first.',
+    hint: 'Please prepare infusion bottle at first.',
     sectionSelected: 3,
+    started: false
 };
 
 export const section4 = {
@@ -311,8 +315,9 @@ export const section4 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'If ready, please check the portfolio at first.',
+    hint: 'Please prepare infusion set at first.',
     sectionSelected: 4,
+    started: false
 };
 
 export const section5 = {
@@ -374,8 +379,9 @@ export const section5 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'If ready, please check the portfolio at first.',
+        hint: 'Please paste the name label.',
     sectionSelected: 5,
+    started: false
 };
 
 export const section6 = {
@@ -439,4 +445,5 @@ export const section6 = {
     },
     hint: 'If ready, please check the portfolio at first.',
     sectionSelected: 6,
+    started: false
 };

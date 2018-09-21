@@ -61,5 +61,7 @@ import * as controllerActions from '../utils/controllerActions';
 
 import * as controllerHand from './controllerHand';
 
+import * as tipsTextEdit from '../utils/tipsTextEdit';
+
 stateIndex.init();
 controllerStateIndex.initControllerState();
