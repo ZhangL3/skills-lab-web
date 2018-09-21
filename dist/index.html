@@ -267,7 +267,7 @@
             <a-gltf-model toggle_box_nach500_liquid src="#liquidMesh"></a-gltf-model>
             <a-image hook_nach500_liquid id="hookBottleLiquid" material="opacity: 0.6; depthTest: false" src="#hook" scale="0.5 0.5 0.5" position="0.295 0.060 -0.385" rotation="0.000 149.203 0.000" visible="false" material="alphaTest: 0.32"></a-image>
 
-            <a-image src="#nacl500" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
+            <a-image id="nacl500label" material="transparent:false;" src="#nacl500" scale="0.681 0.913 1.000" position="-0.314 0.087 0.020" rotation="0 270 0"></a-image>
             <a-image hook_nach500_cap id="hookBottleCap" material="opacity: 0.6; depthTest: false" src="#hook" scale="0.2 0.2 0.2" position="0 0.922 0" rotation="-90 -90 0" visible="false" material="alphaTest: 0.32"></a-image>
             <a-box toggle_box_nach500_cap visible="false" id="toggleBoxNacl500Cap" scale="0.355 0.228 0.41" position="0 0.975 0" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
 
@@ -453,10 +453,10 @@
 
         <!-- sticker stamper -->
         <a-gltf-model name_label_stamper_vive id="stickerStamper" src="#stickerStamperMesh" position="0.457 0.681 -0.948" rotation="0 -90 0" scale="0.05 0.05 0.05" name_label_stamper></a-gltf-model>
-        <a-image id="nameLabelEmpty" src="#nameLabelEmptyImg" scale="0.092 0.044 0.050" position="0.457 0.700 -0.948" rotation="-90 0 0"visible="true">
+        <a-image id="nameLabelEmpty" material="transparent: false;" src="#nameLabelEmptyImg" scale="0.092 0.044 0.050" position="0.457 0.700 -0.948" rotation="-90 0 0"visible="true">
             <a-box toggle_box_name_label_empty visible="false" id="toggleBoxNameLabelEmpty" scale="1.033 1.057 0.681" position='-0.004 0.017 0.269' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
         </a-image>
-        <a-image id="nameLabelWrote" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0.013 1.039 -0.7" rotation=""visible="false"></a-image>
+        <a-image id="nameLabelWrote" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0.013 1.039 -0.7" rotation=""visible="false"></a-image>
 
     </a-entity>
 
@@ -478,14 +478,14 @@
             <a-box id="leftHandIndicator"  color="#0000ff" scale="0.01 0.01 0.01"></a-box>
             <a-gltf-model controller_hand id="leftHand" src="#leftHandMesh" material="color:#ff0000; transparent: true; opacity: 0.5" scale="0.2 0.2 0.2" rotation="180 -90 180"></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveLeft" visible="false" src="#gloveMesh" position="0.007 0.026 -0.004" rotation="-22.57 151.04 -17.77" scale="0.02 0.02 0.02"></a-gltf-model>
-            <a-image id="nameLabelWroteLeft" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
+            <a-image id="nameLabelWroteLeft" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
 
         </a-entity>
         <a-entity id="viveControllerRight" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" vive-controls="hand: right; model: false;" controller_6_d>
             <a-box id="rightHandIndicator" color="#ff0000" scale="0.01 0.01 0.01"></a-box>
             <a-gltf-model controller_hand id="rightHand" src="#rightHandMesh" scale="0.2 0.2 0.2" rotation="180 90 180" material="alpha-test:0.5; transparent: true; opacity: 0.5"></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveRight" visible="false" src="#gloveMesh" position="-0.002 0.021 -0.01" rotation="-23.70 -140.70 -168.42" scale="0.02 0.02 0.02"></a-gltf-model>
-            <a-image id="nameLabelWroteRight" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
+            <a-image id="nameLabelWroteRight" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
 
         </a-entity>
 
