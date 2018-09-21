@@ -340,7 +340,7 @@ export function handleNotifyInfusionSet(nextState) {
     if(stateIndex.getIn(['infusionSet', 'finish'])) {
         return false;
     }
-    
+
     if (// TODO: for product remove comment
     // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
     currentState.infusionSet.position === infusionSet.position.IN_DRAWER &&
