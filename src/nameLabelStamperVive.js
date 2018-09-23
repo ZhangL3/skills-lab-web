@@ -63,6 +63,7 @@ export function handleControllerNotifyNameLabelStamperVive ( triggerEvent ) {
     if (
         !stateIndex.getIn(['infusionSet', 'finish'])
     ) {
+        console.log("Fix the tube before taking name label");
         return false;
     }
 

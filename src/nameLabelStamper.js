@@ -92,7 +92,7 @@ function handleClickStickerStamper () {
 
 function handleClickNameLabelEmpty() {
     if (// for product remove comment
-    // stateIndex.getIn(['infusionSet','finish']) === true &&
+    stateIndex.getIn(['infusionSet','finish']) === true &&
     stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX && moveable
     ) {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.IN_HAND);
@@ -102,6 +102,13 @@ function handleClickNameLabelEmpty() {
         stateIndex.getIn(['nameLabel', 'labelFilled']) === false
     ) {
         stateIndex.setIn(['nameLabel', 'labelFilled'], true);
+    }
+    // change hints
+    else if (
+        stateIndex.getIn(['infusionSet','finish']) !== true &&
+        stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX && moveable
+    ) {
+        console.log("Fix the tube before taking the name label");
     }
 }
 

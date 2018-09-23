@@ -77,9 +77,11 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
     if(triggerEvent.eventName === 'triggerDown') {
         // to desk
         if (
+            // TODO: chang state structure of handDisinfection
             // Must hand disinfection, before take bottle
-            stateIndex.getIn(['handDisinfection', 'finish'])
-            &&controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
+            // stateIndex.getIn(['handDisinfection', 'finish'])
+            stateIndex.getIn(['handDisinfection', 'finish']) === 2
+            && controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
             && controllerStateIndex.getControllerState('nacl500Dragable')
         ) {
             console.log("emmit triggerDown to bottle");
@@ -90,6 +92,14 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
             setTimeout(()=>{
                 canLiquidCheck = true;
             }, 1000);
+        }
+        // change hints
+        else if (
+            stateIndex.getIn(['handDisinfection', 'finish']) !== 2
+            && controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
+            && controllerStateIndex.getControllerState('nacl500Dragable')
+        ) {
+            console.log("Disinfect hands before taking bottle");
         }
 
         // to stand

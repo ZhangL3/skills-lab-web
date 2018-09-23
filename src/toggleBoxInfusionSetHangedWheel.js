@@ -36,6 +36,7 @@ export function handleControllerNotifyToggleBoxInfusionSetHangedWheel( triggerEv
     if (
         !controllerStateIndex.getControllerState('dripChamberFilled')
     ) {
+        console.log("Sqeeze chamber before open the roller");
         return false;
     }
 

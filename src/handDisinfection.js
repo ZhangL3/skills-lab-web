@@ -76,26 +76,47 @@ function getPlat30Rotation(){
 
 function handleClickHandle () {
     if (// TODO: for product remove comment
-        // stateIndex.getIn(['tableDisinfection', 'finish']) === true &&
+        stateIndex.getIn(['portfolio', 'finish']) === true &&
         stateIndex.getIn(['handDisinfection', 'disinfecting']) === false &&
-        stateIndex.getIn(['handDisinfection', 'finish']) === false
+        stateIndex.getIn(['handDisinfection', 'finish']) === 0
     ){
         stateIndex.setIn(['handDisinfection', 'disinfecting'], true);
+    }
+    else if (// TODO: for product remove comment
+        stateIndex.getIn(['tableDisinfection', 'finish']) === true &&
+        stateIndex.getIn(['handDisinfection', 'disinfecting']) === false &&
+        stateIndex.getIn(['handDisinfection', 'finish']) === 1
+    ){
+        stateIndex.setIn(['handDisinfection', 'disinfecting'], true);
+    }
+    // chang hints
+    else if (
+        !stateIndex.getIn(['portfolio', 'finish'])
+    ) {
+        console.log("Check portfolio before disinfecting hands");
+    }
+    else if (
+        stateIndex.getIn(['portfolio', 'finish']) &&
+        !stateIndex.getIn(['tableDisinfection', 'finish'])
+    ) {
+        console.log("Disinfect the work desk before disinfecting hands");
     }
 
 }
 
 export function handleNotifyHandDisinfection(nextState) {
 
-    if(stateIndex.getIn(['handDisinfection', 'finish'])) {
+    if(stateIndex.getIn(['handDisinfection', 'finish']) === 2) {
         return false;
     }
 
     if (// TODO: for product remove comment
-        // nextState.tableDisinfection.hasCloth === true &&
-        nextState.handDisinfection.disinfecting === true &&
-        nextState.handDisinfection.finish === false &&
-        currentState.handDisinfection.disinfecting === false
+    // nextState.tableDisinfection.hasCloth === true &&
+    nextState.handDisinfection.disinfecting === true &&
+    (
+        nextState.handDisinfection.finish === 0 || nextState.handDisinfection.finish === 1)
+        && currentState.handDisinfection.disinfecting === false
+        && nextState.handDisinfection.disinfected === false
     ) {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -104,19 +125,53 @@ export function handleNotifyHandDisinfection(nextState) {
         handDisinfection();
         setTimeout(()=>{
             stateIndex.setIn(['handDisinfection', 'disinfected'], true);
+            stateIndex.setIn(['handDisinfection', 'disinfecting'], false);
+            stateIndex.setIn(['handDisinfection', 'disinfected'], false);
+            stateIndex.setIn(['handDisinfection', 'finish'], stateIndex.getIn(['handDisinfection', 'finish']) + 1);
+            hideClockIndicate();
+
+        }, handDisinfectionTime);
+    }
+    // else if (
+    //     // (nextState.handDisinfection.finish === 0 || nextState.handDisinfection.finish === 1 && currentState.handDisinfection.finish !== 1)  &&
+    //     nextState.handDisinfection.disinfecting === false &&
+    //     nextState.handDisinfection.disinfected === true
+    // ) {
+    //     hideClockIndicate();
+    //     stateIndex.setIn(['handDisinfection', 'finish'], stateIndex.getIn(['handDisinfection', 'finish']) + 1);
+    // }
+
+    // deep copy
+    currentState = _.cloneDeep(stateIndex.getState());
+}
+
+export function handleControllerNotifyHandDisinfection( triggerEvent ) {
+
+    if (// TODO: for product remove comment
+// nextState.tableDisinfection.hasCloth === true &&
+    nextState.handDisinfection.disinfecting === true &&
+    (nextState.handDisinfection.finish === 0 || nextState.handDisinfection.finish === 1) &&
+    currentState.handDisinfection.disinfecting === false
+    ) {
+        // deep copy
+        currentState = _.cloneDeep(stateIndex.getState());
+
+        // active handle, after 30sec chang state
+        handDisinfection();
+        setTimeout(()=>{
+            stateIndex.setIn(['handDisinfection', 'disinfected'], true);
+            stateIndex.setIn(['handDisinfection', 'disinfecting'], false);
+            stateIndex.setIn(['handDisinfection', 'disinfected'], false);
         }, handDisinfectionTime);
     }
     else if (
+        (nextState.handDisinfection.finish === 0 || nextState.handDisinfection.finish === 1) &&
         nextState.handDisinfection.disinfecting === true &&
         nextState.handDisinfection.disinfected === true
     ) {
         hideClockIndicate();
-        stateIndex.setIn(['handDisinfection', 'finish'], true)
+        stateIndex.setIn(['handDisinfection', 'finish'], stateIndex.getIn(['handDisinfection', 'finish']) + 1);
     }
-
-}
-
-export function handleControllerNotifyHandDisinfection( triggerEvent ) {
     getWorldBound(element);
     if (isEmitted(element, triggerEvent.position)) {
         $(element).trigger('click');

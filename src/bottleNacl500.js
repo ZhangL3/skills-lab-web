@@ -146,6 +146,7 @@ function handleClickBottle() {
     
     if (// TODO: for product remove comment
     // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
+    stateIndex.getIn(['handDisinfection', 'finish']) === 2 &&
     stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD && movable
     ) {
         stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.IN_HAND);
@@ -188,6 +189,13 @@ function handleClickBottle() {
     ) {
         stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.HANGED);
     }
+    // change hints
+    else if (
+        stateIndex.getIn(['handDisinfection', 'finish']) !== 2 &&
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD && movable
+    ) {
+        console.log("Disinfect hands before taking bottle");
+    }
 }
 
 export function handleNotifyBottle(nextState) {
@@ -196,8 +204,9 @@ export function handleNotifyBottle(nextState) {
     }
 
     // take bottle in hand
-    if (// TODO: for product remove comment
+    if (// TODO: for product remove comment (not needed)
         // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
+        // stateIndex.getIn(['handDisinfection', 'finish']) === 2 &&
         currentState.bottlePrepare.position === bottle.position.IN_CUPBOARD &&
         nextState.bottlePrepare.position === bottle.position.IN_HAND
     ) {

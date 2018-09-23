@@ -24,7 +24,7 @@ export const section0 = {
     handDisinfection: {
         disinfecting: false,
         disinfected: false,
-        finish: false,
+        finish: 0,
     },
     bottlePrepare: {
         position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
@@ -88,7 +88,7 @@ export const section1 = {
     handDisinfection: {
         disinfecting: false,
         disinfected: false,
-        finish: false,
+        finish: 1,
     },
     bottlePrepare: {
         position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
@@ -152,7 +152,7 @@ export const section2 = {
     handDisinfection: {
         disinfecting: false,
         disinfected: false,
-        finish: false,
+        finish: 2,
     },
     bottlePrepare: {
         position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
@@ -216,7 +216,7 @@ export const section3 = {
     handDisinfection: {
         disinfecting: true,
         disinfected: true,
-        finish: true,
+        finish: 2,
     },
     bottlePrepare: {
         position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
@@ -280,7 +280,7 @@ export const section4 = {
     handDisinfection: {
         disinfecting: true,
         disinfected: true,
-        finish: true,
+        finish: 2,
     },
     bottlePrepare: {
         position: constants.bottle.position.ON_TABLE, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
@@ -344,7 +344,7 @@ export const section5 = {
     handDisinfection: {
         disinfecting: true,
         disinfected: true,
-        finish: true,
+        finish: 2,
     },
     bottlePrepare: {
         position: constants.bottle.position.ON_TABLE, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
@@ -408,7 +408,7 @@ export const section6 = {
     handDisinfection: {
         disinfecting: true,
         disinfected: true,
-        finish: true,
+        finish: 2,
     },
     bottlePrepare: {
         position: constants.bottle.position.ON_TABLE, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'

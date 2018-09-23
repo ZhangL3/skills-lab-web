@@ -44,7 +44,11 @@ export function handleNotifyInfusionSetInPack(nextState) {
 
 export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
     // Must hand disinfection, before taking infusion set
-    if (!stateIndex.getIn(['handDisinfection', 'finish'])) {
+    if (
+        // !stateIndex.getIn(['handDisinfection', 'finish'])
+        stateIndex.getIn(['handDisinfection', 'finish']) !== 2
+
+    ) {
         return false;
     }
 

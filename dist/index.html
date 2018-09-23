@@ -352,7 +352,7 @@
         <a-image id="whiteboard" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.173 0.988 0" rotation="0 90 0">
             <!-- TODO: give to i-image? -->
             <a-image id="note" src="#noteTexture" scale="0.3 0.3 0.3" position="0.273 -0.223 0.017" rotation="0 0 0" ></a-image>
-            <a-text tips_text_edit="If ready, click the portfolio to begin.\n Or select a chapter to begin." id="tipsText" value="" wrap-count="70" line-height="60" color="#000000" position="-0.403 0.347 0.000" width="2" baseline="top"></a-text>
+            <a-text tips_text_edit id="tipsText" value="If ready, click the portfolio to begin.\n Or select a chapter to begin." wrap-count="70" line-height="60" color="#000000" position="-0.403 0.347 0.000" width="2" baseline="top"></a-text>
             <a-entity id="section" position="0 -0.15 0" section_selection toggle_box_select_section>
                 <a-entity id="section1" text="color:#000000; value: Section1" position="0.14 0.27 0" align="center" width="2"></a-entity>
                 <a-box visible="false" id="toggleBoxSection1" scale="0.317 0.096 0.292" position='-0.256 0.270 0.105' material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
@@ -433,6 +433,7 @@
             <a-gltf-model id="infusionSetHangedFill" src="#infusionSetHangedFillMesh" visible="false"></a-gltf-model>
             <a-gltf-model id="infusionSetHangedWheel" src="#infusionSetHangedWheelMesh"></a-gltf-model>
         </a-gltf-model>
+        <a-cylinder id="infusionSetHangedFillTrigger" material="transparent: true; opacity: 0.001; alpha-test: 0.001;" position="0.837 1.243 -0.536" height="0.07" radius="0.020"></a-cylinder>
         <a-box toggle_box_infusion_set_hanged_chamber id="toggleBoxInfusionSetHangedChamber" visible="false" scale="0.044 0.042 0.026" position="0.838 1.231 -0.538" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
         <a-box toggle_box_infusion_set_hanged_wheel id="toggleBoxInfusionSetHangedWheel" visible="false" scale="0.029 0.042 0.026" position="0.825 1.109 -0.538" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
 
@@ -449,7 +450,7 @@
         </a-gltf-model>
 
         <!-- sticker stamper -->
-        <a-gltf-model name_label_stamper_vive id="stickerStamper" src="#stickerStamperMesh" position="0.457 0.681 -0.948" rotation="0 -90 0" scale="0.05 0.05 0.05" name_label_stamper></a-gltf-model>
+        <a-gltf-model name_label_stamper_vive name_label_stamper id="stickerStamper" src="#stickerStamperMesh" position="0.457 0.681 -0.948" rotation="0 -90 0" scale="0.05 0.05 0.05"></a-gltf-model>
         <a-image id="nameLabelInBox" material="transparent: false;" src="#nameLabelEmptyImg" scale="0.092 0.044 0.050" position="0.457 0.699 -0.948" rotation="-90 0 0" visible="true"></a-image>
 
         <a-image id="nameLabelEmpty" material="transparent: false;" src="#nameLabelEmptyImg" scale="0.092 0.044 0.050" position="0.457 0.700 -0.948" rotation="-90 0 0" visible="true">

@@ -45,7 +45,10 @@ export default AFRAME.registerComponent('glove', {
                 isEmitted(el, data.position)
             ) {
                 // Must check portfolio before taking glove
-                if (stateIndex.getIn(['portfolio', 'finish'])  === true) {
+                if (
+                    // stateIndex.getIn(['portfolio', 'finish'])  === true
+                    stateIndex.getIn(['handDisinfection', 'finish']) === 1
+                ) {
                     // show glove
                     activeController = data.activeController;
 
@@ -60,8 +63,10 @@ export default AFRAME.registerComponent('glove', {
                         controllerStateIndex.setControllerState('hasGloveRight', true);
                     }
                 }
+                // chang hints
                 else {
-                        console.log("portfolio not finish: ");
+                        // console.log("portfolio not finish: ");
+                    console.log("Disinfect hand at before taking gloves");
                 }
             }
 
@@ -70,11 +75,15 @@ export default AFRAME.registerComponent('glove', {
 });
 
 function handleClickGlove () {
-    if (stateIndex.getIn(['portfolio', 'finish'])  === true){
+    if (
+        // stateIndex.getIn(['portfolio', 'finish'])  === true
+        stateIndex.getIn(['handDisinfection', 'finish']) === 1
+    ) {
         stateIndex.setIn(['tableDisinfection', 'hasGlove'], true);
     }
     else {
-        console.log("portfolio not finish: ");
+        // console.log("portfolio not finish: ");
+        console.log("Disinfect hand at before taking gloves");
     }
 }
 

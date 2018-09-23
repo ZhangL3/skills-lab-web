@@ -52,16 +52,25 @@ export function handleControllerNotifyInfusionSetOpen ( triggerEvent ) {
     getWorldBound(element);
     getWorldBound(infusionSetWheel);
 
-    // take opened infusion set in hand
-    if (
-        isEmitted(element, triggerEvent.position)
-        && controllerStateIndex.getControllerState('infusionSetCapOff')
-        && controllerStateIndex.getControllerState('infusionSetWheelClosed')
-        && !controllerStateIndex.getControllerState('infusionSetOpenInHand')
-    ) {
-        activeController = triggerEvent.activeController;
-        let activeControllerId = activeController.getAttribute('id');
-        controllerStateIndex.setControllerState('infusionSetOpenInHand', activeControllerId);
+    if (isEmitted(element, triggerEvent.position)) {
+        // take opened infusion set in hand
+        if (
+            controllerStateIndex.getControllerState('infusionSetCapOff')
+            && controllerStateIndex.getControllerState('infusionSetWheelClosed')
+            && !controllerStateIndex.getControllerState('infusionSetOpenInHand')
+        ) {
+            activeController = triggerEvent.activeController;
+            let activeControllerId = activeController.getAttribute('id');
+            controllerStateIndex.setControllerState('infusionSetOpenInHand', activeControllerId);
+        }
+        // change hint
+        else if (
+            (!controllerStateIndex.getControllerState('infusionSetCapOff')
+            || !controllerStateIndex.getControllerState('infusionSetWheelClosed'))
+            && !controllerStateIndex.getControllerState('infusionSetOpenInHand')
+        ) {
+            console.log("Take off the cap of infusion set and bottle, close the roller");
+        }
     }
 }
 

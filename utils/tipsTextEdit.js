@@ -18,12 +18,12 @@ export default AFRAME.registerComponent('tips_text_edit', {
         currentState = _.cloneDeep(stateIndex.getState());
     },
 
-    update: function () {
-        const el = this.el;
-        const data = this.data;
-
-        el.setAttribute('value', data.text);
-    }
+    // update: function () {
+    //     const el = this.el;
+    //     const data = this.data;
+    //
+    //     el.setAttribute('value', data.text);
+    // }
 });
 
 function trimText(text) {
@@ -32,7 +32,7 @@ function trimText(text) {
 
 export function handleNotifyTipsTextEdit(nextState) {
     if (nextState.hint !== currentState.hint) {
-        element.setAttribute('tips_text_edit', `text: ${nextState.hint}`);
+        element.setAttribute('value', `${nextState.hint}`);
     }
 
     // deep copy
