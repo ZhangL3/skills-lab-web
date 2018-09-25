@@ -201,6 +201,7 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
             activeController = triggerEvent.activeController;
             let activeControllerId = activeController.getAttribute('id');
             controllerStateIndex.setControllerState('portfolioInHand', activeControllerId);
+            stateIndex.set('started', true);
         }
     }
 }
