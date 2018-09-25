@@ -68,11 +68,18 @@ function setHandOpacity(handElement, opacity) {
     });
 }
 
+export function setBothHandOpacity() {
+    controllerLeftHand.removeAttribute("material");
+    setHandOpacity(controllerLeftHand, 1);
+    controllerRightHand.removeAttribute("material");
+    setHandOpacity(controllerRightHand, 1);
+}
+
 function haveSthInHand(controllerElement){
     const children = controllerElement.childNodes;
     for (let i=0; i<children.length; i++) {
         if (
-            children[i].nodeType === 1
+            children[i].nodeType === 1 // nodeType === 1: element
             && children[i].getAttribute('id') !== 'leftHand'
             && children[i].getAttribute('id') !== 'rightHand'
             && children[i].getAttribute('id') !== 'leftHandIndicator'

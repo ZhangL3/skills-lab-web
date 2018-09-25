@@ -8,6 +8,8 @@ import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 
+import { setBothHandOpacity } from "./controllerHand";
+
 let element;
 let activeController;
 
@@ -93,6 +95,12 @@ export function handleControllerStateNotifyToggleBoxTrashCan (nextControllerStat
     ) {
         dropGloveCloth();
         setVisibleFalse(element);
+        const t = setInterval(()=>{
+            if (isGloveAndClothThrown()) {
+                setBothHandOpacity();
+                clearInterval(t);
+            }
+        },500);
         stateIndex.setIn(['tableDisinfection', 'finish'], true);
     }
 
@@ -100,4 +108,21 @@ export function handleControllerStateNotifyToggleBoxTrashCan (nextControllerStat
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
+function isGloveAndClothThrown() {
+    const controllerLeft = document.querySelector('#viveControllerLeft');
+    const controllerRight  = document.querySelector('#viveControllerRight');
+    const clothOnTable = document.querySelector('#clothOnTable');
+    const gloveLeft = document.querySelector('#gloveLeft');
+    const gloveRight = document.querySelector('#gloveRight');
+
+    if (
+        $.contains(controllerLeft, gloveLeft)
+        || $.contains(controllerLeft, clothOnTable)
+        || $.contains(controllerRight, gloveRight)
+        || $.contains(controllerRight, clothOnTable)
+    ) {
+        return false;
+    }
+    return true;
+}
 
