@@ -213,9 +213,7 @@ function pierceInfusionSetIntoBottle() {
 }
 
 function fillChamber() {
-    console.log("fillChamber");
     infusionSetHangedFill.attr('visible', true);
-    console.log(infusionSetHangedFill.attr('visible'));
 }
 
 function openRoller() {

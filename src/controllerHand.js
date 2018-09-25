@@ -22,12 +22,6 @@ export default AFRAME.registerComponent('controller_hand', {
         controllerRight = document.querySelector('#viveControllerRight');
         controllerLeft = document.querySelector('#viveControllerLeft');
 
-        // deep copy
-        // currentState = _.cloneDeep(stateIndex.getState());
-
-        // deep copy
-        // currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
         $(controllerRightHand).on('click', () => {
             controllerRightHand.setAttribute("animation-mixer", "loop: once");
             if (haveSthInHand(controllerRight)) {
@@ -70,8 +64,6 @@ function setHandOpacity(handElement, opacity) {
             node.material.transparent = opacity < 1.0;
             node.material.needsUpdate = true;
             node.material.alphaTest = 0.1;
-
-            console.log("node.material: ", node.material, typeof(node.material));
         }
     });
 }
@@ -79,15 +71,6 @@ function setHandOpacity(handElement, opacity) {
 function haveSthInHand(controllerElement){
     const children = controllerElement.childNodes;
     for (let i=0; i<children.length; i++) {
-        // console.log("i: ", i, typeof(i));
-        // console.log("children[i]: ", children[i], typeof(children[i]));
-        // console.log("children[i].nodeType === 1: ", children[i].nodeType === 1, typeof(children[i].nodeType === 1));
-        // if(children[i].nodeType===1) {
-        //     console.log("children[i].getAttribute('id'): ", children[i].getAttribute('id'), typeof(children[i].getAttribute('id')));
-        //     console.log("children[i].getAttribute('id') !== 'leftHand': ", children[i].getAttribute('id') !== 'leftHand', typeof(children[i].getAttribute('id') !== 'leftHand'));
-        //     console.log("children[i].getAttribute('id') !== 'rightHand': ", children[i].getAttribute('id') !== 'rightHand', typeof(children[i].getAttribute('id') !== 'rightHand'));
-        //     console.log("children[i].getAttribute('visible'): ", children[i].getAttribute('visible'), typeof(children[i].getAttribute('visible')));
-        // }
         if (
             children[i].nodeType === 1
             && children[i].getAttribute('id') !== 'leftHand'
