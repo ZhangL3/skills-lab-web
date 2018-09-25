@@ -50,6 +50,7 @@ export default class stateIndex {
                     console.log("set Section after loading!!!!!!!!!");
                     this.selectSection(selectedSection);
                     window.clearInterval(setSectionStillElementsLoaded);
+                    stateIndex.set('started', true);
                 }
             }, 500);
         }
