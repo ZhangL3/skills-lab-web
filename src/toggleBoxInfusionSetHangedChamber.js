@@ -7,6 +7,7 @@ import controllerStateIndex from '../utils/controllerState';
 
 let element;
 let infusionSetHangedFill;
+let infusionSetHangedFillTrigger;
 
 let currentControllerState;
 
@@ -16,6 +17,7 @@ export default AFRAME.registerComponent('toggle_box_infusion_set_hanged_chamber'
 
         element = this.el;
         infusionSetHangedFill = document.querySelector('#infusionSetHangedFill');
+        infusionSetHangedFillTrigger = $('#infusionSetHangedFillTrigger');
 
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
@@ -46,6 +48,7 @@ export function handleControllerStateNotifyToggleBoxInfusionSetHangedChamber (ne
         && !currentControllerState.dripChamberFilled
     ) {
         infusionSetHangedFill.setAttribute('visible', true);
+        infusionSetHangedFillTrigger.attr('visible', false);
     }
 
     // deep copy
