@@ -152,6 +152,70 @@ export const section2 = {
     handDisinfection: {
         disinfecting: false,
         disinfected: false,
+        finish: 1,
+    },
+    bottlePrepare: {
+        position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
+        checkBottle: {
+            front: false,
+            back: false,
+            top: false,
+        },
+        withCap: true,
+        // withInfusionSet: false,
+        finish: false,
+    },
+    infusionSet: {
+        position: constants.infusionSet.position.IN_DRAWER, // 'in-drawer' || 'in-hand' || 'on-table' || 'in-bottle'
+        inPack: true,
+        checkSet: {
+            label: false,
+        },
+        rollerClapOpen: true,
+        withCap: true,
+        chamberFilled:false,
+        tubeFilled: false,
+        fixed: false,
+        finish: false,
+    },
+    nameLabel: {
+        position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
+        labelFilled: false,
+        finish: false,
+    },
+    showResult: {
+        time: '0:00',
+        hintTimes: 0,
+    },
+    hint: 'Please disinfect desk at first.',
+    sectionSelected: 2,
+    started: false
+};
+
+export const section3 = {
+    wasteBinCapOpen: false,
+    trashCanCapOpen: false,
+    portfolio: {
+        position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
+        checkPortfolio: {
+            name: true,
+            drug: true,
+            dose: true,
+            IV: true,
+            CF: true,
+        },
+        checkFinish: true,
+        finish: true,
+    },
+    tableDisinfection:{
+        hasGlove: true,
+        hasCloth: true,
+        disinfectionFinish: true,
+        finish: true,
+    },
+    handDisinfection: {
+        disinfecting: false,
+        disinfected: false,
         finish: 2,
     },
     bottlePrepare: {
@@ -192,7 +256,7 @@ export const section2 = {
     started: false
 };
 
-export const section3 = {
+export const section4 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
     portfolio: {
@@ -256,7 +320,7 @@ export const section3 = {
     started: false
 };
 
-export const section4 = {
+export const section5 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
     portfolio: {
@@ -320,7 +384,7 @@ export const section4 = {
     started: false
 };
 
-export const section5 = {
+export const section6 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
     portfolio: {
@@ -384,7 +448,7 @@ export const section5 = {
     started: false
 };
 
-export const section6 = {
+export const section7 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
     portfolio: {

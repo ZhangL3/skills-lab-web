@@ -74,39 +74,39 @@ export function setControllerStateToSection(section) {
         hasGloveLeft: false,
         hasGloveRight: false,
         disinfectionClothInHand: null,
-        deskDisinfection: section >= 2,
-        deskDisinfectionAllFinish: section >= 2 ,
+        deskDisinfection: section >= 3,
+        deskDisinfectionAllFinish: section >= 4,
 
         // important
-        nacl500Dragable: section <= 3,
+        nacl500Dragable: section <= 4,
 
         nacl500InHandToDesk: null,
-        nacl500LabelChecked: section >= 4,
-        nacl500LiquidChecked: section >= 4,
-        nacl500CapChecked: section >= 4,
-        nacl500OnDesk: section >= 4,
-        nacl500NoHookAnymore: section >= 4,
+        nacl500LabelChecked: section >= 5,
+        nacl500LiquidChecked: section >= 5,
+        nacl500CapChecked: section >= 5,
+        nacl500OnDesk: section >= 5,
+        nacl500NoHookAnymore: section >= 5,
         bottleNacl500CapInHand: null,
-        bottleNacl500CapDroped: section >= 4,
+        bottleNacl500CapDroped: section >= 5,
         bottleOpened: false, // seem not needed
 
         infusionSetInPackInHand: null,
-        infusionSetChecked: section >= 5,
-        infusionSetOnDeskOpened: section >= 5,
+        infusionSetChecked: section >= 6,
+        infusionSetOnDeskOpened: section >= 6,
         infusionSetCapInHand: null,
-        infusionSetCapOff: section >= 5,
+        infusionSetCapOff: section >= 6,
         infusionSetOpenInHand: null,
-        infusionSetInBottle: section >= 6,
+        infusionSetInBottle: section >= 7,
 
         nacl500InHandToStand: null,
-        nacl500Hanged: section >= 6,
-        dripChamberFilled: section >= 6,
-        infusionSetWheelClosed: section === 5,
-        tubeFixed: section >= 6,
+        nacl500Hanged: section >= 7,
+        dripChamberFilled: section >= 7,
+        infusionSetWheelClosed: section === 6,
+        tubeFixed: section >= 7,
 
         nameLabelInHand: null,
-        nameLabelFilled: section > 6,
-        nameLabelPasted: section > 6
+        nameLabelFilled: section > 7,
+        nameLabelPasted: section > 7
     };
 
     Object.assign(controllerState, selectedControllerstate);

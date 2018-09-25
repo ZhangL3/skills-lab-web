@@ -15,6 +15,7 @@ let section3;
 let section4;
 let section5;
 let section6;
+let section7;
 
 export default AFRAME.registerComponent('section_selection', {
 
@@ -28,6 +29,7 @@ export default AFRAME.registerComponent('section_selection', {
         section4 = $("#section4");
         section5 = $("#section5");
         section6 = $("#section6");
+        section7 = $("#section7");
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -59,6 +61,11 @@ export default AFRAME.registerComponent('section_selection', {
 
         section6.on('click', () => {
             stateIndex.selectSection(6);
+            stateIndex.set('started', true);
+        });
+
+        section7.on('click', () => {
+            stateIndex.selectSection(7);
             stateIndex.set('started', true);
         });
     }

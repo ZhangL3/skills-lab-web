@@ -16,6 +16,7 @@ let toggleBoxSection3;
 let toggleBoxSection4;
 let toggleBoxSection5;
 let toggleBoxSection6;
+let toggleBoxSection7;
 
 let currentControllerState;
 
@@ -33,6 +34,7 @@ export default AFRAME.registerComponent('toggle_box_select_section', {
         toggleBoxSection4 = document.querySelector('#toggleBoxSection4');
         toggleBoxSection5 = document.querySelector('#toggleBoxSection5');
         toggleBoxSection6 = document.querySelector('#toggleBoxSection6');
+        toggleBoxSection7 = document.querySelector('#toggleBoxSection7');
 
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
@@ -55,6 +57,7 @@ export function handleControllerNotifyToggleBoxSelectSection( triggerEvent ) {
     getWorldBound(toggleBoxSection4);
     getWorldBound(toggleBoxSection5);
     getWorldBound(toggleBoxSection6);
+    getWorldBound(toggleBoxSection7);
 
     if (isEmitted(toggleBoxSection1, triggerEvent.position)) {
         stateIndex.selectSection(1);
@@ -78,6 +81,10 @@ export function handleControllerNotifyToggleBoxSelectSection( triggerEvent ) {
     }
     else if (isEmitted(toggleBoxSection6, triggerEvent.position)) {
         stateIndex.selectSection(6);
+        stateIndex.set('started', true);
+    }
+    else if (isEmitted(toggleBoxSection7, triggerEvent.position)) {
+        stateIndex.selectSection(7);
         stateIndex.set('started', true);
     }
 }

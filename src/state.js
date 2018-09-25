@@ -27,19 +27,19 @@ export default class stateIndex {
         this.selectSection(0);
 
         const selectedSection = Number(this.getSectionSelectionFromURL());
-        if (selectedSection > 0 && selectedSection <= 6) {
+        if (selectedSection > 0 && selectedSection <= 7) {
             let setSectionStillElementsLoaded = setInterval(()=>{
                 if (
-                    // for section 4
+                    // for section 5
                     document.querySelector('#nacl500Bottle')
                     && document.querySelector('#nacl500Cap')
                     && document.querySelector('#toggleBoxNacl500Cap')
-                    // for section 5
+                    // for section 6
                     && document.querySelector('#infusionSetInPack')
                     && document.querySelector('#infusionSetOpen')
                     && document.querySelector('#infusionSetOpenCap')
                     && document.querySelector('#infusionSetOpenWheel')
-                    // for section 6
+                    // for section 7
                     && document.querySelector('#infusionSetHanged')
                     && document.querySelector('#infusionSetHangedFill')
                     && document.querySelector('#infusionSetHangedWheel')
@@ -114,6 +114,11 @@ export default class stateIndex {
                 this.setSceneToSection(6);
                 setControllerStateToSection(6);
                 break;
+            case 7:
+                state = sectionSelect.section7;
+                this.setSceneToSection(7);
+                setControllerStateToSection(7);
+                break;
 
             default:
                 state = sectionSelect.section0;
@@ -124,27 +129,32 @@ export default class stateIndex {
 
         switch (section) {
             case 1:
+                // hand disinfection 1
                 console.log("1");
                 break;
             case 2:
+                // desk disinfection
                 console.log("2");
                 break;
             case 3:
+                // hand disinfection 2
                 console.log("3");
                 break;
-
             case 4:
+                console.log("4");
+                break;
+            case 5:
                 // put bottle on table and take off the cap
                 console.log("put bottle on table and take off the cap");
                 initBottlePutOnTableTakeOffCap();
                 break;
-            case 5:
+            case 6:
                 // put on table, take off cap, close wheel
                 console.log("put on table, take off cap, close wheel");
                 initBottlePutOnTableTakeOffCap();
                 initInfusionSetOnTableOffCapOpenCloseWheel();
                 break;
-            case 6:
+            case 7:
                 // to fix the tube
                 console.log("to fix the tube");
                 initInfusionSetFixed();
