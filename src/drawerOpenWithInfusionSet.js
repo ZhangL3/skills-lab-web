@@ -37,8 +37,8 @@ export default AFRAME.registerComponent('drawer_open_with_infusion_set',{
 });
 
 const schema = {
-    open : '1.8 4.1 0.1',
-    close : '0 4.1 0.1',
+    open : '1.8 4.190 0.106',
+    close : '0 4.190 0.106',
     dur :500
 };
 

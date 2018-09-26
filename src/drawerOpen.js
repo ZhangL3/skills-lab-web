@@ -2,8 +2,8 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 
 export default AFRAME.registerComponent('drawer_open',{
     schema: {
-        open : {default: '1.8 0 0.1'},
-        close : {default: '0 0 0.1'},
+        open : {default: '1.8 0.105 0.116'},
+        close : {default: '0 0.105 0.116'},
         dur : {default: 500},
 
     },
