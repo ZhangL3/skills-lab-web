@@ -64,6 +64,7 @@ import * as controllerHand from './controllerHand';
 import * as tipsTextEdit from '../utils/tipsTextEdit';
 
 import * as raycasterIntersection from './raycasterIntersection';
+import * as cameraMove from './cameraMove';
 
 stateIndex.init();
 controllerStateIndex.initControllerState();
