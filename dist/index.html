@@ -275,8 +275,8 @@
 
 
         </a-gltf-model>
-        <a-box toggle_box_nacl500_on_desk id="toggleBoxNacl500OnDesk" scale="0.114 0.149 0.104" position="-0.320 0.752 -0.829" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
-        <a-box toggle_box_nacl500_hanged id="toggleBoxNacl500Hanged" scale="0.114 0.149 0.104" position="0.841 1.36 -0.539" material="color:#00ffff; transparent: true; opacity: 0.5" visible="false"></a-box>
+        <a-box toggle_box_nacl500_on_desk id="toggleBoxNacl500OnDesk" scale="0.114 0.149 0.104" position="-0.320 0.752 -0.829" material="color:#ff0000; transparent: true; opacity: 0.5; depth-test: false; depth-write: false;" visible="false"></a-box>
+        <a-box toggle_box_nacl500_hanged id="toggleBoxNacl500Hanged" scale="0.114 0.149 0.104" position="0.841 1.36 -0.539" material="color:#00ffff; transparent: true; opacity: 0.5; depth-test: false; depth-write: false;" visible="false"></a-box>
 
 
         <a-gltf-model id="g51000Bottle" src="#bottleMesh" position="-0.272 1.406 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1">
@@ -342,14 +342,16 @@
         <a-gltf-model src="#holder" position="0.975 0.041 -0.65" rotation="0 41.59 0" scale="0.5 0.437 0.5"></a-gltf-model>
 
         <!-- walls -->
-        <a-image id="wallfront" src="#wallTexture" scale="4.480 2.145 1.000" position="-0.009 1.075 -1.004" rotation=""></a-image>
-        <a-image id="wallleft" src="#wallTexture" scale="3.437 2.155 1.000" position="-2.188 1.075 0.699" rotation="0 90 0"></a-image>
-        <a-image id="wallright" src="#wallTexture" scale="3.437 2.155 1.000" position="2.188 1.075 0.699" rotation="0 90 0"></a-image>
-        <a-image id="walltop" src="#wallTexture" scale="4.388 3.423 1.000" position="-0.027 2.121 0.710" rotation="90 0 0"></a-image>
-        <a-image id="wallback" src="#wallTexture" scale="4.385 2.155 1.000" position="0.003 1.075 2.383" rotation=""></a-image>
+        <a-box id="wallFrontBox" src="#wallTexture" material="shader: flat;" position="-0.007 1.070 -1.010" scale="4.480 2.163 0.01"></a-box>
+        <a-box id="wallLeftBox" src="#wallTexture" material="shader: flat;" position="-2.188 1.052 0.699" scale="0.010 2.118 3.41"></a-box>
+        <a-box id="wallRightBox" src="#wallTexture" material="shader: flat;" position="2.188 1.059 0.699" scale="0.010 2.131 3.410"></a-box>
+        <a-box id="wallTopBox" src="#wallTexture" material="shader: flat;" position="-0.027 2.121 0.710" scale="4.388 3.423 0.01" rotation="90 0 0"></a-box>
+        <a-box id="wallBackBox" src="#wallTexture" material="shader: flat;" position="-0.007 1.070 2.383" scale="4.480 2.163 0.01"></a-box>
 
         <!-- floor -->
-        <a-image id="floor" src="#floorTexture" scale="4.459 3.504 0.986" position="-0.027 0.001 0.677" rotation="90 0 0"></a-image>
+        <!--<a-image id="floor" src="#floorTexture" scale="4.459 3.504 0.986" position="-0.027 0.001 0.677" rotation="90 0 0"></a-image>-->
+        <a-box id="floorBox" src="#floorTexture" material="shader: flat;" position="-0.027 0.002 0.710" scale="4.388 3.423 0.01" rotation="90 0 0"></a-box>
+
 
         <!-- whiteboard -->
         <a-image id="whiteboard" src="#whiteboardTexture" scale="1.656 1.055 1.000" position="-2.173 0.988 0" rotation="0 90 0">
@@ -428,7 +430,7 @@
             <a-gltf-model infusion_set_cap_vive id="infusionSetOpenCap" position="0.637 0.402 -2.183" src="#infusionSetOpenCapMesh"></a-gltf-model>
             <a-gltf-model id="infusionSetOpenWheel" src="#infusionSetOpenWheelMesh"></a-gltf-model>
         </a-gltf-model>
-        <a-box toggle_box_infusion_set_on_desk id="toggleBoxInfusionSetOnDesk" visible="false" scale="0.219 0.046 0.126" position="-0.168 0.700 -0.795" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
+        <a-box toggle_box_infusion_set_on_desk id="toggleBoxInfusionSetOnDesk" visible="false" scale="0.219 0.046 0.126" position="-0.168 0.700 -0.795" material="color:#ff0000; transparent: true; opacity: 0.5; depth-test: false;"></a-box>
         <a-box toggle_box_infusion_set_open_wheel id="toggleBoxInfusionSetCap" visible="false" scale="0.044 0.021 0.026" position="-0.106 0.697 -0.770" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
 
         <a-gltf-model id="infusionSetInBottle" src="#infusionSetInBottleMesh" position="-0.138 0.692 -0.794" rotation="0  -14.725 0" scale="0.045 0.045 0.045" visible="false"></a-gltf-model>
@@ -471,14 +473,14 @@
         <!-- Vive controlers-->
         <a-entity id="viveControllerLeft" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" vive-controls="hand: left; model: false;" controller_6_d>
             <a-box id="leftHandIndicator"  color="#0000ff" scale="0.01 0.01 0.01"></a-box>
-            <a-gltf-model controller_hand id="leftHand" src="#leftHandMesh" material="color:#ff0000; transparent: true; opacity: 0.5" scale="0.2 0.2 0.2" rotation="180 -90 180"></a-gltf-model>
+            <a-gltf-model controller_hand id="leftHand" src="#leftHandMesh" material="" scale="0.2 0.2 0.2" rotation="180 -90 180"></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveLeft" visible="false" src="#gloveMesh" position="0.007 0.026 -0.004" rotation="-22.57 151.04 -17.77" scale="0.02 0.02 0.02"></a-gltf-model>
             <a-image id="nameLabelWroteLeft" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
 
         </a-entity>
         <a-entity id="viveControllerRight" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" vive-controls="hand: right; model: false;" controller_6_d>
             <a-box id="rightHandIndicator" color="#ff0000" scale="0.01 0.01 0.01"></a-box>
-            <a-gltf-model controller_hand id="rightHand" src="#rightHandMesh" scale="0.2 0.2 0.2" rotation="180 90 180" material="alpha-test:0.5; transparent: true; opacity: 0.5"></a-gltf-model>
+            <a-gltf-model controller_hand id="rightHand" src="#rightHandMesh" scale="0.2 0.2 0.2" rotation="180 90 180" material=""></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveRight" visible="false" src="#gloveMesh" position="-0.002 0.021 -0.01" rotation="-23.70 -140.70 -168.42" scale="0.02 0.02 0.02"></a-gltf-model>
             <a-image id="nameLabelWroteRight" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
 

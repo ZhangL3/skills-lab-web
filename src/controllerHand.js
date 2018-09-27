@@ -54,7 +54,7 @@ export default AFRAME.registerComponent('controller_hand', {
     }
 });
 
-function setHandOpacity(handElement, opacity) {
+function setHandOpacity(handElement, opacity, alphaTest=0.1, depthTest=true) {
 
     const mesh = handElement.getObject3D('mesh'); // For hand, the result is undefined
     if (!mesh) { return; }
@@ -63,7 +63,8 @@ function setHandOpacity(handElement, opacity) {
             node.material.opacity = opacity;
             node.material.transparent = opacity < 1.0;
             node.material.needsUpdate = true;
-            node.material.alphaTest = 0.1;
+            node.material.alphaTest = alphaTest;
+            node.material.depthTest = depthTest;
         }
     });
 }
