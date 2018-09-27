@@ -4,6 +4,7 @@ import { isEmitted } from "../utils/isEmitted";
 import controllerStateIndex from '../utils/controllerState';
 import { checkIsCapOpen } from "./clothBottleCapOpen";
 import { controllerActions } from "../utils/controllerActions";
+import stateIndex from './state';
 import {setVisibleTrue} from "../utils/setVisible";
 
 
@@ -26,6 +27,14 @@ AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
 });
 
 export function handleControllerNotifyClothOnTable ( triggerEvent ) {
+
+    if (
+        stateIndex.getIn(['tableDisinfection', 'finish'])
+        || controllerStateIndex.getControllerState('disinfectionClothInHand')
+    ) {
+        return false;
+    }
+
     getWorldBound(clothInBottle);
     activeController = triggerEvent.activeController;
     let activeControllerId = activeController.getAttribute('id');
