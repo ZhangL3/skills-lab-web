@@ -34,11 +34,9 @@
         <a-asset-item id="cupboardBody" src="./assets/models/meshes/cupboard/body/cupboardBody.gltf"/>
         <a-asset-item id="cupboardLeftDoor" src="./assets/models/meshes/cupboard/leftDoor/cupboardDoorLeft.gltf"/>
         <a-asset-item id="cupboardLeftDoorHandle" src="./assets/models/meshes/cupboard/leftDoor/cupboardDoorLeftHandle.gltf"/>
-        <a-asset-item id="cupboardLeftDoorGlass" src="./assets/models/meshes/cupboard/leftDoor/leftGlassDoubleSidedDisableBackfaceCulling.gltf"/>
         <a-asset-item id="cupboardRightDoor" src="./assets/models/meshes/cupboard/rightDoor/cupboardDoorRight.gltf"/>
         <a-asset-item id="cupboardRightDoorHandle"
                       src="./assets/models/meshes/cupboard/rightDoor/cupboardDoorRightHandle.gltf"/>
-        <a-asset-item id="cupboardRightDoorGlass" src="./assets/models/meshes/cupboard/rightDoor/rightGlassInside.gltf"/>
 
         <!-- hand disinfection dispenser -->
         <a-asset-item id="dispenserBody" src="./assets/models/meshes/dispenser/dispenserBody.gltf"/>
@@ -237,23 +235,23 @@
             <a-gltf-model src="#cupboardBody" position="0 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
                 <a-gltf-model id="leftCupboardLeftDoor" class="cupboardDoor" src="#cupboardLeftDoor" position="2.7 0 6.8" door_open>
                     <a-gltf-model src="#cupboardLeftDoorHandle"></a-gltf-model>
-                    <a-gltf-model src="#cupboardLeftDoorGlass"></a-gltf-model>
+                    <a-box position="0.023 2.034 -1.726" scale="0.01 2.032 1.721" material="translate: true; opacity: 0.3; alpha-test: 0.1; depth-test: false;"></a-box>
                 </a-gltf-model>
 
                 <a-gltf-model id="leftCupboardRightDoor" class="cupboardDoor" src="#cupboardRightDoor" position="2.7 0 0" door_open="open:0 75 0">
                     <a-gltf-model src="#cupboardRightDoorHandle"></a-gltf-model>
-                    <a-gltf-model src="#cupboardRightDoorGlass"></a-gltf-model>
+                    <a-box position="0 2.034 1.690" scale="0.01 2.032 1.721" material="translate: true; opacity: 0.3; alpha-test: 0.1; depth-test: false;"></a-box>
                 </a-gltf-model>
             </a-gltf-model>
             <a-gltf-model src="#cupboardBody" position="0.676 0 0" scale="0.1 0.1 0.1" rotation="0 270 0">
                 <a-gltf-model id="rightCupboardLeftDoor" class="cupboardDoor" src="#cupboardLeftDoor" position="2.7 0 6.8" door_open="open:0 -75 0">
                     <a-gltf-model src="#cupboardLeftDoorHandle"></a-gltf-model>
-                    <a-gltf-model src="#cupboardLeftDoorGlass"></a-gltf-model>
+                    <a-box position="0.023 2.034 -1.726" scale="0.01 2.032 1.721" material="translate: true; opacity: 0.3; alpha-test: 0.1; depth-test: false;"></a-box>
                 </a-gltf-model>
 
                 <a-gltf-model id="rightCupboardRightDoor" class="cupboardDoor" src="#cupboardRightDoor" position="2.7 0 0" door_open="open:0 90 0">
                     <a-gltf-model src="#cupboardRightDoorHandle"></a-gltf-model>
-                    <a-gltf-model src="#cupboardRightDoorGlass"></a-gltf-model>
+                    <a-box position="0 2.034 1.690" scale="0.01 2.032 1.721" material="translate: true; opacity: 0.3; alpha-test: 0.1; depth-test: false;"></a-box>
                 </a-gltf-model>
             </a-gltf-model>
         </a-entity>
