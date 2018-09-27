@@ -19,8 +19,8 @@ export default AFRAME.registerComponent('disinfection_cloth_on_table', {
 
 const schema = {
     moveBegin : '0 0.681 -0.81',
-    moveEnd : '-0.39 0.681 -0.81',
-    overCan : '-0.89 0.681 -0.81',
+    moveEnd : '-0.39 0.685 -0.81',
+    overCan : '-0.89 0.685 -0.81',
     inCan : '-0.89 0.1 -0.81',
     dur : 500,
     disinfectionRepeat: 3,

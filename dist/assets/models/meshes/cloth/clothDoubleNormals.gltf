@@ -2,10 +2,10 @@
     "accessors" : [
         {
             "bufferView" : 0, 
-            "componentType" : 5121, 
-            "count" : 294, 
+            "componentType" : 5123, 
+            "count" : 3024, 
             "max" : [
-                195
+                2015
             ], 
             "min" : [
                 0
@@ -15,57 +15,57 @@
         {
             "bufferView" : 1, 
             "componentType" : 5126, 
-            "count" : 196, 
+            "count" : 2016, 
             "max" : [
-                0.5253940224647522, 
-                0.24352401494979858, 
-                0.45120885968208313
+                0.5041809678077698, 
+                0.15806475281715393, 
+                0.45044440031051636
             ], 
             "min" : [
-                -0.5146489143371582, 
-                -0.013886600732803345, 
-                -0.490156352519989
+                -0.5111375451087952, 
+                -0.039937738329172134, 
+                -0.48376840353012085
             ], 
             "type" : "VEC3"
         }, 
         {
             "bufferView" : 2, 
             "componentType" : 5126, 
-            "count" : 196, 
+            "count" : 2016, 
             "max" : [
-                0.42855629324913025, 
-                0.9985236525535583, 
-                0.757438600063324
+                0.5504617094993591, 
+                0.9999309778213501, 
+                0.7112979888916016
             ], 
             "min" : [
-                -0.584095299243927, 
-                0.6129414439201355, 
-                -0.5937579870223999
+                -0.6449341773986816, 
+                -0.9999094009399414, 
+                -0.6807687878608704
             ], 
             "type" : "VEC3"
         }, 
         {
             "bufferView" : 3, 
             "componentType" : 5126, 
-            "count" : 196, 
+            "count" : 2016, 
             "max" : [
-                0.9998008608818054, 
-                0.6759268641471863, 
-                0.4172552227973938, 
+                1.0, 
+                0.5790378451347351, 
+                0.44075071811676025, 
                 1.0
             ], 
             "min" : [
-                0.7369687557220459, 
-                -0.4837414026260376, 
-                -0.6090864539146423, 
-                1.0
+                0.7681055665016174, 
+                -0.49752405285835266, 
+                -0.4670361876487732, 
+                -1.0
             ], 
             "type" : "VEC4"
         }, 
         {
             "bufferView" : 4, 
             "componentType" : 5126, 
-            "count" : 196, 
+            "count" : 2016, 
             "max" : [
                 1.0, 
                 1.0
@@ -84,39 +84,39 @@
     "bufferViews" : [
         {
             "buffer" : 0, 
-            "byteLength" : 294, 
+            "byteLength" : 6048, 
             "byteOffset" : 0, 
             "target" : 34963
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 2352, 
-            "byteOffset" : 296, 
+            "byteLength" : 24192, 
+            "byteOffset" : 6048, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 2352, 
-            "byteOffset" : 2648, 
+            "byteLength" : 24192, 
+            "byteOffset" : 30240, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 3136, 
-            "byteOffset" : 5000, 
+            "byteLength" : 32256, 
+            "byteOffset" : 54432, 
             "target" : 34962
         }, 
         {
             "buffer" : 0, 
-            "byteLength" : 1568, 
-            "byteOffset" : 8136, 
+            "byteLength" : 16128, 
+            "byteOffset" : 86688, 
             "target" : 34962
         }
     ], 
     "buffers" : [
         {
-            "byteLength" : 9704, 
-            "uri" : "cloth.bin"
+            "byteLength" : 102816, 
+            "uri" : "clothDoubleNormals.bin"
         }
     ], 
     "images" : [
@@ -143,7 +143,7 @@
     ], 
     "meshes" : [
         {
-            "name" : "tuchtexture", 
+            "name" : "tuchtexture.001", 
             "primitives" : [
                 {
                     "attributes" : {
@@ -161,7 +161,12 @@
     "nodes" : [
         {
             "mesh" : 0, 
-            "name" : "tuchtexture"
+            "name" : "tuchtexture", 
+            "translation" : [
+                0.0, 
+                -0.009818149730563164, 
+                -0.0
+            ]
         }
     ], 
     "samplers" : [
