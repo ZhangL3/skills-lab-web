@@ -14,6 +14,8 @@ let currentControllerState;
 let element;
 let activeController;
 
+const scopeLocalToGlobalScale = 0.05;
+
 export default AFRAME.registerComponent('infusion_set_cap', {
 
     init: function(){
@@ -72,11 +74,11 @@ export function handleControllerStateNotifyInfusionSetCap (nextControllerState) 
 }
 
 function dragInHand() {
-    let controllerActivities = new controllerActions(element, activeController, 0.03, -1, 0, -0.01, 0.065);
+    let controllerActivities = new controllerActions(element, activeController, scopeLocalToGlobalScale, -1);
     controllerActivities.drag();
 }
 
 function drop() {
-    let controllerActivities = new controllerActions(element, activeController, -1, 0.03);
+    let controllerActivities = new controllerActions(element, activeController, -1, scopeLocalToGlobalScale);
     controllerActivities.drop();
 }

@@ -89,10 +89,12 @@ const schema = {
     inFrontOfCameraRotation: '-90.000 0 0',
     onTablePosition: '-0.161 0.698 -0.819',
     onTableRotation: '0 90 0',
-    infusionSetOpenCapOnTableOpen: '1.259 0 -0.554',
-    infusionSetOpenCapOverTableOpen: '1.259 8.647 -0.554',
-    infusionSetOpenCapOverCan: '-5.253 8.647 5.617',
-    infusionSetOpenCapInCan: '-5.253 1.217 5.617',
+
+    infusionSetOpenCapOnTableOpen: '0.637 0.402 -2.183',
+    infusionSetOpenCapOverTableOpen: '0.637 8.647 -2.183',
+    infusionSetOpenCapOverCan: '-5.915 8.647 7.246',
+    infusionSetOpenCapInCan: '-5.915 1.619 7.246',
+
     infusionSetOpenWheelClose: '-0.454 0 0.295',
     infusionSetHangedWheelOpen: '-0.530 0.110 -0.060',
     dur: 500,
