@@ -2,7 +2,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
 
 let element;
-let canTakeCloth;
+export let canTakeCloth;
 
 AFRAME.registerComponent('cloth_bottle_cap_open', {
 

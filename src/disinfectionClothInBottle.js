@@ -5,6 +5,8 @@ import stateIndex from './state';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 
+import { canTakeCloth } from './clothBottleCapOpen';
+
 let element;
 let currentState;
 let disinfectionClothOnTable;
@@ -62,7 +64,8 @@ function putOnTable(){
 function handleClickClothInBottle () {
     if (stateIndex.getIn(['tableDisinfection','hasCloth']) === false
         // TODO: for product uncomment
-        // && stateIndex.getIn(['tableDisinfection','hasGlove']) === true
+        && stateIndex.getIn(['tableDisinfection','hasGlove']) === true
+        && canTakeCloth
     ) {
         stateIndex.setIn(['tableDisinfection','hasCloth'], true);
     }
