@@ -9,6 +9,9 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
+import { isDrawerOpen } from "./drawerOpenWithInfusionSet";
+import  {movable } from "./infusionSet";
+
 let currentState;
 let currentControllerState;
 let element;
@@ -54,7 +57,11 @@ export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
 
     getWorldBound(element);
 
-    if(isEmitted(element, triggerEvent.position)){
+    if(
+        isEmitted(element, triggerEvent.position)
+        && isDrawerOpen
+        && movable
+    ){
         activeController = triggerEvent.activeController;
         controllerStateIndex.setControllerState('infusionSetInPackInHand', activeController);
     }

@@ -25,9 +25,7 @@ let infusionSetFixed;
 let currentState;
 
 // Don't active the action, if the animation is not finish
-let movable = true;
-// For product use withInfusionSet
-let test = false;
+export let movable = true;
 
 AFRAME.registerComponent('infusion_set', {
 
