@@ -14,7 +14,7 @@ import { handleControllerStateNotifyInfusionSetInPack } from '../src/infusionSet
 import { handleControllerStateNotifyToggleBoxInfusionSetInPack } from '../src/toggleBoxInfusionSetInPack';
 import { handleControllerStateNotifyInfusionSetOpen } from '../src/infusionSetOpenVive';
 import { handleControllerStateNotifyToggleBoxInfusionSetOnDesk } from '../src/toggleBoxInfusionSetOnDesk';
-import { handleControllerStateNotifyInfusionSetCap } from '../src/infusionSetCap';
+import { handleControllerStateNotifyInfusionSetCap } from '../src/infusionSetCapVive';
 import { handleControllerStateNotifyToggleBoxNacl500Hanged } from '../src/toggleBoxNacl500Hanged';
 import { handleControllerStateNotifyInfusionSetHangedVive } from '../src/infusionSetHangedVive';
 import { handleControllerStateNotifyToggleBoxInfusionSetHangedChamber } from '../src/toggleBoxInfusionSetHangedChamber';

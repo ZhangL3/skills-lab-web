@@ -16,7 +16,7 @@ let activeController;
 
 const scopeLocalToGlobalScale = 0.05;
 
-export default AFRAME.registerComponent('infusion_set_cap', {
+export default AFRAME.registerComponent('infusion_set_cap_vive', {
 
     init: function(){
         // shallow copy
@@ -29,7 +29,7 @@ export default AFRAME.registerComponent('infusion_set_cap', {
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 
-        console.log("infusion_set_cap");
+        console.log("infusion_set_cap_vive");
 
         $(element).on('drop', (event, actController) => {
             activeController = actController;

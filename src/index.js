@@ -39,7 +39,7 @@ import * as toggleBoxInfusionSetInPack from './toggleBoxInfusionSetInPack';
 import * as toggleBoxInfusionSetOnDesk from './toggleBoxInfusionSetOnDesk';
 import * as infusionSetOpenVive from './infusionSetOpenVive';
 import * as toggleBoxInfusionSetOpenWheel from './toggleBoxInfusionSetOpenWheel';
-import * as infusionSetCap from './infusionSetCap';
+import * as infusionSetCapVive from './infusionSetCapVive';
 
 import * as toggleBoxNacl500Hanged from './toggleBoxNacl500Hanged';
 import * as infusionSetHangedVive from './infusionSetHangedVive';

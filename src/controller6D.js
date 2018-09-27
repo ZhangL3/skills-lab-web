@@ -26,7 +26,7 @@ import { handleControllerNotifyToggleBoxInfusionSetInPack } from './toggleBoxInf
 import { handleControllerNotifyToggleBoxInfusionSetOnDesk } from './toggleBoxInfusionSetOnDesk';
 import { handleControllerNotifyInfusionSetOpen } from './infusionSetOpenVive';
 import { handleControllerNotifyToggleBoxInfusionSetCap } from './toggleBoxInfusionSetOpenWheel';
-import { handleControllerNotifyInfusionSetCap } from './infusionSetCap';
+import { handleControllerNotifyInfusionSetCap } from './infusionSetCapVive';
 import { handleControllerNotifyToggleBoxNacl500Hanged } from './toggleBoxNacl500Hanged';
 import { handleControllerNotifyToggleBoxInfusionSetHangedChamber } from './toggleBoxInfusionSetHangedChamber';
 import { handleControllerNotifyToggleBoxInfusionSetHangedWheel } from './toggleBoxInfusionSetHangedWheel';
