@@ -30,7 +30,7 @@ const schema = {
 
 export function handleControllerNotifyToggleBoxInfusionSetOnDesk ( triggerEvent ) {
     getWorldBound(element);
-
+    
     if(
         isEmitted(element, triggerEvent.position)
         && triggerEvent.activeController === controllerStateIndex.getControllerState('infusionSetInPackInHand')

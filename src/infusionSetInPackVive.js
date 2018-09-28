@@ -59,6 +59,7 @@ export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
 
     if(
         isEmitted(element, triggerEvent.position)
+        && controllerStateIndex.getControllerState('infusionSetInPackInHand') === null
         && isDrawerOpen
         && movable
     ){
