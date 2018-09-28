@@ -10,7 +10,11 @@ let controllerLeftHand;
 let controllerRight;
 let controllerLeft;
 
-let opacityByGrasping = 0.2;
+const opacityByGrasping = 0.2;
+const opacityValue = 1;
+const originalHandColor = { r: 0.5843137502670288, g: 0.5843137502670288, b: 0.5843137502670288 };
+const handWithGloveColor = {r:0, g:0, b:0.5};
+const defaultAlphaTest = 0.1;
 
 export default AFRAME.registerComponent('controller_hand', {
 
@@ -22,14 +26,18 @@ export default AFRAME.registerComponent('controller_hand', {
         controllerRight = document.querySelector('#viveControllerRight');
         controllerLeft = document.querySelector('#viveControllerLeft');
 
+        // right hand
         $(controllerRightHand).on('click', () => {
             controllerRightHand.setAttribute("animation-mixer", "loop: once");
-            if (haveSthInHand(controllerRight)) {
-                console.log("something in right hand!!!");
-                setHandOpacity(controllerRightHand, opacityByGrasping);
+            if (haveSthInHand(controllerRight).length > 0) {
+                if ( haveSthInHand(controllerRight)[0] === 'gloveRight' ) {
+                    setHandMaterial(controllerRightHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
+                } else {
+                    setHandMaterial(controllerRightHand, opacityByGrasping);
+                }
             } else {
                 controllerRightHand.removeAttribute("material");
-                setHandOpacity(controllerRightHand, 1);
+                setHandMaterial(controllerRightHand, opacityValue, defaultAlphaTest, true, originalHandColor);
             }
         });
 
@@ -37,14 +45,18 @@ export default AFRAME.registerComponent('controller_hand', {
             controllerRightHand.removeAttribute("animation-mixer");
         });
 
+        // left hand
         $(controllerLeftHand).on('click', () => {
             controllerLeftHand.setAttribute("animation-mixer", "loop: once");
-            if (haveSthInHand(controllerLeft)) {
-                console.log("something in left hand!!!");
-                setHandOpacity(controllerLeftHand, opacityByGrasping);
+            if (haveSthInHand(controllerLeft).length > 0) {
+                if ( haveSthInHand(controllerLeft)[0] === 'gloveLeft') {
+                    setHandMaterial(controllerLeftHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
+                } {
+                    setHandMaterial(controllerLeftHand, opacityByGrasping);
+                }
             } else {
                 controllerLeftHand.removeAttribute("material");
-                setHandOpacity(controllerLeftHand, 1);
+                setHandMaterial(controllerLeftHand, opacityValue, defaultAlphaTest, true, originalHandColor);
             }
         });
 
@@ -52,9 +64,9 @@ export default AFRAME.registerComponent('controller_hand', {
             controllerLeftHand.removeAttribute("animation-mixer");
         });
     }
-});
+})
 
-function setHandOpacity(handElement, opacity, alphaTest=0.1, depthTest=true) {
+function setHandMaterial(handElement, opacity, alphaTest=0.1, depthTest=true, color) {
 
     const mesh = handElement.getObject3D('mesh'); // For hand, the result is undefined
     if (!mesh) { return; }
@@ -65,19 +77,23 @@ function setHandOpacity(handElement, opacity, alphaTest=0.1, depthTest=true) {
             node.material.needsUpdate = true;
             node.material.alphaTest = alphaTest;
             node.material.depthTest = depthTest;
+            if (color) {
+                node.material.color = color;
+            }
         }
     });
 }
 
 export function setBothHandOpacity() {
     controllerLeftHand.removeAttribute("material");
-    setHandOpacity(controllerLeftHand, 1);
+    setHandMaterial(controllerLeftHand, opacityValue, defaultAlphaTest, true, originalHandColor);
     controllerRightHand.removeAttribute("material");
-    setHandOpacity(controllerRightHand, 1);
+    setHandMaterial(controllerRightHand, opacityValue, defaultAlphaTest, true, originalHandColor);
 }
 
 function haveSthInHand(controllerElement){
     const children = controllerElement.childNodes;
+    const objectsInHand = [];
     for (let i=0; i<children.length; i++) {
         if (
             children[i].nodeType === 1 // nodeType === 1: element
@@ -87,10 +103,10 @@ function haveSthInHand(controllerElement){
             && children[i].getAttribute('id') !== 'rightHandIndicator'
             && children[i].getAttribute('visible')
         ) {
-            return true;
+            objectsInHand.push(children[i].getAttribute('id'));
         }
     }
-    return false;
+    return objectsInHand;
 }
 
 export function handleNotifyControllerHand(nextState) {
