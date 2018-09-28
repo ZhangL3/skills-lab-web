@@ -15,12 +15,10 @@ let handDisinfectionHandle;
 const positionVar = {
     origin: {name: 'ORIGIN', position: '0 1 -0.4'},
     nacl500Bottle: {name:'NACL_500_BOTTLE', position:'-0.3 1.5 -0.5'},
-    infusionSetOpen: {name:'INFUSION_SET_OPEN', position:'-0.142 0.827 -0.606'},
-    infusionSetHanged: {name:'INFUSION_SET_Hanged', position:'0.468 1.100 -0.4'},
+    infusionSetOpen: {name:'INFUSION_SET_OPEN', position:'-0.055 0.810 -0.634'},
+    infusionSetHanged: {name:'INFUSION_SET_Hanged', position:'0.670 1.100 -0.502'},
     handDisinfectionHandle: {name:'DISPENSER_HANDLE', position:'-1.3 1 -0.4'}
 };
-
-
 
 AFRAME.registerComponent('camera-move', {
     init: function () {
@@ -32,7 +30,8 @@ AFRAME.registerComponent('camera-move', {
         infusionSetHangedFilled = document.querySelector('#infusionSetHangedFilled');
         handDisinfectionHandle = document.querySelector('#handDisinfectionHandle');
         let timer;
-        
+
+        // move to cupboard
         nacl500Bottle.addEventListener('raycaster-intersected', ()=>{
             if (
                 stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.IN_CUPBOARD
@@ -45,9 +44,14 @@ AFRAME.registerComponent('camera-move', {
             }
         });
 
+        // move to cabinet
         infusionSetOpen.addEventListener('raycaster-intersected', ()=>{
             if (
                 stateIndex.getIn(['infusionSet', 'position']) === constants.infusionSet.position.ON_TABLE
+                && (
+                    stateIndex.getIn(['infusionSet', 'withCap'])
+                    || stateIndex.getIn(['infusionSet', 'rollerClapOpen'])
+                )
                 && cameraPosition === positionVar.origin.name
             ) {
                 this.moveToInfusionSetOpen(el);
@@ -57,6 +61,7 @@ AFRAME.registerComponent('camera-move', {
             }
         });
 
+        // move to holder
         infusionSetHanged.addEventListener('raycaster-intersected', ()=>{
             if (
                 stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.HANGED
@@ -69,6 +74,7 @@ AFRAME.registerComponent('camera-move', {
             }
         });
 
+        // move to holder
         infusionSetHangedFilled.addEventListener('raycaster-intersected', ()=>{
             if (
                 stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.HANGED
@@ -81,6 +87,7 @@ AFRAME.registerComponent('camera-move', {
             }
         });
 
+        // move to hand disinfection
         handDisinfectionHandle.addEventListener('raycaster-intersected', ()=>{
             if (
                 (stateIndex.getIn(['handDisinfection', 'finish']) === 0

@@ -92,8 +92,8 @@ const schema = {
 
     infusionSetOpenCapOnTableOpen: '0.637 0.402 -2.183',
     infusionSetOpenCapOverTableOpen: '0.637 8.647 -2.183',
-    infusionSetOpenCapOverCan: '-5.915 8.647 7.246',
-    infusionSetOpenCapInCan: '-5.915 1.619 7.246',
+    infusionSetOpenCapOverCan: '-4.731 8.647 3.152',
+    infusionSetOpenCapInCan: '-4.731 1.168 3.152',
 
     infusionSetOpenWheelClose: '-0.454 0 0.295',
     infusionSetHangedWheelOpen: '-0.530 0.110 -0.060',
