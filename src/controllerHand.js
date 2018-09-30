@@ -30,14 +30,19 @@ export default AFRAME.registerComponent('controller_hand', {
         $(controllerRightHand).on('click', () => {
             controllerRightHand.setAttribute("animation-mixer", "loop: once");
             if (haveSthInHand(controllerRight).length > 0) {
-                if ( haveSthInHand(controllerRight)[0] === 'gloveRight' ) {
+                if ( haveSthInHand(controllerRight)[0] === 'clothOnTable' ) {
                     setHandMaterial(controllerRightHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
                 } else {
                     setHandMaterial(controllerRightHand, opacityByGrasping);
                 }
             } else {
+                // have nothing in hand, not transparent
                 controllerRightHand.removeAttribute("material");
                 setHandMaterial(controllerRightHand, opacityValue, defaultAlphaTest, true, originalHandColor);
+            }
+
+            if (controllerStateIndex.getControllerState('hasGloveRight')) {
+                setHandMaterial(controllerRightHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
             }
         });
 
@@ -48,15 +53,22 @@ export default AFRAME.registerComponent('controller_hand', {
         // left hand
         $(controllerLeftHand).on('click', () => {
             controllerLeftHand.setAttribute("animation-mixer", "loop: once");
+
             if (haveSthInHand(controllerLeft).length > 0) {
-                if ( haveSthInHand(controllerLeft)[0] === 'gloveLeft') {
+                if (haveSthInHand(controllerLeft)[0] === 'clothOnTable') {
                     setHandMaterial(controllerLeftHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
-                } {
+                }
+                else {
                     setHandMaterial(controllerLeftHand, opacityByGrasping);
                 }
             } else {
+                // have nothing in hand, not transparent
                 controllerLeftHand.removeAttribute("material");
                 setHandMaterial(controllerLeftHand, opacityValue, defaultAlphaTest, true, originalHandColor);
+            }
+
+            if (controllerStateIndex.getControllerState('hasGloveLeft')) {
+                setHandMaterial(controllerLeftHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
             }
         });
 
@@ -91,7 +103,7 @@ export function setBothHandOpacity() {
     setHandMaterial(controllerRightHand, opacityValue, defaultAlphaTest, true, originalHandColor);
 }
 
-function haveSthInHand(controllerElement){
+export function haveSthInHand(controllerElement){
     const children = controllerElement.childNodes;
     const objectsInHand = [];
     for (let i=0; i<children.length; i++) {

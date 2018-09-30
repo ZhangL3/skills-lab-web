@@ -7,6 +7,9 @@ import { controllerActions } from "../utils/controllerActions";
 import stateIndex from './state';
 import {setVisibleTrue} from "../utils/setVisible";
 
+import { haveSthInHand } from "./controllerHand";
+
+
 
 let clothInBottle;
 let clothOnTable;
@@ -41,8 +44,19 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
 
     if (
         // Must have glove, before taking disinfection cloth
-        (controllerStateIndex.getControllerState('hasGloveLeft')
-        || controllerStateIndex.getControllerState('hasGloveRight'))
+        (
+            (
+                activeControllerId === 'viveControllerLeft'
+                && controllerStateIndex.getControllerState('hasGloveLeft')
+                && haveSthInHand(activeController).length === 0
+            )
+            ||
+            (
+                activeControllerId === 'viveControllerRight'
+                &&controllerStateIndex.getControllerState('hasGloveRight')
+                && haveSthInHand(activeController).length === 0
+            )
+        )
         && checkIsCapOpen()
         && isEmitted(clothInBottle, triggerEvent.position)
     ) {

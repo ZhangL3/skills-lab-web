@@ -54,12 +54,12 @@ export default AFRAME.registerComponent('glove', {
 
                     if(activeController.getAttribute('id') == 'viveControllerLeft') {
                         console.log("show glove left!");
-                        gloveLeft.attr('visible', true);
+                        // gloveLeft.attr('visible', true);
                         controllerStateIndex.setControllerState('hasGloveLeft', true);
                     }
                     else if (activeController.getAttribute('id') == 'viveControllerRight') {
                         console.log("show glove right!");
-                        gloveRight.attr('visible', true);
+                        // gloveRight.attr('visible', true);
                         controllerStateIndex.setControllerState('hasGloveRight', true);
                     }
                 }

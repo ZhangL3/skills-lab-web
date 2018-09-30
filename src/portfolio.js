@@ -9,6 +9,8 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
+import { haveSthInHand } from "./controllerHand";
+
 
 let element;
 let currentState;
@@ -194,10 +196,14 @@ export function handleNotifyPortfolio(nextState) {
 export function handleControllerNotifyPortfolio ( triggerEvent ) {
 
     boundingBoxOnTable = getWorldBound(element);
+    activeController = triggerEvent.activeController;
 
     if(isEmitted(element, triggerEvent.position)){
         // Store activeControllerId only if portfolio not draged
-        if(controllerStateIndex.getControllerState('portfolioInHand') === null) {
+        if(
+            controllerStateIndex.getControllerState('portfolioInHand') === null
+            && haveSthInHand(activeController).length === 0
+        ) {
             activeController = triggerEvent.activeController;
             let activeControllerId = activeController.getAttribute('id');
             controllerStateIndex.setControllerState('portfolioInHand', activeControllerId);
