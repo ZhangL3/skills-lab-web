@@ -5,14 +5,19 @@ const observerOptions = {
 };
 
 // 1/1.3(scale of allThings) = 0.769
-const adjustmentSizeScale = 0.769;
-
+const scaleOfAllThings = 1.3;
+const adjustmentSizeScale = 1 / scaleOfAllThings;
 const defaultValues = {
     addedScale: -1,
     removedScale: -1,
     positionX: 0,
     positionY: 0.08,
     positionZ: -0.1
+};
+export const objectInHandPosition = {
+    x: defaultValues.positionX * adjustmentSizeScale,
+    y: defaultValues.positionY * adjustmentSizeScale,
+    z: defaultValues.positionZ * adjustmentSizeScale
 };
 
 export class controllerActions {

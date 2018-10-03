@@ -66,5 +66,7 @@ import * as tipsTextEdit from '../utils/tipsTextEdit';
 import * as raycasterIntersection from './raycasterIntersection';
 import * as cameraMove from './cameraMove';
 
+import * as indicatorBox from './indicatorBox';
+
 stateIndex.init();
 controllerStateIndex.initControllerState();

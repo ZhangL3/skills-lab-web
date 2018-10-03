@@ -30,7 +30,7 @@ export default AFRAME.registerComponent('controller_hand', {
         $(controllerRightHand).on('click', () => {
             controllerRightHand.setAttribute("animation-mixer", "loop: once");
             if (haveSthInHand(controllerRight).length > 0) {
-                if ( haveSthInHand(controllerRight)[0] === 'clothOnTable' ) {
+                if ( haveSthInHand(controllerRight)[0].getAttribute('id') === 'clothOnTable' ) {
                     setHandMaterial(controllerRightHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
                 } else {
                     setHandMaterial(controllerRightHand, opacityByGrasping);
@@ -55,7 +55,7 @@ export default AFRAME.registerComponent('controller_hand', {
             controllerLeftHand.setAttribute("animation-mixer", "loop: once");
 
             if (haveSthInHand(controllerLeft).length > 0) {
-                if (haveSthInHand(controllerLeft)[0] === 'clothOnTable') {
+                if (haveSthInHand(controllerLeft)[0].getAttribute('id') === 'clothOnTable') {
                     setHandMaterial(controllerLeftHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
                 }
                 else {
@@ -115,7 +115,7 @@ export function haveSthInHand(controllerElement){
             && children[i].getAttribute('id') !== 'rightHandIndicator'
             && children[i].getAttribute('visible')
         ) {
-            objectsInHand.push(children[i].getAttribute('id'));
+            objectsInHand.push(children[i]);
         }
     }
     return objectsInHand;

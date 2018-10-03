@@ -2,6 +2,7 @@ import $ from 'jquery';
 
 import Observable from '../utils/observable';
 import { getWordPosition } from "../utils/getWorldPositionAndBound";
+import {haveSthInHand} from "./controllerHand";
 
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
@@ -36,10 +37,13 @@ import { handleControllerNotifyToggleBoxNacl500NameLabel } from './toggleBoxNacl
 import { handleControllerNotifyToggleBoxNameLabelEmpty } from './toggleBoxNameLabelEmpty';
 import { handleControllerNotifyToggleBoxSelectSection } from './toggleBoxSelectSection';
 import { handleControllerNotifyControllerHand } from './controllerHand';
+import { handleControllerNotifyIndicatorBox } from './indicatorBox';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
     init: function(){
+
+        const el = this.el;
 
         this.viveObserver = new Observable();
 
@@ -77,24 +81,34 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNameLabelEmpty);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxSelectSection);
         this.viveObserver.subscribe(handleControllerNotifyControllerHand);
+        this.viveObserver.subscribe(handleControllerNotifyIndicatorBox);
 
-        $(this.el).on('triggerdown', () => {
+        $(el).on('triggerdown', () => {
 
-            console.log("triggerDown");
-            
-            const triggerPosition = getWordPosition(this.el);
+            console.log("triggerDown: ");
+
+            let handIndicator;
+            if (el.getAttribute('id') === 'viveControllerRight') {
+                handIndicator=document.querySelector('#rightHandIndicator');
+            }
+            else if (el.getAttribute('id') === 'viveControllerLeft') {
+                handIndicator=document.querySelector('#leftHandIndicator');
+            }
+
+            const triggerPosition = haveSthInHand(el).length > 0 ?
+                getWordPosition(handIndicator) : getWordPosition(el);
 
             const triggerEvent = {
                 eventName: 'triggerDown',
                 position: triggerPosition,
-                activeController: this.el
+                activeController: el
             };
 
             this.viveObserver.notify(triggerEvent);
 
         });
 
-        this.el.addEventListener('teleported', (event) => {
+        el.addEventListener('teleported', (event) => {
 
         });
     }
