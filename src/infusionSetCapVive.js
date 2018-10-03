@@ -9,6 +9,8 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
+import { haveSthInHand } from "./controllerHand";
+
 let currentState;
 let currentControllerState;
 let element;
@@ -52,6 +54,7 @@ export function handleControllerNotifyInfusionSetCap ( triggerEvent ) {
         // isEmitted(infusionSetOpenCap, triggerEvent.position)
         isEmitted(element, triggerEvent.position)
         && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
+        && haveSthInHand(triggerEvent.activeController).length === 0
     ) {
         console.log("take infusion set cap");
         activeController = triggerEvent.activeController;

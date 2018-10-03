@@ -12,6 +12,8 @@ import { controllerActions } from "../utils/controllerActions";
 import { isDrawerOpen } from "./drawerOpenWithInfusionSet";
 import  {movable } from "./infusionSet";
 
+import { haveSthInHand } from "./controllerHand";
+
 let currentState;
 let currentControllerState;
 let element;
@@ -62,6 +64,7 @@ export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
         && controllerStateIndex.getControllerState('infusionSetInPackInHand') === null
         && isDrawerOpen
         && movable
+        && haveSthInHand(triggerEvent.activeController).length === 0
     ){
         activeController = triggerEvent.activeController;
         controllerStateIndex.setControllerState('infusionSetInPackInHand', activeController);

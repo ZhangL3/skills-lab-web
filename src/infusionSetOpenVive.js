@@ -9,6 +9,7 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
+import { haveSthInHand } from "./controllerHand";
 
 let currentState;
 let currentControllerState;
@@ -58,6 +59,7 @@ export function handleControllerNotifyInfusionSetOpen ( triggerEvent ) {
             controllerStateIndex.getControllerState('infusionSetCapOff')
             && controllerStateIndex.getControllerState('infusionSetWheelClosed')
             && !controllerStateIndex.getControllerState('infusionSetOpenInHand')
+            && haveSthInHand(triggerEvent.activeController).length === 0
         ) {
             activeController = triggerEvent.activeController;
             let activeControllerId = activeController.getAttribute('id');

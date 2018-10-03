@@ -7,6 +7,8 @@ import controllerStateIndex from '../utils/controllerState';
 import { isBottleChecked } from "./bottleNacl500Vive";
 import { controllerActions } from "../utils/controllerActions";
 
+import { haveSthInHand } from "./controllerHand";
+
 let element;
 let bottleNacl500Cap;
 let infusionSetOpen;
@@ -59,6 +61,7 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
         &&controllerStateIndex.getControllerState('nacl500OnDesk')
         && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
         // && controllerStateIndex.getControllerState('bottleOpened')
+        && haveSthInHand(triggerEvent.activeController).length === 0
     ) {
         activeController = triggerEvent.activeController;
         let activeControllerId = activeController.getAttribute('id');

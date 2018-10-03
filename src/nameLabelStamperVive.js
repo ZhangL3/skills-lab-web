@@ -9,6 +9,7 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
+import { haveSthInHand } from "./controllerHand";
 
 let currentState;
 let currentControllerState;
@@ -76,6 +77,7 @@ export function handleControllerNotifyNameLabelStamperVive ( triggerEvent ) {
         // take name label in hand
         if (
             isEmitted(element, triggerEvent.position)
+            && haveSthInHand(triggerEvent.activeController).length === 0
         ) {
             activeController = triggerEvent.activeController;
             let activeControllerId = activeController.getAttribute('id');

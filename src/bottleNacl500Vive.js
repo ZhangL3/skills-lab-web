@@ -9,6 +9,8 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
+import { haveSthInHand } from "./controllerHand";
+
 let element;
 let currentState;
 
@@ -77,12 +79,11 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
     if(triggerEvent.eventName === 'triggerDown') {
         // to desk
         if (
-            // TODO: chang state structure of handDisinfection
-            // Must hand disinfection, before take bottle
-            // stateIndex.getIn(['handDisinfection', 'finish'])
             stateIndex.getIn(['handDisinfection', 'finish']) === 2
             && controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
             && controllerStateIndex.getControllerState('nacl500Dragable')
+            && !controllerStateIndex.getControllerState('infusionSetInBottle')
+            && haveSthInHand(triggerEvent.activeController).length === 0
         ) {
             console.log("emmit triggerDown to bottle");
             activeController = triggerEvent.activeController;
@@ -106,7 +107,9 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
         if (
             controllerStateIndex.getControllerState('infusionSetInBottle')
             && controllerStateIndex.getControllerState('nacl500InHandToStand') === null
+            && haveSthInHand(triggerEvent.activeController).length === 0
         ) {
+            console.log("to stand");
             activeController = triggerEvent.activeController;
             let activeControllerId =  activeController.getAttribute('id');
             controllerStateIndex.setControllerState('nacl500InHandToStand', activeControllerId);
