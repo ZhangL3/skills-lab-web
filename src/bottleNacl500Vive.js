@@ -126,12 +126,9 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
         && currentControllerState.nacl500InHandToDesk === null
         && nextControllerState.nacl500Dragable
     ) {
-
         dragInHand();
-        infusionSetInBottle.setAttribute('visible', false);
 
         currentControllerState = _.cloneDeep(nextControllerState);
-
     }
 
     // drag to stand
@@ -145,7 +142,7 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
         // toggleBoxNacl500OnDesk is shown here, but don't know the reason. So hide it. NOT good.
         let toggleBoxNacl500OnDesk = document.querySelector('#toggleBoxNacl500OnDesk');
         toggleBoxNacl500OnDesk.setAttribute('visible', false);
-
+        infusionSetInBottle.setAttribute('visible', false);
 
         console.log("should drag bottle in hand to hang");
     }
