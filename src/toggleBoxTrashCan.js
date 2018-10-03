@@ -72,6 +72,8 @@ export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
             && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
         ){
             activeController = triggerEvent.activeController;
+            controllerStateIndex.setControllerState('hasGloveRight', false);
+            controllerStateIndex.setControllerState('hasGloveLeft', false);
             controllerStateIndex.setControllerState('deskDisinfectionAllFinish', true);
 
         }
