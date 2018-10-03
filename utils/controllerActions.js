@@ -7,9 +7,19 @@ const observerOptions = {
 // 1/1.3(scale of allThings) = 0.769
 const adjustmentSizeScale = 0.769;
 
+const defaultValues = {
+    addedScale: -1,
+    removedScale: -1,
+    positionX: 0,
+    positionY: 0.08,
+    positionZ: -0.1
+};
+
 export class controllerActions {
 
-    constructor (element, activeController, addedScale = -1, removedScale = -1, positionX = 0, positionY = 0, positionZ = -0.2) {
+    constructor (element, activeController, addedScale = defaultValues.addedScale,
+                 removedScale = defaultValues.removedScale, positionX = defaultValues.positionX,
+                 positionY = defaultValues.positionY, positionZ = defaultValues.positionZ) {
         this.el = element;
         this.scene = null;
         this.activeController = activeController;
