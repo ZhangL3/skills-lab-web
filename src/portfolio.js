@@ -25,6 +25,8 @@ let hookDose;
 let hookIV;
 let hookCF;
 
+export let canCheckPortfolio = false;
+
 let currentControllerState;
 
 export default AFRAME.registerComponent('portfolio', {
@@ -195,6 +197,10 @@ export function handleNotifyPortfolio(nextState) {
 
 export function handleControllerNotifyPortfolio ( triggerEvent ) {
 
+    if (stateIndex.getIn(['portfolio', 'finish'])) {
+        return false;
+    }
+
     boundingBoxOnTable = getWorldBound(element);
     activeController = triggerEvent.activeController;
 
@@ -208,6 +214,9 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
             let activeControllerId = activeController.getAttribute('id');
             controllerStateIndex.setControllerState('portfolioInHand', activeControllerId);
             stateIndex.set('started', true);
+            setTimeout(()=>{
+                canCheckPortfolio = true;
+            }, 300);
         }
     }
 }

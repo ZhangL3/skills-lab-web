@@ -34,6 +34,10 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
     // console.log("toggleBoxPortfolio.triggerEvent", triggerEvent);
     // console.log("toggleBoxPortfolio.element", element);
 
+    if (stateIndex.getIn(['portfolio', 'finish'])) {
+        return false;
+    }
+
     const portfolioChecked = controllerStateIndex.getControllerState('portfolioInHand') && is5RChecked();
 
     if(portfolioChecked && !stateIndex.getIn(['portfolio', 'finish'])) {

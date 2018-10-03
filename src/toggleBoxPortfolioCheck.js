@@ -5,6 +5,8 @@ import { isEmitted } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 
+import {canCheckPortfolio} from "./portfolio";
+
 let hookToggleBoxes;
 
 export default AFRAME.registerComponent('toggle_box_portfolio_check', {
@@ -47,7 +49,10 @@ function toggleHookBox(hookToggleBox){
 
 export function handleControllerNotifyPortfolioCheckVive( triggerEvent ) {
 
-    if (stateIndex.getIn(['portfolio', 'checkFinish'])) {
+    if (
+        stateIndex.getIn(['portfolio', 'checkFinish'])
+        || !canCheckPortfolio
+    ) {
        return false;
     }
 
