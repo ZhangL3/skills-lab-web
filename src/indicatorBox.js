@@ -26,6 +26,16 @@ function setNthInHandPosition(indicatorBox) {
 
 export function handleControllerNotifyIndicatorBox ( triggerEvent ) {
 
+    adjustPositionOfIndicator();
+
+    // wait for element moving of cloth on table
+    setTimeout(()=> {
+        adjustPositionOfIndicator();
+    }, 200);
+
+}
+
+function adjustPositionOfIndicator() {
     if (haveSthInHand(viveControllerLeft).length > 0) {
         setSthInHandPosition(leftHandIndicator, objectInHandPosition);
     }
@@ -39,7 +49,6 @@ export function handleControllerNotifyIndicatorBox ( triggerEvent ) {
     else {
         setNthInHandPosition(rightHandIndicator);
     }
-
 }
 
 
