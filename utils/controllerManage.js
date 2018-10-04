@@ -49,6 +49,7 @@ function matchViveController() {
 
     console.log("match vive");
     removeCursor();
+    showControllers();
     adjustAllThingsScale('1.3 1.3 1.3');
     adjustAllThingsPosition('0 0 0');
 
@@ -63,6 +64,14 @@ function removeCursor() {
     const cursor = document.querySelector("#cursor");
     $(cursor).remove();
     console.log("cursor removed");
+}
+
+function showControllers() {
+    const leftController = document.querySelector('#viveControllerLeft');
+    const rightController = document.querySelector('#viveControllerRight');
+
+    leftController.setAttribute('visible', true);
+    rightController.setAttribute('visible', true);
 }
 
 function adjustAllThingsPosition(position) {
