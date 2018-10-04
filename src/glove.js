@@ -5,7 +5,7 @@ import stateIndex from './state';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from "../utils/isEmitted";
+import { isEmitted, detectCollision } from "../utils/isEmitted";
 import controllerStateIndex from '../utils/controllerState';
 
 
@@ -39,10 +39,11 @@ export default AFRAME.registerComponent('glove', {
         });
 
         $(el).on('controllerEmit', (event, data) => {
-            getWorldBound(el);
+            // getWorldBound(el);
 
             if(
-                isEmitted(el, data.position)
+                // isEmitted(el, data.position)
+                detectCollision(el, data.activeController)
             ) {
                 // Must check portfolio before taking glove
                 if (

@@ -5,7 +5,7 @@ import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from "../utils/isEmitted";
+import { isEmitted, detectCollision } from "../utils/isEmitted";
 
 
 let element;
@@ -144,8 +144,9 @@ export function handleNotifyHandDisinfection(nextState) {
 }
 
 export function handleControllerNotifyHandDisinfection( triggerEvent ) {
-    getWorldBound(element);
-    if (isEmitted(element, triggerEvent.position)) {
+    // getWorldBound(element);
+    // if (isEmitted(element, triggerEvent.position)) {
+    if (detectCollision(element, triggerEvent.activeController)) {
         $(element).trigger('click');
     }
 }

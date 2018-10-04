@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
@@ -65,10 +65,11 @@ export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
 
     if(controllerStateIndex.getControllerState('deskDisinfection')) {
 
-        getWorldBound(element);
+        // getWorldBound(element);
 
         if(
-            isEmitted(element, triggerEvent.position)
+            detectCollision(element, triggerEvent.activeController)
+            // isEmitted(element, triggerEvent.position)
             && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
         ){
             activeController = triggerEvent.activeController;

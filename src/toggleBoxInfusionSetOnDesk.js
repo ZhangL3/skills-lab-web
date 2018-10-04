@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import { controllerActions } from "../utils/controllerActions";
 
@@ -29,10 +29,11 @@ const schema = {
 };
 
 export function handleControllerNotifyToggleBoxInfusionSetOnDesk ( triggerEvent ) {
-    getWorldBound(element);
+    // getWorldBound(element);
     
     if(
-        isEmitted(element, triggerEvent.position)
+        // isEmitted(element, triggerEvent.position)
+        detectCollision(element, triggerEvent.activeController)
         && triggerEvent.activeController === controllerStateIndex.getControllerState('infusionSetInPackInHand')
     ){
         controllerStateIndex.setControllerState('infusionSetOnDeskOpened', true);

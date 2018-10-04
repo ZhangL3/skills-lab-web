@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from "../utils/isEmitted";
+import {detectCollision, isEmitted} from "../utils/isEmitted";
 import controllerStateIndex from '../utils/controllerState';
 import { checkIsCapOpen } from "./clothBottleCapOpen";
 import { controllerActions } from "../utils/controllerActions";
@@ -38,7 +38,7 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
         return false;
     }
 
-    getWorldBound(clothInBottle);
+    // getWorldBound(clothInBottle);
     activeController = triggerEvent.activeController;
     let activeControllerId = activeController.getAttribute('id');
 
@@ -58,7 +58,8 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
             )
         )
         && checkIsCapOpen()
-        && isEmitted(clothInBottle, triggerEvent.position)
+        // && isEmitted(clothInBottle, triggerEvent.position)
+        && detectCollision(clothInBottle, activeController)
     ) {
         console.log("isEmitted(clothInBottle, triggerEvent.position): ", isEmitted(clothInBottle, triggerEvent.position), typeof(isEmitted(clothInBottle, triggerEvent.position)));
         dragInHand();

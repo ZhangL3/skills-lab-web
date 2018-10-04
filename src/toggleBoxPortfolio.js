@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import { setVisibleTrue, setVisibleFalse } from "../utils/setVisible";
@@ -44,9 +44,9 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
         $(element).attr('material', "color:#00ffff; transparent: true; opacity: 0.5")
     }
 
-    getWorldBound(element);
+    // getWorldBound(element);
 
-    if(isEmitted(element, triggerEvent.position)){
+    if(detectCollision(element, triggerEvent.activeController)){
 
         let activeControllerId = triggerEvent.activeController.getAttribute('id');
         if (activeControllerId === controllerStateIndex.getControllerState('portfolioInHand'))

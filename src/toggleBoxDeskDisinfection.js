@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 
 let element;
@@ -21,10 +21,8 @@ export function handleControllerNotifyToggleBoxDeskDisinfection( triggerEvent ) 
     // Must have cloth in hand, before disinfection
     if(controllerStateIndex.getControllerState('disinfectionClothInHand')) {
 
-        getWorldBound(element);
-
         if(
-            isEmitted(element, triggerEvent.position)
+            detectCollision(element, triggerEvent.activeController)
             && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
         ){
             controllerStateIndex.setControllerState('deskDisinfection', true);
