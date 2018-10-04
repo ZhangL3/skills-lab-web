@@ -18,6 +18,8 @@ let currentControllerState;
 let element;
 let activeController;
 
+let canTriggerInfusionSetCap = false;
+
 const scopeLocalToGlobalScale = 0.05;
 
 export default AFRAME.registerComponent('infusion_set_cap_vive', {
@@ -42,6 +44,10 @@ export default AFRAME.registerComponent('infusion_set_cap_vive', {
     }
 });
 
+export function setCanTriggerInfusionSetCap(value) {
+    canTriggerInfusionSetCap = value;
+}
+
 export function handleNotifyInfusionSetInPack(nextState) {
 
     // deep copy
@@ -55,6 +61,7 @@ export function handleControllerNotifyInfusionSetCap ( triggerEvent ) {
         && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
         && haveSthInHand(triggerEvent.activeController).length === 0
         && canTriggerCapAndWheel
+        && canTriggerInfusionSetCap
     ) {
         console.log("take infusion set cap");
         activeController = triggerEvent.activeController;

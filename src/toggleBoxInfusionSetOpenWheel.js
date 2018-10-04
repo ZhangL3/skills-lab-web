@@ -8,6 +8,7 @@ import { isBottleChecked } from "./bottleNacl500Vive";
 import { controllerActions } from "../utils/controllerActions";
 
 import {canTriggerCapAndWheel} from "./infusionSetOpenVive";
+import {setCanTriggerInfusionSetCap} from "./infusionSetCapVive";
 
 let element;
 
@@ -41,6 +42,9 @@ export function handleControllerNotifyToggleBoxInfusionSetCap( triggerEvent ) {
         && canTriggerCapAndWheel
     ) {
         controllerStateIndex.setControllerState('infusionSetWheelClosed', true)
+        setTimeout(()=>{
+            setCanTriggerInfusionSetCap(true);
+        }, 500);
     }
 }
 
