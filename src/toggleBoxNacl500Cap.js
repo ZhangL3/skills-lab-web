@@ -2,12 +2,16 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted,detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import { isBottleChecked } from "./bottleNacl500Vive";
 import { controllerActions } from "../utils/controllerActions";
+import * as constants from '../utils/constants';
+import stateIndex from './state';
 
 import { haveSthInHand } from "./controllerHand";
+
+import {canCheck} from "./bottleNacl500Vive";
 
 let element;
 let bottleNacl500Cap;
@@ -43,24 +47,27 @@ const schema = {
 };
 
 export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
-
-    getWorldBound(element);
-    if (!isEmitted(element, triggerEvent.position)) {
+    
+    if (
+        !detectCollision(element, triggerEvent.activeController)
+    ) {
         return false;
     }
 
     // check cap
-    if (!controllerStateIndex.getControllerState('nacl500CapChecked')) {
+    if (
+        !controllerStateIndex.getControllerState('nacl500CapChecked')
+        && canCheck
+    ) {
         if(controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
             controllerStateIndex.setControllerState('nacl500CapChecked', true);
         }
     }
-
+  
     // drag cap
-    if (bottleNacl500Cap
-        &&controllerStateIndex.getControllerState('nacl500OnDesk')
+    else if (bottleNacl500Cap
+        && controllerStateIndex.getControllerState('nacl500OnDesk')
         && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
-        // && controllerStateIndex.getControllerState('bottleOpened')
         && haveSthInHand(triggerEvent.activeController).length === 0
     ) {
         activeController = triggerEvent.activeController;
@@ -69,7 +76,7 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
     }
 
     // pierce infusion set in bottle nacl 500
-    if (
+    else if (
         controllerStateIndex.getControllerState('bottleNacl500CapDroped')
         && controllerStateIndex.getControllerState('infusionSetOpenInHand') === triggerEvent.activeController.getAttribute('id')
         && controllerStateIndex.getControllerState('infusionSetInBottle') === false

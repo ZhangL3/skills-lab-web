@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 
 const allDoors = [];
 let allDoorsElements;
@@ -37,12 +37,8 @@ export default AFRAME.registerComponent('door_open', {
  */
 export function handleControllerNotifyCupboardDoor ( triggerEvent ) {
 
-    allDoors.forEach((door)=>{
-       getWorldBound(door);
-    });
-
     allDoorsElements.each((index, doorElement) => {
-        if(isEmitted(doorElement, triggerEvent.position)){
+        if(detectCollision(doorElement, triggerEvent.activeController)){
             doorElement.emit('click');
         }
     });

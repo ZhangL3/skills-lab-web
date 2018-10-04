@@ -5,7 +5,7 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 
-import { canLiquidCheck } from "./bottleNacl500Vive";
+import {canCheck} from "./bottleNacl500Vive";
 
 let element;
 
@@ -33,7 +33,7 @@ export function handleControllerNotifyToggleBoxNacl500Liquid( triggerEvent ) {
     if (
         !controllerStateIndex.getControllerState('nacl500LiquidChecked')
         && controllerStateIndex.getControllerState('nacl500InHandToDesk')
-        && canLiquidCheck
+        && canCheck
     ) {
         getWorldBound(element);
         if(isEmitted(element, triggerEvent.position, 0.02)){

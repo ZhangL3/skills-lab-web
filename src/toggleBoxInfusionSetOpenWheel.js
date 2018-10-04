@@ -2,10 +2,12 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import { isBottleChecked } from "./bottleNacl500Vive";
 import { controllerActions } from "../utils/controllerActions";
+
+import {canTriggerCapAndWheel} from "./infusionSetOpenVive";
 
 let element;
 
@@ -31,13 +33,12 @@ const schema = {
 };
 
 export function handleControllerNotifyToggleBoxInfusionSetCap( triggerEvent ) {
-    getWorldBound(element);
-
     // close wheel
     if (
-        isEmitted(element, triggerEvent.position)
+        detectCollision(element, triggerEvent.activeController)
         && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
         && !controllerStateIndex.getControllerState('infusionSetWheelClosed')
+        && canTriggerCapAndWheel
     ) {
         controllerStateIndex.setControllerState('infusionSetWheelClosed', true)
     }

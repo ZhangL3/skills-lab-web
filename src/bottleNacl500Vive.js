@@ -6,7 +6,7 @@ import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from "../utils/isEmitted";
+import { isEmitted, detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
@@ -19,12 +19,12 @@ let infusionSetInBottle;
 
 let currentControllerState;
 
+export let canCheck = false;
+
 const schema = {
     onDeskPosition: '-0.32 0.732 -0.83',
     dur: '500'
 };
-
-export let canLiquidCheck = false;
 
 export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
@@ -46,10 +46,11 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
             console.log("triggle putOnDesk");
             dropBottle();
             controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
-            controllerStateIndex.setControllerState('nacl500OnDesk', true);
             controllerStateIndex.setControllerState('nacl500Dragable', false);
             controllerStateIndex.setControllerState('nacl500NoHookAnymore', true);
-
+            setTimeout(()=>{
+                controllerStateIndex.setControllerState('nacl500OnDesk', true);
+            }, 500);
         });
 
         $(element).on('hangToStand', () => {
@@ -71,8 +72,8 @@ export function handleNotifyBottleNacl500Vive(nextState) {
 
 export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
-    getWorldBound(element);
-    if (!isEmitted(element, triggerEvent.position)) {
+    // getWorldBound(element);
+    if (!detectCollision(element, triggerEvent.activeController)) {
        return false;
     }
 
@@ -89,10 +90,6 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
             activeController = triggerEvent.activeController;
             let activeControllerId =  activeController.getAttribute('id');
             controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
-            // After 1 second taking bottle in hand, can liquid be checked
-            setTimeout(()=>{
-                canLiquidCheck = true;
-            }, 1000);
         }
         // change hints
         else if (
@@ -127,6 +124,10 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
         && nextControllerState.nacl500Dragable
     ) {
         dragInHand();
+
+        setTimeout(()=>{
+            canCheck = true;
+        }, 500);
 
         currentControllerState = _.cloneDeep(nextControllerState);
     }

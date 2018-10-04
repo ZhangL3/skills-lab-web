@@ -6,10 +6,12 @@ import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from "../utils/isEmitted";
+import { isEmitted, detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
+
+import {canTriggerCapAndWheel} from "./infusionSetOpenVive";
 
 let currentState;
 let currentControllerState;
@@ -48,13 +50,11 @@ export function handleNotifyInfusionSetInPack(nextState) {
 
 export function handleControllerNotifyInfusionSetCap ( triggerEvent ) {
 
-    getWorldBound(element);
-
     if (
-        // isEmitted(infusionSetOpenCap, triggerEvent.position)
-        isEmitted(element, triggerEvent.position)
+        detectCollision(element, triggerEvent.activeController)
         && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
         && haveSthInHand(triggerEvent.activeController).length === 0
+        && canTriggerCapAndWheel
     ) {
         console.log("take infusion set cap");
         activeController = triggerEvent.activeController;

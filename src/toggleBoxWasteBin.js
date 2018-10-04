@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
@@ -55,11 +55,10 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
         && stateIndex.get('wasteBinCapOpen')
     ) {
 
-        getWorldBound(element);
-        
+
         // drop the cap of nacl 500
         if (
-            isEmitted(element, triggerEvent.position)
+            detectCollision(element, triggerEvent.activeController)
             && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === triggerEvent.activeController.getAttribute('id')
         ) {
             activeController = triggerEvent.activeController;
@@ -71,11 +70,10 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
         controllerStateIndex.getControllerState('infusionSetCapInHand')
         && stateIndex.get('wasteBinCapOpen')
     ) {
-        getWorldBound(element);
 
         // drop the cap of infusion set
         if (
-            isEmitted(element, triggerEvent.position)
+            detectCollision(element, triggerEvent.activeController)
             && controllerStateIndex.getControllerState('infusionSetCapInHand') === triggerEvent.activeController.getAttribute('id')
         ) {
             activeController = triggerEvent.activeController;

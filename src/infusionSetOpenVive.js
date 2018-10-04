@@ -6,7 +6,7 @@ import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from "../utils/isEmitted";
+import { isEmitted, detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
@@ -16,6 +16,7 @@ let currentControllerState;
 let element;
 let activeController;
 let infusionSetWheel;
+export let canTriggerCapAndWheel = false;
 
 export default AFRAME.registerComponent('infusion_set_open_vive', {
 
@@ -42,6 +43,10 @@ const schema = {
     dur : 500,
 };
 
+export function setCanTriggerCapAndWheel(value) {
+    canTriggerCapAndWheel = value;
+}
+
 export function handleNotifyInfusionSetInPack(nextState) {
 
     // deep copy
@@ -50,10 +55,10 @@ export function handleNotifyInfusionSetInPack(nextState) {
 
 export function handleControllerNotifyInfusionSetOpen ( triggerEvent ) {
 
-    getWorldBound(element);
-    getWorldBound(infusionSetWheel);
+    // getWorldBound(element);
+    // getWorldBound(infusionSetWheel);
 
-    if (isEmitted(element, triggerEvent.position)) {
+    if (detectCollision(element, triggerEvent.activeController)) {
         // take opened infusion set in hand
         if (
             controllerStateIndex.getControllerState('infusionSetCapOff')

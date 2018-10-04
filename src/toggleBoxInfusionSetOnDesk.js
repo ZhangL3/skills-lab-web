@@ -6,6 +6,8 @@ import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import { controllerActions } from "../utils/controllerActions";
 
+import {setCanTriggerCapAndWheel} from "./infusionSetOpenVive";
+
 let element;
 
 let currentControllerState;
@@ -37,6 +39,9 @@ export function handleControllerNotifyToggleBoxInfusionSetOnDesk ( triggerEvent 
         && triggerEvent.activeController === controllerStateIndex.getControllerState('infusionSetInPackInHand')
     ){
         controllerStateIndex.setControllerState('infusionSetOnDeskOpened', true);
+        setTimeout(()=>{
+            setCanTriggerCapAndWheel(true);
+        }, 500);
     }
 }
 
