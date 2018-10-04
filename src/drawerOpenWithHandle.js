@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 
 const allDrawersHandles = [];
 let allDrawersElements;
@@ -24,8 +24,7 @@ export default AFRAME.registerComponent('drawer_open_with_handle',{
 export function handleControllerNotifyCabinetDrawer( triggerEvent ) {
 
     allDrawersHandles.forEach((drawerHandle)=>{
-        getWorldBound(drawerHandle);
-        if(isEmitted(drawerHandle, triggerEvent.position)){
+        if(detectCollision(drawerHandle, triggerEvent.activeController)){
             $(drawerHandle).parent().trigger('click');
         }
     });

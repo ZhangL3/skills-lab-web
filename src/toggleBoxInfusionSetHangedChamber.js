@@ -2,8 +2,10 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
+
+import {canTriggerChamberAndWheel} from "./infusionSetHangedVive";
 
 let element;
 let infusionSetHangedFill;
@@ -35,8 +37,10 @@ export function handleControllerNotifyToggleBoxInfusionSetHangedChamber( trigger
         return false;
     }
 
-    getWorldBound(element);
-    if(isEmitted(element, triggerEvent.position)){
+    if(
+        detectCollision(element, triggerEvent.activeController)
+        && canTriggerChamberAndWheel
+    ){
         controllerStateIndex.setControllerState('dripChamberFilled', true);
     }
 }

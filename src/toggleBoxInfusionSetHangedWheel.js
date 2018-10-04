@@ -2,9 +2,11 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from "../utils/aAnimationWrapper";
+
+import {canTriggerChamberAndWheel} from "./infusionSetHangedVive";
 
 let element;
 let infusionSetHangedWheel;
@@ -40,8 +42,10 @@ export function handleControllerNotifyToggleBoxInfusionSetHangedWheel( triggerEv
         return false;
     }
 
-    getWorldBound(element);
-    if (isEmitted(element, triggerEvent.position)) {
+    if (
+        detectCollision(element, triggerEvent.activeController)
+        && canTriggerChamberAndWheel
+    ) {
 
         if (
             controllerStateIndex.getControllerState('infusionSetWheelClosed')

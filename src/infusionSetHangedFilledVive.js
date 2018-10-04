@@ -6,7 +6,7 @@ import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from "../utils/isEmitted";
+import { isEmitted, detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
 let currentState;
@@ -62,8 +62,7 @@ export function handleControllerNotifyInfusionSetHangedFilledVive ( triggerEvent
         return false;
     }
 
-    getWorldBound(element);
-    if (isEmitted(element, triggerEvent.position)) {
+    if (detectCollision(element, triggerEvent.activeController)) {
         controllerStateIndex.setControllerState('tubeFixed', true);
         stateIndex.setIn(['infusionSet', 'finish'], true);
     }

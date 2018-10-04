@@ -2,10 +2,12 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import stateIndex from './state';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+
+import {setCanTriggerChamberAndWheel} from "./infusionSetHangedVive";
 
 let element;
 let nacl500Bottle;
@@ -40,8 +42,7 @@ export function handleControllerNotifyToggleBoxNacl500Hanged( triggerEvent ) {
         return false;
     }
 
-    getWorldBound(element);
-    if(!isEmitted(element, triggerEvent.position)) {
+    if(!detectCollision(element, triggerEvent.activeController)) {
         return false;
     }
 
@@ -58,6 +59,7 @@ export function handleControllerNotifyToggleBoxNacl500Hanged( triggerEvent ) {
             // nacl500Bottle.setAttribute('position', schema.hangedPosition);
             // nacl500Bottle.setAttribute('rotation', schema.hangedRotation);
             aAnimationWrapper(nacl500Bottle, '', 'rotation', '', schema.hangedRotation, schema.dur, '',true , 'forwards');
+            setCanTriggerChamberAndWheel(true);
         }, 500);
         element.setAttribute('visible', false);
     }

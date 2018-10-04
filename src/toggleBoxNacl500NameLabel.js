@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from '../utils/isEmitted';
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import stateIndex from './state';
 
@@ -38,10 +38,9 @@ export function handleControllerNotifyToggleBoxNacl500NameLabel( triggerEvent ) 
     }
 
     // TODO: Is correct hand?
-    getWorldBound(element);
     if (
         controllerStateIndex.getControllerState('nameLabelInHand') === triggerEvent.activeController.getAttribute('id')
-        && isEmitted(element, triggerEvent.position)
+        && detectCollision(element, triggerEvent.activeController)
         && controllerStateIndex.getControllerState('nameLabelFilled')
         && !stateIndex.getIn(['nameLabel', 'finish'])
     ) {

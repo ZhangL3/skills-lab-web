@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
-import { isEmitted } from "../utils/isEmitted";
+import { isEmitted, detectCollision } from "../utils/isEmitted";
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 
 let element;
@@ -54,9 +54,7 @@ export function handleNotifyWasteBinCap(nextState) {
 
 export function handleControllerNotifyWasteBinCap( triggerEvent ) {
 
-    getWorldBound(element);
-
-    if(!isEmitted(element, triggerEvent.position)){
+    if(!detectCollision(element, triggerEvent.activeController)){
         return false;
     }
     toggleOpenAndClose();

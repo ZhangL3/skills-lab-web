@@ -6,7 +6,7 @@ import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted } from "../utils/isEmitted";
+import { isEmitted, detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
@@ -76,7 +76,7 @@ export function handleControllerNotifyNameLabelStamperVive ( triggerEvent ) {
 
         // take name label in hand
         if (
-            isEmitted(element, triggerEvent.position)
+            detectCollision(element, triggerEvent.activeController)
             && haveSthInHand(triggerEvent.activeController).length === 0
         ) {
             activeController = triggerEvent.activeController;
