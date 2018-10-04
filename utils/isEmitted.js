@@ -68,21 +68,10 @@ export function isEmittedBoundingBox(boundingBox, position) {
 }
 
 export function detectCollision(elementObject, elementTarget) {
-    const objectVertexes = getVertexesOfBoundingBox(elementObject);
-    const targetVertexes = getVertexesOfBoundingBox(elementTarget);
 
-    for ( let i = 0; i < objectVertexes.length; i++ ) {
-        if ( isEmitted(elementTarget, objectVertexes[i]) ) {
-            return true;
-        }
-    }
+    const objectBox = new THREE.Box3().setFromObject(elementObject.object3D);
+    const targetBoX = new THREE.Box3().setFromObject(elementTarget.object3D);
 
-    for ( let j = 0; j < targetVertexes.length; j++) {
-        if ( isEmitted(elementObject, targetVertexes[j]) ) {
-            return true;
-        }
-    }
-
-    return false;
+    return objectBox.intersectsBox(targetBoX);
 }
 
