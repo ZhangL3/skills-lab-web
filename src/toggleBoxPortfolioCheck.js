@@ -16,9 +16,7 @@ export default AFRAME.registerComponent('toggle_box_portfolio_check', {
         console.log("init toggle box porfolio check");
         
         hookToggleBoxes=$('.hookToggleBox');
-
     },
-
 });
 
 function toggleHookBox(hookToggleBox){
@@ -47,7 +45,7 @@ function toggleHookBox(hookToggleBox){
     }
 }
 
-export function handleControllerNotifyPortfolioCheckVive( triggerEvent ) {
+export function handleControllerNotifyToggleBoxPortfolioCheck(triggerEvent ) {
 
     if (
         stateIndex.getIn(['portfolio', 'checkFinish'])

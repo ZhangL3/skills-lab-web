@@ -58,6 +58,7 @@ export function handleControllerNotifyInfusionSetHangedFilledVive ( triggerEvent
         controllerStateIndex.getControllerState('infusionSetWheelClosed')
         || controllerStateIndex.getControllerState('tubeFixed')
         || !touchable
+        || !stateIndex.getIn(['infusionSet', 'tubeFilled'])
     ) {
         return false;
     }
@@ -71,6 +72,7 @@ export function handleControllerNotifyInfusionSetHangedFilledVive ( triggerEvent
 
 export function handleControllerStateNotifyInfusionSetHangedFilledVive (nextControllerState) {
 
+    // Show filled infusion set
     if (
         !nextControllerState.infusionSetWheelClosed
         && nextControllerState.dripChamberFilled
@@ -84,8 +86,8 @@ export function handleControllerStateNotifyInfusionSetHangedFilledVive (nextCont
             touchable = true;
         }, schema.dur);
     }
-
-    if (
+    // show fixed infusion set
+    else if (
         nextControllerState.tubeFixed
         && !currentControllerState.tubeFixed
     ) {

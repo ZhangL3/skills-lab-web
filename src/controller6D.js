@@ -7,7 +7,7 @@ import {haveSthInHand} from "./controllerHand";
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
 import { handleControllerNotifyPortfolio } from './portfolio';
-import { handleControllerNotifyPortfolioCheckVive } from './toggleBoxPortfolioCheck';
+import { handleControllerNotifyToggleBoxPortfolioCheck } from './toggleBoxPortfolioCheck';
 import { handleControllerNotifyToggleBoxPortfolio } from './toggleBoxPortfolio';
 import { handleControllerNotifyHandDisinfection } from './handDisinfection';
 import { handleControllerNotifyGlove } from './glove';
@@ -38,6 +38,7 @@ import { handleControllerNotifyToggleBoxNameLabelEmpty } from './toggleBoxNameLa
 import { handleControllerNotifyToggleBoxSelectSection } from './toggleBoxSelectSection';
 import { handleControllerNotifyControllerHand } from './controllerHand';
 import { handleControllerNotifyIndicatorBox } from './indicatorBox';
+import { handleControllerNotifyPortfolioCheckVive } from './portfolioCheckVive';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -51,7 +52,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyCupboardDoor);
         this.viveObserver.subscribe(handleControllerNotifyCabinetDrawer);
         this.viveObserver.subscribe(handleControllerNotifyPortfolio);
-        this.viveObserver.subscribe(handleControllerNotifyPortfolioCheckVive);
+        this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolioCheck);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolio);
         this.viveObserver.subscribe(handleControllerNotifyHandDisinfection);
         this.viveObserver.subscribe(handleControllerNotifyGlove);
@@ -82,6 +83,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxSelectSection);
         this.viveObserver.subscribe(handleControllerNotifyControllerHand);
         this.viveObserver.subscribe(handleControllerNotifyIndicatorBox);
+        this.viveObserver.subscribe(handleControllerNotifyPortfolioCheckVive);
 
         $(el).on('triggerdown', () => {
 

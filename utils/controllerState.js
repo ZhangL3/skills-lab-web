@@ -23,6 +23,7 @@ import { handleControllerStateNotifyInfusionSetHangedFilledVive } from '../src/i
 import { handleControllerStateNotifyNameLabelStamperVive } from '../src/nameLabelStamperVive';
 import { handleControllerStateNotifyToggleBoxNacl500NameLabel } from '../src/toggleBoxNacl500NameLabel';
 import { handleControllerStateNotifyToggleBoxNameLabelEmpty } from '../src/toggleBoxNameLabelEmpty';
+import { handleControllerStateNotifyRaycasterVive } from '../src/raycasterVive';
 
 
 const controllerState = {
@@ -144,6 +145,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyNameLabelStamperVive);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500NameLabel);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNameLabelEmpty);
+        this.controllerObserver.subscribe(handleControllerStateNotifyRaycasterVive);
 
         console.log("controllerState init");
 

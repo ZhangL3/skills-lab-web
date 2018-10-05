@@ -17,6 +17,8 @@ import {handleNotifyClothBottleCapOpen} from "./clothBottleCapOpen";
 import {handleNotifyTipsTextEdit} from "../utils/tipsTextEdit";
 import {handleNotifyToggleBoxSelectSection} from "./toggleBoxSelectSection";
 import {handleNotifySectionSelection} from "./sectionSelection";
+import {handleNotifyToggleBoxPortfolio} from "./toggleBoxPortfolio";
+import {handleNotifyRaycasterVive} from "./raycasterVive";
 
 
 let state;
@@ -71,6 +73,8 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifyTipsTextEdit);
         this.headingsObserver.subscribe(handleNotifyToggleBoxSelectSection);
         this.headingsObserver.subscribe(handleNotifySectionSelection);
+        this.headingsObserver.subscribe(handleNotifyToggleBoxPortfolio);
+        this.headingsObserver.subscribe(handleNotifyRaycasterVive);
     }
 
     static selectSection(section) {

@@ -8,6 +8,7 @@ import { setVisibleTrue, setVisibleFalse } from "../utils/setVisible";
 import { is5RChecked } from './portfolio';
 
 let element;
+let portfolioChecked;
 
 export default AFRAME.registerComponent('toggle_box_portfolio', {
 
@@ -29,6 +30,15 @@ function hideToggleBoxPortfolio () {
     $(element).attr('visible', false);
 }
 
+export function handleNotifyToggleBoxPortfolio() {
+    // portfolioChecked = controllerStateIndex.getControllerState('portfolioInHand') && is5RChecked();
+    portfolioChecked = is5RChecked();
+
+    if(portfolioChecked && !stateIndex.getIn(['portfolio', 'finish'])) {
+        $(element).attr('material', "color:#00ffff; transparent: true; opacity: 0.5")
+    }
+}
+
 export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
 
     // console.log("toggleBoxPortfolio.triggerEvent", triggerEvent);
@@ -36,12 +46,6 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
 
     if (stateIndex.getIn(['portfolio', 'finish'])) {
         return false;
-    }
-
-    const portfolioChecked = controllerStateIndex.getControllerState('portfolioInHand') && is5RChecked();
-
-    if(portfolioChecked && !stateIndex.getIn(['portfolio', 'finish'])) {
-        $(element).attr('material', "color:#00ffff; transparent: true; opacity: 0.5")
     }
 
     // getWorldBound(element);

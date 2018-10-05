@@ -67,6 +67,9 @@ import * as raycasterIntersection from './raycasterIntersection';
 import * as cameraMove from './cameraMove';
 
 import * as indicatorBox from './indicatorBox';
+import * as raycasterVive from './raycasterVive';
+
+import * as portfolioCheckVive from './portfolioCheckVive';
 
 stateIndex.init();
 controllerStateIndex.initControllerState();
