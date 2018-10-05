@@ -39,6 +39,7 @@ import { handleControllerNotifyToggleBoxSelectSection } from './toggleBoxSelectS
 import { handleControllerNotifyControllerHand } from './controllerHand';
 import { handleControllerNotifyIndicatorBox } from './indicatorBox';
 import { handleControllerNotifyPortfolioCheckVive } from './portfolioCheckVive';
+import { handleControllerNotifyNacl500LabelCheckVive } from './nacl500LabelCheckVive';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -84,6 +85,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyControllerHand);
         this.viveObserver.subscribe(handleControllerNotifyIndicatorBox);
         this.viveObserver.subscribe(handleControllerNotifyPortfolioCheckVive);
+        this.viveObserver.subscribe(handleControllerNotifyNacl500LabelCheckVive);
 
         $(el).on('triggerdown', () => {
 

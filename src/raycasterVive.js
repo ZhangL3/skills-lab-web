@@ -23,7 +23,7 @@ AFRAME.registerComponent('raycaster_vive', {
         });
 
         element.addEventListener('raycaster-intersection-cleared', (event) => {
-           this.changLineColor('red');
+           this.changLineColor('orange');
         });
 
     },
@@ -38,9 +38,9 @@ export function handleNotifyRaycasterVive(nextState) {
 
     portfolioChecked = is5RChecked();
 
-    if (portfolioChecked) {
-        element.setAttribute('visible', false);
-    }
+    // if (portfolioChecked) {
+    //     element.setAttribute('visible', false);
+    // }
 
 
     // deep copy

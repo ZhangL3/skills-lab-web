@@ -70,6 +70,7 @@ import * as indicatorBox from './indicatorBox';
 import * as raycasterVive from './raycasterVive';
 
 import * as portfolioCheckVive from './portfolioCheckVive';
+import * as nacl500LabelCheckVive from './nacl500LabelCheckVive';
 
 stateIndex.init();
 controllerStateIndex.initControllerState();
