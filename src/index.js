@@ -71,6 +71,8 @@ import * as raycasterVive from './raycasterVive';
 
 import * as portfolioCheckVive from './portfolioCheckVive';
 import * as nacl500LabelCheckVive from './nacl500LabelCheckVive';
+import * as nacl500LiquidCheckVive from './nacl500LiquidCheckVive';
+import * as nacl500CapCheckVive from './nacl500CapCheckVive';
 
 stateIndex.init();
 controllerStateIndex.initControllerState();

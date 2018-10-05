@@ -4,7 +4,7 @@ import stateIndex from './state';
 
 let element;
 
-AFRAME.registerComponent('nacl500_label_check_vive', {
+AFRAME.registerComponent('nacl500_liquid_check_vive', {
 
     init: function () {
         element = this.el;
@@ -34,7 +34,8 @@ AFRAME.registerComponent('nacl500_label_check_vive', {
 function shouldCheck() {
     if (
         controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
-        || controllerStateIndex.getControllerState('nacl500LabelChecked')
+        || controllerStateIndex.getControllerState('nacl500LiquidChecked')
+        || !controllerStateIndex.getControllerState('nacl500LabelChecked')
     ) {
         return false;
     }
@@ -43,11 +44,11 @@ function shouldCheck() {
 }
 
 function setChecked() {
-    controllerStateIndex.setControllerState('nacl500LabelChecked', true);
+    controllerStateIndex.setControllerState('nacl500LiquidChecked', true);
 
 }
 
-export function handleControllerNotifyNacl500LabelCheckVive(triggerEvent) {
+export function handleControllerNotifyNacl500LiquidCheckVive(triggerEvent) {
 
     if (shouldCheck()) {
         $(element).trigger('controllerClick');
