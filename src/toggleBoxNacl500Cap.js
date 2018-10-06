@@ -55,17 +55,17 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
     }
 
     // check cap
-    if (
-        !controllerStateIndex.getControllerState('nacl500CapChecked')
-        && canCheck
-    ) {
-        if(controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
-            controllerStateIndex.setControllerState('nacl500CapChecked', true);
-        }
-    }
+    // if (
+    //     !controllerStateIndex.getControllerState('nacl500CapChecked')
+    //     && canCheck
+    // ) {
+    //     if(controllerStateIndex.getControllerState('nacl500InHandToDesk')) {
+    //         controllerStateIndex.setControllerState('nacl500CapChecked', true);
+    //     }
+    // }
   
     // drag cap
-    else if (bottleNacl500Cap
+    if (bottleNacl500Cap
         && controllerStateIndex.getControllerState('nacl500OnDesk')
         && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
         && haveSthInHand(triggerEvent.activeController).length === 0

@@ -53,6 +53,11 @@ export function handleNotifyInfusionSetHangedFilledVive(nextState) {
 }
 
 export function handleControllerNotifyInfusionSetHangedFilledVive ( triggerEvent ) {
+
+    console.log("controllerStateIndex.getControllerState('infusionSetWheelClosed'): ", controllerStateIndex.getControllerState('infusionSetWheelClosed'), typeof(controllerStateIndex.getControllerState('infusionSetWheelClosed')));
+    console.log("controllerStateIndex.getControllerState('tubeFixed'): ", controllerStateIndex.getControllerState('tubeFixed'), typeof(controllerStateIndex.getControllerState('tubeFixed')));
+    console.log("!touchable: ", !touchable, typeof(!touchable));
+    console.log("!stateIndex.getIn(['infusionSet', 'tubeFilled']): ", !stateIndex.getIn(['infusionSet', 'tubeFilled']), typeof(!stateIndex.getIn(['infusionSet', 'tubeFilled'])));
     
     if(
         controllerStateIndex.getControllerState('infusionSetWheelClosed')
@@ -60,6 +65,7 @@ export function handleControllerNotifyInfusionSetHangedFilledVive ( triggerEvent
         || !touchable
         || !stateIndex.getIn(['infusionSet', 'tubeFilled'])
     ) {
+        console.log("infuisionSetFill return false");
         return false;
     }
 

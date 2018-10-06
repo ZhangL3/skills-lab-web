@@ -60,6 +60,7 @@ const controllerState = {
     nacl500Hanged: false,
     dripChamberFilled: false,
     infusionSetWheelClosed: false,
+    infusionSetHangedFilled: false,
     tubeFixed: false,
 
     nameLabelInHand: null,
@@ -103,6 +104,7 @@ export function setControllerStateToSection(section) {
         nacl500Hanged: section >= 7,
         dripChamberFilled: section >= 7,
         infusionSetWheelClosed: section === 6,
+        infusionSetHangedFilled: section >= 7,
         tubeFixed: section >= 7,
 
         nameLabelInHand: null,
