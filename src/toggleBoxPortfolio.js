@@ -13,22 +13,10 @@ let portfolioChecked;
 export default AFRAME.registerComponent('toggle_box_portfolio', {
 
     init: function(){
-
         element = this.el;
-
-        // console.log("init toggle box portfolio: ", element);
-
     },
 
 });
-
-function showToggleBoxPortfolio () {
-    $(element).attr('visible', true);
-}
-
-function hideToggleBoxPortfolio () {
-    $(element).attr('visible', false);
-}
 
 export function handleNotifyToggleBoxPortfolio() {
     // portfolioChecked = controllerStateIndex.getControllerState('portfolioInHand') && is5RChecked();
@@ -41,14 +29,9 @@ export function handleNotifyToggleBoxPortfolio() {
 
 export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
 
-    // console.log("toggleBoxPortfolio.triggerEvent", triggerEvent);
-    // console.log("toggleBoxPortfolio.element", element);
-
     if (stateIndex.getIn(['portfolio', 'finish'])) {
         return false;
     }
-
-    // getWorldBound(element);
 
     if(detectCollision(element, triggerEvent.activeController)){
 
@@ -62,13 +45,10 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
 }
 
 export function handleControllerStateNotifyToggleBoxPortfolio (nextControllerState) {
-    // console.log("handleControllerStateNotifyToggleBoxPortfolio", nextControllerState);
     if (nextControllerState.portfolioInHand) {
-        // showToggleBoxPortfolio();
         setVisibleTrue(element);
     }
     else {
-        // hideToggleBoxPortfolio();
         setVisibleFalse(element);
     }
 }
