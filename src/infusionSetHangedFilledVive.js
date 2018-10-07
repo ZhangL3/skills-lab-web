@@ -63,7 +63,7 @@ export function handleControllerNotifyInfusionSetHangedFilledVive ( triggerEvent
         controllerStateIndex.getControllerState('infusionSetWheelClosed')
         || controllerStateIndex.getControllerState('tubeFixed')
         || !touchable
-        || !stateIndex.getIn(['infusionSet', 'tubeFilled'])
+        // || !stateIndex.getIn(['infusionSet', 'tubeFilled'])
     ) {
         console.log("infuisionSetFill return false");
         return false;
