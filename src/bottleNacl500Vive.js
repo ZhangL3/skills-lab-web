@@ -11,6 +11,8 @@ import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
 
+import {canTakeBottle} from "./nacl500DoorOpen";
+
 let element;
 let currentState;
 
@@ -85,6 +87,7 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
             && controllerStateIndex.getControllerState('nacl500Dragable')
             && !controllerStateIndex.getControllerState('infusionSetInBottle')
             && haveSthInHand(triggerEvent.activeController).length === 0
+            && canTakeBottle
         ) {
             console.log("emmit triggerDown to bottle");
             activeController = triggerEvent.activeController;

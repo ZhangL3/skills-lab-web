@@ -19,6 +19,7 @@ import {handleNotifyToggleBoxSelectSection} from "./toggleBoxSelectSection";
 import {handleNotifySectionSelection} from "./sectionSelection";
 import {handleNotifyToggleBoxPortfolio} from "./toggleBoxPortfolio";
 import {handleNotifyRaycasterVive} from "./raycasterVive";
+import {handleNotifyNacl500DoorOpen} from "./nacl500DoorOpen";
 
 
 let state;
@@ -75,6 +76,7 @@ export default class stateIndex {
         this.headingsObserver.subscribe(handleNotifySectionSelection);
         this.headingsObserver.subscribe(handleNotifyToggleBoxPortfolio);
         this.headingsObserver.subscribe(handleNotifyRaycasterVive);
+        this.headingsObserver.subscribe(handleNotifyNacl500DoorOpen);
     }
 
     static selectSection(section) {

@@ -3,6 +3,7 @@ import * as constants from './constants';
 export const section0 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
+    nacl500DoorOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
@@ -67,6 +68,7 @@ export const section0 = {
 export const section1 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
+    nacl500DoorOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
@@ -131,6 +133,7 @@ export const section1 = {
 export const section2 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
+    nacl500DoorOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
@@ -195,6 +198,7 @@ export const section2 = {
 export const section3 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
+    nacl500DoorOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
@@ -259,6 +263,7 @@ export const section3 = {
 export const section4 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
+    nacl500DoorOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
@@ -323,6 +328,7 @@ export const section4 = {
 export const section5 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
+    nacl500DoorOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
@@ -387,6 +393,7 @@ export const section5 = {
 export const section6 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
+    nacl500DoorOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {
@@ -451,6 +458,7 @@ export const section6 = {
 export const section7 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
+    nacl500DoorOpen: false,
     portfolio: {
         position: constants.portfolio.position.ON_TABLE, // 'on-table' || 'in-hand'
         checkPortfolio: {

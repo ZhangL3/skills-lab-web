@@ -75,5 +75,7 @@ import * as nacl500LiquidCheckVive from './nacl500LiquidCheckVive';
 import * as nacl500CapCheckVive from './nacl500CapCheckVive';
 import * as infusionSetInPackCheckVive from './infusionSetInPackCheckVive';
 
+import * as nacl500DoorOpen from './nacl500DoorOpen';
+
 stateIndex.init();
 controllerStateIndex.initControllerState();

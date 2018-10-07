@@ -43,6 +43,7 @@ import { handleControllerNotifyNacl500LabelCheckVive } from './nacl500LabelCheck
 import { handleControllerNotifyNacl500LiquidCheckVive } from './nacl500LiquidCheckVive';
 import { handleControllerNotifyNacl500CapCheckVive } from './nacl500CapCheckVive';
 import { handleControllerNotifyInfusionSetInPackCheckVive } from './infusionSetInPackCheckVive';
+import { handleControllerNotifyNacl500DoorOpen } from './nacl500DoorOpen';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -93,6 +94,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyNacl500CapCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyNacl500CapCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPackCheckVive);
+        this.viveObserver.subscribe(handleControllerNotifyNacl500DoorOpen);
 
         $(el).on('triggerdown', () => {
 
