@@ -34,7 +34,8 @@ AFRAME.registerComponent('camera-move', {
         // move to cupboard
         nacl500Bottle.addEventListener('raycaster-intersected', ()=>{
             if (
-                stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.IN_CUPBOARD
+                stateIndex.get('started')
+                && stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.IN_CUPBOARD
                 && cameraPosition === positionVar.origin.name
             ) {
                 this.moveToBottle(el);
