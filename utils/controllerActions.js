@@ -11,8 +11,8 @@ const defaultValues = {
     addedScale: -1,
     removedScale: -1,
     positionX: 0,
-    positionY: 0.08,
-    positionZ: -0.1
+    positionY: 0,
+    positionZ: 0
 };
 export const objectInHandPosition = {
     x: defaultValues.positionX * adjustmentSizeScale,
