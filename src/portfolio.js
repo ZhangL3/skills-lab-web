@@ -10,20 +10,24 @@ import { isEmitted, detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
-
+import dropDown from "../utils/dropDown";
+import {showHook} from "./portfolioCheck";
 
 let element;
 let currentState;
 let foregroundOfPortfolio;
+let toggleBoxPortfolio;
 
 let activeController;
-let boundingBoxOnTable;
 
 let hookName;
 let hookDrug;
 let hookDose;
 let hookIV;
 let hookCF;
+
+let isPortfolioOpen = false;
+let portfolioInHand = null;
 
 export let canCheckPortfolio = false;
 
@@ -42,6 +46,8 @@ export default AFRAME.registerComponent('portfolio', {
         hookDose = document.querySelector("#hookDose");
         hookIV = document.querySelector("#hookIV");
         hookCF = document.querySelector("#hookCF");
+
+        toggleBoxPortfolio = document.querySelector('#toggleBoxPortfolio');
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -72,7 +78,7 @@ export const schema = {
 
 // open portfolio
 export function open () {
-    console.log("open");
+    console.log("open!!!!!");
     aAnimationWrapper(
         foregroundOfPortfolio, '', 'rotation', '', schema.openRotation, schema.dur,
         '', true, 'forwards'
@@ -81,6 +87,7 @@ export function open () {
         foregroundOfPortfolio, '', 'position', '', schema.openPosition, schema.dur,
         '', true, 'forwards'
     );
+    isPortfolioOpen = true;
 }
 
 function faceToCamera() {
@@ -107,6 +114,7 @@ export function close () {
         foregroundOfPortfolio, '', 'rotation', schema.openRotation, schema.closeRotation, schema.dur,
         '', true, 'forwards'
     );
+    isPortfolioOpen = false;
 }
 
 function putOnTable(){
@@ -153,6 +161,7 @@ function handleClickPortfolio () {
         stateIndex.getIn(['portfolio', 'finish']) === false
     ) {
         stateIndex.setIn(['portfolio', 'checkFinish'], true);
+        stateIndex.setIn(['portfolio', 'finish'], true);
     }
 }
 
@@ -181,7 +190,7 @@ export function handleNotifyPortfolio(nextState) {
     }
     else if (
         nextState.portfolio.checkFinish === true
-        && nextState.portfolio.finish === false
+        && nextState.portfolio.finish === true
         // && nextState.portfolio.position === constants.portfolio.position.IN_HAND
         && nextState.portfolio.position === constants.portfolio.position.ON_TABLE
     ) {
@@ -189,7 +198,7 @@ export function handleNotifyPortfolio(nextState) {
         close();
         hideHooks();
 
-        stateIndex.setIn(['portfolio', 'finish'], true);
+        // stateIndex.setIn(['portfolio', 'finish'], true);
     }
     // deep copy
     currentState = _.cloneDeep(stateIndex.getState());
@@ -201,10 +210,8 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
         return false;
     }
 
-    // boundingBoxOnTable = getWorldBound(element);
     activeController = triggerEvent.activeController;
 
-    // if(isEmitted(element, triggerEvent.position)){
     if(detectCollision(element, activeController)){
         // Store activeControllerId only if portfolio not draged
         if(
@@ -222,7 +229,50 @@ export function handleControllerNotifyPortfolio ( triggerEvent ) {
     }
 }
 
+export function handleControllerPressPortfolio (triggerEvent) {
+    if (stateIndex.getIn(['portfolio', 'finish'])) {
+        return false;
+    }
+
+    activeController = triggerEvent.activeController;
+
+    if(detectCollision(element, activeController)){
+        if(
+            controllerStateIndex.getControllerState('portfolioInHand') === null
+            && haveSthInHand(activeController).length === 0
+        ) {
+            activeController = triggerEvent.activeController;
+            let activeControllerId = activeController.getAttribute('id');
+
+            controllerStateIndex.setControllerState('isPortfolioHandling', true);
+
+            controllerStateIndex.setControllerState('portfolioInHand', activeControllerId);
+            stateIndex.set('started', true);
+            setTimeout(()=>{
+                canCheckPortfolio = true;
+            }, 300);
+        }
+    }
+}
+
+export function handleControllerReleasePortfolio (triggerEvent) {
+    if (
+        stateIndex.getIn(['portfolio', 'finish'])
+        || !controllerStateIndex.getControllerState('portfolioInHand')
+    ) {
+        return false;
+    }
+    activeController = triggerEvent.activeController;
+
+    if( triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('portfolioInHand')
+        && !detectCollision(toggleBoxPortfolio, activeController)
+    ) {
+        controllerStateIndex.setControllerState('portfolioInHand', null);
+    }
+}
+
 export function handleControllerStateNotifyPortfolio (nextControllerState) {
+
     if (
         controllerStateIndex.getControllerState('portfolioInHand')
         && stateIndex.getIn(['portfolio', 'finish'])
@@ -230,35 +280,62 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
         return false;
     }
 
-
+    // First time to take portfolio
     if (
         nextControllerState.portfolioInHand !== null
-        && currentControllerState.portfolioInHand === null
+        && portfolioInHand === null
+        && isPortfolioOpen === false
     ) {
         open();
         dragInHand();
-        currentControllerState = _.cloneDeep(nextControllerState);
     }
-    if (
-        nextControllerState.portfolioInHand === null
-        && currentControllerState != null
-        && currentControllerState.portfolioInHand !== null
+    // Take portfolio if dropped down
+    else if (
+        nextControllerState.portfolioInHand !== null
+        && portfolioInHand === null
+        && isPortfolioOpen === true
     ) {
-        console.log("should drop portfolio");
+        dragInHand();
+        showHook();
+    }
+    // Put portfolio on desk
+    else if (
+        nextControllerState.portfolioInHand === null
+        && portfolioInHand !== null
+        && stateIndex.getIn(['portfolio', 'finish'])
+        && nextControllerState.isPortfolioHandling === false
+    ) {
+        console.log("should drop portfolio on desk");
         drop();
         dropOnDesk();
-        currentControllerState = _.cloneDeep(nextControllerState);
     }
+    // Drop down to floor
+    else if (
+        nextControllerState.portfolioInHand === null
+        && portfolioInHand !== null
+        && !stateIndex.getIn(['portfolio', 'finish'])
+        && nextControllerState.isPortfolioHandling === true
+    ) {
+        drop();
+        showHook();
+        setTimeout(()=>{
+            dropDown(element);
+        }, 100);
+    }
+
+    currentControllerState = _.cloneDeep(nextControllerState);
 }
 
 function dragInHand() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drag();
+    portfolioInHand = activeController.getAttribute('id');
 }
 
 function drop() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drop();
+    portfolioInHand = null;
 }
 
 function dropOnDesk() {

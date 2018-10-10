@@ -52,21 +52,37 @@ function handleClickPortfolioCheck(event){
     }
 }
 
-function showHook (state5R) {
+export function showHook () {
+    const state5R = stateIndex.getIn(['portfolio', 'checkPortfolio']);
     if (state5R.name === true) {
         $(hookName).attr('visible', 'true');
+        setTimeout(()=>{
+            $(hookName).attr('visible', 'true');
+        }, 100);
     }
     if (state5R.drug === true) {
         $(hookDrug).attr('visible', 'true');
+        setTimeout(()=>{
+            $(hookDrug).attr('visible', 'true');
+        }, 100);
     }
     if (state5R.dose === true) {
         $(hookDose).attr('visible', 'true');
+        setTimeout(()=>{
+            $(hookDose).attr('visible', 'true');
+        }, 100);
     }
     if (state5R.IV === true) {
         $(hookIV).attr('visible', 'true');
+        setTimeout(()=>{
+            $(hookIV).attr('visible', 'true');
+        }, 100);
     }
     if (state5R.CF === true) {
         $(hookCF).attr('visible', 'true');
+        setTimeout(()=>{
+            $(hookCF).attr('visible', 'true');
+        }, 100);
     }
 }
 
@@ -76,6 +92,6 @@ export function handleNotifyPortfolioCheck(nextState) {
         return false;
     }
 
-    showHook(nextState.portfolio.checkPortfolio);
+    showHook();
 }
 

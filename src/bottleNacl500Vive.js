@@ -21,6 +21,9 @@ let infusionSetInBottle;
 
 let currentControllerState;
 
+let isNacl500Open = false;
+let nacl500InHand = null;
+
 export let canCheck = false;
 
 const schema = {
@@ -115,7 +118,51 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
             controllerStateIndex.setControllerState('nacl500InHandToStand', activeControllerId);
         }
     }
+}
 
+export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
+
+    if (!detectCollision(element, triggerEvent.activeController)) {
+        return false;
+    }
+
+    // to desk
+    if (
+        stateIndex.getIn(['handDisinfection', 'finish']) === 2
+        && controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
+        && controllerStateIndex.getControllerState('nacl500Dragable')
+        && !controllerStateIndex.getControllerState('infusionSetInBottle')
+        && haveSthInHand(triggerEvent.activeController).length === 0
+        && canTakeBottle
+    ) {
+        console.log("emmit triggerDown to bottle");
+        activeController = triggerEvent.activeController;
+        let activeControllerId =  activeController.getAttribute('id');
+        controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
+    }
+    // change hints
+    else if (
+        stateIndex.getIn(['handDisinfection', 'finish']) !== 2
+        && controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
+        && controllerStateIndex.getControllerState('nacl500Dragable')
+    ) {
+        console.log("Disinfect hands before taking bottle");
+    }
+
+    // to stand
+    if (
+        controllerStateIndex.getControllerState('infusionSetInBottle')
+        && controllerStateIndex.getControllerState('nacl500InHandToStand') === null
+        && haveSthInHand(triggerEvent.activeController).length === 0
+    ) {
+        console.log("to stand");
+        activeController = triggerEvent.activeController;
+        let activeControllerId =  activeController.getAttribute('id');
+        controllerStateIndex.setControllerState('nacl500InHandToStand', activeControllerId);
+    }
+}
+
+export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
 
 }
 
@@ -156,6 +203,7 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
 
 function dragInHand() {
     let controllerActivities = new controllerActions(element, activeController);
+    nacl500InHand = activeController.getAttribute('id');
     controllerActivities.drag();
     console.log("controllerActivities drag: ", controllerActivities, typeof(controllerActivities));
     // drag(element, activeController);
@@ -169,6 +217,7 @@ function dragInHandToHang() {
     // trickDrag(element, activeController);
 
     let controllerActivities = new controllerActions(element, activeController);
+    nacl500InHand = activeController.getAttribute('id');
     controllerActivities.drag();
 }
 

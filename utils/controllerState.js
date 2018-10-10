@@ -29,6 +29,7 @@ import { handleControllerStateNotifyRaycasterVive } from '../src/raycasterVive';
 const controllerState = {
     connectedController: '',
 
+    isPortfolioHandling: false,
     portfolioInHand: null,
 
     hasGloveLeft: false,

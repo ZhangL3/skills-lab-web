@@ -6,17 +6,17 @@ import {haveSthInHand} from "./controllerHand";
 
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
-import { handleControllerNotifyPortfolio } from './portfolio';
+import { handleControllerNotifyPortfolio, handleControllerPressPortfolio, handleControllerReleasePortfolio} from './portfolio';
 import { handleControllerNotifyToggleBoxPortfolioCheck } from './toggleBoxPortfolioCheck';
-import { handleControllerNotifyToggleBoxPortfolio } from './toggleBoxPortfolio';
+import { handleControllerNotifyToggleBoxPortfolio, handleControllerReleaseToggleBoxPortfolio } from './toggleBoxPortfolio';
 import { handleControllerNotifyHandDisinfection } from './handDisinfection';
 import { handleControllerNotifyGlove } from './glove';
 import { handleControllerNotifyClothInBottle } from './clothBottleCapVive';
 import { handleControllerNotifyClothOnTable } from './disinfectionClothOnTableVive';
 import { handleControllerNotifyToggleBoxDeskDisinfection } from './toggleBoxDeskDisinfection';
 import { handleControllerNotifyToggleBoxTrashCan } from './toggleBoxTrashCan';
-import { handleControllerNotifyBottleNacl500Vive } from './bottleNacl500Vive';
-import { handleControllerNotifyToggleBoxNacl500OnDesk } from './toggleBoxNacl500OnDesk';
+import { handleControllerNotifyBottleNacl500Vive, handleControllerPressBottleNacl500Vive } from './bottleNacl500Vive';
+import { handleControllerNotifyToggleBoxNacl500OnDesk, handleControllerReleaseToggleBoxNacl500OnDesk} from './toggleBoxNacl500OnDesk';
 import { handleControllerNotifyToggleBoxNacl500Label } from './toggleBoxNacl500Label';
 import { handleControllerNotifyToggleBoxNacl500Cap } from './toggleBoxNacl500Cap';
 import { handleControllerNotifyToggleBoxNacl500Liquid } from './toggleBoxNacl500Liquid';
@@ -36,7 +36,7 @@ import { handleControllerNotifyNameLabelStamperVive } from './nameLabelStamperVi
 import { handleControllerNotifyToggleBoxNacl500NameLabel } from './toggleBoxNacl500NameLabel';
 import { handleControllerNotifyToggleBoxNameLabelEmpty } from './toggleBoxNameLabelEmpty';
 import { handleControllerNotifyToggleBoxSelectSection } from './toggleBoxSelectSection';
-import { handleControllerNotifyControllerHand } from './controllerHand';
+import { handleControllerNotifyControllerHand,handleControllerPressControllerHand, handleControllerReleaseControllerHand } from './controllerHand';
 import { handleControllerNotifyIndicatorBox } from './indicatorBox';
 import { handleControllerNotifyPortfolioCheckVive } from './portfolioCheckVive';
 import { handleControllerNotifyNacl500LabelCheckVive } from './nacl500LabelCheckVive';
@@ -52,21 +52,23 @@ export default AFRAME.registerComponent('controller_6_d', {
         const el = this.el;
 
         this.viveObserver = new Observable();
+        this.viveObserverPress = new Observable();
+        this.viveObserverRelease = new Observable();
 
         // Add function from observers
         this.viveObserver.subscribe(handleControllerNotifyCupboardDoor);
         this.viveObserver.subscribe(handleControllerNotifyCabinetDrawer);
-        this.viveObserver.subscribe(handleControllerNotifyPortfolio);
+        // this.viveObserver.subscribe(handleControllerNotifyPortfolio);
         // this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolioCheck);
-        this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolio);
+        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolio);
         this.viveObserver.subscribe(handleControllerNotifyHandDisinfection);
         this.viveObserver.subscribe(handleControllerNotifyGlove);
         this.viveObserver.subscribe(handleControllerNotifyClothInBottle);
         this.viveObserver.subscribe(handleControllerNotifyClothOnTable);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxDeskDisinfection);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxTrashCan);
-        this.viveObserver.subscribe(handleControllerNotifyBottleNacl500Vive);
-        this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500OnDesk);
+        // this.viveObserver.subscribe(handleControllerNotifyBottleNacl500Vive);
+        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500OnDesk);
         // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Label);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Cap);
         // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Liquid);
@@ -96,9 +98,44 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPackCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyNacl500DoorOpen);
 
+        this.viveObserverPress.subscribe(handleControllerPressPortfolio);
+        this.viveObserverPress.subscribe(handleControllerPressControllerHand);
+        this.viveObserverPress.subscribe(handleControllerPressBottleNacl500Vive);
+
+        this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxPortfolio);
+        this.viveObserverRelease.subscribe(handleControllerReleasePortfolio);
+        this.viveObserverRelease.subscribe(handleControllerReleaseControllerHand);
+        this.viveObserverRelease.subscribe(handleControllerPressBottleNacl500Vive);
+
         $(el).on('triggerdown', () => {
 
             console.log("triggerDown: ");
+
+            let handIndicator;
+            if (el.getAttribute('id') === 'viveControllerRight') {
+                handIndicator=document.querySelector('#rightHandIndicator');
+            }
+            else if (el.getAttribute('id') === 'viveControllerLeft') {
+                handIndicator=document.querySelector('#leftHandIndicator');
+            }
+
+            // If object ist not exactly in hand, the trigger position is the location of object
+            const triggerPosition = haveSthInHand(el).length > 0 ?
+                getWordPosition(handIndicator) : getWordPosition(el);
+
+            const triggerEvent = {
+                eventName: 'triggerDown',
+                position: triggerPosition,
+                activeController: el
+            };
+
+            // TODO: active the action triggerdown
+            this.viveObserver.notify(triggerEvent);
+
+        });
+
+        $(el).on('triggerdown', () => {
+            console.log("trigger pressed!!!");
 
             let handIndicator;
             if (el.getAttribute('id') === 'viveControllerRight') {
@@ -112,13 +149,35 @@ export default AFRAME.registerComponent('controller_6_d', {
                 getWordPosition(handIndicator) : getWordPosition(el);
 
             const triggerEvent = {
-                eventName: 'triggerDown',
+                eventName: 'triggerPress',
                 position: triggerPosition,
                 activeController: el
             };
 
-            this.viveObserver.notify(triggerEvent);
+            this.viveObserverPress.notify(triggerEvent);
+        });
 
+        $(el).on('triggerup', () => {
+            console.log("trigger released!!!");
+
+            let handIndicator;
+            if (el.getAttribute('id') === 'viveControllerRight') {
+                handIndicator=document.querySelector('#rightHandIndicator');
+            }
+            else if (el.getAttribute('id') === 'viveControllerLeft') {
+                handIndicator=document.querySelector('#leftHandIndicator');
+            }
+
+            const triggerPosition = haveSthInHand(el).length > 0 ?
+                getWordPosition(handIndicator) : getWordPosition(el);
+
+            const triggerEvent = {
+                eventName: 'triggerRelease',
+                position: triggerPosition,
+                activeController: el
+            };
+
+            this.viveObserverRelease.notify(triggerEvent);
         });
 
         el.addEventListener('teleported', (event) => {

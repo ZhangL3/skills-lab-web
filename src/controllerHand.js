@@ -27,7 +27,7 @@ export default AFRAME.registerComponent('controller_hand', {
         controllerLeft = document.querySelector('#viveControllerLeft');
 
         // right hand
-        $(controllerRightHand).on('click', () => {
+        $(controllerRightHand).on('emit', () => {
             controllerRightHand.setAttribute("animation-mixer", "loop: once");
             if (haveSthInHand(controllerRight).length > 0) {
                 if ( haveSthInHand(controllerRight)[0].getAttribute('id') === 'clothOnTable' ) {
@@ -51,7 +51,7 @@ export default AFRAME.registerComponent('controller_hand', {
         });
 
         // left hand
-        $(controllerLeftHand).on('click', () => {
+        $(controllerLeftHand).on('emit', () => {
             controllerLeftHand.setAttribute("animation-mixer", "loop: once");
 
             if (haveSthInHand(controllerLeft).length > 0) {
@@ -129,10 +129,28 @@ export function handleNotifyControllerHand(nextState) {
 
 export function handleControllerNotifyControllerHand ( triggerEvent ) {
     if (triggerEvent.activeController.getAttribute('id')==='viveControllerRight') {
-        $(controllerRightHand).trigger('click');
+        $(controllerRightHand).trigger('emit');
     }
     else if (triggerEvent.activeController.getAttribute('id')==='viveControllerLeft') {
-        $(controllerLeftHand).trigger('click');
+        $(controllerLeftHand).trigger('emit');
+    }
+}
+
+export function handleControllerPressControllerHand ( triggerEvent ) {
+    if (triggerEvent.activeController.getAttribute('id')==='viveControllerRight') {
+        $(controllerRightHand).trigger('emit');
+    }
+    else if (triggerEvent.activeController.getAttribute('id')==='viveControllerLeft') {
+        $(controllerLeftHand).trigger('emit');
+    }
+}
+
+export function handleControllerReleaseControllerHand ( triggerEvent ) {
+    if (triggerEvent.activeController.getAttribute('id')==='viveControllerRight') {
+        $(controllerRightHand).trigger('emit');
+    }
+    else if (triggerEvent.activeController.getAttribute('id')==='viveControllerLeft') {
+        $(controllerLeftHand).trigger('emit');
     }
 }
 

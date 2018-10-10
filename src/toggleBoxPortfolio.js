@@ -40,7 +40,31 @@ export function handleControllerNotifyToggleBoxPortfolio( triggerEvent ) {
         if(portfolioChecked) {
             stateIndex.setIn(['portfolio', 'finish'], true);
             controllerStateIndex.setControllerState('portfolioInHand', null);
+            controllerStateIndex.setControllerState('isPortfolioHandling', false);
         }
+    }
+}
+
+export function handleControllerReleaseToggleBoxPortfolio( triggerEvent ) {
+
+    if (
+        stateIndex.getIn(['portfolio', 'finish'])
+    ) {
+        return false;
+    }
+
+    if(detectCollision(element, triggerEvent.activeController)){
+
+        let activeControllerId = triggerEvent.activeController.getAttribute('id');
+        if (activeControllerId === controllerStateIndex.getControllerState('portfolioInHand'))
+            if(portfolioChecked) {
+                stateIndex.setIn(['portfolio', 'finish'], true);
+                controllerStateIndex.setControllerState('portfolioInHand', null);
+                controllerStateIndex.setControllerState('isPortfolioHandling', false);
+            }
+            else {
+                controllerStateIndex.setControllerState('portfolioInHand', null);
+            }
     }
 }
 

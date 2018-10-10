@@ -52,6 +52,27 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
     }
 }
 
+export function handleControllerReleaseToggleBoxNacl500OnDesk( triggerEvent ) {
+    // getWorldBound(element);
+    if(!detectCollision(element, triggerEvent.activeController)) {
+        return false;
+    }
+
+    if(
+        controllerStateIndex.getControllerState('nacl500InHandToDesk') !== null
+        && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
+        && !controllerStateIndex.getControllerState('nacl500OnDesk')
+    ) {
+        console.log("put on table");
+        $(bottleNacl500).trigger('putOnDesk');
+        // After the change of DOM, run the animation.
+        setTimeout(()=>{
+            aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
+        }, 500);
+        // bottleNacl500.setAttribute('position', schema.onDeskPosition);
+    }
+}
+
 export function handleControllerStateNotifyToggleBoxNacl500OnDesk (nextControllerState) {
 
     if (
