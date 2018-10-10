@@ -12,6 +12,11 @@ import { controllerActions } from "../utils/controllerActions";
 import { haveSthInHand } from "./controllerHand";
 
 import {canTakeBottle} from "./nacl500DoorOpen";
+import dropDown from '../utils/dropDown';
+
+import {showHookNacl500Cap} from "./hookNacl500Cap";
+import {showHookNacl500Label} from "./hookNacl500Label";
+import {showHookNacl500Liquid} from "./hookNacl500Liquid";
 
 let element;
 let currentState;
@@ -21,8 +26,11 @@ let infusionSetInBottle;
 
 let currentControllerState;
 
+let toggleBoxNacl500OnDesk;
+let toggleBoxNacl500Hanged;
+
 let isNacl500Open = false;
-let nacl500InHand = null;
+let isNacl500InHand = null;
 
 export let canCheck = false;
 
@@ -37,6 +45,8 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
         // shallow copy
         element = this.el;
         infusionSetInBottle = document.querySelector('#infusionSetInBottle');
+        toggleBoxNacl500OnDesk = document.querySelector('#toggleBoxNacl500OnDesk');
+        toggleBoxNacl500Hanged = document.querySelector('#toggleBoxNacl500Hanged');
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -77,7 +87,6 @@ export function handleNotifyBottleNacl500Vive(nextState) {
 
 export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
-    // getWorldBound(element);
     if (!detectCollision(element, triggerEvent.activeController)) {
        return false;
     }
@@ -139,6 +148,7 @@ export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
         activeController = triggerEvent.activeController;
         let activeControllerId =  activeController.getAttribute('id');
         controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
+        controllerStateIndex.setControllerState('isNacl500ToDeskHandling', true);
     }
     // change hints
     else if (
@@ -163,24 +173,50 @@ export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
 }
 
 export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
-
+    // drag to desk
+    if (
+        controllerStateIndex.getControllerState('nacl500InHandToDesk') === triggerEvent.activeController.getAttribute('id')
+        && !detectCollision(toggleBoxNacl500OnDesk, triggerEvent.activeController)
+    ) {
+        controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
+        isNacl500InHand = null;
+    }
+    // drag to stand
+    else if(
+        controllerStateIndex.getControllerState('nacl500InHandToStand') !== null
+        && !detectCollision(toggleBoxNacl500Hanged, triggerEvent.activeController)
+) {
+        controllerStateIndex.setControllerState('nacl500InHandToStand', null);
+        isNacl500InHand = null;
+    }
 }
 
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
+    
+    console.log("nextControllerState.nacl500InHandToDesk === null: ", nextControllerState.nacl500InHandToDesk === null, typeof(nextControllerState.nacl500InHandToDesk === null));
+    console.log("isNacl500InHand !== null: ", isNacl500InHand !== null, typeof(isNacl500InHand !== null));
+    console.log("!stateIndex.getIn(['bottlePrepare', 'finish']): ", !stateIndex.getIn(['bottlePrepare', 'finish']), typeof(!stateIndex.getIn(['bottlePrepare', 'finish'])));
+    console.log("nextControllerState.isNacl500ToDeskHandling === true: ", nextControllerState.isNacl500ToDeskHandling === true, typeof(nextControllerState.isNacl500ToDeskHandling === true));
     // drag to desk
     if (
         nextControllerState.nacl500InHandToDesk !== null
-        && currentControllerState.nacl500InHandToDesk === null
+        && isNacl500InHand === null
         && nextControllerState.nacl500Dragable
     ) {
         dragInHand();
-
+        showAllHooks();
         setTimeout(()=>{
             canCheck = true;
         }, 500);
 
         currentControllerState = _.cloneDeep(nextControllerState);
     }
+    // take nacl500 to desk again, if it falls down
+    // else if (
+    //
+    // ) {
+    //
+    // }
 
     // drag to stand
     if (
@@ -197,13 +233,30 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
 
         console.log("should drag bottle in hand to hang");
     }
+    // take nacl 500 again to stand, if it falls down
+    // else if ( ) {
+    //
+    // }
+
+    // Drop down to floor
+    else if (
+        nextControllerState.nacl500InHandToDesk === null
+        && isNacl500InHand !== null
+        && !stateIndex.getIn(['bottlePrepare', 'finish'])
+        && nextControllerState.isNacl500ToDeskHandling === true
+    ) {
+        dropBottle();
+        setTimeout(()=>{
+            dropDown(element);
+        }, 100);
+    }
 
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
 function dragInHand() {
     let controllerActivities = new controllerActions(element, activeController);
-    nacl500InHand = activeController.getAttribute('id');
+    isNacl500InHand = activeController.getAttribute('id');
     controllerActivities.drag();
     console.log("controllerActivities drag: ", controllerActivities, typeof(controllerActivities));
     // drag(element, activeController);
@@ -217,17 +270,19 @@ function dragInHandToHang() {
     // trickDrag(element, activeController);
 
     let controllerActivities = new controllerActions(element, activeController);
-    nacl500InHand = activeController.getAttribute('id');
+    isNacl500InHand = activeController.getAttribute('id');
     controllerActivities.drag();
 }
 
 function dropBottle() {
     let controllerActivities = new controllerActions(element, activeController);
+    isNacl500InHand = null;
     controllerActivities.drop();
 }
 
 function dropBottleToHang() {
     let controllerActivities = new controllerActions(element, activeController);
+    nacl500Inhand = null;
     controllerActivities.drop();
 }
 
@@ -242,6 +297,12 @@ export function isBottleChecked() {
         return false;
     }
     return true;
+}
+
+function showAllHooks() {
+    showHookNacl500Liquid();
+    showHookNacl500Label();
+    showHookNacl500Cap();
 }
 
 

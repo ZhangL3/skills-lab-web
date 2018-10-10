@@ -41,7 +41,7 @@ export function handleControllerStateNotifyHookNacl500Liquid (nextControllerStat
         && !currentControllerState.nacl500LiquidChecked
         && nextControllerState.nacl500InHandToDesk !== null
     ) {
-        element.setAttribute('visible', true);
+        showHookNacl500Liquid();
     }
 
     if (
@@ -52,6 +52,15 @@ export function handleControllerStateNotifyHookNacl500Liquid (nextControllerStat
 
     // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
+}
+
+export function showHookNacl500Liquid() {
+    if (controllerStateIndex.getControllerState('nacl500LiquidChecked')) {
+        element.setAttribute('visible', true);
+        setTimeout(() => {
+            element.setAttribute('visible', true);
+        }, 100);
+    }
 }
 
 

@@ -48,6 +48,7 @@ const controllerState = {
     bottleNacl500CapInHand: null,
     bottleNacl500CapDroped: false,
     bottleOpened: false,
+    isNacl500ToDeskHandling: false,
 
     infusionSetInPackInHand: null,
     infusionSetChecked: false,
@@ -58,6 +59,7 @@ const controllerState = {
     infusionSetInBottle: false,
 
     nacl500InHandToStand: null,
+    isNacl500ToStandHandling: false,
     nacl500Hanged: false,
     dripChamberFilled: false,
     infusionSetWheelClosed: false,

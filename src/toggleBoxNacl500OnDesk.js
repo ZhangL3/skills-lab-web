@@ -48,6 +48,7 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
         setTimeout(()=>{
             aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
         }, 500);
+        controllerStateIndex.setControllerState('isNacl500ToDeskHandling', false);
         // bottleNacl500.setAttribute('position', schema.onDeskPosition);
     }
 }

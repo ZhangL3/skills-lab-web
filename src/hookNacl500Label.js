@@ -41,7 +41,7 @@ export function handleControllerStateNotifyHookNacl500Label (nextControllerState
         && !currentControllerState.nacl500LabelChecked
         && nextControllerState.nacl500InHandToDesk !== null
     ) {
-        element.setAttribute('visible', true);
+        showHookNacl500Label();
     }
     if(
         nextControllerState.nacl500NoHookAnymore
@@ -51,6 +51,15 @@ export function handleControllerStateNotifyHookNacl500Label (nextControllerState
 
     // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
+}
+
+export function showHookNacl500Label() {
+    if (controllerStateIndex.getControllerState('nacl500LabelChecked')) {
+        element.setAttribute('visible', true);
+        setTimeout(() => {
+            element.setAttribute('visible', true);
+        }, 100);
+    }
 }
 
 

@@ -39,8 +39,9 @@ export function handleControllerStateNotifyHookNacl500Cap (nextControllerState) 
     if (
         nextControllerState.nacl500CapChecked
         && !currentControllerState.nacl500CapChecked
-        && nextControllerState.nacl500InHandToDesk !== null) {
-        element.setAttribute('visible', true);
+        && nextControllerState.nacl500InHandToDesk !== null
+    ) {
+        showHookNacl500Cap();
     }
 
     if(
@@ -51,6 +52,15 @@ export function handleControllerStateNotifyHookNacl500Cap (nextControllerState) 
 
     // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
+}
+
+export function showHookNacl500Cap() {
+    if (controllerStateIndex.getControllerState('nacl500CapChecked')) {
+        element.setAttribute('visible', true);
+        setTimeout(() => {
+            element.setAttribute('visible', true);
+        }, 100);
+    }
 }
 
 

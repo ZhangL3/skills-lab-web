@@ -27,7 +27,7 @@ let hookIV;
 let hookCF;
 
 let isPortfolioOpen = false;
-let portfolioInHand = null;
+let isPortfolioInHand = null;
 
 export let canCheckPortfolio = false;
 
@@ -283,7 +283,7 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
     // First time to take portfolio
     if (
         nextControllerState.portfolioInHand !== null
-        && portfolioInHand === null
+        && isPortfolioInHand === null
         && isPortfolioOpen === false
     ) {
         open();
@@ -292,7 +292,7 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
     // Take portfolio if dropped down
     else if (
         nextControllerState.portfolioInHand !== null
-        && portfolioInHand === null
+        && isPortfolioInHand === null
         && isPortfolioOpen === true
     ) {
         dragInHand();
@@ -301,7 +301,7 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
     // Put portfolio on desk
     else if (
         nextControllerState.portfolioInHand === null
-        && portfolioInHand !== null
+        && isPortfolioInHand !== null
         && stateIndex.getIn(['portfolio', 'finish'])
         && nextControllerState.isPortfolioHandling === false
     ) {
@@ -312,7 +312,7 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
     // Drop down to floor
     else if (
         nextControllerState.portfolioInHand === null
-        && portfolioInHand !== null
+        && isPortfolioInHand !== null
         && !stateIndex.getIn(['portfolio', 'finish'])
         && nextControllerState.isPortfolioHandling === true
     ) {
@@ -329,13 +329,13 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
 function dragInHand() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drag();
-    portfolioInHand = activeController.getAttribute('id');
+    isPortfolioInHand = activeController.getAttribute('id');
 }
 
 function drop() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drop();
-    portfolioInHand = null;
+    isPortfolioInHand = null;
 }
 
 function dropOnDesk() {
