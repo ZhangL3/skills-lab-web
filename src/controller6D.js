@@ -107,6 +107,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseControllerHand);
         this.viveObserverRelease.subscribe(handleControllerPressBottleNacl500Vive);
         this.viveObserverRelease.subscribe(handleControllerReleaseBottleNacl500Vive);
+        this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500OnDesk);
 
         $(el).on('triggerdown', () => {
 
