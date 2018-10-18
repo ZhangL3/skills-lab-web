@@ -15,7 +15,7 @@
 </head>
 <body>
 <script src="./app.bundle.js"></script>
-<a-scene id="scene">
+<a-scene scene id="scene">
 
     <a-assets>
         <!-- cabinet -->
@@ -424,7 +424,7 @@
         <a-box toggle_box_portfolio id="toggleBoxPortfolio" scale="0.2 0.1 0.181" position="-0.563 0.725 -0.905" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
 
         <!-- infusionSet -->
-        <a-gltf-model infusion_set_in_pack_vive id="infusionSetInPack" src="#infusionSetInPackMesh" position="-0.215 0.466 -0.813" rotation="0 90 0" scale="0.03 0.03 0.03" infusion_set>
+        <a-gltf-model infusion_set_in_pack_vive id="infusionSetInPack" src="#infusionSetInPackMesh" position="-0.215 0.466 -0.9" rotation="0 90 0" scale="0.03 0.03 0.03" infusion_set>
             <a-image src="#infusionSetLabel" scale="2.570 5.563 1.000" position="-0.232 -0.440 0.138" rotation="90 0 0"></a-image>
             <a-box toggle_box_infusion_set_in_pack id="toggleBoxInfusionSetInPack" visible="false" scale="1.725 0.805 1.880" position="-0.36 -1.2 0.735" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
             <a-image infusion_set_in_pack_check_vive id="transparentInfusionSetInPack" class="checkableVive" src="#transparent" scale="2.037 1.622 1" position="-0.493 -0.472 0.664" rotation="-90 90 0" visible="true"></a-image>
@@ -493,18 +493,15 @@
 
         </a-entity>
 
-        <!-- raycaster for gear version -->
+        <!-- laser controller for gear version -->
         <a-entity id="gearController" laser-controls="hand: right" visible="false"></a-entity>
-
 
         <!--camera -->
         <a-camera id="camera" camera-move touch-controls wasd-controls="acceleration:20; " look-controls="pointerLockEnabled: true;" position="0 0 0">
             <!-- cursor for plat and 3D version -->
-            <a-cursor id="cursor" cursor-submit raycaster-intersection position="0 0 -0.1" geometry="primitive: ring; radiusInner: 0.0015; radiusOuter: 0.0025;"></a-cursor>
+            <a-cursor id="cursor" cursor-submit raycaster-intersection fuse-timeout="1000" position="0 0 -0.1" geometry="primitive: ring; radiusInner: 0.0015; radiusOuter: 0.0025;"></a-cursor>
 
-
-
-            <!-- raycaster for Gear VR-->
+            <!-- raycaster for vive version -->
             <a-entity raycaster_vive id="raycasterVive" raycaster="objects: .checkableVive; showLine: true; recursive: false;" position="0.01 -0.1 0" line="color: orange" visible="false"></a-entity>
 
             <!-- glove -->
@@ -513,17 +510,6 @@
         </a-camera>
     </a-entity>
 
-    <!--<a-entity id="cameraRig">-->
-        <!--&lt;!&ndash; camera &ndash;&gt;-->
-        <!--<a-entity id="head" camera wasd-controls look-controls></a-entity>-->
-        <!--&lt;!&ndash; hand controls &ndash;&gt;-->
-        <!--<a-entity id="left-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>-->
-        <!--<a-entity id="right-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>-->
-    <!--</a-entity>-->
-
-    <!-- debug -->
-
-    <!--<a-sky id="sky" scale="0.001 0.001 0.001" color="#ECECEC"></a-sky>-->
 </a-scene>
 
 </body>

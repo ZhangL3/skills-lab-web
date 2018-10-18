@@ -6,15 +6,30 @@ import { supportedController } from "./constants";
 
 let haveEvents = 'ongamepadconnected' in window;
 let controllers = {};
-let controller;
+export let controller;
 
 let cursor;
 let allThings;
 
-function matchBrowser() {
+// getInfor();
+
+function initEnterVRMode() {
+    document.querySelector('a-scene').addEventListener('enter-vr', function () {
+        if (!controller){
+            console.log("ENTERED VR");
+            matchSamsungBrowser();
+        }
+
+    });
+}
+
+export function matchBrowser() {
     const browser = getInfor();
-    if (browser.indexOf('SamsungBrowser') > 0) {
-        matchSamsungBrowser();
+    if (
+        browser.indexOf('SamsungBrowser') > 0
+        || browser.indexOf('OculusBrowser') > 0
+    ) {
+        initEnterVRMode();
     }
 }
 
@@ -55,7 +70,7 @@ function matchGearVRController() {
     removeCursor();
     showGearController();
     disableCameraAutoMove();
-    // adjustAllThingsScale('1.5 1.5 1.5');
+    adjustAllThingsScale('1.2 1.2 1.2');
     adjustCameraRigPosition('0 -0.3 0');
     adjustCameraPosition('0 0 -0.1');
     // adjustGearControllerPosition('0 0.3 0');
@@ -76,9 +91,11 @@ function matchNoController() {
     console.log("match no controller");
 }
 
-function matchSamsungBrowser() {
-    adjustCameraRigPosition('0 -0.3 0');
-    adjustCameraPosition('0 0 -0.1');
+export  function matchSamsungBrowser() {
+    adjustAllThingsScale('3.5 3.5 3.5');
+    adjustCameraRigPosition('0 1.85 -0.5');
+    adjustCursorPosition('0 0 -1');
+    adjustCursorGeometry('primitive: ring; radiusInner: 0.007; radiusOuter: 0.0125');
 }
 
 function removeCursor() {
@@ -111,7 +128,7 @@ function adjustAllThingsScale(scale) {
     $(allThings).attr("scale", scale);
 }
 
-function adjustCameraRigPosition(position) {
+export function adjustCameraRigPosition(position) {
     const cameraRig = document.querySelector("#cameraRig");
     $(cameraRig).attr('position', position);
 }
@@ -133,6 +150,17 @@ function adjustViveControllerScale(scale) {
     viveControllerRight.setAttribute('scale', scale);
 }
 
+function adjustCursorPosition(position) {
+    const cursor = document.querySelector('#cursor');
+    cursor.setAttribute('position', position);
+}
+
+function adjustCursorGeometry(geometry) {
+    const cursor = document.querySelector('#cursor');
+    cursor.setAttribute('geometry', geometry);
+
+}
+
 function disableCameraAutoMove() {
     let camera = document.querySelector('#camera');
     camera.setAttribute('camera-move', 'disable: true');
@@ -142,13 +170,11 @@ export function getActiveController() {
     return controller;
 }
 
-function getInfor() {
+export function getInfor() {
     console.log('getInfor', navigator.userAgent, typeof(navigator.userAgent));
     return(navigator.userAgent);
 }
 
-
-// matchBrowser();
 
 window.addEventListener("gamepadconnected", connectHandler);
 window.addEventListener("gamepaddisconnected", disconnectHandler);

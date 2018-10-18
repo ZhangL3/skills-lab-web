@@ -77,5 +77,7 @@ import * as infusionSetInPackCheckVive from './infusionSetInPackCheckVive';
 
 import * as nacl500DoorOpen from './nacl500DoorOpen';
 
+import * as scene from './scene';
+
 stateIndex.init();
 controllerStateIndex.initControllerState();
