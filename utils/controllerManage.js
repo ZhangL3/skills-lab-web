@@ -82,8 +82,8 @@ function matchViveController() {
     removeCursor();
     showViveControllers();
     adjustAllThingsScale('1.3 1.3 1.3');
-    adjustAllThingsPosition('0 0 0');
-
+    // adjustAllThingsPosition('0 1 0'); // problem by dropping down, dropped from too high
+    adjustCameraRigPosition('0 -0.1 0');
     adjustViveControllerScale('1.3 1.3 1.3');
 }
 
