@@ -83,8 +83,8 @@ AFRAME.registerComponent('infusion_set', {
 });
 
 const schema = {
-    infusionSetInDrawerClosePosition : '-0.215 0.466 -0.813',
-    infusionSetInDrawerOpenPosition : '-0.215 0.466 -0.633',
+    infusionSetInDrawerClosePosition : '-0.215 0.466 -0.9',
+    infusionSetInDrawerOpenPosition : '-0.215 0.466 -0.710',
     inFrontOfCameraPosition: '0 1 -0.5',
     inFrontOfCameraRotation: '-90.000 0 0',
     onTablePosition: '-0.161 0.698 -0.819',

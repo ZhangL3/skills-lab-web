@@ -8,6 +8,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 let element;
 let nameLabelEmpty;
 let nameLabelWrote;
+let stickerStamper;
 
 let currentState;
 
@@ -21,6 +22,7 @@ export default AFRAME.registerComponent('name_label_stamper', {
 
         nameLabelEmpty = $('#nameLabelEmpty');
         nameLabelWrote = $('#nameLabelWrote');
+        stickerStamper = $('#stickerStamper');
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
@@ -30,7 +32,10 @@ export default AFRAME.registerComponent('name_label_stamper', {
         // });
 
         nameLabelEmpty.on('click', () => {
-            console.log("lick nameLabelEmpty");
+            handleClickNameLabelEmpty();
+        });
+
+        stickerStamper.on('click', () => {
             handleClickNameLabelEmpty();
         });
 
@@ -41,7 +46,7 @@ export default AFRAME.registerComponent('name_label_stamper', {
 });
 
 const schema = {
-    nameLabelInFrontOfCameraPosition: '0.013 1.039 -0.8',
+    nameLabelInFrontOfCameraPosition: '0.013 1.039 -0.7',
     nameLabelInFrontOfCameraRotation: '0 0 0',
     nameLabelOnBottlePosition: '0.842 1.354 -0.504',
     nameLabelOnBottleRotation: '0 -20.478 0',

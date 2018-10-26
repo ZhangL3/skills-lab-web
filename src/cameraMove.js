@@ -21,8 +21,19 @@ const positionVar = {
 };
 
 AFRAME.registerComponent('camera-move', {
+
+    schema: {
+        disable: {type: 'boolean', default: true}
+    },
+
     init: function () {
+        let data = this.data;
         const el = this.el;
+
+        if (data.disable) {
+            return false;
+        }
+
         cameraPosition = positionVar.origin.name;
         nacl500Bottle = document.querySelector('#nacl500Bottle');
         infusionSetOpen = document.querySelector('#infusionSetOpen');

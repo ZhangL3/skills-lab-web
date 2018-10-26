@@ -130,11 +130,21 @@ function putOnTable(){
 
 export function is5RChecked () {
     const status5R = stateIndex.getIn(['portfolio', 'checkPortfolio']);
-    const checkValues = Object.values(status5R);
-    for(let i = 0; i < checkValues.length; i++) {
-        if (checkValues[i] === false) {
-           return false;
-        }
+    console.log("status5R: ", status5R, typeof(status5R));
+    if (!status5R.name) {
+        return false;
+    }
+    else if (!status5R.drug) {
+        return false;
+    }
+    else if (!status5R.dose) {
+        return false;
+    }
+    else if (!status5R.IV) {
+        return false;
+    }
+    else if (!status5R.CF) {
+        return false;
     }
     return true;
 }

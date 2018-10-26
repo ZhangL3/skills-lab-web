@@ -79,5 +79,7 @@ import * as nacl500DoorOpen from './nacl500DoorOpen';
 
 import * as dropDown from '../utils/dropDown';
 
+import * as scene from './scene';
+
 stateIndex.init();
 controllerStateIndex.initControllerState();
