@@ -82,6 +82,40 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
     }
 }
 
+export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
+
+    if(
+        controllerStateIndex.getControllerState('bottleNacl500CapInHand')
+        && stateIndex.get('wasteBinCapOpen')
+    ) {
+
+
+        // drop the cap of nacl 500
+        if (
+            detectCollision(element, triggerEvent.activeController)
+            && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === triggerEvent.activeController.getAttribute('id')
+        ) {
+            activeController = triggerEvent.activeController;
+            controllerStateIndex.setControllerState('bottleNacl500CapDroped', true);
+        }
+    }
+
+    if (
+        controllerStateIndex.getControllerState('infusionSetCapInHand')
+        && stateIndex.get('wasteBinCapOpen')
+    ) {
+
+        // drop the cap of infusion set
+        if (
+            detectCollision(element, triggerEvent.activeController)
+            && controllerStateIndex.getControllerState('infusionSetCapInHand') === triggerEvent.activeController.getAttribute('id')
+        ) {
+            activeController = triggerEvent.activeController;
+            controllerStateIndex.setControllerState('infusionSetCapOff', true);
+        }
+    }
+}
+
 export function handleControllerStateNotifyToggleBoxWasteBin (nextControllerState) {
 
     // drop cap of nacl 500 bottle
