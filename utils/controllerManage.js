@@ -80,6 +80,7 @@ function matchViveController() {
 
     console.log("match vive");
     removeCursor();
+    removeGearVRController();
     showViveControllers();
     adjustAllThingsScale('1.3 1.3 1.3');
     // adjustAllThingsPosition('0 1 0'); // problem by dropping down, dropped from too high
@@ -102,6 +103,12 @@ function removeCursor() {
     const cursor = document.querySelector("#cursor");
     $(cursor).remove();
     console.log("cursor removed");
+}
+
+function removeGearVRController() {
+    const gearController = document.querySelector("#gearController");
+    $(gearController).remove();
+
 }
 
 function showViveControllers() {
