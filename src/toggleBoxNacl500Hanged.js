@@ -21,8 +21,6 @@ export default AFRAME.registerComponent('toggle_box_nacl500_hanged', {
         element = this.el;
         nacl500Bottle = document.querySelector('#nacl500Bottle');
         
-        console.log("element: ", element);
-
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 

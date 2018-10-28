@@ -54,7 +54,6 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
 }
 
 export function handleControllerReleaseToggleBoxNacl500OnDesk( triggerEvent ) {
-    // getWorldBound(element);
     if(!detectCollision(element, triggerEvent.activeController)) {
         return false;
     }
@@ -71,6 +70,8 @@ export function handleControllerReleaseToggleBoxNacl500OnDesk( triggerEvent ) {
             aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
         }, 500);
         // bottleNacl500.setAttribute('position', schema.onDeskPosition);
+        controllerStateIndex.setControllerState('isNacl500ToDeskHandling', false);
+
     }
 }
 

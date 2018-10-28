@@ -24,6 +24,7 @@ import { handleControllerStateNotifyNameLabelStamperVive } from '../src/nameLabe
 import { handleControllerStateNotifyToggleBoxNacl500NameLabel } from '../src/toggleBoxNacl500NameLabel';
 import { handleControllerStateNotifyToggleBoxNameLabelEmpty } from '../src/toggleBoxNameLabelEmpty';
 import { handleControllerStateNotifyRaycasterVive } from '../src/raycasterVive';
+import { handleControllerStateNotifyBottleNacl500CapVive } from '../src/bottleNacl500CapVive';
 
 
 const controllerState = {
@@ -46,6 +47,7 @@ const controllerState = {
     nacl500OnDesk: false,
     nacl500NoHookAnymore: false,
     bottleNacl500CapInHand: null,
+    isNacl500CapHandling: false,
     bottleNacl500CapDroped: false,
     bottleOpened: false,
     isNacl500ToDeskHandling: false,
@@ -151,6 +153,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500NameLabel);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNameLabelEmpty);
         this.controllerObserver.subscribe(handleControllerStateNotifyRaycasterVive);
+        this.controllerObserver.subscribe(handleControllerStateNotifyBottleNacl500CapVive);
 
         console.log("controllerState init");
 

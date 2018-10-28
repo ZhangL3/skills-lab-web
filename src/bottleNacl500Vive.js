@@ -193,10 +193,6 @@ export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
 
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
     
-    console.log("nextControllerState.nacl500InHandToDesk === null: ", nextControllerState.nacl500InHandToDesk === null, typeof(nextControllerState.nacl500InHandToDesk === null));
-    console.log("isNacl500InHand !== null: ", isNacl500InHand !== null, typeof(isNacl500InHand !== null));
-    console.log("!stateIndex.getIn(['bottlePrepare', 'finish']): ", !stateIndex.getIn(['bottlePrepare', 'finish']), typeof(!stateIndex.getIn(['bottlePrepare', 'finish'])));
-    console.log("nextControllerState.isNacl500ToDeskHandling === true: ", nextControllerState.isNacl500ToDeskHandling === true, typeof(nextControllerState.isNacl500ToDeskHandling === true));
     // drag to desk
     if (
         nextControllerState.nacl500InHandToDesk !== null

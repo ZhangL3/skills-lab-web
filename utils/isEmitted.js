@@ -72,6 +72,8 @@ export function detectCollision(elementObject, elementTarget) {
     const objectBox = new THREE.Box3().setFromObject(elementObject.object3D);
     const targetBoX = new THREE.Box3().setFromObject(elementTarget.object3D);
 
+    // console.log("objectBox: ", objectBox, typeof(objectBox));
+
     return objectBox.intersectsBox(targetBoX);
 }
 

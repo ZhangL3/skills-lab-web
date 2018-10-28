@@ -256,7 +256,9 @@
 
         <!-- bottles -->
         <a-gltf-model bottle_nacl_500_vive id="nacl500Bottle" material="opacity: 0.6; depthTest: false" src="#bottleMesh" position="-0.441 1.407 -0.766" rotation="0 90 0" scale="0.1 0.1 0.1" bottle_nacl500>
-            <a-gltf-model bottle_nacl500_cap id="nacl500Cap" src="#bottleCapMesh" position="0 0.906 0"></a-gltf-model>
+            <a-gltf-model bottle_nacl500_cap bottle_nacl500_cap_vive id="nacl500Cap" src="#bottleCapMesh" position="0 0.906 0">
+                <a-box id="nacl500CapHelperBox" position="0 -0.25 0" scale="0.177 0.5 0.392" visible="false"></a-box>
+            </a-gltf-model>
             <a-image hook_nach500_cap id="hookBottleCap" material="opacity: 0.6; depthTest: false" src="#hook" scale="0.2 0.2 0.2" position="0 0.922 0" rotation="-90 -90 0" visible="false" material="alphaTest: 0.32"></a-image>
             <a-box toggle_box_nach500_cap visible="false" id="toggleBoxNacl500Cap" scale="0.355 0.228 0.41" position="0 0.975 0" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
             <a-image nacl500_cap_check_vive id="transparentNacl500Cap" class="checkableVive" src="#transparent" scale="0.458 0.260 0.1" position="0 0.934 0" rotation="-90 90 0" material="depthWrite: false" visible="true"></a-image>
