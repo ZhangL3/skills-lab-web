@@ -63,6 +63,7 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
         ) {
             activeController = triggerEvent.activeController;
             controllerStateIndex.setControllerState('bottleNacl500CapDroped', true);
+            controllerStateIndex.setControllerState('isNacl500CapHandling', false);
         }
     }
 
