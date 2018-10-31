@@ -434,7 +434,9 @@
         </a-gltf-model>
 
         <a-gltf-model infusion_set_open_vive id="infusionSetOpen" src="#infusionSetOpenMesh" position="-0.161 0.674 -0.819" rotation="0 180 0" scale="0.03 0.03 0.03" visible="false">
-            <a-gltf-model infusion_set_cap_vive id="infusionSetOpenCap" position="0.637 0.402 -2.183" src="#infusionSetOpenCapMesh"></a-gltf-model>
+            <a-gltf-model infusion_set_cap_vive id="infusionSetOpenCap" position="0.637 0.402 -2.183" src="#infusionSetOpenCapMesh">
+                <a-box id="infusionSetCapHelperBox" position="0 -0.5 0" scale="0.177 0.8 0.392" visible="false"></a-box>
+            </a-gltf-model>
             <a-gltf-model id="infusionSetOpenWheel" src="#infusionSetOpenWheelMesh"></a-gltf-model>
         </a-gltf-model>
         <a-box toggle_box_infusion_set_on_desk id="toggleBoxInfusionSetOnDesk" visible="false" scale="0.219 0.046 0.126" position="-0.168 0.700 -0.795" material="color:#ff0000; transparent: true; opacity: 0.5; depth-test: false;"></a-box>
