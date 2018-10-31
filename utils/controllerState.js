@@ -57,6 +57,7 @@ const controllerState = {
     infusionSetChecked: false,
     infusionSetOnDeskOpened: false,
     infusionSetCapInHand: null,
+    isInfusionSetCapInHandling: false,
     infusionSetCapOff: false,
     infusionSetOpenInHand: null,
     infusionSetInBottle: false,

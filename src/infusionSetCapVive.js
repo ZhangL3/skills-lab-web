@@ -12,6 +12,7 @@ import { controllerActions } from "../utils/controllerActions";
 import { haveSthInHand } from "./controllerHand";
 
 import {canTriggerCapAndWheel} from "./infusionSetOpenVive";
+import dropDown from "../utils/dropDown";
 
 let currentState;
 let currentControllerState;
@@ -19,6 +20,7 @@ let element;
 let activeController;
 
 let canTriggerInfusionSetCap = false;
+let isInfusionSetCapInHand = null;
 
 const scopeLocalToGlobalScale = 0.05;
 
@@ -56,7 +58,7 @@ export function handleNotifyInfusionSetInPack(nextState) {
 
 export function handleControllerNotifyInfusionSetCap ( triggerEvent ) {
 
-    if (
+    /*if (
         detectCollision(element, triggerEvent.activeController)
         && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
         && haveSthInHand(triggerEvent.activeController).length === 0
@@ -67,6 +69,38 @@ export function handleControllerNotifyInfusionSetCap ( triggerEvent ) {
         activeController = triggerEvent.activeController;
         let activeControllerId = activeController.getAttribute('id');
         controllerStateIndex.setControllerState('infusionSetCapInHand', activeControllerId);
+    }*/
+}
+
+export function handleControllerPressInfusionSetCap ( triggerEvent ) {
+
+    if (!detectCollision(element, triggerEvent.activeController)) {
+        return false;
+    }
+
+    if (
+        controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
+        && haveSthInHand(triggerEvent.activeController).length === 0
+        && canTriggerCapAndWheel
+        && canTriggerInfusionSetCap
+    ) {
+        console.log("take infusion set cap");
+        activeController = triggerEvent.activeController;
+        let activeControllerId = activeController.getAttribute('id');
+        controllerStateIndex.setControllerState('infusionSetCapInHand', activeControllerId);
+        controllerStateIndex.setControllerState('isInfusionSetCapInHandling', true);
+    }
+}
+
+export function handleControllerReleaseInfusionSetCap ( triggerEvent ) {
+    activeController = triggerEvent.activeController;
+
+    if (
+        controllerStateIndex.getControllerState('infusionSetCapInHand') === activeController.getAttribute('id')
+        && controllerStateIndex.getControllerState('isInfusionSetCapInHandling')
+        && !detectCollision(element, toggleBoxWasteBin)
+    ) {
+        controllerStateIndex.setControllerState('infusionSetCapInHand', null);
     }
 }
 
@@ -74,9 +108,15 @@ export function handleControllerStateNotifyInfusionSetCap (nextControllerState) 
 
     if (
         nextControllerState.infusionSetCapInHand
-        && !currentControllerState.infusionSetCapInHand
+        && !isInfusionSetCapInHand
     ) {
         dragInHand();
+    }
+    else if (
+        !nextControllerState.infusionSetCapInHand
+        && isInfusionSetCapInHand
+    ) {
+        fallDown(element);
     }
 
     // deep copy
@@ -86,9 +126,18 @@ export function handleControllerStateNotifyInfusionSetCap (nextControllerState) 
 function dragInHand() {
     let controllerActivities = new controllerActions(element, activeController, scopeLocalToGlobalScale, -1);
     controllerActivities.drag();
+    isInfusionSetCapInHand = activeController.getAttribute('id');
 }
 
 function drop() {
     let controllerActivities = new controllerActions(element, activeController, -1, scopeLocalToGlobalScale);
     controllerActivities.drop();
+    isInfusionSetCapInHand = null;
+}
+
+function fallDown(element) {
+    drop();
+    setTimeout(()=>{
+        dropDown(element, 0.05);
+    }, 100);
 }
