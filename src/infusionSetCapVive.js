@@ -36,13 +36,6 @@ export default AFRAME.registerComponent('infusion_set_cap_vive', {
 
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
-        console.log("infusion_set_cap_vive");
-
-        $(element).on('drop', (event, actController) => {
-            activeController = actController;
-            drop();
-        });
     }
 });
 
@@ -129,14 +122,14 @@ function dragInHand() {
     isInfusionSetCapInHand = activeController.getAttribute('id');
 }
 
-function drop() {
+export function drop(activeController) {
     let controllerActivities = new controllerActions(element, activeController, -1, scopeLocalToGlobalScale);
     controllerActivities.drop();
     isInfusionSetCapInHand = null;
 }
 
 function fallDown(element) {
-    drop();
+    drop(activeController);
     setTimeout(()=>{
         dropDown(element, 0.05);
     }, 100);

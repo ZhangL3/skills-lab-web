@@ -7,6 +7,7 @@ import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
+import {drop} from "./infusionSetCapVive";
 
 let element;
 let bottleNacl500Cap;
@@ -44,8 +45,11 @@ function dropBottleNacl500Cap(activeController) {
 }
 
 function dropInfusionSetCap(activeController) {
-    $(infusionSetCap).trigger('drop', [activeController]);
-    aAnimationWrapper(infusionSetCap, '', 'position', '', schema.infusionSetCapInBinPosition, schema.dur, '', true, 'forwards');
+    drop(activeController);
+    // Wait for changing DOM element
+    setTimeout(()=>{
+        aAnimationWrapper(infusionSetCap, '', 'position', '', schema.infusionSetCapInBinPosition, schema.dur, '', true, 'forwards');
+    }, 300);
 }
 
 export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
