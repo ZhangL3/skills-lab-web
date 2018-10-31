@@ -53,6 +53,7 @@ const controllerState = {
     isNacl500ToDeskHandling: false,
 
     infusionSetInPackInHand: null,
+    isInfusionSetInPackHandling: false,
     infusionSetChecked: false,
     infusionSetOnDeskOpened: false,
     infusionSetCapInHand: null,

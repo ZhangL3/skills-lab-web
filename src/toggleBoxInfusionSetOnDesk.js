@@ -31,7 +31,7 @@ const schema = {
 };
 
 export function handleControllerNotifyToggleBoxInfusionSetOnDesk ( triggerEvent ) {
-    // getWorldBound(element);
+    /*// getWorldBound(element);
     
     if(
         // isEmitted(element, triggerEvent.position)
@@ -39,6 +39,20 @@ export function handleControllerNotifyToggleBoxInfusionSetOnDesk ( triggerEvent 
         && triggerEvent.activeController === controllerStateIndex.getControllerState('infusionSetInPackInHand')
     ){
         controllerStateIndex.setControllerState('infusionSetOnDeskOpened', true);
+        setTimeout(()=>{
+            setCanTriggerCapAndWheel(true);
+        }, 500);
+    }*/
+}
+
+export function handleControllerReleaseToggleBoxInfusionSetOnDesk ( triggerEvent ) {
+    if(
+        detectCollision(element, triggerEvent.activeController)
+        && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('infusionSetInPackInHand')
+        && controllerStateIndex.getControllerState('infusionSetChecked')
+    ){
+        controllerStateIndex.setControllerState('infusionSetOnDeskOpened', true);
+        // controllerStateIndex.setControllerState('isInfusionSetInPackHandling', false);
         setTimeout(()=>{
             setCanTriggerCapAndWheel(true);
         }, 500);

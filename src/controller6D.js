@@ -24,9 +24,9 @@ import { handleControllerPressBottleNacl500CapVive, handleControllerReleaseBottl
 import { handleControllerNotifyToggleBoxNacl500Liquid } from './toggleBoxNacl500Liquid';
 import { handleControllerNotifyWasteBinCap } from './wasteBinCapOpen';
 import { handleControllerNotifyToggleBoxWasteBin, handleControllerReleaseToggleBoxWasteBin } from './toggleBoxWasteBin';
-import { handleControllerNotifyInfusionSetInPack } from './infusionSetInPackVive';
+import { handleControllerNotifyInfusionSetInPack, handleControllerPressInfusionSetInPack, handleControllerReleaseInfusionSetInPack } from './infusionSetInPackVive';
 import { handleControllerNotifyToggleBoxInfusionSetInPack } from './toggleBoxInfusionSetInPack';
-import { handleControllerNotifyToggleBoxInfusionSetOnDesk } from './toggleBoxInfusionSetOnDesk';
+import { handleControllerNotifyToggleBoxInfusionSetOnDesk, handleControllerReleaseToggleBoxInfusionSetOnDesk } from './toggleBoxInfusionSetOnDesk';
 import { handleControllerNotifyInfusionSetOpen } from './infusionSetOpenVive';
 import { handleControllerNotifyToggleBoxInfusionSetCap } from './toggleBoxInfusionSetOpenWheel';
 import { handleControllerNotifyInfusionSetCap } from './infusionSetCapVive';
@@ -76,9 +76,9 @@ export default AFRAME.registerComponent('controller_6_d', {
         // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Liquid);
         this.viveObserver.subscribe(handleControllerNotifyWasteBinCap);
         // this.viveObserver.subscribe(handleControllerNotifyToggleBoxWasteBin);
-        this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPack);
+        // this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPack);
         // this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetInPack);
-        this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetOnDesk);
+        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetOnDesk);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetOpen);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetCap);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetCap);
@@ -105,6 +105,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverPress.subscribe(handleControllerPressBottleNacl500Vive);
         // this.viveObserverPress.subscribe(handleControllerPressToggleBoxNacl500Cap);
         this.viveObserverPress.subscribe(handleControllerPressBottleNacl500CapVive);
+        this.viveObserverPress.subscribe(handleControllerPressInfusionSetInPack);
 
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxPortfolio);
         this.viveObserverRelease.subscribe(handleControllerReleasePortfolio);
@@ -114,6 +115,8 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500OnDesk);
         this.viveObserverRelease.subscribe(handleControllerReleaseBottleNacl500CapVive);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxWasteBin);
+        this.viveObserverRelease.subscribe(handleControllerReleaseInfusionSetInPack);
+        this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxInfusionSetOnDesk);
 
         $(el).on('triggerdown', () => {
 

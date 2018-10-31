@@ -13,6 +13,7 @@ import { isDrawerOpen } from "./drawerOpenWithInfusionSet";
 import  {movable } from "./infusionSet";
 
 import { haveSthInHand } from "./controllerHand";
+import dropDown from "../utils/dropDown";
 
 let currentState;
 let currentControllerState;
@@ -20,6 +21,8 @@ let element;
 let activeController;
 let toggleBoxInfusionSetOnDesk;
 let hookInfusionSetInPack;
+
+let isInfusionSetInHand = null;
 
 export default AFRAME.registerComponent('infusion_set_in_pack_vive', {
 
@@ -48,7 +51,7 @@ export function handleNotifyInfusionSetInPack(nextState) {
 }
 
 export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
-    // Must hand disinfection, before taking infusion set
+    /*// Must hand disinfection, before taking infusion set
     if (
         // !stateIndex.getIn(['handDisinfection', 'finish'])
         stateIndex.getIn(['handDisinfection', 'finish']) !== 2
@@ -65,20 +68,80 @@ export function handleControllerNotifyInfusionSetInPack ( triggerEvent ) {
         && haveSthInHand(triggerEvent.activeController).length === 0
     ){
         activeController = triggerEvent.activeController;
-        controllerStateIndex.setControllerState('infusionSetInPackInHand', activeController);
+        controllerStateIndex.setControllerState('infusionSetInPackInHand', activeController.getAttribute('id'));
+    }*/
+}
+
+export function handleControllerPressInfusionSetInPack ( triggerEvent ) {
+    // Must hand disinfection, before taking infusion set
+    if (
+        stateIndex.getIn(['handDisinfection', 'finish']) !== 2
+        || !detectCollision(element, triggerEvent.activeController)
+
+    ) {
+        return false;
+    }
+
+    activeController = triggerEvent.activeController;
+
+    // First time drag
+    if(
+        controllerStateIndex.getControllerState('infusionSetInPackInHand') === null
+        && isDrawerOpen
+        && movable
+        && haveSthInHand(triggerEvent.activeController).length === 0
+        && !controllerStateIndex.getControllerState('isInfusionSetInPackHandling')
+    ){
+        controllerStateIndex.setControllerState('infusionSetInPackInHand', activeController.getAttribute('id'));
+        controllerStateIndex.setControllerState('isInfusionSetInPackHandling', true)
+    }
+    // Pick up
+    else if (
+        controllerStateIndex.getControllerState('infusionSetInPackInHand') === null
+        && movable
+        && haveSthInHand(triggerEvent.activeController).length === 0
+        && controllerStateIndex.getControllerState('isInfusionSetInPackHandling')
+    ) {
+        controllerStateIndex.setControllerState('infusionSetInPackInHand', activeController.getAttribute('id'));
     }
 }
 
+export function handleControllerReleaseInfusionSetInPack ( triggerEvent ) {
+    if(
+        !detectCollision(element, triggerEvent.activeController)
+    ) {
+        return false;
+    }
+    activeController = triggerEvent.activeController;
+
+    if (
+        controllerStateIndex.getControllerState('isInfusionSetInPackHandling')
+        && activeController.getAttribute('id') === controllerStateIndex.getControllerState('infusionSetInPackInHand')
+        && (
+            !controllerStateIndex.getControllerState('infusionSetChecked')
+            || (
+                controllerStateIndex.getControllerState('infusionSetChecked')
+                && !detectCollision(element, toggleBoxInfusionSetOnDesk)
+                )
+            )
+    ) {
+        controllerStateIndex.setControllerState('infusionSetInPackInHand', null);
+    }
+}
+
+
 export function handleControllerStateNotifyInfusionSetInPack (nextControllerState) {
+
+    // drag in hand
     if (
         nextControllerState.infusionSetInPackInHand !== null
-        && currentControllerState.infusionSetInPackInHand === null
+        && !isInfusionSetInHand
     ) {
         toggleBoxInfusionSetOnDesk.setAttribute('visible', true);
         dragInHand();
     }
-
-    if (
+    // show hook
+    else if (
         nextControllerState.infusionSetChecked
         && (!currentControllerState || !currentControllerState.infusionSetChecked)
         && nextControllerState.infusionSetInPackInHand !== null
@@ -86,12 +149,20 @@ export function handleControllerStateNotifyInfusionSetInPack (nextControllerStat
         hookInfusionSetInPack.setAttribute('visible', true);
         toggleBoxInfusionSetOnDesk.setAttribute('material', "color:#00ffff; transparent: true; opacity: 0.5")
     }
-
-    if (
+    // fall down
+    else if (
+        nextControllerState.isInfusionSetInPackHandling
+        && nextControllerState.infusionSetInPackInHand === null
+    ) {
+        drop();
+        fallDown(element);
+    }
+    // drop
+    else if (
         nextControllerState.infusionSetOnDeskOpened
         && !currentControllerState.infusionSetOnDeskOpened
     ) {
-        drop();
+        dropToDesk();
     }
 
     // deep copy
@@ -101,10 +172,22 @@ export function handleControllerStateNotifyInfusionSetInPack (nextControllerStat
 function dragInHand() {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drag();
+    isInfusionSetInHand = true;
+}
+
+function dropToDesk() {
+    $(element).remove();
+    isInfusionSetInHand = activeController.getAttribute('id');
 }
 
 function drop() {
-    $(element).remove();
+    let controllerActivities = new controllerActions(element, activeController);
+    controllerActivities.drop();
+    isInfusionSetInHand = null;
 }
 
-
+function fallDown(element) {
+    setTimeout(()=>{
+        dropDown(element, 0.05);
+    }, 100);
+}
