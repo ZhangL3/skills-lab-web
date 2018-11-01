@@ -190,10 +190,6 @@ export function handleNotifyPortfolio(nextState) {
         return false;
     }
 
-    console.log("nextState.portfolio.checkFinish === true: ", nextState.portfolio.checkFinish === true, typeof(nextState.portfolio.checkFinish === true));
-    console.log("nextState.portfolio.finish === true: ", nextState.portfolio.finish === true, typeof(nextState.portfolio.finish === true));
-    console.log("nextState.portfolio.position === constants.portfolio.position.ON_TABLE: ", nextState.portfolio.position === constants.portfolio.position.ON_TABLE, typeof(nextState.portfolio.position === constants.portfolio.position.ON_TABLE));
-
     if(
         (currentState.portfolio.position === constants.portfolio.position.ON_TABLE &&
             nextState.portfolio.position === constants.portfolio.position.IN_HAND) &&
