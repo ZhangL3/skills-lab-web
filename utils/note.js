@@ -1,4 +1,4 @@
-export default note = {
+export default hint = {
     checkPortfolio: 'Check portfolio',
     check5R: 'Check 5 R',
     handDisinfection: 'Hand disinfection',
