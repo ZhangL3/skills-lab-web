@@ -177,7 +177,7 @@ function handleClickPortfolio () {
 
 // hide the hooks for 5R
 export function hideHooks() {
-    console.log("hide!!!!: ");
+    console.log("hide!!!!!: ");
     hookName.setAttribute('visible', 'false');
     hookDrug.setAttribute('visible', 'false');
     hookDose.setAttribute('visible', 'false');
