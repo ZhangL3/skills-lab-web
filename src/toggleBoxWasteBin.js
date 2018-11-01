@@ -89,8 +89,6 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
 
 export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
 
-    console.log("controllerStateIndex.getControllerState('infusionSetCapInHand'): ", controllerStateIndex.getControllerState('infusionSetCapInHand'), typeof(controllerStateIndex.getControllerState('infusionSetCapInHand')));
-
     if(
         controllerStateIndex.getControllerState('bottleNacl500CapInHand')
         && stateIndex.get('wasteBinCapOpen')
