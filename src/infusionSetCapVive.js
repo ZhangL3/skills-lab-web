@@ -77,7 +77,6 @@ export function handleControllerPressInfusionSetCap ( triggerEvent ) {
         && canTriggerCapAndWheel
         && canTriggerInfusionSetCap
     ) {
-        console.log("take infusion set cap");
         activeController = triggerEvent.activeController;
         let activeControllerId = activeController.getAttribute('id');
         controllerStateIndex.setControllerState('infusionSetCapInHand', activeControllerId);
@@ -102,12 +101,15 @@ export function handleControllerStateNotifyInfusionSetCap (nextControllerState) 
     if (
         nextControllerState.infusionSetCapInHand
         && !isInfusionSetCapInHand
+        && nextControllerState.isInfusionSetCapInHandling
+        && !controllerStateIndex.getControllerState('infusionSetCapOff')
     ) {
         dragInHand();
     }
     else if (
         !nextControllerState.infusionSetCapInHand
         && isInfusionSetCapInHand
+        && nextControllerState.isInfusionSetCapInHandling
     ) {
         fallDown(element);
     }

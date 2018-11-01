@@ -14,7 +14,7 @@ let bottleNacl500Cap;
 let infusionSetCap;
 
 let currentControllerState;
-
+let isInfusionSetCapOff = false;
 let activeController;
 
 export default AFRAME.registerComponent('toggle_box_waste_bin', {
@@ -89,6 +89,8 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
 
 export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
 
+    console.log("controllerStateIndex.getControllerState('infusionSetCapInHand'): ", controllerStateIndex.getControllerState('infusionSetCapInHand'), typeof(controllerStateIndex.getControllerState('infusionSetCapInHand')));
+
     if(
         controllerStateIndex.getControllerState('bottleNacl500CapInHand')
         && stateIndex.get('wasteBinCapOpen')
@@ -109,7 +111,6 @@ export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
         controllerStateIndex.getControllerState('infusionSetCapInHand')
         && stateIndex.get('wasteBinCapOpen')
     ) {
-
         // drop the cap of infusion set
         if (
             detectCollision(element, triggerEvent.activeController)
@@ -117,12 +118,14 @@ export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
         ) {
             activeController = triggerEvent.activeController;
             controllerStateIndex.setControllerState('infusionSetCapOff', true);
+            controllerStateIndex.setControllerState('isInfusionSetCapInHandling', false);
+            controllerStateIndex.setControllerState('infusionSetCapInHand', null);
+            isInfusionSetCapOff = true;
         }
     }
 }
 
 export function handleControllerStateNotifyToggleBoxWasteBin (nextControllerState) {
-
     // drop cap of nacl 500 bottle
     if (
         nextControllerState.bottleNacl500CapInHand
@@ -136,7 +139,7 @@ export function handleControllerStateNotifyToggleBoxWasteBin (nextControllerStat
     if (
         nextControllerState.infusionSetCapInHand
         && nextControllerState.infusionSetCapOff
-        && !currentControllerState.infusionSetCapOff
+        && !isInfusionSetCapOff
     ) {
         dropInfusionSetCap(activeController);
     }
