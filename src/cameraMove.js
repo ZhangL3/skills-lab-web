@@ -5,6 +5,7 @@ import * as constants from '../utils/constants';
 const timeToStay = 5000;
 const moveTime = 500;
 let cameraPosition;
+let cameraMoved = false;
 // Objects lead to move the camera in flat mode
 let nacl500Bottle;
 let infusionSetOpen;
@@ -23,7 +24,7 @@ const positionVar = {
 AFRAME.registerComponent('camera-move', {
 
     schema: {
-        disable: {type: 'boolean', default: true}
+        disable: {type: 'boolean', default: false}
     },
 
     init: function () {
@@ -44,6 +45,9 @@ AFRAME.registerComponent('camera-move', {
 
         // move to cupboard
         nacl500Bottle.addEventListener('raycaster-intersected', ()=>{
+            if(cameraMoved) {
+                return false;
+            }
             if (
                 stateIndex.get('started')
                 && stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.IN_CUPBOARD
@@ -58,6 +62,9 @@ AFRAME.registerComponent('camera-move', {
 
         // move to cabinet
         infusionSetOpen.addEventListener('raycaster-intersected', ()=>{
+            if(cameraMoved) {
+                return false;
+            }
             if (
                 stateIndex.getIn(['infusionSet', 'position']) === constants.infusionSet.position.ON_TABLE
                 && (
@@ -75,6 +82,9 @@ AFRAME.registerComponent('camera-move', {
 
         // move to holder
         infusionSetHanged.addEventListener('raycaster-intersected', ()=>{
+            if(cameraMoved) {
+                return false;
+            }
             if (
                 stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.HANGED
                 && cameraPosition === positionVar.origin.name
@@ -88,6 +98,9 @@ AFRAME.registerComponent('camera-move', {
 
         // move to holder
         infusionSetHangedFilled.addEventListener('raycaster-intersected', ()=>{
+            if(cameraMoved) {
+                return false;
+            }
             if (
                 stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.HANGED
                 && cameraPosition === positionVar.origin.name
@@ -101,6 +114,9 @@ AFRAME.registerComponent('camera-move', {
 
         // move to hand disinfection
         handDisinfectionHandle.addEventListener('raycaster-intersected', ()=>{
+            if(cameraMoved) {
+                return false;
+            }
             if (
                 (stateIndex.getIn(['handDisinfection', 'finish']) === 0
                     && stateIndex.getIn(['portfolio', 'finish']))
@@ -120,25 +136,30 @@ AFRAME.registerComponent('camera-move', {
     backToOrigin: function(el) {
         aAnimationWrapper(el, '', 'position', '', positionVar.origin.position, moveTime, '', true, 'forwards');
         cameraPosition = positionVar.origin.name;
+        cameraMoved = false;
     },
 
     moveToBottle: function (el) {
         aAnimationWrapper(el, '', 'position', '', positionVar.nacl500Bottle.position, moveTime, '', true, 'forwards');
         cameraPosition = positionVar.nacl500Bottle.name;
+        cameraMoved = true;
     },
 
     moveToInfusionSetOpen: function (el) {
         aAnimationWrapper(el, '', 'position', '', positionVar.infusionSetOpen.position, moveTime, '', true, 'forwards');
         cameraPosition = positionVar.infusionSetOpen.name;
+        cameraMoved = true;
     },
 
     moveToInfusionSetHanged: function (el) {
         aAnimationWrapper(el, '', 'position', '', positionVar.infusionSetHanged.position, moveTime, '', true, 'forwards');
         cameraPosition = positionVar.infusionSetHanged.name;
+        cameraMoved = true;
     },
 
     moveToHandDisinfection: function (el) {
         aAnimationWrapper(el, '', 'position', '', positionVar.handDisinfectionHandle.position, moveTime, '', true, 'forwards');
         cameraPosition = positionVar.handDisinfectionHandle.name;
+        cameraMoved = true;
     }
 });
