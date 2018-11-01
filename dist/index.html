@@ -449,7 +449,7 @@
             <a-gltf-model id="infusionSetHangedFill" src="#infusionSetHangedFillMesh" visible="false"></a-gltf-model>
             <a-gltf-model id="infusionSetHangedWheel" src="#infusionSetHangedWheelMesh"></a-gltf-model>
         </a-gltf-model>
-        <a-cylinder id="infusionSetHangedFillTrigger" material="transparent: true; opacity: 0.001; alpha-test: 0.001; depth-write: false;" position="0.837 1.243 -0.536" height="0.07" radius="0.020"></a-cylinder>
+        <a-cylinder id="infusionSetHangedFillTrigger" material="transparent: true; opacity: 0.001; alpha-test: 0.001; depth-write: false;" position="0.855 1.243 -0.536" height="0.08" radius="0.030"></a-cylinder>
         <a-box toggle_box_infusion_set_hanged_chamber id="toggleBoxInfusionSetHangedChamber" visible="false" scale="0.044 0.042 0.026" position="0.838 1.231 -0.538" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
         <a-box toggle_box_infusion_set_hanged_wheel id="toggleBoxInfusionSetHangedWheel" visible="false" scale="0.029 0.042 0.026" position="0.825 1.109 -0.538" material="color:#ff0000; transparent: true; opacity: 0.5"></a-box>
 
@@ -478,7 +478,7 @@
 
     <!-- controller and camera -->
 
-    <a-entity id="cameraRig" position="0 1 -0.4">
+    <a-entity camera-move id="cameraRig" position="0 1 -0.4">
         <!-- Vive controlers-->
         <a-entity id="viveControllerLeft" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" vive-controls="hand: left; model: false;" controller_6_d visible="false">
             <a-box visible="false" id="leftHandIndicator" class="handIndicator" indicator-box  color="#0000ff" scale="0.005 0.005 0.005"></a-box>
@@ -501,7 +501,7 @@
         <a-entity id="gearController" laser-controls="hand: right" visible="false"></a-entity>
 
         <!--camera -->
-        <a-camera id="camera" camera-move touch-controls wasd-controls="acceleration:20; " look-controls="pointerLockEnabled: true;" position="0 0 0">
+        <a-camera id="camera" touch-controls wasd-controls="acceleration:20; " look-controls="pointerLockEnabled: true;" position="0 0 0">
             <!-- cursor for plat and 3D version -->
             <a-cursor id="cursor" cursor-submit raycaster-intersection fuse-timeout="1000" position="0 0 -0.1" geometry="primitive: ring; radiusInner: 0.0015; radiusOuter: 0.0025;"></a-cursor>
 
