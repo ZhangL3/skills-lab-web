@@ -23,6 +23,7 @@ let activeController;
 const bottleNacl500Scale = 0.1;
 
 let isNacl500CapInHand = null;
+let isInfusionSetInBottle = false;
 
 export default AFRAME.registerComponent('toggle_box_nach500_cap', {
 
@@ -79,7 +80,7 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
 
 export function handleControllerPressToggleBoxNacl500Cap( triggerEvent ) {
 
-    if (
+    /*if (
         !detectCollision(element, triggerEvent.activeController)
     ) {
         return false;
@@ -96,7 +97,7 @@ export function handleControllerPressToggleBoxNacl500Cap( triggerEvent ) {
         controllerStateIndex.setControllerState('bottleNacl500CapInHand', activeControllerId);
         controllerStateIndex.setControllerState('isNacl500CapHandling', true);
 
-    }
+    }*/
 
 }
 
@@ -108,19 +109,25 @@ export function handleControllerReleaseToggleBoxNacl500Cap( triggerEvent ) {
         return false;
     }
 
+    activeController = triggerEvent.activeController;
+
     // pierce infusion set in bottle nacl 500
     if (
         controllerStateIndex.getControllerState('bottleNacl500CapDroped')
-        && controllerStateIndex.getControllerState('infusionSetOpenInHand') === triggerEvent.activeController.getAttribute('id')
+        && controllerStateIndex.getControllerState('infusionSetOpenInHand') === activeController.getAttribute('id')
         && controllerStateIndex.getControllerState('infusionSetInBottle') === false
     ) {
         controllerStateIndex.setControllerState('infusionSetInBottle', true);
+        controllerStateIndex.setControllerState('isInfusionSetOnDeskOpenedHandling', false);
         controllerStateIndex.setControllerState('nacl500Dragable', true);
     }
 }
 
 export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerState) {
-
+    
+    console.log("nextControllerState.infusionSetInBottle: ", nextControllerState.infusionSetInBottle, typeof(nextControllerState.infusionSetInBottle));
+    console.log("!isInfusionSetInBottle: ", !isInfusionSetInBottle, typeof(!isInfusionSetInBottle));
+    console.log("!nextControllerState.nacl500Hanged: ", !nextControllerState.nacl500Hanged, typeof(!nextControllerState.nacl500Hanged));
     // drag cap in hand
     if (
         nextControllerState.bottleNacl500CapInHand !== null
@@ -132,9 +139,9 @@ export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerSt
     // pierce infusion set in bottle nacl 500
     if (
         // nextControllerState.bottleOpened
-        nextControllerState.infusionSetInBottle === true
-        && currentControllerState.infusionSetInBottle === false
-        && !controllerStateIndex.getControllerState('nacl500Hanged')
+        nextControllerState.infusionSetInBottle
+        && !isInfusionSetInBottle
+        && !nextControllerState.nacl500Hanged
     ) {
         pierceInfusionSetInBottle();
     }
@@ -156,6 +163,7 @@ function pierceInfusionSetInBottle() {
     console.log("pierceInfusionSetInBottle");
     infusionSetInBottle.setAttribute('visible', true);
     $(infusionSetOpen).remove();
+    isInfusionSetInBottle = true;
 }
 
 

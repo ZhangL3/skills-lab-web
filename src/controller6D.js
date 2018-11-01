@@ -18,7 +18,7 @@ import { handleControllerNotifyToggleBoxTrashCan } from './toggleBoxTrashCan';
 import { handleControllerNotifyBottleNacl500Vive, handleControllerPressBottleNacl500Vive, handleControllerReleaseBottleNacl500Vive } from './bottleNacl500Vive';
 import { handleControllerNotifyToggleBoxNacl500OnDesk, handleControllerReleaseToggleBoxNacl500OnDesk} from './toggleBoxNacl500OnDesk';
 import { handleControllerNotifyToggleBoxNacl500Label } from './toggleBoxNacl500Label';
-import { handleControllerNotifyToggleBoxNacl500Cap, handleControllerPressToggleBoxNacl500Cap } from './toggleBoxNacl500Cap';
+import { handleControllerNotifyToggleBoxNacl500Cap, handleControllerPressToggleBoxNacl500Cap, handleControllerReleaseToggleBoxNacl500Cap } from './toggleBoxNacl500Cap';
 import { handleControllerPressBottleNacl500CapVive, handleControllerReleaseBottleNacl500CapVive } from './bottleNacl500CapVive';
 
 import { handleControllerNotifyToggleBoxNacl500Liquid } from './toggleBoxNacl500Liquid';
@@ -121,6 +121,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxInfusionSetOnDesk);
         this.viveObserverRelease.subscribe(handleControllerReleaseInfusionSetCap);
         this.viveObserverRelease.subscribe(handleControllerReleaseInfusionSetOpen);
+        this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500Cap);
 
         $(el).on('triggerdown', () => {
 
