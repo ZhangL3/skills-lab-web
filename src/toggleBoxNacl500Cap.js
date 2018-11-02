@@ -124,10 +124,6 @@ export function handleControllerReleaseToggleBoxNacl500Cap( triggerEvent ) {
 }
 
 export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerState) {
-    
-    console.log("nextControllerState.infusionSetInBottle: ", nextControllerState.infusionSetInBottle, typeof(nextControllerState.infusionSetInBottle));
-    console.log("!isInfusionSetInBottle: ", !isInfusionSetInBottle, typeof(!isInfusionSetInBottle));
-    console.log("!nextControllerState.nacl500Hanged: ", !nextControllerState.nacl500Hanged, typeof(!nextControllerState.nacl500Hanged));
     // drag cap in hand
     if (
         nextControllerState.bottleNacl500CapInHand !== null

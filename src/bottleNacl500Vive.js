@@ -87,7 +87,7 @@ export function handleNotifyBottleNacl500Vive(nextState) {
 
 export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
 
-    if (!detectCollision(element, triggerEvent.activeController)) {
+    /*if (!detectCollision(element, triggerEvent.activeController)) {
        return false;
     }
 
@@ -126,7 +126,7 @@ export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
             let activeControllerId =  activeController.getAttribute('id');
             controllerStateIndex.setControllerState('nacl500InHandToStand', activeControllerId);
         }
-    }
+    }*/
 }
 
 export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
@@ -165,15 +165,16 @@ export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
         && controllerStateIndex.getControllerState('nacl500InHandToStand') === null
         && haveSthInHand(triggerEvent.activeController).length === 0
     ) {
-        console.log("to stand");
+        console.log("Drag bottle to stand");
         activeController = triggerEvent.activeController;
         let activeControllerId =  activeController.getAttribute('id');
         controllerStateIndex.setControllerState('nacl500InHandToStand', activeControllerId);
+        controllerStateIndex.setControllerState('isNacl500ToStandHandling', true);
     }
 }
 
 export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
-    // drag to desk
+    // drop during dragging to desk
     if (
         controllerStateIndex.getControllerState('nacl500InHandToDesk') === triggerEvent.activeController.getAttribute('id')
         && !detectCollision(toggleBoxNacl500OnDesk, triggerEvent.activeController)
@@ -181,18 +182,20 @@ export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
         controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
         isNacl500InHand = null;
     }
-    // drag to stand
+    // drop during dragging to stand
     else if(
         controllerStateIndex.getControllerState('nacl500InHandToStand') !== null
         && !detectCollision(toggleBoxNacl500Hanged, triggerEvent.activeController)
 ) {
+        console.log("drop down bottle by dragging to stand");
+
         controllerStateIndex.setControllerState('nacl500InHandToStand', null);
         isNacl500InHand = null;
     }
 }
 
 export function handleControllerStateNotifyBottleNacl500Vive (nextControllerState) {
-    
+
     // drag to desk
     if (
         nextControllerState.nacl500InHandToDesk !== null
@@ -207,17 +210,10 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
 
         currentControllerState = _.cloneDeep(nextControllerState);
     }
-    // take nacl500 to desk again, if it falls down
-    // else if (
-    //
-    // ) {
-    //
-    // }
-
     // drag to stand
     if (
         nextControllerState.nacl500InHandToStand !== null
-        && currentControllerState.nacl500InHandToStand === null
+        && isNacl500InHand === null
         && nextControllerState.nacl500Dragable
     ) {
         dragInHandToHang();
@@ -229,19 +225,26 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
 
         console.log("should drag bottle in hand to hang");
     }
-    // take nacl 500 again to stand, if it falls down
-    // else if ( ) {
-    //
-    // }
-
-    // Drop down to floor
+    // Drop down to floor during putting on table
     else if (
         nextControllerState.nacl500InHandToDesk === null
         && isNacl500InHand !== null
         && !stateIndex.getIn(['bottlePrepare', 'finish'])
-        && nextControllerState.isNacl500ToDeskHandling === true
+        && nextControllerState.isNacl500ToDeskHandling
     ) {
         dropBottle();
+        setTimeout(()=>{
+            dropDown(element);
+        }, 100);
+    }
+    // Drop down to floor during hanging to stand
+    else if (
+        nextControllerState.nacl500InHandToStand === null
+        && isNacl500InHand !== null
+        && !stateIndex.getIn(['bottlePrepare', 'finish'])
+        && nextControllerState.isNacl500ToStandHandling
+    ) {
+        dropBottleToHang();
         setTimeout(()=>{
             dropDown(element);
         }, 100);
@@ -278,7 +281,7 @@ function dropBottle() {
 
 function dropBottleToHang() {
     let controllerActivities = new controllerActions(element, activeController);
-    nacl500Inhand = null;
+    isNacl500InHand = null;
     controllerActivities.drop();
 }
 
