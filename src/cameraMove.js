@@ -94,8 +94,6 @@ AFRAME.registerComponent('camera-move', {
 
         if (data.disable) {
 
-            console.log("remove listener!!!!!!!!!!!!!!!");
-
             nacl500Bottle = document.querySelector('#nacl500Bottle');
             infusionSetOpen = document.querySelector('#infusionSetOpen');
             infusionSetHanged = document.querySelector('#infusionSetHanged');

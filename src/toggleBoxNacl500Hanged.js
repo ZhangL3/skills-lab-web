@@ -36,7 +36,7 @@ const schema = {
 
 export function handleControllerNotifyToggleBoxNacl500Hanged( triggerEvent ) {
 
-    if (controllerStateIndex.getControllerState('nacl500Hanged')) {
+    /*if (controllerStateIndex.getControllerState('nacl500Hanged')) {
         return false;
     }
 
@@ -60,8 +60,33 @@ export function handleControllerNotifyToggleBoxNacl500Hanged( triggerEvent ) {
             setCanTriggerChamberAndWheel(true);
         }, 500);
         element.setAttribute('visible', false);
+    }*/
+}
+
+export function handleControllerPressToggleBoxNacl500Hanged( triggerEvent ) {
+
+    if (
+        controllerStateIndex.getControllerState('nacl500Hanged')
+        || !detectCollision(element, triggerEvent.activeController)
+    ) {
+        return false;
     }
 
+    if (
+        controllerStateIndex.getControllerState('nacl500InHandToStand') === triggerEvent.activeController.getAttribute('id')
+        && controllerStateIndex.getControllerState('nacl500InHandToStand')
+        && !stateIndex.getIn(['bottlePrepare', 'finish'])
+    ) {
+        console.log("hang to stand");
+        $(nacl500Bottle).trigger('hangToStand');
+        //After the change of DOM, run the animation
+        setTimeout(()=>{
+            aAnimationWrapper(nacl500Bottle, '', 'position', '', schema.hangedPosition, schema.dur, '',true , 'forwards');
+            aAnimationWrapper(nacl500Bottle, '', 'rotation', '', schema.hangedRotation, schema.dur, '',true , 'forwards');
+            setCanTriggerChamberAndWheel(true);
+        }, 500);
+        element.setAttribute('visible', false);
+    }
 }
 
 export function handleControllerStateNotifyToggleBoxNacl500Hanged (nextControllerState) {
