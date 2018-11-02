@@ -1,6 +1,7 @@
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
 import * as constants from '../utils/constants';
+import $ from 'jquery';
 
 const timeToStay = 5000;
 const moveTime = 500;
@@ -43,94 +44,119 @@ AFRAME.registerComponent('camera-move', {
         handDisinfectionHandle = document.querySelector('#handDisinfectionHandle');
         let timer;
 
+        // If want to remove event listener later, do not ust arrow function
         // move to cupboard
-        nacl500Bottle.addEventListener('raycaster-intersected', ()=>{
-            if(cameraMoved) {
-                return false;
-            }
-            if (
-                stateIndex.get('started')
-                && stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.IN_CUPBOARD
-                && cameraPosition === positionVar.origin.name
-            ) {
-                this.moveToBottle(el);
-                timer = setTimeout(()=>{
-                    this.backToOrigin(el);
-                }, timeToStay);
-            }
+        nacl500Bottle.addEventListener('raycaster-intersected', function(){
+            this.moveToCupboardAndBack(el, data.disable);
         });
 
         // move to cabinet
-        infusionSetOpen.addEventListener('raycaster-intersected', ()=>{
-            if(cameraMoved) {
-                return false;
-            }
-            if (
-                stateIndex.getIn(['infusionSet', 'position']) === constants.infusionSet.position.ON_TABLE
-                && (
-                    stateIndex.getIn(['infusionSet', 'withCap'])
-                    || stateIndex.getIn(['infusionSet', 'rollerClapOpen'])
-                )
-                && cameraPosition === positionVar.origin.name
-            ) {
-                this.moveToInfusionSetOpen(el);
-                timer = setTimeout(()=>{
-                    this.backToOrigin(el);
-                }, timeToStay);
-            }
+        infusionSetOpen.addEventListener('raycaster-intersected', function(){
+            this.moveToCabinetAndBack(el, data.disable);
         });
 
         // move to holder
-        infusionSetHanged.addEventListener('raycaster-intersected', ()=>{
-            if(cameraMoved) {
-                return false;
-            }
-            if (
-                stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.HANGED
-                && cameraPosition === positionVar.origin.name
-            ) {
-                this.moveToInfusionSetHanged(el);
-                timer = setTimeout(()=>{
-                    this.backToOrigin(el);
-                }, timeToStay);
-            }
+        infusionSetHanged.addEventListener('raycaster-intersected', function(){
+            this.moveToHolderAndBack(el, data.disable);
         });
 
         // move to holder
-        infusionSetHangedFilled.addEventListener('raycaster-intersected', ()=>{
-            if(cameraMoved) {
-                return false;
-            }
-            if (
-                stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.HANGED
-                && cameraPosition === positionVar.origin.name
-            ) {
-                this.moveToInfusionSetHanged(el);
-                timer = setTimeout(()=>{
-                    this.backToOrigin(el);
-                }, timeToStay);
-            }
+        infusionSetHangedFilled.addEventListener('raycaster-intersected', function(){
+            this.moveToHolderAndBack(el, data.disable);
         });
 
         // move to hand disinfection
-        handDisinfectionHandle.addEventListener('raycaster-intersected', ()=>{
-            if(cameraMoved) {
-                return false;
-            }
-            if (
-                (stateIndex.getIn(['handDisinfection', 'finish']) === 0
-                    && stateIndex.getIn(['portfolio', 'finish']))
-                ||
-                (stateIndex.getIn(['handDisinfection', 'finish']) === 1
-                    && stateIndex.getIn(['tableDisinfection', 'finish']))
-                && cameraPosition === positionVar.origin.name
-            ) {
-                this.moveToHandDisinfection(el);
-                timer = setTimeout(()=>{
-                    this.backToOrigin(el);
-                }, timeToStay);
-            }
+        handDisinfectionHandle.addEventListener('raycaster-intersected', function(){
+            this.moveToHandDisinfectionAndBack(el, data.disable);
         });
+
+        $(el).on('removeAllListener', () => {
+            console.log("remove all listener");
+            // move to cupboard
+            nacl500Bottle.removeEventListener('raycaster-intersected', this.moveToCupboardAndBack);
+
+            // move to cabinet
+            infusionSetOpen.removeEventListener('raycaster-intersected', this.moveToCabinetAndBack);
+
+            // move to holder
+            infusionSetHanged.removeEventListener('raycaster-intersected', this.moveToHolderAndBack);
+
+            // move to holder
+            infusionSetHangedFilled.removeEventListener('raycaster-intersected', this.moveToHolderAndBack);
+
+            // move to hand disinfection
+            handDisinfectionHandle.removeEventListener('raycaster-intersected', this.moveToHandDisinfectionAndBack);
+        });
+    },
+
+    moveToCupboardAndBack: function(el, disable) {
+        console.log("disable: ", disable, typeof(disable));
+        if(cameraMoved || disable) {
+            return false;
+        }
+        if (
+            stateIndex.get('started')
+            && stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.IN_CUPBOARD
+            && cameraPosition === positionVar.origin.name
+        ) {
+            this.moveToBottle(el);
+            let timer = setTimeout(()=>{
+                this.backToOrigin(el);
+            }, timeToStay);
+        }
+    },
+
+    moveToCabinetAndBack: function (el, disable) {
+        if(cameraMoved || disable) {
+            return false;
+        }
+        if (
+            stateIndex.getIn(['infusionSet', 'position']) === constants.infusionSet.position.ON_TABLE
+            && (
+                stateIndex.getIn(['infusionSet', 'withCap'])
+                || stateIndex.getIn(['infusionSet', 'rollerClapOpen'])
+            )
+            && cameraPosition === positionVar.origin.name
+        ) {
+            this.moveToInfusionSetOpen(el);
+            let timer = setTimeout(()=>{
+                this.backToOrigin(el);
+            }, timeToStay);
+        }
+    },
+
+    moveToHolderAndBack: function (el, disable) {
+        if(cameraMoved || disable) {
+            return false;
+        }
+        if (
+            stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.HANGED
+            && cameraPosition === positionVar.origin.name
+        ) {
+            this.moveToInfusionSetHanged(el);
+            let timer = setTimeout(()=>{
+                this.backToOrigin(el);
+            }, timeToStay);
+        }
+    },
+
+    moveToHandDisinfectionAndBack: function (el, disable) {
+        if(cameraMoved || disable) {
+            return false;
+        }
+        if (
+            (stateIndex.getIn(['handDisinfection', 'finish']) === 0
+                && stateIndex.getIn(['portfolio', 'finish']))
+            ||
+            (stateIndex.getIn(['handDisinfection', 'finish']) === 1
+                && stateIndex.getIn(['tableDisinfection', 'finish']))
+            && cameraPosition === positionVar.origin.name
+        ) {
+            this.moveToHandDisinfection(el);
+            let timer = setTimeout(()=>{
+                this.backToOrigin(el);
+            }, timeToStay);
+        }
     },
 
     backToOrigin: function(el) {

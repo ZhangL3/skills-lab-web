@@ -80,6 +80,7 @@ function matchViveController() {
 
     console.log("match vive");
     removeCursor();
+    disableCameraAutoMove();
     removeGearVRController();
     showViveControllers();
     adjustAllThingsScale('1.3 1.3 1.3');
@@ -169,8 +170,9 @@ function adjustCursorGeometry(geometry) {
 }
 
 function disableCameraAutoMove() {
-    let camera = document.querySelector('#camera');
-    camera.setAttribute('camera-move', 'disable: true');
+    let cameraRig = document.querySelector('#cameraRig');
+    $(cameraRig).trigger('removeAllListener');
+    // cameraRig.setAttribute('camera-move', 'disable: true');
 }
 
 export function getActiveController() {
