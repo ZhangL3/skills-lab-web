@@ -171,8 +171,8 @@ function adjustCursorGeometry(geometry) {
 
 function disableCameraAutoMove() {
     let cameraRig = document.querySelector('#cameraRig');
-    $(cameraRig).trigger('removeAllListener');
-    // cameraRig.setAttribute('camera-move', 'disable: true');
+    // $(cameraRig).trigger('removeAllListener');
+    cameraRig.setAttribute('camera-move', 'disable: true');
 }
 
 export function getActiveController() {

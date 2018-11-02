@@ -44,33 +44,32 @@ AFRAME.registerComponent('camera-move', {
         handDisinfectionHandle = document.querySelector('#handDisinfectionHandle');
         let timer;
 
-        // If want to remove event listener later, do not ust arrow function
         // move to cupboard
-        nacl500Bottle.addEventListener('raycaster-intersected', function(){
+        nacl500Bottle.addEventListener('raycaster-intersected', () => {
             this.moveToCupboardAndBack(el, data.disable);
         });
 
         // move to cabinet
-        infusionSetOpen.addEventListener('raycaster-intersected', function(){
+        infusionSetOpen.addEventListener('raycaster-intersected', ()=>{
             this.moveToCabinetAndBack(el, data.disable);
         });
 
         // move to holder
-        infusionSetHanged.addEventListener('raycaster-intersected', function(){
+        infusionSetHanged.addEventListener('raycaster-intersected', ()=>{
             this.moveToHolderAndBack(el, data.disable);
         });
 
         // move to holder
-        infusionSetHangedFilled.addEventListener('raycaster-intersected', function(){
+        infusionSetHangedFilled.addEventListener('raycaster-intersected', ()=>{
             this.moveToHolderAndBack(el, data.disable);
         });
 
         // move to hand disinfection
-        handDisinfectionHandle.addEventListener('raycaster-intersected', function(){
+        handDisinfectionHandle.addEventListener('raycaster-intersected', ()=>{
             this.moveToHandDisinfectionAndBack(el, data.disable);
         });
 
-        $(el).on('removeAllListener', () => {
+        /*$(el).on('removeAllListener', () => {
             console.log("remove all listener");
             // move to cupboard
             nacl500Bottle.removeEventListener('raycaster-intersected', this.moveToCupboardAndBack);
@@ -86,7 +85,39 @@ AFRAME.registerComponent('camera-move', {
 
             // move to hand disinfection
             handDisinfectionHandle.removeEventListener('raycaster-intersected', this.moveToHandDisinfectionAndBack);
-        });
+        });*/
+    },
+
+    update: function (oldData) {
+        let data = this.data;
+        let el = this.el;
+
+        if (data.disable) {
+
+            console.log("remove listener!!!!!!!!!!!!!!!");
+
+            nacl500Bottle = document.querySelector('#nacl500Bottle');
+            infusionSetOpen = document.querySelector('#infusionSetOpen');
+            infusionSetHanged = document.querySelector('#infusionSetHanged');
+            infusionSetHangedFilled = document.querySelector('#infusionSetHangedFilled');
+            handDisinfectionHandle = document.querySelector('#handDisinfectionHandle');
+
+            // move to cupboard
+            nacl500Bottle.removeEventListener('raycaster-intersected', this.moveToCupboardAndBack);
+
+            // move to cabinet
+            infusionSetOpen.removeEventListener('raycaster-intersected', this.moveToCabinetAndBack);
+
+            // move to holder
+            infusionSetHanged.removeEventListener('raycaster-intersected', this.moveToHolderAndBack);
+
+            // move to holder
+            infusionSetHangedFilled.removeEventListener('raycaster-intersected', this.moveToHolderAndBack);
+
+            // move to hand disinfection
+            handDisinfectionHandle.removeEventListener('raycaster-intersected', this.moveToHandDisinfectionAndBack);
+        }
+
     },
 
     moveToCupboardAndBack: function(el, disable) {
