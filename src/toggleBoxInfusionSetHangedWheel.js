@@ -12,6 +12,7 @@ let element;
 let infusionSetHangedWheel;
 
 let currentControllerState;
+let canTriggerWheel = false;
 
 export default AFRAME.registerComponent('toggle_box_infusion_set_hanged_wheel', {
 
@@ -71,4 +72,8 @@ export function handleControllerStateNotifyToggleBoxInfusionSetHangedWheel (next
 
 function openWheel() {
     aAnimationWrapper(infusionSetHangedWheel, '', 'position', '', schema.infusionSetHangedWheelOpenPosition, schema.dur, '', true, 'forwards');
+}
+
+export function setCanTriggerWheel(status) {
+    canTriggerWheel = status;
 }

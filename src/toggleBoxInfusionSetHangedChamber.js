@@ -7,6 +7,8 @@ import controllerStateIndex from '../utils/controllerState';
 
 import {canTriggerChamberAndWheel} from "./infusionSetHangedVive";
 
+import {setCanTriggerWheel} from "./toggleBoxInfusionSetHangedWheel";
+
 let element;
 let infusionSetHangedFill;
 let infusionSetHangedFillTrigger;
@@ -53,6 +55,9 @@ export function handleControllerStateNotifyToggleBoxInfusionSetHangedChamber (ne
     ) {
         infusionSetHangedFill.setAttribute('visible', true);
         infusionSetHangedFillTrigger.attr('visible', false);
+        setTimeout(() => {
+            setCanTriggerWheel(true);
+        }, 500);
     }
 
     // deep copy
