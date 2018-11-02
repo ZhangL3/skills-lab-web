@@ -75,6 +75,7 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
             controllerStateIndex.setControllerState('nacl500Hanged', true);
             stateIndex.setIn(['bottlePrepare', 'finish'], true);
             controllerStateIndex.setControllerState('nacl500Dragable', false);
+            controllerStateIndex.setControllerState('isNacl500ToStandHandling', false);
         });
 
     }

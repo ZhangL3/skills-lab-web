@@ -63,7 +63,7 @@ export function handleControllerNotifyToggleBoxNacl500Hanged( triggerEvent ) {
     }*/
 }
 
-export function handleControllerPressToggleBoxNacl500Hanged( triggerEvent ) {
+export function handleControllerReleaseToggleBoxNacl500Hanged( triggerEvent ) {
 
     if (
         controllerStateIndex.getControllerState('nacl500Hanged')
