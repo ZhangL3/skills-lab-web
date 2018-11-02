@@ -72,6 +72,7 @@ const controllerState = {
     tubeFixed: false,
 
     nameLabelInHand: null,
+    isNameEmptyLabelHandling: false,
     nameLabelFilled: false,
     nameLabelPasted: false
 };

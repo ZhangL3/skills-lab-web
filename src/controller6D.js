@@ -34,7 +34,7 @@ import { handleControllerNotifyToggleBoxNacl500Hanged, handleControllerReleaseTo
 import { handleControllerNotifyToggleBoxInfusionSetHangedChamber } from './toggleBoxInfusionSetHangedChamber';
 import { handleControllerNotifyToggleBoxInfusionSetHangedWheel } from './toggleBoxInfusionSetHangedWheel';
 import { handleControllerNotifyInfusionSetHangedFilledVive } from './infusionSetHangedFilledVive';
-import { handleControllerNotifyNameLabelStamperVive } from './nameLabelStamperVive';
+import { handleControllerNotifyNameLabelStamperVive, handleControllerPressNameLabelStamperVive, handleControllerReleaseNameLabelStamperVive } from './nameLabelStamperVive';
 import { handleControllerNotifyToggleBoxNacl500NameLabel } from './toggleBoxNacl500NameLabel';
 import { handleControllerNotifyToggleBoxNameLabelEmpty } from './toggleBoxNameLabelEmpty';
 import { handleControllerNotifyToggleBoxSelectSection } from './toggleBoxSelectSection';
@@ -86,7 +86,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetHangedChamber);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetHangedWheel);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetHangedFilledVive);
-        this.viveObserver.subscribe(handleControllerNotifyNameLabelStamperVive);
+        // this.viveObserver.subscribe(handleControllerNotifyNameLabelStamperVive);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500NameLabel);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNameLabelEmpty);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxSelectSection);
@@ -108,6 +108,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverPress.subscribe(handleControllerPressInfusionSetInPack);
         this.viveObserverPress.subscribe(handleControllerPressInfusionSetCap);
         this.viveObserverPress.subscribe(handleControllerPressInfusionSetOpen);
+        this.viveObserverPress.subscribe(handleControllerPressNameLabelStamperVive);
 
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxPortfolio);
         this.viveObserverRelease.subscribe(handleControllerReleasePortfolio);
@@ -123,6 +124,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseInfusionSetOpen);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500Cap);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500Hanged);
+        this.viveObserverRelease.subscribe(handleControllerReleaseNameLabelStamperVive);
 
         $(el).on('triggerdown', () => {
 

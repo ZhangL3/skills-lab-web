@@ -12,6 +12,7 @@ let nameLabelWroteRight;
 let nameLabelEmpty;
 
 let currentControllerState;
+let isNameLabelFilled = false;
 
 
 export default AFRAME.registerComponent('toggle_box_name_label_empty', {
@@ -42,6 +43,7 @@ export function handleControllerNotifyToggleBoxNameLabelEmpty( triggerEvent ) {
     ) {
         if(detectCollision(element, triggerEvent.activeController)){
             controllerStateIndex.setControllerState('nameLabelFilled', true);
+            controllerStateIndex.setControllerState('isNameEmptyLabelHandling', false)
         }
     }
 }
@@ -50,7 +52,7 @@ export function handleControllerStateNotifyToggleBoxNameLabelEmpty (nextControll
 
     if (
         nextControllerState.nameLabelFilled
-        && !currentControllerState.nameLabelFilled
+        && !isNameLabelFilled
     ) {
         writeNameLabel();
     }
@@ -68,6 +70,7 @@ function writeNameLabel() {
         nameLabelWroteRight.setAttribute('visible', true);
     }
     $(nameLabelEmpty).remove();
+    isNameLabelFilled = true;
 }
 
 
