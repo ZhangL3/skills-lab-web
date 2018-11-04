@@ -25,6 +25,7 @@ import { handleControllerStateNotifyToggleBoxNacl500NameLabel } from '../src/tog
 import { handleControllerStateNotifyToggleBoxNameLabelEmpty } from '../src/toggleBoxNameLabelEmpty';
 import { handleControllerStateNotifyRaycasterVive } from '../src/raycasterVive';
 import { handleControllerStateNotifyBottleNacl500CapVive } from '../src/bottleNacl500CapVive';
+import { handleControllerStateNotifyNameLabelFilledVive } from '../src/nameLabelFilledVive';
 
 
 const controllerState = {
@@ -74,6 +75,7 @@ const controllerState = {
     nameLabelInHand: null,
     isNameEmptyLabelHandling: false,
     nameLabelFilled: false,
+    isNameFilledLabelHandling: false,
     nameLabelPasted: false
 };
 
@@ -158,6 +160,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNameLabelEmpty);
         this.controllerObserver.subscribe(handleControllerStateNotifyRaycasterVive);
         this.controllerObserver.subscribe(handleControllerStateNotifyBottleNacl500CapVive);
+        this.controllerObserver.subscribe(handleControllerStateNotifyNameLabelFilledVive);
 
         console.log("controllerState init");
 

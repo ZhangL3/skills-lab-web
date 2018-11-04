@@ -46,6 +46,7 @@ import { handleControllerNotifyNacl500LiquidCheckVive } from './nacl500LiquidChe
 import { handleControllerNotifyNacl500CapCheckVive } from './nacl500CapCheckVive';
 import { handleControllerNotifyInfusionSetInPackCheckVive } from './infusionSetInPackCheckVive';
 import { handleControllerNotifyNacl500DoorOpen } from './nacl500DoorOpen';
+import { handleControllerReleaseNameLabelFilledVive } from './nameLabelFilledVive';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -125,6 +126,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500Cap);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500Hanged);
         this.viveObserverRelease.subscribe(handleControllerReleaseNameLabelStamperVive);
+        this.viveObserverRelease.subscribe(handleControllerReleaseNameLabelFilledVive);
 
         $(el).on('triggerdown', () => {
 

@@ -5,6 +5,7 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import { canWrite } from "./nameLabelStamperVive";
+import {setIsNameLabelFilledInHand} from "./nameLabelFilledVive";
 
 let element;
 let nameLabelWroteLeft;
@@ -43,7 +44,8 @@ export function handleControllerNotifyToggleBoxNameLabelEmpty( triggerEvent ) {
     ) {
         if(detectCollision(element, triggerEvent.activeController)){
             controllerStateIndex.setControllerState('nameLabelFilled', true);
-            controllerStateIndex.setControllerState('isNameEmptyLabelHandling', false)
+            controllerStateIndex.setControllerState('isNameEmptyLabelHandling', false);
+            controllerStateIndex.setControllerState('isNameFilledLabelHandling', true);
         }
     }
 }
@@ -65,12 +67,15 @@ function writeNameLabel() {
     const activeHandId = controllerStateIndex.getControllerState('nameLabelInHand');
     if (activeHandId === 'viveControllerLeft') {
         nameLabelWroteLeft.setAttribute('visible', true);
+        $(document).remove(nameLabelWroteRight);
     }
     else if (activeHandId === 'viveControllerRight') {
         nameLabelWroteRight.setAttribute('visible', true);
+        $(document).remove(nameLabelWroteLeft);
     }
     $(nameLabelEmpty).remove();
     isNameLabelFilled = true;
+    setIsNameLabelFilledInHand(activeHandId);
 }
 
 

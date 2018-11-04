@@ -484,7 +484,9 @@
             <a-box visible="false" id="leftHandIndicator" class="handIndicator" indicator-box  color="#0000ff" scale="0.005 0.005 0.005"></a-box>
             <a-gltf-model controller_hand id="leftHand" src="#leftHandMesh" material="" scale="0.15 0.15 0.15" rotation="180 -90 180"></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveLeft" visible="false" src="#gloveMesh" position="0.007 0.026 -0.004" rotation="-22.57 151.04 -17.77" scale="0.02 0.02 0.02"></a-gltf-model>
-            <a-image id="nameLabelWroteLeft" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
+            <a-image name_label_filled_vive id="nameLabelWroteLeft" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false">
+                <a-box id="nameLabelWroteLeftHelperBox" position="0 -0.25 0" scale="0.177 0.5 0.392" visible="false"></a-box>
+            </a-image>
             <!--<a-image id="nameLabelWroteLeft" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0.06152 -0.0769" rotation="-90 0 0" visible="false"></a-image>-->
 
         </a-entity>
@@ -492,7 +494,9 @@
             <a-box visible="false" id="rightHandIndicator" class="handIndicator" indicator-box color="#ff0000" scale="0.005 0.005 0.005"></a-box>
             <a-gltf-model controller_hand id="rightHand" src="#rightHandMesh" scale="0.15 0.15 0.15" rotation="180 90 180" material=""></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveRight" visible="false" src="#gloveMesh" position="-0.002 0.021 -0.01" rotation="-23.70 -140.70 -168.42" scale="0.02 0.02 0.02"></a-gltf-model>
-            <a-image id="nameLabelWroteRight" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false"></a-image>
+            <a-image name_label_filled_vive id="nameLabelWroteRight" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0 0" rotation="-90 0 0" visible="false">
+                <a-box id="nameLabelWroteRightHelperBox" position="0 -0.25 0" scale="0.177 0.5 0.392" visible="false"></a-box>
+            </a-image>
             <!--<a-image id="nameLabelWroteRight" material="transparent: false;" src="#nameLabelWroteImg" scale="0.092 0.044 0.050" position="0 0.06152 -0.0769" rotation="-90 0 0" visible="false"></a-image>-->
 
         </a-entity>

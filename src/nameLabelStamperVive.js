@@ -104,7 +104,7 @@ export function handleControllerPressNameLabelStamperVive ( triggerEvent ) {
     }
 
     activeController = triggerEvent.activeController;
-    
+
     if (
         !controllerStateIndex.getControllerState('nameLabelFilled')
         && !controllerStateIndex.getControllerState('nameLabelInHand')
@@ -209,9 +209,9 @@ function drop() {
     isNameLabelEmptyInHand = null;
 }
 
-function fallDown(nameLabelEmpty) {
+function fallDown(element) {
     drop();
     setTimeout(()=>{
-        dropDown(nameLabelEmpty, 0.05);
+        dropDown(element, 0.05);
     }, 100);
 }
