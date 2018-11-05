@@ -14,9 +14,15 @@ import dropDown from "../utils/dropDown";
 let clothInBottle;
 let clothOnTable;
 let toggleBoxTrashCan;
+let toggleBoxDeskLeft;
+let toggleBoxDeskRight;
 
 let activeController;
 let isClothInHand = false;
+
+let isToggleBoxDeskLeftChecked = false;
+let isToggleBoxDeskRightChecked = false;
+let tmpInterval;
 
 AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
 
@@ -25,10 +31,12 @@ AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
 
         clothOnTable = this.el;
         toggleBoxTrashCan = document.querySelector('#toggleBoxTrashCan');
+        toggleBoxDeskLeft = document.querySelector('#toggleBoxDeskLeft');
+        toggleBoxDeskRight = document.querySelector('#toggleBoxDeskRight');
 
         $(clothOnTable).on('drop', () => {
             drop();
-        })
+        });
     }
 });
 
@@ -89,6 +97,11 @@ export function handleControllerPressClothOnTable ( triggerEvent ) {
     ) {
         controllerStateIndex.setControllerState('disinfectionClothInHand', activeControllerId);
         controllerStateIndex.setControllerState('isDisinfectionClothHandling', true);
+        // Desk disinfection
+        controllerStateIndex.setControllerState('disinfectionClothInHand', activeControllerId);
+        tmpInterval = setInterval(() => {
+            deskDisinfection();
+        }, 500);
     }
 
     // Pick up cloth
@@ -98,7 +111,10 @@ export function handleControllerPressClothOnTable ( triggerEvent ) {
         && controllerStateIndex.getControllerState('isDisinfectionClothHandling')
         && !isClothInHand
     ) {
-        controllerStateIndex.setControllerState('disinfectionClothInHand', activeControllerId)
+        controllerStateIndex.setControllerState('disinfectionClothInHand', activeControllerId);
+        tmpInterval = setInterval(() => {
+            deskDisinfection();
+        }, 500);
     }
 }
 
@@ -135,6 +151,14 @@ export function handleControllerStateClothOnTable ( nextState ) {
         && !isClothInHand
     ) {
         dragInHand();
+        tmpInterval = setInterval(() => {
+            if (
+                deskDisinfection()
+            ) {
+                controllerStateIndex.setControllerState('deskDisinfection', true);
+                clearInterval(tmpInterval);
+            }
+        }, 10);
     }
     // Drop
     else if (
@@ -146,7 +170,27 @@ export function handleControllerStateClothOnTable ( nextState ) {
     }
 }
 
+function deskDisinfection() {
+    if (
+        detectCollision(clothOnTable, toggleBoxDeskLeft)
+    ) {
+        isToggleBoxDeskLeftChecked = true;
+        console.log("isToggleBoxDeskLeftChecked: ", isToggleBoxDeskLeftChecked, typeof(isToggleBoxDeskLeftChecked));
+    }
+    if (
+        detectCollision(clothOnTable, toggleBoxDeskRight)
+    ) {
+        isToggleBoxDeskRightChecked = true;
+        console.log("isToggleBoxDeskRightChecked: ", isToggleBoxDeskRightChecked, typeof(isToggleBoxDeskRightChecked));
+    }
 
+    if (
+        isToggleBoxDeskLeftChecked && isToggleBoxDeskRightChecked
+    ) {
+        controllerStateIndex.setControllerState('deskDisinfection', true);
+        clearInterval(tmpInterval);
+    }
+}
 
 function dragInHand() {
     let controllerActivities = new controllerActions(clothOnTable, activeController);
@@ -158,6 +202,7 @@ function drop() {
     let controllerActivities = new controllerActions(clothOnTable, activeController);
     controllerActivities.drop();
     isClothInHand = false;
+    clearInterval(tmpInterval);
 }
 
 function fallDown(cloth) {
