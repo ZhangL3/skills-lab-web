@@ -33,11 +33,10 @@ const schema = {
 };
 
 export function handleControllerNotifyToggleBoxNacl500NameLabel( triggerEvent ) {
-    if (!controllerStateIndex.getControllerState('nameLabelFilled')) {
+    /*if (!controllerStateIndex.getControllerState('nameLabelFilled')) {
         return false;
     }
 
-    // TODO: Is correct hand?
     if (
         controllerStateIndex.getControllerState('nameLabelInHand') === triggerEvent.activeController.getAttribute('id')
         && detectCollision(element, triggerEvent.activeController)
@@ -46,8 +45,24 @@ export function handleControllerNotifyToggleBoxNacl500NameLabel( triggerEvent ) 
     ) {
         controllerStateIndex.setControllerState('nameLabelPasted', true);
         stateIndex.setIn(['nameLabel', 'finish'], true);
+    }*/
+}
+
+export function handleControllerReleaseToggleBoxNacl500NameLabel( triggerEvent ) {
+    if (!controllerStateIndex.getControllerState('nameLabelFilled')) {
+        return false;
     }
 
+    if (
+        controllerStateIndex.getControllerState('nameLabelInHand') === triggerEvent.activeController.getAttribute('id')
+        && detectCollision(element, triggerEvent.activeController)
+        && controllerStateIndex.getControllerState('nameLabelFilled')
+        && !stateIndex.getIn(['nameLabel', 'finish'])
+    ) {
+        controllerStateIndex.setControllerState('nameLabelPasted', true);
+        controllerStateIndex.setControllerState('isNameFilledLabelHandling', false);
+        stateIndex.setIn(['nameLabel', 'finish'], true);
+    }
 }
 
 export function handleControllerStateNotifyToggleBoxNacl500NameLabel (nextControllerState) {
