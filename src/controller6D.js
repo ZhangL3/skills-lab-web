@@ -12,7 +12,7 @@ import { handleControllerNotifyToggleBoxPortfolio, handleControllerReleaseToggle
 import { handleControllerNotifyHandDisinfection } from './handDisinfection';
 import { handleControllerNotifyGlove } from './glove';
 import { handleControllerNotifyClothInBottle } from './clothBottleCapVive';
-import { handleControllerNotifyClothOnTable } from './disinfectionClothOnTableVive';
+import { handleControllerNotifyClothOnTable, handleControllerPressClothOnTable, handleControllerReleaseClothOnTable } from './disinfectionClothOnTableVive';
 import { handleControllerNotifyToggleBoxDeskDisinfection } from './toggleBoxDeskDisinfection';
 import { handleControllerNotifyToggleBoxTrashCan } from './toggleBoxTrashCan';
 import { handleControllerNotifyBottleNacl500Vive, handleControllerPressBottleNacl500Vive, handleControllerReleaseBottleNacl500Vive } from './bottleNacl500Vive';
@@ -67,7 +67,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyHandDisinfection);
         this.viveObserver.subscribe(handleControllerNotifyGlove);
         this.viveObserver.subscribe(handleControllerNotifyClothInBottle);
-        this.viveObserver.subscribe(handleControllerNotifyClothOnTable);
+        // this.viveObserver.subscribe(handleControllerNotifyClothOnTable);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxDeskDisinfection);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxTrashCan);
         // this.viveObserver.subscribe(handleControllerNotifyBottleNacl500Vive);
@@ -101,6 +101,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPackCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyNacl500DoorOpen);
 
+        // Listen to 'triggerdown'
         this.viveObserverPress.subscribe(handleControllerPressPortfolio);
         this.viveObserverPress.subscribe(handleControllerPressControllerHand);
         this.viveObserverPress.subscribe(handleControllerPressBottleNacl500Vive);
@@ -111,7 +112,9 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverPress.subscribe(handleControllerPressInfusionSetOpen);
         this.viveObserverPress.subscribe(handleControllerPressNameLabelStamperVive);
         this.viveObserverPress.subscribe(handleControllerPressNameLabelFilledVive);
+        this.viveObserverPress.subscribe(handleControllerPressClothOnTable);
 
+        // listen to 'triggerup'
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxPortfolio);
         this.viveObserverRelease.subscribe(handleControllerReleasePortfolio);
         this.viveObserverRelease.subscribe(handleControllerReleaseControllerHand);
@@ -129,6 +132,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseNameLabelStamperVive);
         this.viveObserverRelease.subscribe(handleControllerReleaseNameLabelFilledVive);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500NameLabel);
+        this.viveObserverRelease.subscribe(handleControllerReleaseClothOnTable);
 
         $(el).on('triggerdown', () => {
 

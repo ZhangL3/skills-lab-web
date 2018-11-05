@@ -26,6 +26,7 @@ import { handleControllerStateNotifyToggleBoxNameLabelEmpty } from '../src/toggl
 import { handleControllerStateNotifyRaycasterVive } from '../src/raycasterVive';
 import { handleControllerStateNotifyBottleNacl500CapVive } from '../src/bottleNacl500CapVive';
 import { handleControllerStateNotifyNameLabelFilledVive } from '../src/nameLabelFilledVive';
+import { handleControllerStateClothOnTable } from '../src/disinfectionClothOnTableVive';
 
 
 const controllerState = {
@@ -37,6 +38,7 @@ const controllerState = {
     hasGloveLeft: false,
     hasGloveRight: false,
     disinfectionClothInHand: null,
+    isDisinfectionClothHandling: false,
     deskDisinfection: false,
     deskDisinfectionAllFinish: false,
 
@@ -161,6 +163,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyRaycasterVive);
         this.controllerObserver.subscribe(handleControllerStateNotifyBottleNacl500CapVive);
         this.controllerObserver.subscribe(handleControllerStateNotifyNameLabelFilledVive);
+        this.controllerObserver.subscribe(handleControllerStateClothOnTable);
 
         console.log("controllerState init");
 

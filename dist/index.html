@@ -323,7 +323,9 @@
         </a-gltf-model>
 
         <!-- cloth -->
-        <a-gltf-model id="clothOnTable" src="#clothMesh" position="0 0.685 -0.81" rotation="" scale="0.1 0.1 0.1" visible="false" disinfection_cloth_on_table disinfection_cloth_on_table_vive></a-gltf-model>
+        <a-gltf-model id="clothOnTable" src="#clothMesh" position="0 0.685 -0.81" rotation="" scale="0.1 0.1 0.1" visible="false" disinfection_cloth_on_table disinfection_cloth_on_table_vive>
+            <a-box id="clothOnTableHelperBox" position="0 -0.25 0" scale="0.177 0.5 0.392" visible="false"></a-box>
+        </a-gltf-model>
 
         <a-box id="toggleBoxDesk" toggle_box_desk_disinfection scale="1.322 0.067 0.157" position="0.002 0.711 -0.805" material="color:#ff0000; transparent: true; opacity: 0.5" visible="false"></a-box>
 
