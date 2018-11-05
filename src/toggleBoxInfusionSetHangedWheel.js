@@ -62,6 +62,7 @@ export function handleControllerStateNotifyToggleBoxInfusionSetHangedWheel (next
         !nextControllerState.infusionSetWheelClosed
         && nextControllerState.dripChamberFilled
         && currentControllerState.infusionSetWheelClosed
+        && canTriggerWheel
     ) {
         openWheel();
     }

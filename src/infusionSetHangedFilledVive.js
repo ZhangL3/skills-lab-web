@@ -18,6 +18,7 @@ let infusionSetFixed;
 
 // to different open wheel and fix tube
 let touchable;
+let canFixTube = false;
 
 export default AFRAME.registerComponent('infusion_set_hanged_filled_vive', {
 
@@ -86,11 +87,15 @@ export function handleControllerStateNotifyInfusionSetHangedFilledVive (nextCont
             element.setAttribute('visible', true);
             touchable = true;
         }, schema.dur);
+        setTimeout(() => {
+            canFixTube = true;
+        }, 1000)
     }
     // show fixed infusion set
     else if (
         nextControllerState.tubeFixed
         && !currentControllerState.tubeFixed
+        && canFixTube
     ) {
         fixTube();
     }

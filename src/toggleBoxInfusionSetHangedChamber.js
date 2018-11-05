@@ -57,7 +57,7 @@ export function handleControllerStateNotifyToggleBoxInfusionSetHangedChamber (ne
         infusionSetHangedFillTrigger.attr('visible', false);
         setTimeout(() => {
             setCanTriggerWheel(true);
-        }, 500);
+        }, 1000);
     }
 
     // deep copy
