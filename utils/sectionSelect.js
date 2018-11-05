@@ -90,7 +90,7 @@ export const section1 = {
     handDisinfection: {
         disinfecting: false,
         disinfected: false,
-        finish: 1,
+        finish: 0,
     },
     bottlePrepare: {
         position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
@@ -125,7 +125,7 @@ export const section1 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'Please disinfect the work desk at first.',
+    hint: 'Please disinfect hands before disinfect the work place.',
     sectionSelected: 1,
     started: false
 };
@@ -190,7 +190,7 @@ export const section2 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'Please disinfect desk at first.',
+    hint: 'Please disinfect the work place',
     sectionSelected: 2,
     started: false
 };
@@ -255,7 +255,7 @@ export const section3 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'Please disinfect hands at first.',
+    hint: 'Please disinfect hands before prepare the infusion.',
     sectionSelected: 2,
     started: false
 };
