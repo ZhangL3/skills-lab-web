@@ -151,14 +151,14 @@ export function handleControllerStateClothOnTable ( nextState ) {
         && !isClothInHand
     ) {
         dragInHand();
-        tmpInterval = setInterval(() => {
-            if (
-                deskDisinfection()
-            ) {
-                controllerStateIndex.setControllerState('deskDisinfection', true);
-                clearInterval(tmpInterval);
-            }
-        }, 10);
+        // tmpInterval = setInterval(() => {
+        //     if (
+        //         deskDisinfection()
+        //     ) {
+        //         controllerStateIndex.setControllerState('deskDisinfection', true);
+        //         clearInterval(tmpInterval);
+        //     }
+        // }, 10);
     }
     // Drop
     else if (
@@ -185,7 +185,9 @@ function deskDisinfection() {
     }
 
     if (
-        isToggleBoxDeskLeftChecked && isToggleBoxDeskRightChecked
+        isToggleBoxDeskLeftChecked
+        && isToggleBoxDeskRightChecked
+        && !controllerStateIndex.getControllerState('deskDisinfection')
     ) {
         controllerStateIndex.setControllerState('deskDisinfection', true);
         clearInterval(tmpInterval);

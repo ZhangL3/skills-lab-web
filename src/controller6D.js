@@ -13,8 +13,7 @@ import { handleControllerNotifyHandDisinfection } from './handDisinfection';
 import { handleControllerNotifyGlove } from './glove';
 import { handleControllerNotifyClothInBottle } from './clothBottleCapVive';
 import { handleControllerNotifyClothOnTable, handleControllerPressClothOnTable, handleControllerReleaseClothOnTable } from './disinfectionClothOnTableVive';
-import { handleControllerNotifyToggleBoxDeskDisinfection } from './toggleBoxDeskDisinfection';
-import { handleControllerNotifyToggleBoxTrashCan } from './toggleBoxTrashCan';
+import { handleControllerNotifyToggleBoxTrashCan, handleControllerReleaseToggleBoxTrashCan } from './toggleBoxTrashCan';
 import { handleControllerNotifyBottleNacl500Vive, handleControllerPressBottleNacl500Vive, handleControllerReleaseBottleNacl500Vive } from './bottleNacl500Vive';
 import { handleControllerNotifyToggleBoxNacl500OnDesk, handleControllerReleaseToggleBoxNacl500OnDesk} from './toggleBoxNacl500OnDesk';
 import { handleControllerNotifyToggleBoxNacl500Label } from './toggleBoxNacl500Label';
@@ -68,8 +67,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyGlove);
         this.viveObserver.subscribe(handleControllerNotifyClothInBottle);
         // this.viveObserver.subscribe(handleControllerNotifyClothOnTable);
-        this.viveObserver.subscribe(handleControllerNotifyToggleBoxDeskDisinfection);
-        this.viveObserver.subscribe(handleControllerNotifyToggleBoxTrashCan);
+        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxTrashCan);
         // this.viveObserver.subscribe(handleControllerNotifyBottleNacl500Vive);
         // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500OnDesk);
         // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Label);
@@ -133,6 +131,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseNameLabelFilledVive);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500NameLabel);
         this.viveObserverRelease.subscribe(handleControllerReleaseClothOnTable);
+        this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxTrashCan);
 
         $(el).on('triggerdown', () => {
 

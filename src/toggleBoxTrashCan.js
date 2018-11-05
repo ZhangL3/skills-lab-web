@@ -58,27 +58,38 @@ function dropGloveCloth() {
             aAnimationWrapper(gloveInHandRight, '', 'position', '', schema.inCan, schema.dur, '',true , 'forwards');
         }
     }, 500);
-
 }
 
 export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
 
-    if(controllerStateIndex.getControllerState('deskDisinfection')) {
-
-        // getWorldBound(element);
-
+    /*if(controllerStateIndex.getControllerState('deskDisinfection')) {
         if(
             detectCollision(element, triggerEvent.activeController)
-            // isEmitted(element, triggerEvent.position)
             && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
         ){
             activeController = triggerEvent.activeController;
             controllerStateIndex.setControllerState('hasGloveRight', false);
             controllerStateIndex.setControllerState('hasGloveLeft', false);
             controllerStateIndex.setControllerState('deskDisinfectionAllFinish', true);
-
         }
+    }*/
+}
+
+export function handleControllerReleaseToggleBoxTrashCan( triggerEvent ) {
+
+    if(!controllerStateIndex.getControllerState('deskDisinfection')) {
+        return false;
     }
+    if(
+        detectCollision(element, triggerEvent.activeController)
+        && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
+    ){
+        activeController = triggerEvent.activeController;
+        controllerStateIndex.setControllerState('hasGloveRight', false);
+        controllerStateIndex.setControllerState('hasGloveLeft', false);
+        controllerStateIndex.setControllerState('deskDisinfectionAllFinish', true);
+    }
+
 }
 
 export function handleControllerStateNotifyToggleBoxTrashCan (nextControllerState) {
