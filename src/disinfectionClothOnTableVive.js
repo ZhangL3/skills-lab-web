@@ -43,19 +43,12 @@ export function handleControllerNotifyClothOnTable ( triggerEvent ) {
     let activeControllerId = activeController.getAttribute('id');
 
     if (
-        // Must have glove, before taking disinfection cloth
+        // Must have gloves, before taking disinfection cloth
         (
-            (
-                activeControllerId === 'viveControllerLeft'
-                && controllerStateIndex.getControllerState('hasGloveLeft')
-                && haveSthInHand(activeController).length === 0
-            )
-            ||
-            (
-                activeControllerId === 'viveControllerRight'
-                &&controllerStateIndex.getControllerState('hasGloveRight')
-                && haveSthInHand(activeController).length === 0
-            )
+            activeControllerId
+            && controllerStateIndex.getControllerState('hasGloveLeft')
+            && controllerStateIndex.getControllerState('hasGloveRight')
+            && haveSthInHand(activeController).length === 0
         )
         && checkIsCapOpen()
         // && isEmitted(clothInBottle, triggerEvent.position)
