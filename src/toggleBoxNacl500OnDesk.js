@@ -54,7 +54,12 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
 }
 
 export function handleControllerReleaseToggleBoxNacl500OnDesk( triggerEvent ) {
-    if(!detectCollision(element, triggerEvent.activeController)) {
+    if(
+        !detectCollision(element, triggerEvent.activeController)
+        || !controllerStateIndex.getControllerState('nacl500LabelChecked')
+        || !controllerStateIndex.getControllerState('nacl500LiquidChecked')
+        || !controllerStateIndex.getControllerState('nacl500CapChecked')
+    ) {
         return false;
     }
 

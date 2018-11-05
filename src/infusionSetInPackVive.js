@@ -177,7 +177,9 @@ function dragInHand() {
 
 function dropToDesk() {
     $(element).remove();
-    isInfusionSetInHand = activeController.getAttribute('id');
+    if ( activeController ) {
+        isInfusionSetInHand = activeController.getAttribute('id');
+    }
 }
 
 function drop() {
