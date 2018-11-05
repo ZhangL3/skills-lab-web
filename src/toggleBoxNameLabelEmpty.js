@@ -6,6 +6,7 @@ import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import { canWrite } from "./nameLabelStamperVive";
 import {setIsNameLabelFilledInHand} from "./nameLabelFilledVive";
+import {setFilledNameLabel} from "./nameLabelFilledVive";
 
 let element;
 let nameLabelWroteLeft;
@@ -67,11 +68,13 @@ function writeNameLabel() {
     const activeHandId = controllerStateIndex.getControllerState('nameLabelInHand');
     if (activeHandId === 'viveControllerLeft') {
         nameLabelWroteLeft.setAttribute('visible', true);
-        $(document).remove(nameLabelWroteRight);
+        setFilledNameLabel(nameLabelWroteLeft);
+        $(nameLabelWroteRight).remove();
     }
     else if (activeHandId === 'viveControllerRight') {
         nameLabelWroteRight.setAttribute('visible', true);
-        $(document).remove(nameLabelWroteLeft);
+        setFilledNameLabel(nameLabelWroteRight);
+        $(nameLabelWroteLeft).remove();
     }
     $(nameLabelEmpty).remove();
     isNameLabelFilled = true;
