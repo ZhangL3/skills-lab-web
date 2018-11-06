@@ -36,6 +36,8 @@ AFRAME.registerComponent('camera-move', {
             return false;
         }
 
+        console.log("Should not shown if disable true");
+
         cameraPosition = positionVar.origin.name;
         nacl500Bottle = document.querySelector('#nacl500Bottle');
         infusionSetOpen = document.querySelector('#infusionSetOpen');
@@ -45,47 +47,29 @@ AFRAME.registerComponent('camera-move', {
         let timer;
 
         // move to cupboard
-        nacl500Bottle.addEventListener('raycaster-intersected', () => {
-            this.moveToCupboardAndBack(el, data.disable);
-        });
+        nacl500Bottle.addEventListener('raycaster-intersected',
+            this.moveToCupboardAndBack(el, data.disable)
+        );
 
         // move to cabinet
-        infusionSetOpen.addEventListener('raycaster-intersected', ()=>{
-            this.moveToCabinetAndBack(el, data.disable);
-        });
+        infusionSetOpen.addEventListener('raycaster-intersected',
+            this.moveToCabinetAndBack(el, data.disable)
+        );
 
         // move to holder
-        infusionSetHanged.addEventListener('raycaster-intersected', ()=>{
-            this.moveToHolderAndBack(el, data.disable);
-        });
+        infusionSetHanged.addEventListener('raycaster-intersected',
+            this.moveToHolderAndBack(el, data.disable)
+        );
 
         // move to holder
-        infusionSetHangedFilled.addEventListener('raycaster-intersected', ()=>{
-            this.moveToHolderAndBack(el, data.disable);
-        });
+        infusionSetHangedFilled.addEventListener('raycaster-intersected',
+            this.moveToHolderAndBack(el, data.disable)
+        );
 
         // move to hand disinfection
-        handDisinfectionHandle.addEventListener('raycaster-intersected', ()=>{
-            this.moveToHandDisinfectionAndBack(el, data.disable);
-        });
-
-        /*$(el).on('removeAllListener', () => {
-            console.log("remove all listener");
-            // move to cupboard
-            nacl500Bottle.removeEventListener('raycaster-intersected', this.moveToCupboardAndBack);
-
-            // move to cabinet
-            infusionSetOpen.removeEventListener('raycaster-intersected', this.moveToCabinetAndBack);
-
-            // move to holder
-            infusionSetHanged.removeEventListener('raycaster-intersected', this.moveToHolderAndBack);
-
-            // move to holder
-            infusionSetHangedFilled.removeEventListener('raycaster-intersected', this.moveToHolderAndBack);
-
-            // move to hand disinfection
-            handDisinfectionHandle.removeEventListener('raycaster-intersected', this.moveToHandDisinfectionAndBack);
-        });*/
+        handDisinfectionHandle.addEventListener('raycaster-intersected',
+            this.moveToHandDisinfectionAndBack(el, data.disable)
+        );
     },
 
     update: function (oldData) {
@@ -93,7 +77,7 @@ AFRAME.registerComponent('camera-move', {
         let el = this.el;
 
         if (data.disable) {
-
+            // Remove raycaster-intersected listener
             nacl500Bottle = document.querySelector('#nacl500Bottle');
             infusionSetOpen = document.querySelector('#infusionSetOpen');
             infusionSetHanged = document.querySelector('#infusionSetHanged');
