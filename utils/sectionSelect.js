@@ -125,7 +125,7 @@ export const section1 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'Please disinfect hands before disinfect the work place.',
+    hint: 'Please disinfect hands\\n before disinfect the work place.',
     sectionSelected: 1,
     started: false
 };
@@ -255,7 +255,7 @@ export const section3 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'Please disinfect hands before prepare the infusion.',
+    hint: 'Please disinfect hands\\n before prepare the infusion.',
     sectionSelected: 2,
     started: false
 };
@@ -320,7 +320,7 @@ export const section4 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'Please prepare infusion bottle at first.',
+    hint: 'Please prepare infusion bottle.',
     sectionSelected: 3,
     started: false
 };
@@ -385,7 +385,7 @@ export const section5 = {
         time: '0:00',
         hintTimes: 0,
     },
-    hint: 'Please prepare infusion set at first.',
+    hint: 'Please prepare infusion set.',
     sectionSelected: 4,
     started: false
 };
@@ -450,7 +450,7 @@ export const section6 = {
         time: '0:00',
         hintTimes: 0,
     },
-        hint: 'Please prepare for infusion',
+        hint: 'Please prepare for the infusion',
     sectionSelected: 5,
     started: false
 };
