@@ -147,10 +147,10 @@ export const section2 = {
         finish: true,
     },
     tableDisinfection:{
-        hasGlove: true,
-        hasCloth: true,
-        disinfectionFinish: true,
-        finish: true,
+        hasGlove: false,
+        hasCloth: false,
+        disinfectionFinish: false,
+        finish: false,
     },
     handDisinfection: {
         disinfecting: false,
@@ -220,7 +220,7 @@ export const section3 = {
     handDisinfection: {
         disinfecting: false,
         disinfected: false,
-        finish: 2,
+        finish: 1,
     },
     bottlePrepare: {
         position: constants.bottle.position.IN_CUPBOARD, // 'in-cupboard' || 'in-hand' || 'on-table' || 'hanged'
