@@ -47,29 +47,29 @@ AFRAME.registerComponent('camera-move', {
         let timer;
 
         // move to cupboard
-        nacl500Bottle.addEventListener('raycaster-intersected',
+        nacl500Bottle.addEventListener('raycaster-intersected', ()=> {
             this.moveToCupboardAndBack(el, data.disable)
-        );
+        });
 
         // move to cabinet
-        infusionSetOpen.addEventListener('raycaster-intersected',
+        infusionSetOpen.addEventListener('raycaster-intersected', ()=> {
             this.moveToCabinetAndBack(el, data.disable)
-        );
+        });
 
         // move to holder
-        infusionSetHanged.addEventListener('raycaster-intersected',
+        infusionSetHanged.addEventListener('raycaster-intersected', ()=> {
             this.moveToHolderAndBack(el, data.disable)
-        );
+        });
 
         // move to holder
-        infusionSetHangedFilled.addEventListener('raycaster-intersected',
+        infusionSetHangedFilled.addEventListener('raycaster-intersected', ()=> {
             this.moveToHolderAndBack(el, data.disable)
-        );
+        });
 
         // move to hand disinfection
-        handDisinfectionHandle.addEventListener('raycaster-intersected',
+        handDisinfectionHandle.addEventListener('raycaster-intersected', ()=> {
             this.moveToHandDisinfectionAndBack(el, data.disable)
-        );
+        });
     },
 
     update: function (oldData) {
