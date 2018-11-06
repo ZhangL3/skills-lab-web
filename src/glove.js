@@ -49,6 +49,7 @@ export default AFRAME.registerComponent('glove', {
                 if (
                     // stateIndex.getIn(['portfolio', 'finish'])  === true
                     stateIndex.getIn(['handDisinfection', 'finish']) === 1
+                    && !stateIndex.getIn(['tableDisinfection', 'finish'])
                 ) {
                     // show glove
                     activeController = data.activeController;
