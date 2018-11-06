@@ -9,6 +9,7 @@ import {setVisibleTrue} from "../utils/setVisible";
 
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
+import hints from '../utils/hints';
 
 
 let clothInBottle;

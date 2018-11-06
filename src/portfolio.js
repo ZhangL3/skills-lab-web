@@ -12,6 +12,7 @@ import { controllerActions } from "../utils/controllerActions";
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import {showHook} from "./portfolioCheck";
+import hints from '../utils/hints';
 
 let element;
 let currentState;
@@ -156,6 +157,8 @@ function handleClickPortfolio () {
         !is5RChecked()
     ) {
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.IN_HAND);
+        // console.log("hints: ", hints, typeof(hints));
+        stateIndex.set('hint', hints.check5R);
         stateIndex.set('started', true);
     }
     else if (
@@ -170,6 +173,7 @@ function handleClickPortfolio () {
         is5RChecked() &&
         stateIndex.getIn(['portfolio', 'finish']) === false
     ) {
+        stateIndex.set('hint', hints.handDisinfection);
         stateIndex.setIn(['portfolio', 'checkFinish'], true);
         stateIndex.setIn(['portfolio', 'finish'], true);
     }

@@ -77,7 +77,7 @@ export function handleControllerNotifyInfusionSetOpen ( triggerEvent ) {
             let activeControllerId = activeController.getAttribute('id');
             controllerStateIndex.setControllerState('infusionSetOpenInHand', activeControllerId);
         }
-        // change hint
+        // change hints
         else if (
             (!controllerStateIndex.getControllerState('infusionSetCapOff')
             || !controllerStateIndex.getControllerState('infusionSetWheelClosed'))
@@ -122,7 +122,7 @@ export function handleControllerPressInfusionSetOpen ( triggerEvent ) {
         controllerStateIndex.setControllerState('infusionSetOpenInHand', activeControllerId);
         controllerStateIndex.setControllerState('isInfusionSetOnDeskOpenedHandling', true);
     }
-    // change hint
+    // change hints
     else if (
         (!controllerStateIndex.getControllerState('infusionSetCapOff')
             || !controllerStateIndex.getControllerState('infusionSetWheelClosed'))

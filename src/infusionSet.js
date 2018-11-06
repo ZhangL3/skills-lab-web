@@ -333,7 +333,7 @@ function handleClickInfusionSetHangedRoller() {
         stateIndex.setIn(['infusionSet', 'tubeFilled'], true);
         stateIndex.setIn(['infusionSet', 'rollerClapOpen'], true);
     }
-    // change hint
+    // change hints
     else if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
         stateIndex.getIn(['infusionSet','chamberFilled']) !== true &&

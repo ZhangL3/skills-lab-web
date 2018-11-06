@@ -7,6 +7,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted, detectCollision } from "../utils/isEmitted";
 import controllerStateIndex from '../utils/controllerState';
+import hints from '../utils/hints';
 
 
 // let element;
@@ -82,6 +83,7 @@ function handleClickGlove () {
         stateIndex.getIn(['handDisinfection', 'finish']) === 1
     ) {
         stateIndex.setIn(['tableDisinfection', 'hasGlove'], true);
+        stateIndex.set('hint', hints.takeDisinfectionCloth);
     }
     else {
         // console.log("portfolio not finish: ");

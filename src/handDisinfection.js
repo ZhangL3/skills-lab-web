@@ -6,6 +6,7 @@ import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted, detectCollision } from "../utils/isEmitted";
+import hints from '../utils/hints';
 
 
 let element;
@@ -75,14 +76,14 @@ function getPlat30Rotation(){
 }
 
 function handleClickHandle () {
-    if (// TODO: for product remove comment
+    if (
         stateIndex.getIn(['portfolio', 'finish']) === true &&
         stateIndex.getIn(['handDisinfection', 'disinfecting']) === false &&
         stateIndex.getIn(['handDisinfection', 'finish']) === 0
     ){
         stateIndex.setIn(['handDisinfection', 'disinfecting'], true);
     }
-    else if (// TODO: for product remove comment
+    else if (
         stateIndex.getIn(['tableDisinfection', 'finish']) === true &&
         stateIndex.getIn(['handDisinfection', 'disinfecting']) === false &&
         stateIndex.getIn(['handDisinfection', 'finish']) === 1
@@ -128,6 +129,7 @@ export function handleNotifyHandDisinfection(nextState) {
             stateIndex.setIn(['handDisinfection', 'disinfected'], false);
             stateIndex.setIn(['handDisinfection', 'finish'], stateIndex.getIn(['handDisinfection', 'finish']) + 1);
             hideClockIndicate();
+            changeHint();
         }, handDisinfectionTime);
     }
     // else if (
@@ -153,5 +155,18 @@ export function handleControllerNotifyHandDisinfection( triggerEvent ) {
 
 export function handleControllerStateNotifyHandDisinfection (nextControllerState) {
 
+}
+
+function changeHint() {
+    if (
+        stateIndex.getIn(['handDisinfection', 'finish']) === 1
+    ) {
+        stateIndex.set('hint', hints.wearGloves);
+    }
+    else if (
+        stateIndex.getIn(['handDisinfection', 'finish']) === 2
+    ) {
+        stateIndex.set('hint', `${hints.takeDrug} or \\n ${hints.takeInfusionSet}`);
+    }
 }
 

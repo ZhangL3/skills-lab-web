@@ -1,4 +1,4 @@
-export default hint = {
+const hints = {
     checkPortfolio: 'Check portfolio',
     check5R: 'Check 5 R',
     handDisinfection: 'Hand disinfection',
@@ -22,4 +22,6 @@ export default hint = {
     takeNameLabel: 'Take one name label',
     fillNameLabel: 'Fill the name label',
     pastNameLabel: 'Past name label'
-}
+};
+
+export default hints;

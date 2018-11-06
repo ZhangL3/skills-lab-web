@@ -46,6 +46,8 @@ AFRAME.registerComponent('camera-move', {
         handDisinfectionHandle = document.querySelector('#handDisinfectionHandle');
         let timer;
 
+        //test
+
         // move to cupboard
         nacl500Bottle.addEventListener('raycaster-intersected', ()=> {
             this.moveToCupboardAndBack(el, data.disable)

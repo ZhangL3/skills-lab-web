@@ -6,6 +6,8 @@ import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 
 import { canTakeCloth } from './clothBottleCapOpen';
+import hints from '../utils/hints';
+
 
 let element;
 let currentState;
@@ -68,6 +70,7 @@ function handleClickClothInBottle () {
         && canTakeCloth
     ) {
         stateIndex.setIn(['tableDisinfection','hasCloth'], true);
+        stateIndex.set('hint', hints.deskDisinfection);
     }
     else {
         console.log("has no glove: ");
