@@ -20,7 +20,7 @@ let toggleBoxPortfolio;
 
 let activeController;
 
-let hookName;
+let     hookName;
 let hookDrug;
 let hookDose;
 let hookIV;
@@ -178,11 +178,11 @@ function handleClickPortfolio () {
 // hide the hooks for 5R
 export function hideHooks() {
     console.log("hide!!!!!: ");
-    hookName.setAttribute('visible', 'false');
-    hookDrug.setAttribute('visible', 'false');
-    hookDose.setAttribute('visible', 'false');
-    hookIV.setAttribute('visible', 'false');
-    hookCF.setAttribute('visible', 'false');
+    hookName.setAttribute('visible', false);
+    hookDrug.setAttribute('visible', false);
+    hookDose.setAttribute('visible', false);
+    hookIV.setAttribute('visible', false);
+    hookCF.setAttribute('visible', false);
 }
 
 export function handleNotifyPortfolio(nextState) {
@@ -205,7 +205,10 @@ export function handleNotifyPortfolio(nextState) {
     ) {
         putOnTable();
         close();
-        hideHooks();
+        // Change attribute after changing the DOM element
+        setTimeout(() => {
+            hideHooks();
+        }, 500);
 
         // stateIndex.setIn(['portfolio', 'finish'], true);
     }
