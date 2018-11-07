@@ -122,6 +122,7 @@ export function handleControllerPressNameLabelStamperVive ( triggerEvent ) {
             controllerStateIndex.setControllerState('nameLabelInHand', activeControllerId);
             controllerStateIndex.setControllerState('isNameEmptyLabelHandling', true);
             isNameEmptyLabelHandling = true;
+            stateIndex.set('hint', hints.fillNameLabel);
             // after 2 second can write name label
             setTimeout(()=>{
                 canWrite = true;
@@ -136,7 +137,6 @@ export function handleControllerPressNameLabelStamperVive ( triggerEvent ) {
         ) {
             let activeControllerId = activeController.getAttribute('id');
             controllerStateIndex.setControllerState('nameLabelInHand', activeControllerId);
-            stateIndex.set('hint', hints.fillNameLabel);
             // after 2 second can write name label
             setTimeout(()=>{
                 canWrite = true;
