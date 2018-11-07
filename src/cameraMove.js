@@ -64,7 +64,7 @@ AFRAME.registerComponent('camera-move', {
 
     update: function (oldData) {
         let data = this.data;
-
+        // Redef
         cameraPosition = positionVar.origin.name;
         nacl500Bottle = document.querySelector('#nacl500Bottle');
         infusionSetOpen = document.querySelector('#infusionSetOpen');
