@@ -7,6 +7,7 @@ import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from "../utils/aAnimationWrapper";
 
 import {canTriggerChamberAndWheel} from "./infusionSetHangedVive";
+import {setCanFixTube} from "./infusionSetHangedFilledVive";
 import stateIndex from "./state";
 import hints from "../utils/hints";
 
@@ -55,6 +56,9 @@ export function handleControllerNotifyToggleBoxInfusionSetHangedWheel( triggerEv
         ) {
             controllerStateIndex.setControllerState('infusionSetWheelClosed', false);
             stateIndex.set('hint', hints.fixTube);
+            let t = setTimeout(() => {
+                setCanFixTube(true);
+            }, 1000);
         }
     }
 }

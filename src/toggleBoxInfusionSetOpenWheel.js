@@ -43,11 +43,11 @@ export function handleControllerNotifyToggleBoxInfusionSetCap( triggerEvent ) {
         && !controllerStateIndex.getControllerState('infusionSetWheelClosed')
         && canTriggerCapAndWheel
     ) {
-        controllerStateIndex.setControllerState('infusionSetWheelClosed', true)
+        controllerStateIndex.setControllerState('infusionSetWheelClosed', true);
         setTimeout(()=>{
             setCanTriggerInfusionSetCap(true);
+            stateIndex.set('hint', hints.takeOffInfusionSetCap);
         }, 500);
-        stateIndex.set('hint', hints.takeOffInfusionSetCap);
     }
 }
 

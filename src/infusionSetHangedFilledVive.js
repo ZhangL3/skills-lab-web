@@ -8,6 +8,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted, detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
+import hints from '../utils/hints';
 
 let currentState;
 let currentControllerState;
@@ -65,9 +66,13 @@ export function handleControllerNotifyInfusionSetHangedFilledVive ( triggerEvent
         return false;
     }
 
-    if (detectCollision(element, triggerEvent.activeController)) {
+    if (
+        detectCollision(element, triggerEvent.activeController)
+        && canFixTube
+    ) {
         controllerStateIndex.setControllerState('tubeFixed', true);
         stateIndex.setIn(['infusionSet', 'finish'], true);
+        stateIndex.set('hint', hints.takeNameLabel);
     }
 
 }
@@ -108,4 +113,8 @@ function fixTube() {
     console.log("fix tube");
     element.setAttribute('visible', false);
     infusionSetFixed.setAttribute('visible', true);
+}
+
+export function setCanFixTube(value) {
+    canFixTube = value;
 }

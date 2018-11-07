@@ -71,7 +71,6 @@ export function handleControllerStateNotifyInfusionSetHangedVive (nextController
         setTimeout(() => {
             element.setAttribute('visible', false);
         }, schema.dur);
-        stateIndex.set('hint', hints.takeNameLabel);
     }
 
     // deep copy
