@@ -65,26 +65,36 @@ AFRAME.registerComponent('camera-move', {
     update: function (oldData) {
         let data = this.data;
 
+        cameraPosition = positionVar.origin.name;
+        nacl500Bottle = document.querySelector('#nacl500Bottle');
+        infusionSetOpen = document.querySelector('#infusionSetOpen');
+        infusionSetHanged = document.querySelector('#infusionSetHanged');
+        infusionSetHangedFilled = document.querySelector('#infusionSetHangedFilled');
+        handDisinfectionHandle = document.querySelector('#handDisinfectionHandle');
+
         if (data.disable) {
-
-            // move to cupboard
-            nacl500Bottle.removeEventListener('raycaster-intersected', moveToCupboardAndBack);
-
-            // move to cabinet
-            infusionSetOpen.removeEventListener('raycaster-intersected', moveToCabinetAndBack);
-
-            // move to holder
-            infusionSetHanged.removeEventListener('raycaster-intersected', moveToHolderAndBack);
-
-            // move to holder
-            infusionSetHangedFilled.removeEventListener('raycaster-intersected', moveToHolderAndBack);
-
-            // move to hand disinfection
-            handDisinfectionHandle.removeEventListener('raycaster-intersected', moveToHandDisinfectionAndBack);
+            removeAllEventListener();
         }
 
     },
 });
+
+function removeAllEventListener() {
+    // move to cupboard
+    nacl500Bottle.removeEventListener('raycaster-intersected', moveToCupboardAndBack);
+
+    // move to cabinet
+    infusionSetOpen.removeEventListener('raycaster-intersected', moveToCabinetAndBack);
+
+    // move to holder
+    infusionSetHanged.removeEventListener('raycaster-intersected', moveToHolderAndBack);
+
+    // move to holder
+    infusionSetHangedFilled.removeEventListener('raycaster-intersected', moveToHolderAndBack);
+
+    // move to hand disinfection
+    handDisinfectionHandle.removeEventListener('raycaster-intersected', moveToHandDisinfectionAndBack);
+}
 
 function moveToCupboardAndBack() {
     if(cameraMoved) {
