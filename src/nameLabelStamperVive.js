@@ -11,6 +11,7 @@ import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
+import hints from "../utils/hints";
 
 let currentState;
 let currentControllerState;
@@ -135,6 +136,7 @@ export function handleControllerPressNameLabelStamperVive ( triggerEvent ) {
         ) {
             let activeControllerId = activeController.getAttribute('id');
             controllerStateIndex.setControllerState('nameLabelInHand', activeControllerId);
+            stateIndex.set('hint', hints.fillNameLabel);
             // after 2 second can write name label
             setTimeout(()=>{
                 canWrite = true;

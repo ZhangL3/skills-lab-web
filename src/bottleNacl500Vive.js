@@ -17,6 +17,7 @@ import dropDown from '../utils/dropDown';
 import {showHookNacl500Cap} from "./hookNacl500Cap";
 import {showHookNacl500Label} from "./hookNacl500Label";
 import {showHookNacl500Liquid} from "./hookNacl500Liquid";
+import hints from "../utils/hints";
 
 let element;
 let currentState;
@@ -148,6 +149,7 @@ export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
         console.log("emmit triggerDown to bottle");
         activeController = triggerEvent.activeController;
         let activeControllerId =  activeController.getAttribute('id');
+        stateIndex.set('hint', hints.checkDrug);
         controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
         controllerStateIndex.setControllerState('isNacl500ToDeskHandling', true);
     }

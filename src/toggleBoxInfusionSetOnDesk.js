@@ -7,6 +7,8 @@ import controllerStateIndex from '../utils/controllerState';
 import { controllerActions } from "../utils/controllerActions";
 
 import {setCanTriggerCapAndWheel} from "./infusionSetOpenVive";
+import stateIndex from "./state";
+import hints from '../utils/hints';
 
 let element;
 
@@ -56,6 +58,7 @@ export function handleControllerReleaseToggleBoxInfusionSetOnDesk ( triggerEvent
         setTimeout(()=>{
             setCanTriggerCapAndWheel(true);
         }, 500);
+        stateIndex.set('hint', hints.closeRoller);
     }
 }
 

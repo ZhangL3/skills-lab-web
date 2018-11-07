@@ -12,6 +12,7 @@ import stateIndex from './state';
 import { haveSthInHand } from "./controllerHand";
 
 import {canCheck} from "./bottleNacl500Vive";
+import hints from "../utils/hints";
 
 let element;
 let bottleNacl500Cap;
@@ -120,6 +121,7 @@ export function handleControllerReleaseToggleBoxNacl500Cap( triggerEvent ) {
         controllerStateIndex.setControllerState('infusionSetInBottle', true);
         controllerStateIndex.setControllerState('isInfusionSetOnDeskOpenedHandling', false);
         controllerStateIndex.setControllerState('nacl500Dragable', true);
+        stateIndex.set('hint', hints.hang);
     }
 }
 

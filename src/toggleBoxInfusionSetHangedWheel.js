@@ -7,6 +7,8 @@ import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from "../utils/aAnimationWrapper";
 
 import {canTriggerChamberAndWheel} from "./infusionSetHangedVive";
+import stateIndex from "./state";
+import hints from "../utils/hints";
 
 let element;
 let infusionSetHangedWheel;
@@ -42,7 +44,7 @@ export function handleControllerNotifyToggleBoxInfusionSetHangedWheel( triggerEv
         console.log("Sqeeze chamber before open the roller");
         return false;
     }
-
+    // Open roller
     if (
         detectCollision(element, triggerEvent.activeController)
         && canTriggerChamberAndWheel
@@ -52,6 +54,7 @@ export function handleControllerNotifyToggleBoxInfusionSetHangedWheel( triggerEv
             controllerStateIndex.getControllerState('infusionSetWheelClosed')
         ) {
             controllerStateIndex.setControllerState('infusionSetWheelClosed', false);
+            stateIndex.set('hint', hints.fixTube);
         }
     }
 }

@@ -14,6 +14,7 @@ import  {movable } from "./infusionSet";
 
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
+import hints from "../utils/hints";
 
 let currentState;
 let currentControllerState;
@@ -92,8 +93,9 @@ export function handleControllerPressInfusionSetInPack ( triggerEvent ) {
         && haveSthInHand(triggerEvent.activeController).length === 0
         && !controllerStateIndex.getControllerState('isInfusionSetInPackHandling')
     ){
+        stateIndex.set('hint', hints.checkInfusionSet);
         controllerStateIndex.setControllerState('infusionSetInPackInHand', activeController.getAttribute('id'));
-        controllerStateIndex.setControllerState('isInfusionSetInPackHandling', true)
+        controllerStateIndex.setControllerState('isInfusionSetInPackHandling', true);
     }
     // Pick up
     else if (

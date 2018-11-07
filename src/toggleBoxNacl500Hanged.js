@@ -8,6 +8,7 @@ import stateIndex from './state';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 
 import {setCanTriggerChamberAndWheel} from "./infusionSetHangedVive";
+import hints from "../utils/hints";
 
 let element;
 let nacl500Bottle;
@@ -71,7 +72,7 @@ export function handleControllerReleaseToggleBoxNacl500Hanged( triggerEvent ) {
     ) {
         return false;
     }
-
+    // Hang nacl 500 bottle
     if (
         controllerStateIndex.getControllerState('nacl500InHandToStand') === triggerEvent.activeController.getAttribute('id')
         && controllerStateIndex.getControllerState('nacl500InHandToStand')
@@ -86,6 +87,7 @@ export function handleControllerReleaseToggleBoxNacl500Hanged( triggerEvent ) {
             setCanTriggerChamberAndWheel(true);
         }, 500);
         element.setAttribute('visible', false);
+        stateIndex.set('hint', hints.squeezeChamber);
     }
 }
 

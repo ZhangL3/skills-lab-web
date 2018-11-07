@@ -9,6 +9,8 @@ import { controllerActions } from "../utils/controllerActions";
 
 import {canTriggerCapAndWheel} from "./infusionSetOpenVive";
 import {setCanTriggerInfusionSetCap} from "./infusionSetCapVive";
+import stateIndex from "./state";
+import hints from '../utils/hints';
 
 let element;
 
@@ -45,6 +47,7 @@ export function handleControllerNotifyToggleBoxInfusionSetCap( triggerEvent ) {
         setTimeout(()=>{
             setCanTriggerInfusionSetCap(true);
         }, 500);
+        stateIndex.set('hint', hints.takeOffInfusionSetCap);
     }
 }
 

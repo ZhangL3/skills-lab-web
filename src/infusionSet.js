@@ -5,6 +5,7 @@ import stateIndex from './state';
 import {bottle, infusionSet} from "../utils/constants";
 
 import {isDrawerOpen } from "./drawerOpenWithInfusionSet";
+import hints from '../utils/hints';
 
 let element;
 
@@ -240,24 +241,27 @@ function fixTube() {
 
 function handleClickInfusionSetInPack() {
     console.log("click infusion set");
-    if (// TODO: for product remove comment
-        // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
+    if (
         stateIndex.getIn(['handDisinfection', 'finish']) === 2 &&
-        stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER && movable
+        stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER &&
+        movable
     ) {
         stateIndex.setIn(['infusionSet', 'position'], infusionSet.position.IN_HAND);
+        stateIndex.set('hint', hints.checkInfusionSet);
     }
     else if (
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_HAND &&
         movable
     ) {
         stateIndex.setIn(['infusionSet', 'position'], infusionSet.position.ON_TABLE);
+        stateIndex.set('hint', hints.unpackInfusionSet);
     }
     else if (
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
         stateIndex.getIn(['infusionSet', 'inPack']) === true && movable
     ) {
         stateIndex.setIn(['infusionSet', 'inPack'], false);
+        stateIndex.set('hint', `${hints.closeRoller} and ${hints.takeOffInfusionSetCap}`);
     }
     // change hints
     else if (
@@ -276,6 +280,14 @@ function handleClickInfusionSetOpenCap() {
         stateIndex.getIn(['infusionSet', 'withCap']) === true && movable
     ) {
         stateIndex.setIn(['infusionSet', 'withCap'], false);
+        if (
+            stateIndex.getIn(['infusionSet', 'rollerClapOpen'])
+        ) {
+            stateIndex.set('hint', hints.closeRoller);
+        }
+        else {
+            stateIndex.set('hint', hints.pierceInfusionSet);
+        }
     }
 }
 
@@ -287,6 +299,14 @@ function handleClickInfusionSetOpenWheel() {
         stateIndex.getIn(['infusionSet', 'rollerClapOpen']) === true && movable
     ) {
         stateIndex.setIn(['infusionSet', 'rollerClapOpen'], false);
+        if (
+            stateIndex.getIn(['infusionSet', 'withCap'])
+        ) {
+            stateIndex.set('hint', hints.takeOffInfusionSetCap);
+        }
+        else {
+            stateIndex.set('hint', hints.pierceInfusionSet);
+        }
     }
 }
 
@@ -300,6 +320,7 @@ function handleClickInfusionSetOpen() {
         stateIndex.getIn(['bottlePrepare', 'withCap']) === false
     ) {
         stateIndex.setIn(['infusionSet','position'], infusionSet.position.IN_BOTTLE);
+        stateIndex.set('hint', hints.hang);
     }
     // chang hints
     else if (
@@ -319,6 +340,7 @@ function handleClickInfusionSetHanged() {
         movable
     ) {
         stateIndex.setIn(['infusionSet', 'chamberFilled'], true);
+        stateIndex.set('hint', hints.openRoller);
     }
 }
 
@@ -332,6 +354,7 @@ function handleClickInfusionSetHangedRoller() {
     ) {
         stateIndex.setIn(['infusionSet', 'tubeFilled'], true);
         stateIndex.setIn(['infusionSet', 'rollerClapOpen'], true);
+        stateIndex.set('hint', hints.fixTube);
     }
     // change hints
     else if (
@@ -358,6 +381,7 @@ function handleClickInfusionSetHangedFilled() {
     ) {
         stateIndex.setIn(['infusionSet','fixed'], true);
         stateIndex.setIn(['infusionSet','finish'], true);
+        stateIndex.set('hint', hints.takeNameLabel);
     }
 }
 

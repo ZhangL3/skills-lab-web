@@ -8,6 +8,7 @@ import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 import { isBottleChecked } from './bottleNacl500Vive';
+import hints from "../utils/hints";
 
 let element;
 let bottleNacl500;
@@ -76,7 +77,7 @@ export function handleControllerReleaseToggleBoxNacl500OnDesk( triggerEvent ) {
         }, 500);
         // bottleNacl500.setAttribute('position', schema.onDeskPosition);
         controllerStateIndex.setControllerState('isNacl500ToDeskHandling', false);
-
+        stateIndex.set('hint', hints.takeOffBottleCap);
     }
 }
 

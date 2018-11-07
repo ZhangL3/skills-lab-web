@@ -103,6 +103,7 @@ export function handleControllerPressClothOnTable ( triggerEvent ) {
         tmpInterval = setInterval(() => {
             deskDisinfection();
         }, 500);
+        stateIndex.set('hint', hints.deskDisinfection);
     }
 
     // Pick up cloth

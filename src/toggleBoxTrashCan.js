@@ -9,6 +9,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 
 import { setBothHandOpacity } from "./controllerHand";
+import hints from "../utils/hints";
 
 let element;
 let activeController;
@@ -88,6 +89,7 @@ export function handleControllerReleaseToggleBoxTrashCan( triggerEvent ) {
         controllerStateIndex.setControllerState('hasGloveRight', false);
         controllerStateIndex.setControllerState('hasGloveLeft', false);
         controllerStateIndex.setControllerState('deskDisinfectionAllFinish', true);
+        stateIndex.set('hint', hints.handDisinfection);
     }
 
 }

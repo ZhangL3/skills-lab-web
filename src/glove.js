@@ -55,15 +55,25 @@ export default AFRAME.registerComponent('glove', {
                     // show glove
                     activeController = data.activeController;
 
-                    if(activeController.getAttribute('id') == 'viveControllerLeft') {
-                        console.log("show glove left!");
-                        // gloveLeft.attr('visible', true);
+                    if(
+                        activeController.getAttribute('id') === 'viveControllerLeft'
+                    ) {
                         controllerStateIndex.setControllerState('hasGloveLeft', true);
+                        if (
+                            controllerStateIndex.getControllerState('hasGloveRight')
+                        ) {
+                            stateIndex.set('hint', hints.takeDisinfectionCloth);
+                        }
                     }
-                    else if (activeController.getAttribute('id') == 'viveControllerRight') {
-                        console.log("show glove right!");
-                        // gloveRight.attr('visible', true);
+                    else if (
+                        activeController.getAttribute('id') === 'viveControllerRight'
+                    ) {
                         controllerStateIndex.setControllerState('hasGloveRight', true);
+                        if (
+                            controllerStateIndex.getControllerState('hasGloveLeft')
+                        ) {
+                            stateIndex.set('hint', hints.takeDisinfectionCloth);
+                        }
                     }
                 }
                 // chang hints

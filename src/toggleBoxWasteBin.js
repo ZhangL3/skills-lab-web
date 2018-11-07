@@ -8,6 +8,7 @@ import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 import {drop} from "./infusionSetCapVive";
+import hints from "../utils/hints";
 
 let element;
 let bottleNacl500Cap;
@@ -54,7 +55,7 @@ function dropInfusionSetCap(activeController) {
 
 export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
 
-    if(
+    /*if(
         controllerStateIndex.getControllerState('bottleNacl500CapInHand')
         && stateIndex.get('wasteBinCapOpen')
     ) {
@@ -84,7 +85,7 @@ export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
             activeController = triggerEvent.activeController;
             controllerStateIndex.setControllerState('infusionSetCapOff', true);
         }
-    }
+    }*/
 }
 
 export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
@@ -102,6 +103,7 @@ export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
         ) {
             activeController = triggerEvent.activeController;
             controllerStateIndex.setControllerState('bottleNacl500CapDroped', true);
+            stateIndex.set('hint', hints.pierceInfusionSet);
         }
     }
 
@@ -119,6 +121,14 @@ export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
             controllerStateIndex.setControllerState('isInfusionSetCapInHandling', false);
             controllerStateIndex.setControllerState('infusionSetCapInHand', null);
             isInfusionSetCapOff = true;
+            if (
+                !controllerStateIndex.getControllerState('infusionSetWheelClosed')
+            ) {
+                stateIndex.set('hint', hints.closeRoller);
+            }
+            else {
+                stateIndex.set('hint', hints.pierceInfusionSet);
+            }
         }
     }
 }

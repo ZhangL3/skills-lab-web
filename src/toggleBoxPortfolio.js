@@ -6,6 +6,7 @@ import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import { setVisibleTrue, setVisibleFalse } from "../utils/setVisible";
 import { is5RChecked } from './portfolio';
+import hints from '../utils/hints';
 
 let element;
 let portfolioChecked;
@@ -57,10 +58,13 @@ export function handleControllerReleaseToggleBoxPortfolio( triggerEvent ) {
 
         let activeControllerId = triggerEvent.activeController.getAttribute('id');
         if (activeControllerId === controllerStateIndex.getControllerState('portfolioInHand'))
-            if(portfolioChecked) {
+            if(
+                portfolioChecked
+            ) {
                 stateIndex.setIn(['portfolio', 'finish'], true);
                 controllerStateIndex.setControllerState('portfolioInHand', null);
                 controllerStateIndex.setControllerState('isPortfolioHandling', false);
+                stateIndex.set('hint', hints.handDisinfection);
             }
             else {
                 controllerStateIndex.setControllerState('portfolioInHand', null);

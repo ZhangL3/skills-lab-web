@@ -5,6 +5,7 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted, detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import stateIndex from './state';
+import hints from "../utils/hints";
 
 let element;
 let nameLabelWroteOnBottle;
@@ -62,6 +63,7 @@ export function handleControllerReleaseToggleBoxNacl500NameLabel( triggerEvent )
         controllerStateIndex.setControllerState('nameLabelPasted', true);
         controllerStateIndex.setControllerState('isNameFilledLabelHandling', false);
         stateIndex.setIn(['nameLabel', 'finish'], true);
+        stateIndex.set('hint', hints.wellDone);
     }
 }
 

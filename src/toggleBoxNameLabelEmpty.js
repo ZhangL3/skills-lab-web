@@ -7,6 +7,8 @@ import controllerStateIndex from '../utils/controllerState';
 import { canWrite } from "./nameLabelStamperVive";
 import {setIsNameLabelFilledInHand} from "./nameLabelFilledVive";
 import {setFilledNameLabel} from "./nameLabelFilledVive";
+import hints from "../utils/hints";
+import stateIndex from './state';
 
 let element;
 let nameLabelWroteLeft;
@@ -43,10 +45,13 @@ export function handleControllerNotifyToggleBoxNameLabelEmpty( triggerEvent ) {
         && !controllerStateIndex.getControllerState('nameLabelFilled')
         && canWrite
     ) {
-        if(detectCollision(element, triggerEvent.activeController)){
+        if(
+            detectCollision(element, triggerEvent.activeController)
+        ){
             controllerStateIndex.setControllerState('nameLabelFilled', true);
             controllerStateIndex.setControllerState('isNameEmptyLabelHandling', false);
             controllerStateIndex.setControllerState('isNameFilledLabelHandling', true);
+            stateIndex.set('hint', hints.pasteNameLabel);
         }
     }
 }

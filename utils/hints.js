@@ -9,6 +9,7 @@ const hints = {
     prepareInjection: 'Prepare injection',
     takeInfusionSet: 'Take infusion set',
     checkInfusionSet: 'Check infusion set',
+    unpackInfusionSet: 'Unpack the infusion set',
     closeRoller: 'Close the roller',
     takeOffInfusionSetCap: 'Take off the cap',
     takeDrug: 'Take drug',
@@ -21,7 +22,8 @@ const hints = {
     fixTube: 'Fix the tube',
     takeNameLabel: 'Take one name label',
     fillNameLabel: 'Fill the name label',
-    pastNameLabel: 'Past name label'
+    pasteNameLabel: 'Paste name label',
+    wellDone: 'Well done, you have finish the exercise'
 };
 
 export default hints;

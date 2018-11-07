@@ -264,6 +264,7 @@ export function handleControllerPressPortfolio (triggerEvent) {
 
             controllerStateIndex.setControllerState('portfolioInHand', activeControllerId);
             stateIndex.set('started', true);
+            stateIndex.set('hint', hints.checkPortfolio);
             setTimeout(()=>{
                 canCheckPortfolio = true;
             }, 300);

@@ -2,6 +2,7 @@ import $ from 'jquery';
 
 import stateIndex from './state';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+import hints from '../utils/hints';
 
 let element;
 
@@ -48,10 +49,13 @@ function putInTrashCan () {
 }
 
 function handleClickClothOnTable () {
-    if (stateIndex.getIn(['tableDisinfection', 'hasCloth']) === true &&
+    if (
+        stateIndex.getIn(['tableDisinfection', 'hasCloth']) === true &&
         stateIndex.getIn(['tableDisinfection', 'disinfectionFinish']) === false &&
-        stateIndex.getIn(['tableDisinfection', 'finish']) === false) {
-        stateIndex.setIn(['tableDisinfection', 'disinfectionFinish'], true)
+        stateIndex.getIn(['tableDisinfection', 'finish']) === false
+    ) {
+        stateIndex.setIn(['tableDisinfection', 'disinfectionFinish'], true);
+        stateIndex.set('hint', hints.handDisinfection);
     }
 
 }

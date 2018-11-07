@@ -4,6 +4,7 @@ import _ from 'lodash';
 import stateIndex from './state';
 import { nameLabel } from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+import hints from '../utils/hints';
 
 let element;
 let nameLabelEmpty;
@@ -101,12 +102,14 @@ function handleClickNameLabelEmpty() {
     stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX && moveable
     ) {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.IN_HAND);
+        stateIndex.set('hint', hints.fillNameLabel);
     }
     else if (
         stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_HAND &&
         stateIndex.getIn(['nameLabel', 'labelFilled']) === false
     ) {
         stateIndex.setIn(['nameLabel', 'labelFilled'], true);
+        stateIndex.set('hint', hints.pasteNameLabel);
     }
     // change hints
     else if (
@@ -124,6 +127,7 @@ function handleClickNameLabelWrote() {
     ) {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.ON_BOTTLE);
         stateIndex.setIn(['nameLabel', 'finish'], true);
+        stateIndex.set('hint', hints.wellDone);
     }
 }
 

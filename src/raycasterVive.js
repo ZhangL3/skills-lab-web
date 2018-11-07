@@ -68,6 +68,7 @@ export function handleControllerStateNotifyRaycasterVive (nextControllerState) {
     ) {
         element.setAttribute('visible', true);
     }
+
     if (
         portfolioChecked
     ) {

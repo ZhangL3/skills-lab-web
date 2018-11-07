@@ -8,6 +8,7 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
+import hints from "../utils/hints";
 
 let currentState;
 let currentControllerState;
@@ -70,6 +71,7 @@ export function handleControllerStateNotifyInfusionSetHangedVive (nextController
         setTimeout(() => {
             element.setAttribute('visible', false);
         }, schema.dur);
+        stateIndex.set('hint', hints.takeNameLabel);
     }
 
     // deep copy

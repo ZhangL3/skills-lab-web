@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import stateIndex from './state';
 import {bottle, infusionSet} from "../utils/constants";
+import hints from '../utils/hints';
 
 let element;
 let bottleCap;
@@ -14,7 +15,7 @@ let toggleBoxNacl500Cap;
 // Don't active the action, if the animation is not finish
 let movable = true;
 // For product use withInfusionSet
-let test = true;
+// let test = true;
 
 AFRAME.registerComponent('bottle_nacl500', {
 
@@ -150,6 +151,7 @@ function handleClickBottle() {
     stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD && movable
     ) {
         stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.IN_HAND);
+        stateIndex.set('hint', hints.checkDrug);
     }
     else if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_HAND &&
@@ -171,6 +173,7 @@ function handleClickBottle() {
     ) {
         stateIndex.setIn(['bottlePrepare', 'checkBottle', 'top'], true);
         stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.ON_TABLE);
+        stateIndex.set('hint', hints.takeOffBottleCap);
     }
     else if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
@@ -178,16 +181,18 @@ function handleClickBottle() {
         stateIndex.getIn(['bottlePrepare', 'withCap']) === true && movable
     ) {
         stateIndex.setIn(['bottlePrepare', 'withCap'], false);
-
-        test = true;
+        stateIndex.set('hint', hints.pierceInfusionSet);
+        // test = true;
     }
     else if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
         stateIndex.getIn(['bottlePrepare', 'withCap']) === false &&
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_BOTTLE &&
-        test === true && movable
+        // test === true &&
+        movable
     ) {
         stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.HANGED);
+        stateIndex.set('hint', hints.squeezeChamber);
     }
     // change hints
     else if (
@@ -262,8 +267,8 @@ export function handleNotifyBottle(nextState) {
         nextState.bottlePrepare.position === bottle.position.HANGED &&
         currentState.infusionSet.position !== infusionSet.position.IN_BOTTLE &&
         nextState.bottlePrepare.finish === false &&
-        nextState.infusionSet.position === infusionSet.position.IN_BOTTLE &&
-        test === true
+        nextState.infusionSet.position === infusionSet.position.IN_BOTTLE
+        //&& test === true
     ) {
         hangUp();
         // deep copy
