@@ -29,21 +29,23 @@ export default AFRAME.registerComponent('controller_hand', {
         // right hand
         $(controllerRightHand).on('emit', () => {
             controllerRightHand.setAttribute("animation-mixer", "loop: once");
-            if (haveSthInHand(controllerRight).length > 0) {
-                if ( haveSthInHand(controllerRight)[0].getAttribute('id') === 'clothOnTable' ) {
-                    setHandMaterial(controllerRightHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
+            setTimeout(() => {
+                if (haveSthInHand(controllerRight).length > 0) {
+                    if ( haveSthInHand(controllerRight)[0].getAttribute('id') === 'clothOnTable' ) {
+                        setHandMaterial(controllerRightHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
+                    } else {
+                        setHandMaterial(controllerRightHand, opacityByGrasping);
+                    }
                 } else {
-                    setHandMaterial(controllerRightHand, opacityByGrasping);
+                    // have nothing in hand, not transparent
+                    controllerRightHand.removeAttribute("material");
+                    setHandMaterial(controllerRightHand, opacityValue, defaultAlphaTest, true, originalHandColor);
                 }
-            } else {
-                // have nothing in hand, not transparent
-                controllerRightHand.removeAttribute("material");
-                setHandMaterial(controllerRightHand, opacityValue, defaultAlphaTest, true, originalHandColor);
-            }
 
-            if (controllerStateIndex.getControllerState('hasGloveRight')) {
-                setHandMaterial(controllerRightHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
-            }
+                if (controllerStateIndex.getControllerState('hasGloveRight')) {
+                    setHandMaterial(controllerRightHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
+                }
+            }, 100);
         });
 
         controllerRightHand.addEventListener('animation-finished', ()=>{
@@ -53,23 +55,24 @@ export default AFRAME.registerComponent('controller_hand', {
         // left hand
         $(controllerLeftHand).on('emit', () => {
             controllerLeftHand.setAttribute("animation-mixer", "loop: once");
+            setTimeout(() => {
+                if (haveSthInHand(controllerLeft).length > 0) {
+                    if (haveSthInHand(controllerLeft)[0].getAttribute('id') === 'clothOnTable') {
+                        setHandMaterial(controllerLeftHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
+                    }
+                    else {
+                        setHandMaterial(controllerLeftHand, opacityByGrasping);
+                    }
+                } else {
+                    // have nothing in hand, not transparent
+                    controllerLeftHand.removeAttribute("material");
+                    setHandMaterial(controllerLeftHand, opacityValue, defaultAlphaTest, true, originalHandColor);
+                }
 
-            if (haveSthInHand(controllerLeft).length > 0) {
-                if (haveSthInHand(controllerLeft)[0].getAttribute('id') === 'clothOnTable') {
+                if (controllerStateIndex.getControllerState('hasGloveLeft')) {
                     setHandMaterial(controllerLeftHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
                 }
-                else {
-                    setHandMaterial(controllerLeftHand, opacityByGrasping);
-                }
-            } else {
-                // have nothing in hand, not transparent
-                controllerLeftHand.removeAttribute("material");
-                setHandMaterial(controllerLeftHand, opacityValue, defaultAlphaTest, true, originalHandColor);
-            }
-
-            if (controllerStateIndex.getControllerState('hasGloveLeft')) {
-                setHandMaterial(controllerLeftHand, opacityByGrasping, defaultAlphaTest, true, handWithGloveColor);
-            }
+            }, 100);
         });
 
         controllerLeftHand.addEventListener('animation-finished', ()=>{
@@ -128,12 +131,12 @@ export function handleNotifyControllerHand(nextState) {
 }
 
 export function handleControllerNotifyControllerHand ( triggerEvent ) {
-    if (triggerEvent.activeController.getAttribute('id')==='viveControllerRight') {
+    /*if (triggerEvent.activeController.getAttribute('id')==='viveControllerRight') {
         $(controllerRightHand).trigger('emit');
     }
     else if (triggerEvent.activeController.getAttribute('id')==='viveControllerLeft') {
         $(controllerLeftHand).trigger('emit');
-    }
+    }*/
 }
 
 export function handleControllerPressControllerHand ( triggerEvent ) {
