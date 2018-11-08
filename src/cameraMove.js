@@ -3,8 +3,8 @@ import stateIndex from './state';
 import * as constants from '../utils/constants';
 import $ from 'jquery';
 
-const timeToStay = 5000;
-const moveTime = 500;
+const timeToStay = 6000;
+const moveTime = 800;
 let cameraPosition;
 let cameraMoved = false;
 // Objects lead to move the camera in flat mode
