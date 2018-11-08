@@ -94,6 +94,12 @@ function removeAllEventListener() {
 
     // move to hand disinfection
     handDisinfectionHandle.removeEventListener('raycaster-intersected', moveToHandDisinfectionAndBack);
+
+    // move to holder
+    infusionSetHangedFilled.removeEventListener('raycaster-intersected', moveToHolderAndBack);
+
+    // move to hand disinfection
+    handDisinfectionHandle.removeEventListener('raycaster-intersected', moveToHandDisinfectionAndBack);
 }
 
 function moveToCupboardAndBack() {
