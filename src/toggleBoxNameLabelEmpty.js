@@ -46,7 +46,8 @@ export function handleControllerNotifyToggleBoxNameLabelEmpty( triggerEvent ) {
         && canWrite
     ) {
         if(
-            detectCollision(element, triggerEvent.activeController)
+            triggerEvent.activeController.getAttribute('id') !== controllerStateIndex.getControllerState('nameLabelInHand')
+            && detectCollision(element, triggerEvent.activeController)
         ){
             controllerStateIndex.setControllerState('nameLabelFilled', true);
             controllerStateIndex.setControllerState('isNameEmptyLabelHandling', false);
