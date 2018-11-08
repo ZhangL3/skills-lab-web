@@ -81,6 +81,8 @@ import * as dropDown from '../utils/dropDown';
 import * as bottleNacl500CapVive from './bottleNacl500CapVive';
 import * as nameLabelFilledVive from './nameLabelFilledVive';
 
+import * as hasCollisionWithCabinets from '../utils/hasCollisionWithCabinets';
+
 import * as scene from './scene';
 
 stateIndex.init();
