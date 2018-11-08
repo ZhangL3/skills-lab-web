@@ -10,6 +10,7 @@ import {setVisibleTrue} from "../utils/setVisible";
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import hints from '../utils/hints';
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 
 let clothInBottle;
@@ -134,6 +135,7 @@ export function handleControllerReleaseClothOnTable ( triggerEvent ) {
         && controllerStateIndex.getControllerState('isDisinfectionClothHandling')
         && isClothInHand
         && !detectCollision(toggleBoxTrashCan, activeController)
+        && !hasCollisionWithCabinets(clothOnTable)
     ) {
         controllerStateIndex.setControllerState('disinfectionClothInHand', null);
     }

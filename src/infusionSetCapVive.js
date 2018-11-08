@@ -13,6 +13,7 @@ import { haveSthInHand } from "./controllerHand";
 
 import {canTriggerCapAndWheel} from "./infusionSetOpenVive";
 import dropDown from "../utils/dropDown";
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let currentState;
 let currentControllerState;
@@ -91,6 +92,7 @@ export function handleControllerReleaseInfusionSetCap ( triggerEvent ) {
         controllerStateIndex.getControllerState('infusionSetCapInHand') === activeController.getAttribute('id')
         && controllerStateIndex.getControllerState('isInfusionSetCapInHandling')
         && !detectCollision(element, toggleBoxWasteBin)
+        && !hasCollisionWithCabinets(element)
     ) {
         controllerStateIndex.setControllerState('infusionSetCapInHand', null);
     }

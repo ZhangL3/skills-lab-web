@@ -12,6 +12,7 @@ import { controllerActions } from "../utils/controllerActions";
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import hints from "../utils/hints";
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let currentState;
 let currentControllerState;
@@ -158,6 +159,7 @@ export function handleControllerReleaseNameLabelStamperVive ( triggerEvent ) {
     if (
         activeController.getAttribute('id') === controllerStateIndex.getControllerState('nameLabelInHand')
         && isNameLabelEmptyInHand
+        && !hasCollisionWithCabinets(nameLabelEmpty)
     ) {
         controllerStateIndex.setControllerState('nameLabelInHand', null);
     }

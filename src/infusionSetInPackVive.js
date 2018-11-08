@@ -15,6 +15,7 @@ import  {movable } from "./infusionSet";
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import hints from "../utils/hints";
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let currentState;
 let currentControllerState;
@@ -126,6 +127,7 @@ export function handleControllerReleaseInfusionSetInPack ( triggerEvent ) {
                 && !detectCollision(element, toggleBoxInfusionSetOnDesk)
                 )
             )
+        && !hasCollisionWithCabinets(element)
     ) {
         controllerStateIndex.setControllerState('infusionSetInPackInHand', null);
     }

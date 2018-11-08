@@ -2,6 +2,7 @@ import {detectCollision} from "../utils/isEmitted";
 import dropDown from "../utils/dropDown";
 import controllerStateIndex from '../utils/controllerState';
 import { controllerActions } from "../utils/controllerActions";
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let filledNameLabel;
 let filledNameLabelId;
@@ -61,7 +62,6 @@ export function handleControllerReleaseNameLabelFilledVive ( triggerEvent ) {
 
     activeController = triggerEvent.activeController;
 
-    // test
     filledNameLabel = document.querySelector(`#${filledNameLabelId}`);
 
     // Drop down
@@ -69,6 +69,7 @@ export function handleControllerReleaseNameLabelFilledVive ( triggerEvent ) {
         controllerStateIndex.getControllerState('nameLabelInHand') === activeController.getAttribute('id')
         && isNameLabelFilledInHand
         && !detectCollision(filledNameLabel, toggleBoxNacl500NameLabel)
+        && !hasCollisionWithCabinets(filledNameLabel)
     ) {
         controllerStateIndex.setControllerState('nameLabelInHand', null);
 

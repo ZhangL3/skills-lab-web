@@ -113,10 +113,11 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverPress.subscribe(handleControllerPressClothOnTable);
 
         // listen to 'triggerup'
+        this.viveObserverRelease.subscribe(handleControllerReleaseControllerHand);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxPortfolio);
         this.viveObserverRelease.subscribe(handleControllerReleasePortfolio);
-        this.viveObserverRelease.subscribe(handleControllerReleaseControllerHand);
-        this.viveObserverRelease.subscribe(handleControllerPressBottleNacl500Vive);
+        // this.viveObserverRelease.subscribe(handleControllerPressBottleNacl500Vive);
+        this.viveObserverRelease.subscribe(handleControllerReleaseClothOnTable);
         this.viveObserverRelease.subscribe(handleControllerReleaseBottleNacl500Vive);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500OnDesk);
         this.viveObserverRelease.subscribe(handleControllerReleaseBottleNacl500CapVive);
@@ -130,7 +131,6 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseNameLabelStamperVive);
         this.viveObserverRelease.subscribe(handleControllerReleaseNameLabelFilledVive);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500NameLabel);
-        this.viveObserverRelease.subscribe(handleControllerReleaseClothOnTable);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxTrashCan);
 
         $(el).on('triggerdown', () => {

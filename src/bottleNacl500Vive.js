@@ -18,6 +18,7 @@ import {showHookNacl500Cap} from "./hookNacl500Cap";
 import {showHookNacl500Label} from "./hookNacl500Label";
 import {showHookNacl500Liquid} from "./hookNacl500Liquid";
 import hints from "../utils/hints";
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let element;
 let currentState;
@@ -177,10 +178,12 @@ export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
 }
 
 export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
+
     // drop during dragging to desk
     if (
         controllerStateIndex.getControllerState('nacl500InHandToDesk') === triggerEvent.activeController.getAttribute('id')
         && !detectCollision(toggleBoxNacl500OnDesk, triggerEvent.activeController)
+        && !hasCollisionWithCabinets(element)
     ) {
         controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
         isNacl500InHand = null;
@@ -189,7 +192,8 @@ export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
     else if(
         controllerStateIndex.getControllerState('nacl500InHandToStand') !== null
         && !detectCollision(toggleBoxNacl500Hanged, triggerEvent.activeController)
-) {
+        && !hasCollisionWithCabinets(element)
+    ) {
         console.log("drop down bottle by dragging to stand");
 
         controllerStateIndex.setControllerState('nacl500InHandToStand', null);

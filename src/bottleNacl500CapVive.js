@@ -14,6 +14,7 @@ import dropDown from "../utils/dropDown";
 
 
 import {canCheck} from "./bottleNacl500Vive";
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let element;
 let toggleBoxWasteBin;
@@ -101,6 +102,7 @@ export function handleControllerReleaseBottleNacl500CapVive( triggerEvent ) {
     if (
         controllerStateIndex.getControllerState('bottleNacl500CapInHand') === triggerEvent.activeController.getAttribute('id')
         && !detectCollision(toggleBoxWasteBin, activeController)
+        && !hasCollisionWithCabinets(element)
     ) {
         controllerStateIndex.setControllerState('bottleNacl500CapInHand', null);
     }

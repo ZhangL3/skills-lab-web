@@ -278,17 +278,15 @@ export function handleControllerReleasePortfolio (triggerEvent) {
     if (
         stateIndex.getIn(['portfolio', 'finish'])
         || !controllerStateIndex.getControllerState('portfolioInHand')
-        || (
-            hasCollisionWithCabinets(element)
-            && !detectCollision(toggleBoxPortfolio, activeController)
-        )
     ) {
         return false;
     }
     activeController = triggerEvent.activeController;
 
-    if( triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('portfolioInHand')
+    if(
+        triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('portfolioInHand')
         && !detectCollision(toggleBoxPortfolio, activeController)
+        && !hasCollisionWithCabinets(element)
     ) {
         controllerStateIndex.setControllerState('portfolioInHand', null);
     }

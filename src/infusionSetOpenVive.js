@@ -11,6 +11,7 @@ import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let currentState;
 let currentControllerState;
@@ -145,6 +146,7 @@ export function handleControllerReleaseInfusionSetOpen ( triggerEvent ) {
         controllerStateIndex.getControllerState('infusionSetOpenInHand') === triggerEvent.activeController.getAttribute('id')
         && !detectCollision(element, toggleBoxNacl500Cap)
         && controllerStateIndex.getControllerState('isInfusionSetOnDeskOpenedHandling')
+        && !hasCollisionWithCabinets(element)
     ) {
         controllerStateIndex.setControllerState('infusionSetOpenInHand', null);
     }
