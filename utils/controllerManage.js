@@ -71,9 +71,9 @@ function matchGearVRController() {
     showGearController();
     disableCameraAutoMove();
     adjustAllThingsScale('1.2 1.2 1.2');
-    adjustCameraRigPosition('0 -0.3 0');
+    adjustCameraRigPosition('0 -0.3 -0.15');
     adjustCameraPosition('0 0 -0.1');
-    // adjustGearControllerPosition('0 0.3 0');
+    adjustGearControllerPosition('0 0.3 0');
 }
 
 function matchViveController() {
