@@ -13,6 +13,7 @@ import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import {showHook} from "./portfolioCheck";
 import hints from '../utils/hints';
+import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let element;
 let currentState;
@@ -273,9 +274,14 @@ export function handleControllerPressPortfolio (triggerEvent) {
 }
 
 export function handleControllerReleasePortfolio (triggerEvent) {
+    
     if (
         stateIndex.getIn(['portfolio', 'finish'])
         || !controllerStateIndex.getControllerState('portfolioInHand')
+        || (
+            hasCollisionWithCabinets(element)
+            && !detectCollision(toggleBoxPortfolio, activeController)
+        )
     ) {
         return false;
     }
