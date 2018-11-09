@@ -12,6 +12,7 @@ import hints from "../utils/hints";
 
 let element;
 let nacl500Bottle;
+let infusionSetInBottle;
 
 let currentControllerState;
 
@@ -20,6 +21,7 @@ export default AFRAME.registerComponent('toggle_box_nacl500_hanged', {
     init: function(){
 
         element = this.el;
+        infusionSetInBottle = document.querySelector('#infusionSetInBottle');
         nacl500Bottle = document.querySelector('#nacl500Bottle');
         
         // deep copy
@@ -87,6 +89,14 @@ export function handleControllerReleaseToggleBoxNacl500Hanged( triggerEvent ) {
             setCanTriggerChamberAndWheel(true);
         }, 500);
         element.setAttribute('visible', false);
+        // show infusion set in bottle during hinging
+        setTimeout(()=>{
+            infusionSetInBottle.setAttribute('visible', true);
+        }, 50);
+        // Remove infusion set in bottle after hinging
+        setTimeout(()=> {
+            $(infusionSetInBottle).remove();
+        }, 500 + schema.dur);
         stateIndex.set('hint', hints.squeezeChamber);
     }
 }
