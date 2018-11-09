@@ -2,9 +2,11 @@ import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
 import * as constants from '../utils/constants';
 import $ from 'jquery';
+import {device} from "../utils/controllerManage";
 
 const timeToStay = 6000;
 const moveTime = 800;
+const moveTimeGear = 1000;
 let cameraPosition;
 let cameraMoved = false;
 // Objects lead to move the camera in flat mode
@@ -20,7 +22,13 @@ const positionVar = {
     nacl500Bottle: {name:'NACL_500_BOTTLE', position:'-0.3 1.5 -0.5'},
     infusionSetOpen: {name:'INFUSION_SET_OPEN', position:'-0.055 0.810 -0.634'},
     infusionSetHanged: {name:'INFUSION_SET_Hanged', position:'0.670 1.100 -0.502'},
-    handDisinfectionHandle: {name:'DISPENSER_HANDLE', position:'-1.3 1 -0.4'}
+    handDisinfectionHandle: {name:'DISPENSER_HANDLE', position:'-1.3 1 -0.4'},
+
+    originGear: {name: 'ORIGIN_GEAR', position: '0 1.85 -0.6'},
+    nacl500BottleGear: {name:'NACL_500_BOTTLE_GEAR', position:'-1.006 3.763 -1.165'},
+    infusionSetOpenGear: {name:'INFUSION_SET_OPEN_GEAR', position:'-0.8 1.552 -1.629'},
+    infusionSetHangedGear: {name:'INFUSION_SET_Hanged_GEAR', position:'1.351 2.851 -1.629'},
+    handDisinfectionHandleGear: {name:'DISPENSER_HANDLE_GEAR', position:'-4.467 2.204 -0.680'}
 };
 
 AFRAME.registerComponent('camera-move', {
@@ -109,12 +117,22 @@ function moveToCupboardAndBack() {
     if (
         stateIndex.get('started')
         && stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.IN_CUPBOARD
-        && cameraPosition === positionVar.origin.name
+        && (
+            (cameraPosition === positionVar.origin.name) || (cameraPosition = positionVar.originGear.name)
+        )
     ) {
-        moveToBottle(element);
-        let timer = setTimeout(()=>{
-            backToOrigin(element);
-        }, timeToStay);
+        if (device === "GearVRWithoutController") {
+            moveToBottleGear(element);
+            setTimeout(()=>{
+                backToOriginGear(element);
+            }, timeToStay);
+        }
+        else {
+            moveToBottle(element);
+            setTimeout(()=>{
+                backToOrigin(element);
+            }, timeToStay);
+        }
     }
 }
 
@@ -128,12 +146,22 @@ function moveToCabinetAndBack() {
             stateIndex.getIn(['infusionSet', 'withCap'])
             || stateIndex.getIn(['infusionSet', 'rollerClapOpen'])
         )
-        && cameraPosition === positionVar.origin.name
+        && (
+            (cameraPosition === positionVar.origin.name) || (cameraPosition = positionVar.originGear.name)
+        )
     ) {
-        moveToInfusionSetOpen(element);
-        let timer = setTimeout(()=>{
-            backToOrigin(element);
-        }, timeToStay);
+        if (device === "GearVRWithoutController") {
+            moveToInfusionSetOpenGear(element);
+            setTimeout(()=>{
+                backToOriginGear(element);
+            }, timeToStay);
+        }
+        else {
+            moveToInfusionSetOpen(element);
+            setTimeout(()=>{
+                backToOrigin(element);
+            }, timeToStay);
+        }
     }
 }
 
@@ -143,12 +171,22 @@ function moveToHolderAndBack() {
     }
     if (
         stateIndex.getIn(['bottlePrepare', 'position']) === constants.bottle.position.HANGED
-        && cameraPosition === positionVar.origin.name
+        && (
+            (cameraPosition === positionVar.origin.name) || (cameraPosition = positionVar.originGear.name)
+        )
     ) {
-        moveToInfusionSetHanged(element);
-        let timer = setTimeout(()=>{
-            backToOrigin(element);
-        }, timeToStay);
+        if (device === "GearVRWithoutController") {
+            moveToInfusionSetHangedGear(element);
+            setTimeout(()=>{
+                backToOriginGear(element);
+            }, timeToStay);
+        }
+        else {
+            moveToInfusionSetHanged(element);
+            setTimeout(()=>{
+                backToOrigin(element);
+            }, timeToStay);
+        }
     }
 }
 
@@ -162,12 +200,22 @@ function moveToHandDisinfectionAndBack() {
         ||
         (stateIndex.getIn(['handDisinfection', 'finish']) === 1
             && stateIndex.getIn(['tableDisinfection', 'finish']))
-        && cameraPosition === positionVar.origin.name
+        && (
+            (cameraPosition === positionVar.origin.name) || (cameraPosition = positionVar.originGear.name)
+        )
     ) {
-        moveToHandDisinfection(element);
-        let timer = setTimeout(()=>{
-            backToOrigin(element);
-        }, timeToStay);
+        if (device === "GearVRWithoutController") {
+            moveToHandDisinfectionGear(element);
+            setTimeout(()=>{
+                backToOriginGear(element);
+            }, timeToStay);
+        }
+        else {
+            moveToHandDisinfection(element);
+            setTimeout(()=>{
+                backToOrigin(element);
+            }, timeToStay);
+        }
     }
 }
 
@@ -198,6 +246,40 @@ function moveToInfusionSetHanged(el) {
 function moveToHandDisinfection(el) {
     aAnimationWrapper(el, '', 'position', '', positionVar.handDisinfectionHandle.position, moveTime, '', true, 'forwards');
     cameraPosition = positionVar.handDisinfectionHandle.name;
+    cameraMoved = true;
+}
+
+// Gear VR without controller
+
+
+
+function backToOriginGear(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.originGear.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.originGear.name;
+    cameraMoved = false;
+}
+
+function moveToBottleGear(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.nacl500BottleGear.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.nacl500BottleGear.name;
+    cameraMoved = true;
+}
+
+function moveToInfusionSetOpenGear(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.infusionSetOpenGear.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.infusionSetOpenGear.name;
+    cameraMoved = true;
+}
+
+function moveToInfusionSetHangedGear(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.infusionSetHangedGear.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.infusionSetHangedGear.name;
+    cameraMoved = true;
+}
+
+function moveToHandDisinfectionGear(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.handDisinfectionHandleGear.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.handDisinfectionHandleGear.name;
     cameraMoved = true;
 }
 

@@ -7,6 +7,7 @@ import { supportedController } from "./constants";
 let haveEvents = 'ongamepadconnected' in window;
 let controllers = {};
 export let controller;
+export let device = null;
 
 let cursor;
 let allThings;
@@ -94,6 +95,7 @@ function matchNoController() {
 }
 
 export  function matchSamsungBrowser() {
+    device = "GearVRWithoutController";
     adjustAllThingsScale('3.5 3.5 3.5');
     adjustCameraRigPosition('0 1.85 -0.5');
     adjustCursorPosition('0 0 -1');
