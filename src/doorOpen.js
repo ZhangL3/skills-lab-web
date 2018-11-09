@@ -10,7 +10,7 @@ export default AFRAME.registerComponent('door_open', {
     schema: {
         open : {default: '0 -90 0'},
         close :   {default: '0 0 0'},
-        dur : {default: 300},
+        dur : {default: 600},
     },
 
     init: function () {
