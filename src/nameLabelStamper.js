@@ -49,8 +49,9 @@ export default AFRAME.registerComponent('name_label_stamper', {
 const schema = {
     nameLabelInFrontOfCameraPosition: '0.013 1.039 -0.7',
     nameLabelInFrontOfCameraRotation: '0 0 0',
-    nameLabelOnBottlePosition: '0.842 1.354 -0.504',
+    nameLabelOnBottlePosition: '0.834 1.354 -0.504',
     nameLabelOnBottleRotation: '0 -20.478 0',
+    nameLabelOnBottleScale: '0.067 0.033 0.050',
     dur : 500,
 };
 
@@ -85,6 +86,7 @@ function stickNameLabel() {
         nameLabelWrote, '', 'rotation', '', schema.nameLabelOnBottleRotation, schema.dur,
         '', true, 'forwards'
     );
+    nameLabelWrote.attr('scale', schema.nameLabelOnBottleScale);
 }
 
 function handleClickStickerStamper () {
