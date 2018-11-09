@@ -190,7 +190,7 @@ export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
     }
     // drop during dragging to stand
     else if(
-        controllerStateIndex.getControllerState('nacl500InHandToStand') !== null
+        controllerStateIndex.getControllerState('nacl500InHandToStand') === triggerEvent.activeController.getAttribute('id')
         && !detectCollision(toggleBoxNacl500Hanged, triggerEvent.activeController)
         && !hasCollisionWithCabinets(element)
     ) {
@@ -228,7 +228,10 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
         // toggleBoxNacl500OnDesk is shown here, but don't know the reason. So hide it. NOT good.
         let toggleBoxNacl500OnDesk = document.querySelector('#toggleBoxNacl500OnDesk');
         toggleBoxNacl500OnDesk.setAttribute('visible', false);
-        infusionSetInBottle.setAttribute('visible', false);
+        // Wait for the finish of DOM change
+        setTimeout(() => {
+            infusionSetInBottle.setAttribute('visible', true);
+        }, 50);
 
         console.log("should drag bottle in hand to hang");
     }
