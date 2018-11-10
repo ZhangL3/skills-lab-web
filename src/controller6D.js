@@ -213,13 +213,13 @@ export default AFRAME.registerComponent('controller_6_d', {
             this.viveObserverRelease.notify(triggerEvent);
         });
 
-        el.addEventListener('teleported', (event) => {
+        /*el.addEventListener('teleported', (event) => {
 
-        });
+        });*/
 
         $(el).on('trackpaddown', () =>{
             playTeleportSound();
-        })
+        });
     }
 });
 

@@ -1,4 +1,4 @@
-import {playSubmitSound} from "./submitSound";
+import {playSubmitSound, playTeleportSound} from "./submitSound";
 
 let element;
 
@@ -8,6 +8,10 @@ export default AFRAME.registerComponent('gear_controller', {
 
         element.addEventListener('triggerdown', () => {
             playSubmitSound();
-        })
+        });
+
+        $(el).on('trackpaddown', () =>{
+            playTeleportSound();
+        });
     }
 });
