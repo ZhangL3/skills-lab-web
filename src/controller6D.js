@@ -3,7 +3,7 @@ import $ from 'jquery';
 import Observable from '../utils/observable';
 import { getWordPosition } from "../utils/getWorldPositionAndBound";
 import {haveSthInHand} from "./controllerHand";
-import {playSubmitSound} from "./submitSound";
+import {playSubmitSound, playTeleportSound} from "./submitSound";
 
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
@@ -216,6 +216,10 @@ export default AFRAME.registerComponent('controller_6_d', {
         el.addEventListener('teleported', (event) => {
 
         });
+
+        $(el).on('trackpaddown', () =>{
+            playTeleportSound();
+        })
     }
 });
 

@@ -127,8 +127,10 @@
         <a-asset-item id="rightHandMesh" src="./assets/models/meshes/hands/rightHand/hand_grasp_release_right.gltf"/>
         <a-asset-item id="leftHandMesh" src="./assets/models/meshes/hands/leftHand/hand_grasp_release_left.gltf"/>
 
+
         <!-- submit sound -->
-        <audio id="submitSoundSource" src="./assets/sounds/blopSound.mp3"></audio>
+        <a-asset-item id="teleportSoundSource" src="./assets/sounds/teleportSound.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="submitSoundSource" src="./assets/sounds/blopSound.mp3" response-type="arraybuffer"></a-asset-item>
 
     </a-assets>
 
@@ -521,7 +523,9 @@
             <!-- glove -->
             <a-gltf-model id="gloveInFrontOfCamera" visible="false" src="#gloveMesh" position="0.141 -0.062 -0.441" rotation="-57.009 -134.645 152.808" scale="0.02 0.02 0.02"></a-gltf-model>
 
+            <!-- sound -->
             <a-entity id="submitSound" sound="src: #submitSoundSource"></a-entity>
+            <a-entity id="teleportSound" sound="src: #teleportSoundSource"></a-entity>
 
         </a-camera>
     </a-entity>
