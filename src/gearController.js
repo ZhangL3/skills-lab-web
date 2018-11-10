@@ -10,7 +10,7 @@ export default AFRAME.registerComponent('gear_controller', {
             playSubmitSound();
         });
 
-        $(el).on('trackpaddown', () =>{
+        element.addEventListener('trackpaddown', () =>{
             playTeleportSound();
         });
     }
