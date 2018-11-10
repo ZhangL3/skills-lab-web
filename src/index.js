@@ -88,5 +88,7 @@ import * as scene from './scene';
 import * as submitSound from './submitSound';
 import * as gearController from './gearController';
 
+import * as pageBack from './pageBack';
+
 stateIndex.init();
 controllerStateIndex.initControllerState();

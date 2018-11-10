@@ -27,6 +27,7 @@ import { handleControllerStateNotifyRaycasterVive } from '../src/raycasterVive';
 import { handleControllerStateNotifyBottleNacl500CapVive } from '../src/bottleNacl500CapVive';
 import { handleControllerStateNotifyNameLabelFilledVive } from '../src/nameLabelFilledVive';
 import { handleControllerStateClothOnTable } from '../src/disinfectionClothOnTableVive';
+import { handleControllerStateNotifyToggleBoxPageBack } from '../src/pageBack';
 
 
 const controllerState = {
@@ -164,6 +165,7 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyBottleNacl500CapVive);
         this.controllerObserver.subscribe(handleControllerStateNotifyNameLabelFilledVive);
         this.controllerObserver.subscribe(handleControllerStateClothOnTable);
+        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxPageBack);
 
         console.log("controllerState init");
 
