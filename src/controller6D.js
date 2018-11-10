@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Observable from '../utils/observable';
 import { getWordPosition } from "../utils/getWorldPositionAndBound";
 import {haveSthInHand} from "./controllerHand";
+import {playSubmitSound} from "./submitSound";
 
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
@@ -133,9 +134,11 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500NameLabel);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxTrashCan);
 
-        $(el).on('triggerdown', () => {
+       /* $(el).on('triggerdown', () => {
 
-            console.log("triggerDown: ");
+            console.log("triggerchanged: ");
+
+            // playSubmitSound();
 
             let handIndicator;
             if (el.getAttribute('id') === 'viveControllerRight') {
@@ -158,10 +161,11 @@ export default AFRAME.registerComponent('controller_6_d', {
             // TODO: active the action triggerdown
             this.viveObserver.notify(triggerEvent);
 
-        });
+        });*/
 
         $(el).on('triggerdown', () => {
             console.log("trigger pressed!!!");
+            playSubmitSound();
 
             let handIndicator;
             if (el.getAttribute('id') === 'viveControllerRight') {
@@ -180,7 +184,10 @@ export default AFRAME.registerComponent('controller_6_d', {
                 activeController: el
             };
 
+            // trigger pressed
             this.viveObserverPress.notify(triggerEvent);
+            // trigger clicked
+            this.viveObserver.notify(triggerEvent);
         });
 
         $(el).on('triggerup', () => {

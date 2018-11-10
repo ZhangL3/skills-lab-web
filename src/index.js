@@ -86,6 +86,7 @@ import * as hasCollisionWithCabinets from '../utils/hasCollisionWithCabinets';
 import * as scene from './scene';
 
 import * as submitSound from './submitSound';
+import * as gearController from './gearController';
 
 stateIndex.init();
 controllerStateIndex.initControllerState();

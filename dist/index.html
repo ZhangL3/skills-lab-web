@@ -486,7 +486,7 @@
 
     <a-entity camera-move id="cameraRig" position="0 1 -0.4">
         <!-- Vive controlers-->
-        <a-entity id="viveControllerLeft" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" gearvr-controls vive-controls="hand: left; model: false;" controller_6_d visible="false">
+        <a-entity id="viveControllerLeft" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" vive-controls="hand: left; model: false;" controller_6_d visible="false">
             <a-box visible="false" id="leftHandIndicator" class="handIndicator" indicator-box  color="#0000ff" scale="0.005 0.005 0.005"></a-box>
             <a-gltf-model controller_hand id="leftHand" src="#leftHandMesh" material="" scale="0.15 0.15 0.15" rotation="180 -90 180"></a-gltf-model>
             <a-gltf-model glove_in_hand id="gloveLeft" visible="false" src="#gloveMesh" position="0.007 0.026 -0.004" rotation="-22.57 151.04 -17.77" scale="0.02 0.02 0.02"></a-gltf-model>
@@ -508,7 +508,7 @@
         </a-entity>
 
         <!-- laser controller for gear version -->
-        <a-entity id="gearController" laser-controls="hand: right" visible="false"></a-entity>
+        <a-entity gear_controller teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;" gearvr-controls id="gearController" laser-controls="hand: right" visible="false"></a-entity>
 
         <!--camera -->
         <a-camera id="camera" touch-controls wasd-controls="acceleration:20; " look-controls="pointerLockEnabled: true;" position="0 0 0">
