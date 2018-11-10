@@ -3,7 +3,7 @@ import $ from 'jquery';
 import Observable from '../utils/observable';
 import { getWordPosition } from "../utils/getWorldPositionAndBound";
 import {haveSthInHand} from "./controllerHand";
-import {playSubmitSound, playTeleportSound} from "./submitSound";
+import {playSubmitSound, playTeleportSound, playDropSound, playTeleportReleaseSound} from "./submitSound";
 
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
@@ -195,6 +195,8 @@ export default AFRAME.registerComponent('controller_6_d', {
         $(el).on('triggerup', () => {
             console.log("trigger released!!!");
 
+            playDropSound();
+
             let handIndicator;
             if (el.getAttribute('id') === 'viveControllerRight') {
                 handIndicator=document.querySelector('#rightHandIndicator');
@@ -219,8 +221,12 @@ export default AFRAME.registerComponent('controller_6_d', {
 
         });*/
 
-        $(el).on('trackpaddown', () =>{
+        $(el).on('trackpaddown', () => {
             playTeleportSound();
+        });
+
+        $(el).on('trackpadup', () => {
+           playTeleportReleaseSound();
         });
     }
 });

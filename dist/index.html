@@ -129,8 +129,10 @@
 
 
         <!-- submit sound -->
-        <a-asset-item id="teleportSoundSource" src="./assets/sounds/teleportSound.mp3" response-type="arraybuffer"></a-asset-item>
-        <a-asset-item id="submitSoundSource" src="./assets/sounds/blopSound.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="teleportSoundSource" src="./assets/sounds/trackpadSoundPress.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="teleportSoundReleaseSource" src="./assets/sounds/trackpadSoundRelease.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="submitSoundSource" src="./assets/sounds/buttonSoundPress.mp3" response-type="arraybuffer"></a-asset-item>
+        <a-asset-item id="dropSoundSource" src="./assets/sounds/buttonSoundRelease.mp3" response-type="arraybuffer"></a-asset-item>
 
     </a-assets>
 
@@ -530,7 +532,9 @@
 
             <!-- sound -->
             <a-entity id="submitSound" sound="src: #submitSoundSource"></a-entity>
+            <a-entity id="dropSound" sound="src: #dropSoundSource"></a-entity>
             <a-entity id="teleportSound" sound="src: #teleportSoundSource"></a-entity>
+            <a-entity id="teleportReleaseSound" sound="src: #teleportSoundReleaseSource"></a-entity>
 
         </a-camera>
     </a-entity>
