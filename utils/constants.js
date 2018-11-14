@@ -34,4 +34,4 @@ export const nameLabel = {
 export const supportedController = {
     geaVRController: 'Gear VR Controller',
     ViveController: 'OpenVR Gamepad'
-}
+};

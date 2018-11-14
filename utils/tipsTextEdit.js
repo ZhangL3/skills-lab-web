@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import _ from 'lodash';
 
 import stateIndex from '../src/state';
@@ -14,31 +13,20 @@ export default AFRAME.registerComponent('tips_text_edit', {
 
     init: function(){
         element = this.el;
-        // deep copy
+        // Store current state
         currentState = _.cloneDeep(stateIndex.getState());
     },
-
-    // update: function () {
-    //     const el = this.el;
-    //     const data = this.data;
-    //
-    //     el.setAttribute('value', data.text);
-    // }
 });
 
-function trimText(text) {
-
-}
-
+/**
+ * Handle notify of hint in state changed
+ *
+ * @param nextState
+ */
 export function handleNotifyTipsTextEdit(nextState) {
     if (nextState.hint !== currentState.hint) {
         element.setAttribute('value', `${nextState.hint}`);
     }
 
-    // deep copy
     currentState = _.cloneDeep(stateIndex.getState());
-}
-
-export function handleControllerNotifyTipsTextEdit( triggerEvent ) {
-
 }

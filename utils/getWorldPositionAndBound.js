@@ -1,5 +1,8 @@
 import $ from 'jquery';
 
+/**
+ * Add bound relate to global as attribute of object during initiation
+ */
 export default AFRAME.registerComponent('get_world_bound', {
     init: function(){
         $(this.el).on('model-loaded', ()=> {
@@ -8,12 +11,26 @@ export default AFRAME.registerComponent('get_world_bound', {
     },
 });
 
+/**
+ * Get position relate to global
+ *
+ * @param element
+ * @returns {*|MathUtil.Vector3}
+ */
 export function getWordPosition(element) {
     let worldPos = new THREE.Vector3();
     worldPos.setFromMatrixPosition(element.object3D.matrixWorld);
     return worldPos;
 }
 
+
+/**
+ * Add bound relate to global as attribute of object
+ * and return the value of bound
+ *
+ * @param element
+ * @returns {*}
+ */
 export function getWorldBound(element) {
     let boundingBox = new THREE.Box3().setFromObject(element.object3D);
 
@@ -27,6 +44,12 @@ export function getWorldBound(element) {
     return boundingBox;
 }
 
+/**
+ * Get the position of 8 vertexes of bounding box
+ *
+ * @param element
+ * @returns {Array}
+ */
 export function getVertexesOfBoundingBox(element) {
     let vertexes = [];
     let boundingBox = new THREE.Box3().setFromObject(element.object3D);

@@ -29,7 +29,7 @@ import { handleControllerStateNotifyNameLabelFilledVive } from '../src/nameLabel
 import { handleControllerStateClothOnTable } from '../src/disinfectionClothOnTableVive';
 import { handleControllerStateNotifyToggleBoxPageBack } from '../src/pageBack';
 
-
+// Store the state of objects, which be modified through the action of controller
 const controllerState = {
     connectedController: '',
 
@@ -72,7 +72,6 @@ const controllerState = {
     nacl500Hanged: false,
     dripChamberFilled: false,
     infusionSetWheelClosed: false,
-    // infusionSetHangedFilled: false,
     tubeFixed: false,
 
     nameLabelInHand: null,
@@ -82,8 +81,13 @@ const controllerState = {
     nameLabelPasted: false
 };
 
+/**
+ * Set the state according to the selected section
+ *
+ * @param section
+ */
 export function setControllerStateToSection(section) {
-    let selectedControllerstate = {
+    let selectedControllerState = {
 
         portfolioInHand: null,
 
@@ -93,7 +97,6 @@ export function setControllerStateToSection(section) {
         deskDisinfection: section >= 3,
         deskDisinfectionAllFinish: section >= 4,
 
-        // important
         nacl500Dragable: section <= 4,
 
         nacl500InHandToDesk: null,
@@ -104,7 +107,7 @@ export function setControllerStateToSection(section) {
         nacl500NoHookAnymore: section >= 5,
         bottleNacl500CapInHand: null,
         bottleNacl500CapDroped: section >= 5,
-        bottleOpened: false, // seem not needed
+        bottleOpened: false,
 
         infusionSetInPackInHand: null,
         infusionSetChecked: section >= 6,
@@ -118,7 +121,6 @@ export function setControllerStateToSection(section) {
         nacl500Hanged: section >= 7,
         dripChamberFilled: section >= 7,
         infusionSetWheelClosed: section === 6,
-        // infusionSetHangedFilled: section >= 7,
         tubeFixed: section >= 7,
 
         nameLabelInHand: null,
@@ -126,12 +128,12 @@ export function setControllerStateToSection(section) {
         nameLabelPasted: section > 7
     };
 
-    Object.assign(controllerState, selectedControllerstate);
-    
-    console.log("controllerState: ", controllerState, typeof(controllerState));
+    Object.assign(controllerState, selectedControllerState);
 }
 
-
+/**
+ * Handle controller state
+ */
 export default class controllerStateIndex {
 
     static initControllerState() {
@@ -166,9 +168,6 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyNameLabelFilledVive);
         this.controllerObserver.subscribe(handleControllerStateClothOnTable);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxPageBack);
-
-        console.log("controllerState init");
-
     }
 
     /**
@@ -219,8 +218,6 @@ export default class controllerStateIndex {
     static setControllerState(propString, value) {
         controllerState[propString] = value;
         this.controllerObserver.notify(controllerState);
-        console.log("setControllerState", propString, value);
-        console.log("controllerState: ", controllerState, typeof(controllerState));
     }
 
     /**
@@ -229,12 +226,8 @@ export default class controllerStateIndex {
      * @param propsArray
      * @param value
      */
-    // TODO: Ugly function, must to be rewrite
     static setInControllerState(propsArray, value) {
         const lengthOfProps = propsArray.length;
-
-        // why controllerState already changed here, before switch???
-        // console.log('before.setIn.controllerState:', controllerState);
 
         switch (lengthOfProps) {
             case 1:
@@ -252,7 +245,6 @@ export default class controllerStateIndex {
         }
 
         this.controllerObserver.notify(controllerState);
-
     }
 
 }

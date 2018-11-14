@@ -10,6 +10,13 @@ let specialCondition = {worldBound: {min: {x: 0, y: 0, z: 0}, max: {x: 0, y: 0, 
 let twoCabinetsCondition;
 const defaultLowestY = 0.02;
 
+/**
+ * Handle the animation of fall
+ *
+ * @param element
+ * @param lowestY
+ * @param specialConditions
+ */
 export default function dropDown(element, lowestY = defaultLowestY, specialConditions = []) {
     const twoCabinets = document.querySelector('#twoCabinets');
     const twoCabinetsWorldBound = getWorldBound(twoCabinets);
@@ -34,27 +41,41 @@ export default function dropDown(element, lowestY = defaultLowestY, specialCondi
     }, detectFrequency);
 }
 
+/**
+ * Detect the collision between cabinets and object
+ *
+ * @param element
+ */
 function handleTwoCabinetsCondition(element) {
     return handleSpecialCondition(element, twoCabinetsCondition);
 }
 
+/**
+ * Detect collision between spacial condition and object
+ *
+ * @param element
+ * @param specialCondition
+ * @returns {boolean}
+ */
 function handleSpecialCondition(element, specialCondition) {
     const ElementPosition = getWordPosition(element);
     const {x, y, z} = ElementPosition;
     
-    if (
-        x < specialCondition.worldBound.max.x
+    return x < specialCondition.worldBound.max.x
         && x > specialCondition.worldBound.min.x
         && z < specialCondition.worldBound.max.z
         && z > specialCondition.worldBound.min.z
-        && y <= specialCondition.lowestY
-    ) {
-        console.log("detect special condition!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
-        return true;
-    }
-    return false;
+        && y <= specialCondition.lowestY;
+
 }
 
+/**
+ * Check all special conditions
+ *
+ * @param element
+ * @param specialConditions
+ * @returns {boolean}
+ */
 function handleSpecialConditions(element, specialConditions) {
     if(specialConditions.length === 0) {
         return false;

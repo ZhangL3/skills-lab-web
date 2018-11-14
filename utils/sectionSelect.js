@@ -1,5 +1,6 @@
 import * as constants from './constants';
 
+// Store state of objects
 export const section0 = {
     wasteBinCapOpen: false,
     trashCanCapOpen: false,
@@ -35,7 +36,6 @@ export const section0 = {
             top: false,
         },
         withCap: true,
-        // withInfusionSet: false,
         finish: false,
     },
     infusionSet: {
@@ -55,10 +55,6 @@ export const section0 = {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
         finish: false,
-    },
-    showResult: {
-        time: '0:00',
-        hintTimes: 0,
     },
     hint: 'Please check the portfolio at first.',
     sectionSelected: 0,
@@ -100,7 +96,6 @@ export const section1 = {
             top: false,
         },
         withCap: true,
-        // withInfusionSet: false,
         finish: false,
     },
     infusionSet: {
@@ -120,10 +115,6 @@ export const section1 = {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
         finish: false,
-    },
-    showResult: {
-        time: '0:00',
-        hintTimes: 0,
     },
     hint: 'Please disinfect hands\\n before disinfect the work place.',
     sectionSelected: 1,
@@ -165,7 +156,6 @@ export const section2 = {
             top: false,
         },
         withCap: true,
-        // withInfusionSet: false,
         finish: false,
     },
     infusionSet: {
@@ -185,10 +175,6 @@ export const section2 = {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
         finish: false,
-    },
-    showResult: {
-        time: '0:00',
-        hintTimes: 0,
     },
     hint: 'Please disinfect the work place',
     sectionSelected: 2,
@@ -230,7 +216,6 @@ export const section3 = {
             top: false,
         },
         withCap: true,
-        // withInfusionSet: false,
         finish: false,
     },
     infusionSet: {
@@ -250,10 +235,6 @@ export const section3 = {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
         finish: false,
-    },
-    showResult: {
-        time: '0:00',
-        hintTimes: 0,
     },
     hint: 'Please disinfect hands\\n before prepare the infusion.',
     sectionSelected: 2,
@@ -295,7 +276,6 @@ export const section4 = {
             top: false,
         },
         withCap: true,
-        // withInfusionSet: false,
         finish: false,
     },
     infusionSet: {
@@ -315,10 +295,6 @@ export const section4 = {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
         finish: false,
-    },
-    showResult: {
-        time: '0:00',
-        hintTimes: 0,
     },
     hint: 'Please prepare infusion bottle.',
     sectionSelected: 3,
@@ -360,7 +336,6 @@ export const section5 = {
             top: true,
         },
         withCap: false,
-        // withInfusionSet: false,
         finish: false,
     },
     infusionSet: {
@@ -380,10 +355,6 @@ export const section5 = {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
         finish: false,
-    },
-    showResult: {
-        time: '0:00',
-        hintTimes: 0,
     },
     hint: 'Please prepare infusion set.',
     sectionSelected: 4,
@@ -425,7 +396,6 @@ export const section6 = {
             top: true,
         },
         withCap: false,
-        // withInfusionSet: false,
         finish: false,
     },
     infusionSet: {
@@ -445,10 +415,6 @@ export const section6 = {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
         finish: false,
-    },
-    showResult: {
-        time: '0:00',
-        hintTimes: 0,
     },
         hint: 'Please prepare for the infusion',
     sectionSelected: 5,
@@ -490,7 +456,6 @@ export const section7 = {
             top: true,
         },
         withCap: false,
-        // withInfusionSet: false,
         finish: true,
     },
     infusionSet: {
@@ -510,10 +475,6 @@ export const section7 = {
         position: constants.nameLabel.position.IN_BOX, // 'in-box' || 'in-hand' || 'on-bottle'
         labelFilled: false,
         finish: false,
-    },
-    showResult: {
-        time: '0:00',
-        hintTimes: 0,
     },
     hint: 'Please paste the name label.',
     sectionSelected: 6,
