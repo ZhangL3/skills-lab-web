@@ -1,4 +1,7 @@
+import $ from 'jquery';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
+import { getWorldBound } from "../utils/getWorldPositionAndBound";
+import { isEmitted, detectCollision } from '../utils/isEmitted';
 import statIndex from './state';
 
 let element;
@@ -10,14 +13,10 @@ export default AFRAME.registerComponent('nacl500_door_open', {
         element = this.el;
 
         this.el.addEventListener('click', () => {
-            convertNacl500DoorOpen();
+            statIndex.set('nacl500DoorOpen', !statIndex.get('nacl500DoorOpen'));
         });
     }
 });
-
-function convertNacl500DoorOpen() {
-    statIndex.set('nacl500DoorOpen', !statIndex.get('nacl500DoorOpen'));
-}
 
 const schema = {
     open: '0 -90 0',
@@ -37,5 +36,16 @@ export function handleNotifyNacl500DoorOpen(nextState) {
         setTimeout(()=>{
             canTakeBottle = false;
         }, schema.dur);
+    }
+}
+
+/**
+ * Handle the notify form controller
+ *
+ * @param triggerEvent
+ */
+export function handleControllerNotifyNacl500DoorOpen( triggerEvent ) {
+    if(detectCollision(element, triggerEvent.activeController)){
+        element.emit('click');
     }
 }

@@ -42,6 +42,7 @@ import { handleControllerNotifyNacl500CapCheckVive } from './nacl500CapCheckVive
 import { handleControllerNotifyInfusionSetInPackCheckVive } from './infusionSetInPackCheckVive';
 import { handleControllerReleaseNameLabelFilledVive, handleControllerPressNameLabelFilledVive } from './nameLabelFilledVive';
 import { handleControllerNotifyToggleBoxPageBack } from './pageBack';
+import { handleControllerNotifyNacl500DoorOpen } from './nacl500DoorOpen';
 
 export default AFRAME.registerComponent('controller_6_d', {
 
@@ -74,6 +75,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyNacl500CapCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPackCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxPageBack);
+        this.viveObserver.subscribe(handleControllerNotifyNacl500DoorOpen);
 
         // Listen to 'triggerdown'
         this.viveObserverPress.subscribe(handleControllerPressPortfolio);
