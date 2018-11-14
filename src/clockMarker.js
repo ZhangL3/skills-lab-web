@@ -1,5 +1,3 @@
-//TODO: Add this action after creating index of status.
-
 AFRAME.registerComponent('clockclick', {
     init: function () {
         var el= this.el;
@@ -18,16 +16,13 @@ AFRAME.registerComponent('clockclick', {
 
                 statusIndex.setAttribute("handdesinfection", "true");
 
-                var time30=setTimeout(function(){
-
+                setTimeout(function(){
                     el.removeChild(el.querySelector('#plat30'));
-
                 },3000);
             }
         });
     }
 });
-
 
 function getPlat30Rotation(){
     var oTime= new Date();

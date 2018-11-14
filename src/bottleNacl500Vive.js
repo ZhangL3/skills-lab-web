@@ -3,17 +3,11 @@ import _ from 'lodash';
 
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
-import * as constants from '../utils/constants';
-import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from "../utils/isEmitted";
+import { detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
-
 import { haveSthInHand } from "./controllerHand";
-
 import {canTakeBottle} from "./nacl500DoorOpen";
 import dropDown from '../utils/dropDown';
-
 import {showHookNacl500Cap} from "./hookNacl500Cap";
 import {showHookNacl500Label} from "./hookNacl500Label";
 import {showHookNacl500Liquid} from "./hookNacl500Liquid";
@@ -22,38 +16,23 @@ import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let element;
 let currentState;
-
 let activeController;
 let infusionSetInBottle;
-
 let currentControllerState;
-
 let toggleBoxNacl500OnDesk;
 let toggleBoxNacl500Hanged;
-
-let isNacl500Open = false;
 let isNacl500InHand = null;
-
 export let canCheck = false;
-
-const schema = {
-    onDeskPosition: '-0.32 0.732 -0.83',
-    dur: '500'
-};
 
 export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
     init: function(){
-        // shallow copy
         element = this.el;
         infusionSetInBottle = document.querySelector('#infusionSetInBottle');
         toggleBoxNacl500OnDesk = document.querySelector('#toggleBoxNacl500OnDesk');
         toggleBoxNacl500Hanged = document.querySelector('#toggleBoxNacl500Hanged');
 
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
-
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 
         $(element).on('click', () => {
@@ -82,55 +61,6 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
 
     }
 });
-
-export function handleNotifyBottleNacl500Vive(nextState) {
-    // deep copy
-    currentState = _.cloneDeep(stateIndex.getState());
-}
-
-export function handleControllerNotifyBottleNacl500Vive ( triggerEvent ) {
-
-    /*if (!detectCollision(element, triggerEvent.activeController)) {
-       return false;
-    }
-
-    if(triggerEvent.eventName === 'triggerDown') {
-        // to desk
-        if (
-            stateIndex.getIn(['handDisinfection', 'finish']) === 2
-            && controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
-            && controllerStateIndex.getControllerState('nacl500Dragable')
-            && !controllerStateIndex.getControllerState('infusionSetInBottle')
-            && haveSthInHand(triggerEvent.activeController).length === 0
-            && canTakeBottle
-        ) {
-            console.log("emmit triggerDown to bottle");
-            activeController = triggerEvent.activeController;
-            let activeControllerId =  activeController.getAttribute('id');
-            controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
-        }
-        // change hints
-        else if (
-            stateIndex.getIn(['handDisinfection', 'finish']) !== 2
-            && controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
-            && controllerStateIndex.getControllerState('nacl500Dragable')
-        ) {
-            console.log("Disinfect hands before taking bottle");
-        }
-
-        // to stand
-        if (
-            controllerStateIndex.getControllerState('infusionSetInBottle')
-            && controllerStateIndex.getControllerState('nacl500InHandToStand') === null
-            && haveSthInHand(triggerEvent.activeController).length === 0
-        ) {
-            console.log("to stand");
-            activeController = triggerEvent.activeController;
-            let activeControllerId =  activeController.getAttribute('id');
-            controllerStateIndex.setControllerState('nacl500InHandToStand', activeControllerId);
-        }
-    }*/
-}
 
 export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
 
@@ -268,16 +198,9 @@ function dragInHand() {
     isNacl500InHand = activeController.getAttribute('id');
     controllerActivities.drag();
     console.log("controllerActivities drag: ", controllerActivities, typeof(controllerActivities));
-    // drag(element, activeController);
-    // element = document.querySelector('#nacl500Bottle');
 }
 
 function dragInHandToHang() {
-    // drag(element, activeController);
-    // element = document.querySelector('#nacl500Bottle');
-
-    // trickDrag(element, activeController);
-
     let controllerActivities = new controllerActions(element, activeController);
     isNacl500InHand = activeController.getAttribute('id');
     controllerActivities.drag();

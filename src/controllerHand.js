@@ -6,10 +6,8 @@ import controllerStateIndex from '../utils/controllerState';
 
 let controllerRightHand;
 let controllerLeftHand;
-
 let controllerRight;
 let controllerLeft;
-
 const opacityByGrasping = 0.2;
 const opacityValue = 1;
 const originalHandColor = { r: 0.5843137502670288, g: 0.5843137502670288, b: 0.5843137502670288 };
@@ -17,12 +15,10 @@ const handWithGloveColor = {r:0, g:0, b:0.5};
 const defaultAlphaTest = 0.1;
 
 export default AFRAME.registerComponent('controller_hand', {
-
     init: function(){
         // shallow copy
         controllerRightHand = document.querySelector('#rightHand');
         controllerLeftHand = document.querySelector('#leftHand');
-
         controllerRight = document.querySelector('#viveControllerRight');
         controllerLeft = document.querySelector('#viveControllerLeft');
 
@@ -124,21 +120,6 @@ export function haveSthInHand(controllerElement){
     return objectsInHand;
 }
 
-export function handleNotifyControllerHand(nextState) {
-
-    // deep copy
-    currentState = _.cloneDeep(stateIndex.getState());
-}
-
-export function handleControllerNotifyControllerHand ( triggerEvent ) {
-    /*if (triggerEvent.activeController.getAttribute('id')==='viveControllerRight') {
-        $(controllerRightHand).trigger('emit');
-    }
-    else if (triggerEvent.activeController.getAttribute('id')==='viveControllerLeft') {
-        $(controllerLeftHand).trigger('emit');
-    }*/
-}
-
 export function handleControllerPressControllerHand ( triggerEvent ) {
     if (triggerEvent.activeController.getAttribute('id')==='viveControllerRight') {
         $(controllerRightHand).trigger('emit');
@@ -155,13 +136,6 @@ export function handleControllerReleaseControllerHand ( triggerEvent ) {
     else if (triggerEvent.activeController.getAttribute('id')==='viveControllerLeft') {
         $(controllerLeftHand).trigger('emit');
     }
-}
-
-export function handleControllerStateNotifyControllerHand (nextControllerState) {
-
-
-    // deep copy
-    currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
 

@@ -1,6 +1,5 @@
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import $ from 'jquery';
-
 import stateIndex from './state';
 import {bottle, infusionSet} from "../utils/constants";
 import hints from '../utils/hints';
@@ -10,12 +9,9 @@ let bottleCap;
 let infusionSetInBottle;
 let infusionSetHanged;
 let currentState;
-
 let toggleBoxNacl500Cap;
 // Don't active the action, if the animation is not finish
 let movable = true;
-// For product use withInfusionSet
-// let test = true;
 
 AFRAME.registerComponent('bottle_nacl500', {
 
@@ -31,9 +27,7 @@ AFRAME.registerComponent('bottle_nacl500', {
             handleClickBottle();
         });
         
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
-
     }
 });
 
@@ -79,7 +73,6 @@ function checkBack() {
     movable = false;
     aAnimationWrapper(element, '', 'rotation', '', schema.checkBackSiteRotation, schema.dur, '', true, 'forwards');
     setTimeout(()=>{ movable = true }, schema.dur);
-
 }
 
 function checkTop() {
@@ -87,7 +80,6 @@ function checkTop() {
     movable = false;
     aAnimationWrapper(element, '', 'rotation', '', schema.checkTopSiteRotation, schema.dur, '', true, 'forwards');
     setTimeout(()=>{ movable = true }, schema.dur);
-
 }
 
 function putOnTable() {
@@ -98,7 +90,6 @@ function putOnTable() {
     aAnimationWrapper(element, '', 'rotation', '', schema.onTableRotation, schema.dur, '', true, 'forwards');
 
     setTimeout(()=>{ movable = true }, schema.dur);
-
 }
 
 function takeOffCap() {
@@ -128,27 +119,20 @@ function takeOffCap() {
 }
 
 function hangUp() {
-    console.log("hangUp");
     movable = false;
 
     aAnimationWrapper(element, '', 'position', '', schema.hangedPosition, schema.dur, '', true, 'forwards');
-
     aAnimationWrapper(element, '', 'rotation', '', schema.hangedRotation, schema.dur, '', true, 'forwards');
-
     setTimeout(()=>{infusionSetHanged.attr('visible', true)},schema.dur);
-
     infusionSetInBottle.remove();
 
     stateIndex.setIn(['bottlePrepare', 'finish'], true);
 }
 
 function handleClickBottle() {
-    console.log("click bottle");
-    
-    if (// TODO: for product remove comment
-    // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
-    stateIndex.getIn(['handDisinfection', 'finish']) === 2 &&
-    stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD && movable
+    if (
+        stateIndex.getIn(['handDisinfection', 'finish']) === 2 &&
+        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD && movable
     ) {
         stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.IN_HAND);
         stateIndex.set('hint', hints.checkDrug);
@@ -182,24 +166,15 @@ function handleClickBottle() {
     ) {
         stateIndex.setIn(['bottlePrepare', 'withCap'], false);
         stateIndex.set('hint', hints.pierceInfusionSet);
-        // test = true;
     }
     else if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.ON_TABLE &&
         stateIndex.getIn(['bottlePrepare', 'withCap']) === false &&
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_BOTTLE &&
-        // test === true &&
         movable
     ) {
         stateIndex.setIn(['bottlePrepare', 'position'], bottle.position.HANGED);
         stateIndex.set('hint', hints.squeezeChamber);
-    }
-    // change hints
-    else if (
-        stateIndex.getIn(['handDisinfection', 'finish']) !== 2 &&
-        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.IN_CUPBOARD && movable
-    ) {
-        console.log("Disinfect hands before taking bottle");
     }
 }
 
@@ -209,14 +184,12 @@ export function handleNotifyBottle(nextState) {
     }
 
     // take bottle in hand
-    if (// TODO: for product remove comment (not needed)
-        // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
-        // stateIndex.getIn(['handDisinfection', 'finish']) === 2 &&
+    if (
         currentState.bottlePrepare.position === bottle.position.IN_CUPBOARD &&
         nextState.bottlePrepare.position === bottle.position.IN_HAND
     ) {
         takeBottle();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     // check back side
@@ -226,7 +199,7 @@ export function handleNotifyBottle(nextState) {
         nextState.bottlePrepare.checkBottle.front === true
     ) {
         checkBack();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     // check top side
@@ -236,7 +209,7 @@ export function handleNotifyBottle(nextState) {
         nextState.bottlePrepare.checkBottle.back === true
     ) {
         checkTop();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     // put on table
@@ -247,7 +220,7 @@ export function handleNotifyBottle(nextState) {
         nextState.bottlePrepare.checkBottle.top === true
     ) {
         putOnTable();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     // take off cap of bottle
@@ -255,11 +228,10 @@ export function handleNotifyBottle(nextState) {
         nextState.bottlePrepare.position === bottle.position.ON_TABLE &&
         currentState.bottlePrepare.withCap === true &&
         nextState.bottlePrepare.withCap === false &&
-        // if === 5, currentState.bottlePrepare.withCap === true. copy state before setting section
         nextState.sectionSelected !== 5
     ) {
         takeOffCap();
-        // deep copy
+
         currentState = _.cloneDeep(stateIndex.getState());
     }
     // hang up bottle
@@ -268,10 +240,7 @@ export function handleNotifyBottle(nextState) {
         currentState.infusionSet.position !== infusionSet.position.IN_BOTTLE &&
         nextState.bottlePrepare.finish === false &&
         nextState.infusionSet.position === infusionSet.position.IN_BOTTLE
-        //&& test === true
     ) {
         hangUp();
-        // deep copy
-        // currentState = _.cloneDeep(stateIndex.getState());
     }
 }

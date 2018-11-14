@@ -1,7 +1,6 @@
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
 import * as constants from '../utils/constants';
-import $ from 'jquery';
 import {device} from "../utils/controllerManage";
 
 const timeToStay = 6000;
@@ -72,7 +71,7 @@ AFRAME.registerComponent('camera-move', {
 
     update: function (oldData) {
         let data = this.data;
-        // Redef
+        // in update function must assignment the element again
         cameraPosition = positionVar.origin.name;
         nacl500Bottle = document.querySelector('#nacl500Bottle');
         infusionSetOpen = document.querySelector('#infusionSetOpen');
@@ -90,22 +89,16 @@ AFRAME.registerComponent('camera-move', {
 function removeAllEventListener() {
     // move to cupboard
     nacl500Bottle.removeEventListener('raycaster-intersected', moveToCupboardAndBack);
-
     // move to cabinet
     infusionSetOpen.removeEventListener('raycaster-intersected', moveToCabinetAndBack);
-
     // move to holder
     infusionSetHanged.removeEventListener('raycaster-intersected', moveToHolderAndBack);
-
     // move to holder
     infusionSetHangedFilled.removeEventListener('raycaster-intersected', moveToHolderAndBack);
-
     // move to hand disinfection
     handDisinfectionHandle.removeEventListener('raycaster-intersected', moveToHandDisinfectionAndBack);
-
     // move to holder
     infusionSetHangedFilled.removeEventListener('raycaster-intersected', moveToHolderAndBack);
-
     // move to hand disinfection
     handDisinfectionHandle.removeEventListener('raycaster-intersected', moveToHandDisinfectionAndBack);
 }
@@ -249,10 +242,7 @@ function moveToHandDisinfection(el) {
     cameraMoved = true;
 }
 
-// Gear VR without controller
-
-
-
+// For Gear VR without controller (scale is not same as others)
 function backToOriginGear(el) {
     aAnimationWrapper(el, '', 'position', '', positionVar.originGear.position, moveTimeGear, '', true, 'forwards');
     cameraPosition = positionVar.originGear.name;

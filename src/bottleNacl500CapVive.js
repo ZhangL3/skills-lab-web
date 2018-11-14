@@ -1,28 +1,18 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted,detectCollision } from '../utils/isEmitted';
+import { detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
-import { isBottleChecked } from "./bottleNacl500Vive";
 import { controllerActions } from "../utils/controllerActions";
-import * as constants from '../utils/constants';
-import stateIndex from './state';
-
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
-
-
-import {canCheck} from "./bottleNacl500Vive";
 import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
 let element;
 let toggleBoxWasteBin;
-
 let currentControllerState;
 let activeController;
 const bottleNacl500Scale = 0.1;
-
 let isNacl500CapInHand = null;
 
 export default AFRAME.registerComponent('bottle_nacl500_cap_vive', {
@@ -43,30 +33,6 @@ export default AFRAME.registerComponent('bottle_nacl500_cap_vive', {
 
 });
 
-const schema = {
-};
-
-// export function handleControllerNotifyBottleNacl500CapVive( triggerEvent ) {
-//
-//     if (
-//         !detectCollision(element, triggerEvent.activeController)
-//     ) {
-//         return false;
-//     }
-//
-//     // drag cap
-//     if (element
-//         && controllerStateIndex.getControllerState('nacl500OnDesk')
-//         && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
-//         && haveSthInHand(triggerEvent.activeController).length === 0
-//     ) {
-//         activeController = triggerEvent.activeController;
-//         let activeControllerId = activeController.getAttribute('id');
-//         controllerStateIndex.setControllerState('bottleNacl500CapInHand', activeControllerId);
-//     }
-//
-// }
-
 export function handleControllerPressBottleNacl500CapVive( triggerEvent ) {
 
     if (!element
@@ -74,8 +40,6 @@ export function handleControllerPressBottleNacl500CapVive( triggerEvent ) {
     ) {
         return false;
     }
-
-    console.log("press on nacl500 cap");
 
     // drag cap
     if (element
@@ -87,9 +51,7 @@ export function handleControllerPressBottleNacl500CapVive( triggerEvent ) {
         let activeControllerId = activeController.getAttribute('id');
         controllerStateIndex.setControllerState('bottleNacl500CapInHand', activeControllerId);
         controllerStateIndex.setControllerState('isNacl500CapHandling', true);
-
     }
-
 }
 
 export function handleControllerReleaseBottleNacl500CapVive( triggerEvent ) {
@@ -109,7 +71,6 @@ export function handleControllerReleaseBottleNacl500CapVive( triggerEvent ) {
 }
 
 export function handleControllerStateNotifyBottleNacl500CapVive (nextControllerState) {
-
     // drag cap in hand
     if (
         nextControllerState.bottleNacl500CapInHand !== null
@@ -118,18 +79,15 @@ export function handleControllerStateNotifyBottleNacl500CapVive (nextControllerS
     ) {
         dragInHand();
     }
-
     // drop cap down
     else if (
         nextControllerState.isNacl500CapHandling
         && nextControllerState.bottleNacl500CapInHand === null
         && isNacl500CapInHand !== null
     ) {
-        // fallDown(element);
         fallDown(element);
     }
 
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
@@ -141,12 +99,6 @@ function dragInHand() {
     controllerActivities.drag();
     isNacl500CapInHand = activeController.getAttribute('id');
 }
-
-// function drop() {
-//     $(element).trigger('drop', activeController);
-//     isNacl500CapInHand = null;
-//
-// }
 
 function drop() {
     let controllerActivities = new controllerActions(element, activeController, -1, 0.1);

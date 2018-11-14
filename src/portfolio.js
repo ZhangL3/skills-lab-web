@@ -57,8 +57,6 @@ export default AFRAME.registerComponent('portfolio', {
         // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
         
-        console.log("currentControllerState: ", currentControllerState, typeof(currentControllerState));
-
         $(this.el).on('click', () => {
             handleClickPortfolio();
         });
@@ -80,7 +78,6 @@ export const schema = {
 
 // open portfolio
 export function open () {
-    console.log("open!!!!!");
     aAnimationWrapper(
         foregroundOfPortfolio, '', 'rotation', '', schema.openRotation, schema.dur,
         '', true, 'forwards'
@@ -111,7 +108,6 @@ function takeInHand () {
 
 // close portfolio
 export function close () {
-    console.log("close");
     aAnimationWrapper(
         foregroundOfPortfolio, '', 'rotation', schema.openRotation, schema.closeRotation, schema.dur,
         '', true, 'forwards'
@@ -132,7 +128,6 @@ function putOnTable(){
 
 export function is5RChecked () {
     const status5R = stateIndex.getIn(['portfolio', 'checkPortfolio']);
-    console.log("status5R: ", status5R, typeof(status5R));
     if (!status5R.name) {
         return false;
     }
@@ -158,7 +153,6 @@ function handleClickPortfolio () {
         !is5RChecked()
     ) {
         stateIndex.setIn(['portfolio', 'position'], constants.portfolio.position.IN_HAND);
-        // console.log("hints: ", hints, typeof(hints));
         stateIndex.set('hint', hints.check5R);
         stateIndex.set('started', true);
     }
@@ -182,7 +176,6 @@ function handleClickPortfolio () {
 
 // hide the hooks for 5R
 export function hideHooks() {
-    console.log("hide!!!!!: ");
     hookName.setAttribute('visible', false);
     hookDrug.setAttribute('visible', false);
     hookDose.setAttribute('visible', false);
@@ -326,7 +319,6 @@ export function handleControllerStateNotifyPortfolio (nextControllerState) {
         && stateIndex.getIn(['portfolio', 'finish'])
         && nextControllerState.isPortfolioHandling === false
     ) {
-        console.log("should drop portfolio on desk");
         drop();
         dropOnDesk();
     }
