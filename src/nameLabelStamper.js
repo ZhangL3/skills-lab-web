@@ -14,6 +14,8 @@ let stickerStamper;
 let currentState;
 
 let moveable = true;
+let namelabelPosition = nameLabel.position.IN_BOX;
+let nameLabelFilled = false;
 
 export default AFRAME.registerComponent('name_label_stamper', {
 
@@ -53,21 +55,26 @@ const schema = {
 
 function takeEmptyNameLabel () {
     moveable = false;
-    aAnimationWrapper(
-        nameLabelEmpty, '', 'position', '', schema.nameLabelInFrontOfCameraPosition, schema.dur,
+    // If move with animation, the click event can not emitted anymore.
+    /*aAnimationWrapper(
+        nameLabelEmpty, '', 'position', '', schema.nameLabelInFrontOfCameraPosition, 300,
         '', true, 'forwards'
-    );
-    aAnimationWrapper(
-        nameLabelEmpty, '', 'rotation', '', schema.nameLabelInFrontOfCameraRotation, schema.dur,
+    );*/
+    /*aAnimationWrapper(
+        nameLabelEmpty, '', 'rotation', '', schema.nameLabelInFrontOfCameraRotation, 300,
         '', true, 'forwards'
-    );
+    );*/
+    nameLabelEmpty.attr('position', schema.nameLabelInFrontOfCameraPosition);
+    nameLabelEmpty.attr('rotation', schema.nameLabelInFrontOfCameraRotation);
 
     setTimeout(() => {moveable=true}, schema.dur);
+    namelabelPosition = nameLabel.position.IN_HAND;
 }
 
 function fillNameLabel() {
     nameLabelEmpty.remove();
     nameLabelWrote.attr('visible', true);
+    nameLabelFilled = true;
 }
 
 function stickNameLabel() {
@@ -100,19 +107,13 @@ function handleClickNameLabelEmpty() {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.IN_HAND);
         stateIndex.set('hint', hints.fillNameLabel);
     }
+
     else if (
         stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_HAND &&
         stateIndex.getIn(['nameLabel', 'labelFilled']) === false
     ) {
         stateIndex.setIn(['nameLabel', 'labelFilled'], true);
         stateIndex.set('hint', hints.pasteNameLabel);
-    }
-    // change hints
-    else if (
-        stateIndex.getIn(['infusionSet','finish']) !== true &&
-        stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX && moveable
-    ) {
-        console.log("Fix the tube before taking the name label");
     }
 }
 
@@ -133,23 +134,22 @@ export function handleNotifyNameLabel(nextState) {
         return false;
     }
 
-    if(// for product remove comment
-        // nextState.infusionSet.fixed === true &&
-        currentState.nameLabel.position === nameLabel.position.IN_BOX &&
+    if(
+        namelabelPosition === nameLabel.position.IN_BOX &&
         nextState.nameLabel.position === nameLabel.position.IN_HAND
     ) {
         takeEmptyNameLabel();
     }
     else if (
-        currentState.nameLabel.position === nameLabel.position.IN_HAND &&
-        currentState.nameLabel.labelFilled === false &&
+        namelabelPosition === nameLabel.position.IN_HAND &&
+        nameLabelFilled === false &&
         nextState.nameLabel.labelFilled === true
     ) {
         fillNameLabel();
     }
     else if (
-        currentState.nameLabel.position === nameLabel.position.IN_HAND &&
-        currentState.nameLabel.labelFilled === true &&
+        namelabelPosition === nameLabel.position.IN_HAND &&
+        nameLabelFilled === true &&
         nextState.nameLabel.position === nameLabel.position.ON_BOTTLE
     ) {
         stickNameLabel();
