@@ -7,45 +7,39 @@ import {playSubmitSound, playTeleportSound, playDropSound, playTeleportReleaseSo
 
 import { handleControllerNotifyCupboardDoor } from './doorOpen';
 import { handleControllerNotifyCabinetDrawer } from './drawerOpenWithHandle';
-import { handleControllerNotifyPortfolio, handleControllerPressPortfolio, handleControllerReleasePortfolio} from './portfolio';
-import { handleControllerNotifyToggleBoxPortfolioCheck } from './toggleBoxPortfolioCheck';
-import { handleControllerNotifyToggleBoxPortfolio, handleControllerReleaseToggleBoxPortfolio } from './toggleBoxPortfolio';
+import { handleControllerPressPortfolio, handleControllerReleasePortfolio} from './portfolio';
+import { handleControllerReleaseToggleBoxPortfolio } from './toggleBoxPortfolio';
 import { handleControllerNotifyHandDisinfection } from './handDisinfection';
 import { handleControllerNotifyGlove } from './glove';
 import { handleControllerNotifyClothInBottle } from './clothBottleCapVive';
-import { handleControllerNotifyClothOnTable, handleControllerPressClothOnTable, handleControllerReleaseClothOnTable } from './disinfectionClothOnTableVive';
-import { handleControllerNotifyToggleBoxTrashCan, handleControllerReleaseToggleBoxTrashCan } from './toggleBoxTrashCan';
-import { handleControllerNotifyBottleNacl500Vive, handleControllerPressBottleNacl500Vive, handleControllerReleaseBottleNacl500Vive } from './bottleNacl500Vive';
-import { handleControllerNotifyToggleBoxNacl500OnDesk, handleControllerReleaseToggleBoxNacl500OnDesk} from './toggleBoxNacl500OnDesk';
-import { handleControllerNotifyToggleBoxNacl500Label } from './toggleBoxNacl500Label';
-import { handleControllerNotifyToggleBoxNacl500Cap, handleControllerPressToggleBoxNacl500Cap, handleControllerReleaseToggleBoxNacl500Cap } from './toggleBoxNacl500Cap';
+import { handleControllerPressClothOnTable, handleControllerReleaseClothOnTable } from './disinfectionClothOnTableVive';
+import { handleControllerReleaseToggleBoxTrashCan } from './toggleBoxTrashCan';
+import { handleControllerPressBottleNacl500Vive, handleControllerReleaseBottleNacl500Vive } from './bottleNacl500Vive';
+import { handleControllerReleaseToggleBoxNacl500OnDesk} from './toggleBoxNacl500OnDesk';
+import { handleControllerReleaseToggleBoxNacl500Cap } from './toggleBoxNacl500Cap';
 import { handleControllerPressBottleNacl500CapVive, handleControllerReleaseBottleNacl500CapVive } from './bottleNacl500CapVive';
-
-import { handleControllerNotifyToggleBoxNacl500Liquid } from './toggleBoxNacl500Liquid';
 import { handleControllerNotifyWasteBinCap } from './wasteBinCapOpen';
-import { handleControllerNotifyToggleBoxWasteBin, handleControllerReleaseToggleBoxWasteBin } from './toggleBoxWasteBin';
-import { handleControllerNotifyInfusionSetInPack, handleControllerPressInfusionSetInPack, handleControllerReleaseInfusionSetInPack } from './infusionSetInPackVive';
-import { handleControllerNotifyToggleBoxInfusionSetInPack } from './toggleBoxInfusionSetInPack';
-import { handleControllerNotifyToggleBoxInfusionSetOnDesk, handleControllerReleaseToggleBoxInfusionSetOnDesk } from './toggleBoxInfusionSetOnDesk';
-import { handleControllerNotifyInfusionSetOpen, handleControllerPressInfusionSetOpen, handleControllerReleaseInfusionSetOpen } from './infusionSetOpenVive';
+import { handleControllerReleaseToggleBoxWasteBin } from './toggleBoxWasteBin';
+import { handleControllerPressInfusionSetInPack, handleControllerReleaseInfusionSetInPack } from './infusionSetInPackVive';
+import { handleControllerReleaseToggleBoxInfusionSetOnDesk } from './toggleBoxInfusionSetOnDesk';
+import { handleControllerPressInfusionSetOpen, handleControllerReleaseInfusionSetOpen } from './infusionSetOpenVive';
 import { handleControllerNotifyToggleBoxInfusionSetCap } from './toggleBoxInfusionSetOpenWheel';
-import { handleControllerNotifyInfusionSetCap, handleControllerPressInfusionSetCap, handleControllerReleaseInfusionSetCap } from './infusionSetCapVive';
-import { handleControllerNotifyToggleBoxNacl500Hanged, handleControllerReleaseToggleBoxNacl500Hanged } from './toggleBoxNacl500Hanged';
+import { handleControllerPressInfusionSetCap, handleControllerReleaseInfusionSetCap } from './infusionSetCapVive';
+import { handleControllerReleaseToggleBoxNacl500Hanged } from './toggleBoxNacl500Hanged';
 import { handleControllerNotifyToggleBoxInfusionSetHangedChamber } from './toggleBoxInfusionSetHangedChamber';
 import { handleControllerNotifyToggleBoxInfusionSetHangedWheel } from './toggleBoxInfusionSetHangedWheel';
 import { handleControllerNotifyInfusionSetHangedFilledVive } from './infusionSetHangedFilledVive';
-import { handleControllerNotifyNameLabelStamperVive, handleControllerPressNameLabelStamperVive, handleControllerReleaseNameLabelStamperVive } from './nameLabelStamperVive';
-import { handleControllerNotifyToggleBoxNacl500NameLabel, handleControllerReleaseToggleBoxNacl500NameLabel } from './toggleBoxNacl500NameLabel';
+import { handleControllerPressNameLabelStamperVive, handleControllerReleaseNameLabelStamperVive } from './nameLabelStamperVive';
+import { handleControllerReleaseToggleBoxNacl500NameLabel } from './toggleBoxNacl500NameLabel';
 import { handleControllerNotifyToggleBoxNameLabelEmpty } from './toggleBoxNameLabelEmpty';
 import { handleControllerNotifyToggleBoxSelectSection } from './toggleBoxSelectSection';
-import { handleControllerNotifyControllerHand,handleControllerPressControllerHand, handleControllerReleaseControllerHand } from './controllerHand';
+import { handleControllerPressControllerHand, handleControllerReleaseControllerHand } from './controllerHand';
 import { handleControllerNotifyIndicatorBox } from './indicatorBox';
 import { handleControllerNotifyPortfolioCheckVive } from './portfolioCheckVive';
 import { handleControllerNotifyNacl500LabelCheckVive } from './nacl500LabelCheckVive';
 import { handleControllerNotifyNacl500LiquidCheckVive } from './nacl500LiquidCheckVive';
 import { handleControllerNotifyNacl500CapCheckVive } from './nacl500CapCheckVive';
 import { handleControllerNotifyInfusionSetInPackCheckVive } from './infusionSetInPackCheckVive';
-import { handleControllerNotifyNacl500DoorOpen } from './nacl500DoorOpen';
 import { handleControllerReleaseNameLabelFilledVive, handleControllerPressNameLabelFilledVive } from './nameLabelFilledVive';
 import { handleControllerNotifyToggleBoxPageBack } from './pageBack';
 
@@ -62,36 +56,16 @@ export default AFRAME.registerComponent('controller_6_d', {
         // Add function from observers
         this.viveObserver.subscribe(handleControllerNotifyCupboardDoor);
         this.viveObserver.subscribe(handleControllerNotifyCabinetDrawer);
-        // this.viveObserver.subscribe(handleControllerNotifyPortfolio);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolioCheck);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxPortfolio);
         this.viveObserver.subscribe(handleControllerNotifyHandDisinfection);
         this.viveObserver.subscribe(handleControllerNotifyGlove);
         this.viveObserver.subscribe(handleControllerNotifyClothInBottle);
-        // this.viveObserver.subscribe(handleControllerNotifyClothOnTable);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxTrashCan);
-        // this.viveObserver.subscribe(handleControllerNotifyBottleNacl500Vive);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500OnDesk);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Label);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Cap);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Liquid);
         this.viveObserver.subscribe(handleControllerNotifyWasteBinCap);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxWasteBin);
-        // this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPack);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetInPack);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetOnDesk);
-        // this.viveObserver.subscribe(handleControllerNotifyInfusionSetOpen);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetCap);
-        // this.viveObserver.subscribe(handleControllerNotifyInfusionSetCap);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500Hanged);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetHangedChamber);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxInfusionSetHangedWheel);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetHangedFilledVive);
-        // this.viveObserver.subscribe(handleControllerNotifyNameLabelStamperVive);
-        // this.viveObserver.subscribe(handleControllerNotifyToggleBoxNacl500NameLabel);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxNameLabelEmpty);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxSelectSection);
-        this.viveObserver.subscribe(handleControllerNotifyControllerHand);
         this.viveObserver.subscribe(handleControllerNotifyIndicatorBox);
         this.viveObserver.subscribe(handleControllerNotifyPortfolioCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyNacl500LabelCheckVive);
@@ -99,14 +73,12 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserver.subscribe(handleControllerNotifyNacl500CapCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyNacl500CapCheckVive);
         this.viveObserver.subscribe(handleControllerNotifyInfusionSetInPackCheckVive);
-        this.viveObserver.subscribe(handleControllerNotifyNacl500DoorOpen);
         this.viveObserver.subscribe(handleControllerNotifyToggleBoxPageBack);
 
         // Listen to 'triggerdown'
         this.viveObserverPress.subscribe(handleControllerPressPortfolio);
         this.viveObserverPress.subscribe(handleControllerPressControllerHand);
         this.viveObserverPress.subscribe(handleControllerPressBottleNacl500Vive);
-        // this.viveObserverPress.subscribe(handleControllerPressToggleBoxNacl500Cap);
         this.viveObserverPress.subscribe(handleControllerPressBottleNacl500CapVive);
         this.viveObserverPress.subscribe(handleControllerPressInfusionSetInPack);
         this.viveObserverPress.subscribe(handleControllerPressInfusionSetCap);
@@ -119,7 +91,6 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseControllerHand);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxPortfolio);
         this.viveObserverRelease.subscribe(handleControllerReleasePortfolio);
-        // this.viveObserverRelease.subscribe(handleControllerPressBottleNacl500Vive);
         this.viveObserverRelease.subscribe(handleControllerReleaseClothOnTable);
         this.viveObserverRelease.subscribe(handleControllerReleaseBottleNacl500Vive);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500OnDesk);
@@ -136,37 +107,7 @@ export default AFRAME.registerComponent('controller_6_d', {
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxNacl500NameLabel);
         this.viveObserverRelease.subscribe(handleControllerReleaseToggleBoxTrashCan);
 
-       /* $(el).on('triggerdown', () => {
-
-            console.log("triggerchanged: ");
-
-            // playSubmitSound();
-
-            let handIndicator;
-            if (el.getAttribute('id') === 'viveControllerRight') {
-                handIndicator=document.querySelector('#rightHandIndicator');
-            }
-            else if (el.getAttribute('id') === 'viveControllerLeft') {
-                handIndicator=document.querySelector('#leftHandIndicator');
-            }
-
-            // If object ist not exactly in hand, the trigger position is the location of object
-            const triggerPosition = haveSthInHand(el).length > 0 ?
-                getWordPosition(handIndicator) : getWordPosition(el);
-
-            const triggerEvent = {
-                eventName: 'triggerDown',
-                position: triggerPosition,
-                activeController: el
-            };
-
-            // TODO: active the action triggerdown
-            this.viveObserver.notify(triggerEvent);
-
-        });*/
-
         $(el).on('triggerdown', () => {
-            console.log("trigger pressed!!!");
             playSubmitSound();
 
             let handIndicator;
@@ -193,8 +134,6 @@ export default AFRAME.registerComponent('controller_6_d', {
         });
 
         $(el).on('triggerup', () => {
-            console.log("trigger released!!!");
-
             playDropSound();
 
             let handIndicator;
@@ -216,10 +155,6 @@ export default AFRAME.registerComponent('controller_6_d', {
 
             this.viveObserverRelease.notify(triggerEvent);
         });
-
-        /*el.addEventListener('teleported', (event) => {
-
-        });*/
 
         $(el).on('trackpaddown', () => {
             playTeleportSound();
