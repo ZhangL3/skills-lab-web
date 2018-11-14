@@ -28,16 +28,12 @@ export default AFRAME.registerComponent('name_label_stamper', {
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
 
-        // $(this.el).on('click', () => {
-        //     handleClickStickerStamper();
-        // });
-
         nameLabelEmpty.on('click', () => {
             handleClickNameLabelEmpty();
         });
 
         stickerStamper.on('click', () => {
-            handleClickNameLabelEmpty();
+            handleClickNameLabelStamper();
         });
 
         nameLabelWrote.on('click', () => {
@@ -56,7 +52,6 @@ const schema = {
 };
 
 function takeEmptyNameLabel () {
-    console.log("takeEmptyNameLabel");
     moveable = false;
     aAnimationWrapper(
         nameLabelEmpty, '', 'position', '', schema.nameLabelInFrontOfCameraPosition, schema.dur,
@@ -71,13 +66,11 @@ function takeEmptyNameLabel () {
 }
 
 function fillNameLabel() {
-    console.log("fillNameLabel");
     nameLabelEmpty.remove();
     nameLabelWrote.attr('visible', true);
 }
 
 function stickNameLabel() {
-    console.log("stickNameLabel");
     aAnimationWrapper(
         nameLabelWrote, '', 'position', '', schema.nameLabelOnBottlePosition, schema.dur,
         '', true, 'forwards'
@@ -89,19 +82,20 @@ function stickNameLabel() {
     nameLabelWrote.attr('scale', schema.nameLabelOnBottleScale);
 }
 
-function handleClickStickerStamper () {
-    if (// for product remove comment
-        // stateIndex.getIn(['infusionSet','fixed']) === true &&
-        stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX
+function handleClickNameLabelStamper () {
+    if (
+        stateIndex.getIn(['infusionSet','finish']) === true &&
+        stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX && moveable
     ) {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.IN_HAND);
+        stateIndex.set('hint', hints.fillNameLabel);
     }
 }
 
 function handleClickNameLabelEmpty() {
-    if (// for product remove comment
-    stateIndex.getIn(['infusionSet','finish']) === true &&
-    stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX && moveable
+    if (
+        stateIndex.getIn(['infusionSet','finish']) === true &&
+        stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_BOX && moveable
     ) {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.IN_HAND);
         stateIndex.set('hint', hints.fillNameLabel);
