@@ -25,7 +25,6 @@ export default AFRAME.registerComponent('toggle_box_select_section', {
 
     init: function(){
 
-        // section = document.querySelector('#section');
         section = this.el;
 
         toggleBoxSection1 = document.querySelector('#toggleBoxSection1');
@@ -46,6 +45,7 @@ export default AFRAME.registerComponent('toggle_box_select_section', {
 export function handleNotifyToggleBoxSelectSection(nextState) {
     if (nextState.started) {
         section.setAttribute('visible', false);
+        removeToggleBox();
     }
 }
 
@@ -89,4 +89,16 @@ export function handleControllerNotifyToggleBoxSelectSection( triggerEvent ) {
     }
 }
 
+function removeToggleBox() {
+    if (!toggleBoxSection1) {
+        return false;
+    }
+    $(toggleBoxSection1).remove();
+    $(toggleBoxSection2).remove();
+    $(toggleBoxSection3).remove();
+    $(toggleBoxSection4).remove();
+    $(toggleBoxSection5).remove();
+    $(toggleBoxSection6).remove();
+    $(toggleBoxSection7).remove();
 
+}

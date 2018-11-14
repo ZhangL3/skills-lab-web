@@ -13,8 +13,6 @@ export default AFRAME.registerComponent('page_back', {
         element.addEventListener('click', () => {
             goBack();
         });
-
-
     }
 });
 
@@ -37,7 +35,7 @@ export function handleNotifyPageBack(nextState) {
 export function handleControllerNotifyToggleBoxPageBack( triggerEvent ) {
     if (
         !controllerStateIndex.getControllerState('nameLabelPasted')
-        || !detectCollision(element, triggerEvent.activeController)
+        || !detectCollision(toggleBoxPageBack, triggerEvent.activeController)
     ) {
         return false;
     }
