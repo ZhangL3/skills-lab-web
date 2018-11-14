@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from '../utils/isEmitted';
+import { detectCollision } from '../utils/isEmitted';
 
 const allDoors = [];
 let allDoorsElements;
@@ -15,18 +14,10 @@ export default AFRAME.registerComponent('door_open', {
 
     init: function () {
         allDoors.push(this.el);
-
         allDoorsElements = $('.cupboardDoor');
-
         const { close, open, dur }= this.data;
-
-        this.el.addEventListener('click', () => {
-            // twoCabinets.components.sound.playSound();
-        });
-
-        // Add open and close animation of drawer
+        // Add open and close animation of door
         aAnimationWrapper(this.el, 'click', 'rotation', close, open, dur, 'alternate', false, 'forwards');
-
     }
 });
 

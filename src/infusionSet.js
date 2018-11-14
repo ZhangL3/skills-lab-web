@@ -1,14 +1,12 @@
-import aAnimationWrapper from '../utils/aAnimationWrapper';
 import $ from 'jquery';
 
+import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
 import {bottle, infusionSet} from "../utils/constants";
-
 import {isDrawerOpen } from "./drawerOpenWithInfusionSet";
 import hints from '../utils/hints';
 
 let element;
-
 let infusionSetInPack;
 let infusionSetOpen;
 let infusionSetOpenCap;
@@ -22,16 +20,12 @@ let infusionSetHangedFilled;
 let infusionSetHangedFilledWheel;
 let infusionSetFilledFill;
 let infusionSetFixed;
-
 let currentState;
-
 // Don't active the action, if the animation is not finish
 export let movable = true;
 
 AFRAME.registerComponent('infusion_set', {
-
     init: function () {
-
         element = this.el;
         infusionSetInPack = $('#infusionSetInPack');
         infusionSetOpen = $('#infusionSetOpen');
@@ -71,15 +65,12 @@ AFRAME.registerComponent('infusion_set', {
            handleClickInfusionSetHangedRoller();
         });
 
-        // Problem: visible === false, but get click event
         infusionSetHangedFilled.on('click', () => {
            handleClickInfusionSetHangedFilled();
            console.log("infusionSetHangedFilled: ", infusionSetHangedFilled, typeof(infusionSetHangedFilled));
         });
 
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
-
     }
 });
 
@@ -90,12 +81,10 @@ const schema = {
     inFrontOfCameraRotation: '-90.000 0 0',
     onTablePosition: '-0.161 0.698 -0.819',
     onTableRotation: '0 90 0',
-
     infusionSetOpenCapOnTableOpen: '0.637 0.402 -2.183',
     infusionSetOpenCapOverTableOpen: '0.637 8.647 -2.183',
     infusionSetOpenCapOverCan: '-4.731 8.647 3.152',
     infusionSetOpenCapInCan: '-4.731 1.168 3.152',
-
     infusionSetOpenWheelClose: '-0.454 0 0.295',
     infusionSetHangedWheelOpen: '-0.530 0.110 -0.060',
     dur: 500,
@@ -120,27 +109,23 @@ export function initInfusionSetFixed() {
 }
 
 export function moveWithDrawer() {
-    console.log("moveWithDrawer");
     movable = false;
     if (
         isDrawerOpen === false
         && stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER
     ) {
         aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.infusionSetInDrawerOpenPosition, schema.dur, '', true, 'forwards');
-        // isDrawerOpen = !isDrawerOpen;
     }
     else if (
         isDrawerOpen === true
         && stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER
     ){
         aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.infusionSetInDrawerClosePosition, schema.dur, '', true, 'forwards');
-        // isDrawerOpen = !isDrawerOpen;
     }
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
 function takeInfusionSet() {
-    console.log("takeInfusionSet");
     movable = false;
     aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.inFrontOfCameraPosition, schema.dur, '', true, 'forwards');
     aAnimationWrapper(infusionSetInPack, '', 'rotation', '', schema.inFrontOfCameraRotation, schema.dur, '', true, 'forwards');
@@ -148,7 +133,6 @@ function takeInfusionSet() {
 }
 
 function putInfusionSetOnTable() {
-    console.log("putInfusionSetOnTable");
     movable = false;
     aAnimationWrapper(infusionSetInPack, '', 'position', '', schema.onTablePosition, schema.dur, '', true, 'forwards');
     aAnimationWrapper(infusionSetInPack, '', 'rotation', '', schema.onTableRotation, schema.dur, '', true, 'forwards');
@@ -156,7 +140,6 @@ function putInfusionSetOnTable() {
 }
 
 function openInfusionSet() {
-    console.log("openInfusionSet");
     movable = false;
     infusionSetInPack.remove();
     infusionSetOpen.attr('visible', true);
@@ -164,7 +147,6 @@ function openInfusionSet() {
 }
 
 function takeOffInfusionSetOpenCap() {
-    console.log("takeOffInfusionSetOpenCap");
     movable = false;
 
     if (stateIndex.get('wasteBinCapOpen') === false) {
@@ -196,20 +178,15 @@ function takeOffInfusionSetOpenCap() {
 }
 
 function closeInfusionSetOpenWheel() {
-    console.log("closeInfusionSetOpenWheel");
     movable = false;
-
     aAnimationWrapper(infusionSetOpenWheel, '', 'position', '', schema.infusionSetOpenWheelClose, schema.dur, '', true, 'forwards');
-
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
 function pierceInfusionSetIntoBottle() {
     movable = false;
-
     infusionSetOpen.remove();
     infusionSetInBottle.attr('visible', true);
-
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
@@ -218,8 +195,6 @@ function fillChamber() {
 }
 
 function openRoller() {
-    console.log("openRoller");
-
     movable = false;
     infusionSetHanged.remove();
     infusionSetHangedFilled.attr('visible', true);
@@ -230,8 +205,6 @@ function openRoller() {
 }
 
 function fixTube() {
-    console.log("fixTube");
-
     movable = false;
     infusionSetHangedFilled.remove();
     infusionSetFixed.attr('visible', true);
@@ -240,7 +213,6 @@ function fixTube() {
 }
 
 function handleClickInfusionSetInPack() {
-    console.log("click infusion set");
     if (
         stateIndex.getIn(['handDisinfection', 'finish']) === 2 &&
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER &&
@@ -263,17 +235,9 @@ function handleClickInfusionSetInPack() {
         stateIndex.setIn(['infusionSet', 'inPack'], false);
         stateIndex.set('hint', `${hints.closeRoller} and ${hints.takeOffInfusionSetCap}`);
     }
-    // change hints
-    else if (
-        stateIndex.getIn(['handDisinfection', 'finish']) !== 2 &&
-        stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.IN_DRAWER && movable
-    ) {
-        console.log("Disinfect hands before taking infusion set");
-    }
 }
 
 function handleClickInfusionSetOpenCap() {
-    console.log('click cap');
     if (
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
         stateIndex.getIn(['infusionSet', 'inPack']) === false &&
@@ -292,7 +256,6 @@ function handleClickInfusionSetOpenCap() {
 }
 
 function handleClickInfusionSetOpenWheel() {
-    console.log('click wheel');
     if (
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
         stateIndex.getIn(['infusionSet', 'inPack']) === false &&
@@ -311,8 +274,6 @@ function handleClickInfusionSetOpenWheel() {
 }
 
 function handleClickInfusionSetOpen() {
-    console.log("click infusion set open");
-
     if (
         stateIndex.getIn(['infusionSet', 'position']) === infusionSet.position.ON_TABLE &&
         stateIndex.getIn(['infusionSet', 'withCap']) === false &&
@@ -322,18 +283,9 @@ function handleClickInfusionSetOpen() {
         stateIndex.setIn(['infusionSet','position'], infusionSet.position.IN_BOTTLE);
         stateIndex.set('hint', hints.hang);
     }
-    // chang hints
-    else if (
-        stateIndex.getIn(['infusionSet', 'withCap']) === true ||
-        stateIndex.getIn(['infusionSet', 'rollerClapOpen']) === true ||
-        stateIndex.getIn(['bottlePrepare', 'withCap']) === true
-    ) {
-        console.log("Take off cap of infusion set and bottle, close roller");
-    }
 }
 
 function handleClickInfusionSetHanged() {
-    console.log("handleClickInfusionSetHanged");
     if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
         stateIndex.getIn(['infusionSet', 'chamberFilled']) === false &&
@@ -345,7 +297,6 @@ function handleClickInfusionSetHanged() {
 }
 
 function handleClickInfusionSetHangedRoller() {
-    console.log('click roller');
     if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
         stateIndex.getIn(['infusionSet','chamberFilled']) === true &&
@@ -356,23 +307,10 @@ function handleClickInfusionSetHangedRoller() {
         stateIndex.setIn(['infusionSet', 'rollerClapOpen'], true);
         stateIndex.set('hint', hints.fixTube);
     }
-    // change hints
-    else if (
-        stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
-        stateIndex.getIn(['infusionSet','chamberFilled']) !== true &&
-        stateIndex.getIn(['infusionSet','tubeFilled']) === false &&
-        movable
-    ) {
-        console.log("Squeeze chamber before opening the roller");
-    }
 }
 
 
 function handleClickInfusionSetHangedFilled() {
-    console.log("click hanged filled");
-    console.log(stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED);
-    console.log(stateIndex.getIn(['infusionSet', 'chamberFilled']) === true);
-    console.log(stateIndex.getIn(['infusionSet', 'tubeFilled']) === true);
     if (
         stateIndex.getIn(['bottlePrepare', 'position']) === bottle.position.HANGED &&
         stateIndex.getIn(['infusionSet', 'chamberFilled']) === true &&
@@ -391,9 +329,7 @@ export function handleNotifyInfusionSet(nextState) {
         return false;
     }
 
-    if (// TODO: for product remove comment
-    // stateIndex.getIn(['handDisinfection', 'finish']) === true &&
-    // stateIndex.getIn(['handDisinfection', 'finish']) === 2 &&
+    if (
     currentState.infusionSet.position === infusionSet.position.IN_DRAWER &&
     nextState.infusionSet.position === infusionSet.position.IN_HAND
     ) {
@@ -412,7 +348,6 @@ export function handleNotifyInfusionSet(nextState) {
         currentState = _.cloneDeep(stateIndex.getState());
     }
     else if (
-        // currentState.infusionSet.position === infusionSet.position.ON_TABLE &&
         nextState.infusionSet.position === infusionSet.position.ON_TABLE &&
         currentState.infusionSet.inPack === true &&
         nextState.infusionSet.inPack === false
@@ -476,29 +411,14 @@ export function handleNotifyInfusionSet(nextState) {
 
         // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
-        console.log("after openRoller, current state: ", currentState);
     }
     else if (
         nextState.bottlePrepare.position === bottle.position.HANGED &&
         currentState.infusionSet.fixed === false &&
         nextState.infusionSet.fixed === true
-        // currentState.infusionSet.finish === false &&
-        // nextState.infusionSet.finish === true
     ) {
         fixTube();
 
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
     }
-    // else if (
-    //     nextState.bottlePrepare.position === bottle.position.HANGED &&
-    //     currentState.bottlePrepare.withInfusionSet === false &&
-    //     nextState.bottlePrepare.finish === false &&
-    //     // nextState.bottlePrepare.withInfusionSet === true
-    //     test === true
-    // ) {
-    //     hangUp();
-    //     // deep copy
-    //     // currentState = _.cloneDeep(stateIndex.getState());
-    // }
 }

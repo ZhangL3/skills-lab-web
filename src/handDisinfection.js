@@ -1,13 +1,8 @@
 import $ from 'jquery';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
-
-import controllerStateIndex from '../utils/controllerState';
-import * as constants from '../utils/constants';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from "../utils/isEmitted";
+import { detectCollision } from "../utils/isEmitted";
 import hints from '../utils/hints';
-
 
 let element;
 let clock;
@@ -31,9 +26,7 @@ AFRAME.registerComponent('hand_disinfection', {
             handleClickHandle();
         });
 
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
-
     }
 });
 
@@ -48,19 +41,12 @@ function handDisinfection() {
     showClockIndicate();
 }
 
-function createPlat30Sec () {
-
-}
-
 function showClockIndicate() {
-
     plat30sec=document.createElement("a-gltf-model");
-
     plat30sec.setAttribute("id","plat30");
     plat30sec.setAttribute("src","#clockMarker");
     plat30sec.setAttribute("position", "0.01 0 0");
     plat30sec.setAttribute("rotation", getPlat30Rotation());
-
     clock.appendChild(plat30sec);
 }
 
@@ -90,19 +76,6 @@ function handleClickHandle () {
     ){
         stateIndex.setIn(['handDisinfection', 'disinfecting'], true);
     }
-    // chang hints
-    else if (
-        !stateIndex.getIn(['portfolio', 'finish'])
-    ) {
-        console.log("Check portfolio before disinfecting hands");
-    }
-    else if (
-        stateIndex.getIn(['portfolio', 'finish']) &&
-        !stateIndex.getIn(['tableDisinfection', 'finish'])
-    ) {
-        console.log("Disinfect the work desk before disinfecting hands");
-    }
-
 }
 
 export function handleNotifyHandDisinfection(nextState) {
@@ -111,14 +84,12 @@ export function handleNotifyHandDisinfection(nextState) {
         return false;
     }
 
-    if (// TODO: for product remove comment
-        // nextState.tableDisinfection.hasCloth === true &&
+    if (
          nextState.handDisinfection.disinfecting === true
          &&  (nextState.handDisinfection.finish === 0 || nextState.handDisinfection.finish === 1)
          && currentState.handDisinfection.disinfecting === false
          && nextState.handDisinfection.disinfected === false
     ) {
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
 
         // active handle, after 30sec chang state
@@ -132,22 +103,10 @@ export function handleNotifyHandDisinfection(nextState) {
             changeHint();
         }, handDisinfectionTime);
     }
-    // else if (
-    //     (nextState.handDisinfection.finish === 0 || nextState.handDisinfection.finish === 1) &&
-    //     nextState.handDisinfection.disinfecting === true &&
-    //     nextState.handDisinfection.disinfected === true
-    // ) {
-    //     hideClockIndicate();
-    //     stateIndex.setIn(['handDisinfection', 'finish'], stateIndex.getIn(['handDisinfection', 'finish']) + 1);
-    // }
-
-    // deep copy
     currentState = _.cloneDeep(stateIndex.getState());
 }
 
 export function handleControllerNotifyHandDisinfection( triggerEvent ) {
-    // getWorldBound(element);
-    // if (isEmitted(element, triggerEvent.position)) {
     if (detectCollision(element, triggerEvent.activeController)) {
         $(element).trigger('click');
     }

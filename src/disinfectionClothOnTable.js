@@ -7,11 +7,8 @@ import hints from '../utils/hints';
 let element;
 
 export default AFRAME.registerComponent('disinfection_cloth_on_table', {
-
     init: function(){
-        // shallow copy
         element = this.el;
-
         $(this.el).on('click', () => {
             handleClickClothOnTable();
         });
@@ -57,11 +54,9 @@ function handleClickClothOnTable () {
         stateIndex.setIn(['tableDisinfection', 'disinfectionFinish'], true);
         stateIndex.set('hint', hints.handDisinfection);
     }
-
 }
 
 export function handleNotifyClothOnTable(nextState) {
-
     if(stateIndex.getIn(['tableDisinfection', 'finish'])) {
         return false;
     }

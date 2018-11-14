@@ -7,7 +7,6 @@ let rightHandIndicator;
 let viveControllerRight;
 
 AFRAME.registerComponent('indicator-box', {
-
     init: function () {
         leftHandIndicator = document.querySelector('#leftHandIndicator');
         viveControllerLeft = document.querySelector('#viveControllerLeft');
@@ -25,7 +24,6 @@ function setNthInHandPosition(indicatorBox) {
 }
 
 export function handleControllerNotifyIndicatorBox ( triggerEvent ) {
-
     adjustPositionOfIndicator();
 
     // wait for element moving of cloth on table

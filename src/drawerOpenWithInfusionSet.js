@@ -20,7 +20,6 @@ export default AFRAME.registerComponent('drawer_open_with_infusion_set',{
         drawerWithInfusionSet.on('infusionSetMoveWithDrawer', moveWithDrawer);
 
         drawerWithInfusionSet.on('click', () => {
-
             if(isDrawerOpen){
                 closeDrawer(this.el);
             }

@@ -1,7 +1,5 @@
 import $ from 'jquery';
-import _ from 'lodash';
 
-import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 
 let controllerRightHand;

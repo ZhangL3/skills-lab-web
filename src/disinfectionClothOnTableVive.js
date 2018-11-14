@@ -1,12 +1,9 @@
 import $ from 'jquery';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import {detectCollision, isEmitted} from "../utils/isEmitted";
 import controllerStateIndex from '../utils/controllerState';
 import { checkIsCapOpen } from "./clothBottleCapOpen";
 import { controllerActions } from "../utils/controllerActions";
 import stateIndex from './state';
-import {setVisibleTrue} from "../utils/setVisible";
-
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import hints from '../utils/hints';
@@ -18,10 +15,8 @@ let clothOnTable;
 let toggleBoxTrashCan;
 let toggleBoxDeskLeft;
 let toggleBoxDeskRight;
-
 let activeController;
 let isClothInHand = false;
-
 let isToggleBoxDeskLeftChecked = false;
 let isToggleBoxDeskRightChecked = false;
 let tmpInterval;
@@ -29,9 +24,8 @@ let tmpInterval;
 AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
 
     init: function(){
-        clothInBottle = document.querySelector('#clothInBottle');
-
         clothOnTable = this.el;
+        clothInBottle = document.querySelector('#clothInBottle');
         toggleBoxTrashCan = document.querySelector('#toggleBoxTrashCan');
         toggleBoxDeskLeft = document.querySelector('#toggleBoxDeskLeft');
         toggleBoxDeskRight = document.querySelector('#toggleBoxDeskRight');
@@ -41,37 +35,6 @@ AFRAME.registerComponent('disinfection_cloth_on_table_vive', {
         });
     }
 });
-
-export function handleControllerNotifyClothOnTable ( triggerEvent ) {
-
-    /*if (
-        stateIndex.getIn(['tableDisinfection', 'finish'])
-        || controllerStateIndex.getControllerState('disinfectionClothInHand')
-    ) {
-        return false;
-    }
-
-    // getWorldBound(clothInBottle);
-    activeController = triggerEvent.activeController;
-    let activeControllerId = activeController.getAttribute('id');
-
-    if (
-        // Must have gloves, before taking disinfection cloth
-        (
-            activeControllerId
-            && controllerStateIndex.getControllerState('hasGloveLeft')
-            && controllerStateIndex.getControllerState('hasGloveRight')
-            && haveSthInHand(activeController).length === 0
-        )
-        && checkIsCapOpen()
-        // && isEmitted(clothInBottle, triggerEvent.position)
-        && detectCollision(clothInBottle, activeController)
-    ) {
-        console.log("isEmitted(clothInBottle, triggerEvent.position): ", isEmitted(clothInBottle, triggerEvent.position), typeof(isEmitted(clothInBottle, triggerEvent.position)));
-        dragInHand();
-        controllerStateIndex.setControllerState('disinfectionClothInHand', activeControllerId);
-    }*/
-}
 
 export function handleControllerPressClothOnTable ( triggerEvent ) {
 
@@ -155,14 +118,6 @@ export function handleControllerStateClothOnTable ( nextState ) {
         && !isClothInHand
     ) {
         dragInHand();
-        // tmpInterval = setInterval(() => {
-        //     if (
-        //         deskDisinfection()
-        //     ) {
-        //         controllerStateIndex.setControllerState('deskDisinfection', true);
-        //         clearInterval(tmpInterval);
-        //     }
-        // }, 10);
     }
     // Drop
     else if (
@@ -179,13 +134,11 @@ function deskDisinfection() {
         detectCollision(clothOnTable, toggleBoxDeskLeft)
     ) {
         isToggleBoxDeskLeftChecked = true;
-        console.log("isToggleBoxDeskLeftChecked: ", isToggleBoxDeskLeftChecked, typeof(isToggleBoxDeskLeftChecked));
     }
     if (
         detectCollision(clothOnTable, toggleBoxDeskRight)
     ) {
         isToggleBoxDeskRightChecked = true;
-        console.log("isToggleBoxDeskRightChecked: ", isToggleBoxDeskRightChecked, typeof(isToggleBoxDeskRightChecked));
     }
 
     if (

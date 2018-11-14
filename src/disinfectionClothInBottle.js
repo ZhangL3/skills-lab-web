@@ -2,12 +2,9 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import stateIndex from './state';
-import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
-
 import { canTakeCloth } from './clothBottleCapOpen';
 import hints from '../utils/hints';
-
 
 let element;
 let currentState;
@@ -16,12 +13,8 @@ let disinfectionClothOnTable;
 export default AFRAME.registerComponent('disinfection_cloth_in_bottle', {
 
     init: function(){
-        // shallow copy
         element = this.el;
-        // Here must use querySelector, not JQuery selector.
         disinfectionClothOnTable = document.querySelector('#clothOnTable');
-
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
 
         $(this.el).on('click', () => {
@@ -64,16 +57,13 @@ function putOnTable(){
 }
 
 function handleClickClothInBottle () {
-    if (stateIndex.getIn(['tableDisinfection','hasCloth']) === false
-        // TODO: for product uncomment
+    if (
+        stateIndex.getIn(['tableDisinfection','hasCloth']) === false
         && stateIndex.getIn(['tableDisinfection','hasGlove']) === true
         && canTakeCloth
     ) {
         stateIndex.setIn(['tableDisinfection','hasCloth'], true);
         stateIndex.set('hint', hints.deskDisinfection);
-    }
-    else {
-        console.log("has no glove: ");
     }
 }
 
@@ -90,7 +80,6 @@ export function handleNotifyClothInBottle(nextState) {
         putOnTable();
     }
 
-    // deep copy
     currentState = _.cloneDeep(stateIndex.getState());
 }
 

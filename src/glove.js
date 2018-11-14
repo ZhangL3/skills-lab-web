@@ -1,14 +1,9 @@
 import $ from 'jquery';
-import _ from 'lodash';
 
 import stateIndex from './state';
-import * as constants from '../utils/constants';
-import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from "../utils/isEmitted";
+import { detectCollision } from "../utils/isEmitted";
 import controllerStateIndex from '../utils/controllerState';
 import hints from '../utils/hints';
-
 
 // let element;
 let gloveL;
@@ -16,14 +11,11 @@ let gloveM;
 let gloveS;
 let gloveLeft;
 let gloveRight;
-
-
 let gloveInFrontOfCamera;
 
 export default AFRAME.registerComponent('glove', {
 
     init: function(){
-        // shallow copy
         const el = this.el;
         gloveInFrontOfCamera = document.querySelector('#gloveInFrontOfCamera');
         gloveL = $('#gloveL');
@@ -32,18 +24,13 @@ export default AFRAME.registerComponent('glove', {
         gloveLeft = $('#gloveLeft');
         gloveRight = $('#gloveRight');
         let activeController = null;
-        let timeInterval = null;
-
 
         $(el).on('click', () => {
             handleClickGlove();
         });
 
         $(el).on('controllerEmit', (event, data) => {
-            // getWorldBound(el);
-
             if(
-                // isEmitted(el, data.position)
                 detectCollision(el, data.activeController)
             ) {
                 // Must check portfolio before taking glove
@@ -76,11 +63,6 @@ export default AFRAME.registerComponent('glove', {
                         }
                     }
                 }
-                // chang hints
-                else {
-                        // console.log("portfolio not finish: ");
-                    console.log("Disinfect hand at before taking gloves");
-                }
             }
 
         })
@@ -89,14 +71,12 @@ export default AFRAME.registerComponent('glove', {
 
 function handleClickGlove () {
     if (
-        // stateIndex.getIn(['portfolio', 'finish'])  === true
         stateIndex.getIn(['handDisinfection', 'finish']) === 1
     ) {
         stateIndex.setIn(['tableDisinfection', 'hasGlove'], true);
         stateIndex.set('hint', hints.takeDisinfectionCloth);
     }
     else {
-        // console.log("portfolio not finish: ");
         console.log("Disinfect hand at before taking gloves");
     }
 }

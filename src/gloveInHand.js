@@ -4,9 +4,7 @@ import { controllerActions } from "../utils/controllerActions";
 export default AFRAME.registerComponent('glove_in_hand', {
 
     init: function(){
-        // shallow copy
         const el = this.el;
-
         const leftController = document.querySelector('#viveControllerLeft');
         const rightController = document.querySelector('#viveControllerRight');
 
@@ -15,7 +13,6 @@ export default AFRAME.registerComponent('glove_in_hand', {
         });
 
         $(el).on('drop', (event, data) => {
-
            if (el.getAttribute('id') === 'gloveLeft') {
                drop(el, leftController);
            }
@@ -30,6 +27,3 @@ function drop(element, activeController) {
     let controllerActivities = new controllerActions(element, activeController);
     controllerActivities.drop();
 }
-
-
-
