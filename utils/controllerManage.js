@@ -4,31 +4,46 @@ import {supportedController} from "./constants";
 
 let controllers = {};
 export let controller;
-export let device = null;
+export let noControllerMode;
+
+/**
+ * Identify the browser.
+ * Handle Samsung Browser and Oculus Browser in Gear VR
+ */
+export function matchBrowser() {
+    const browser = getInfor();
+    if (
+        browser.indexOf('Mobile VR') > 0
+    ) {
+        noControllerMode = "GearVR";
+    }
+    else if (
+        browser.indexOf('Mobile VR') < 0
+        && browser.indexOf('Mobile') > 0
+    ) {
+        noControllerMode = "ChromeSmartPhoneVR";
+    }
+    initEnterVRMode();
+}
 
 /**
  * Handel event enter-vr
  */
 function initEnterVRMode() {
     document.querySelector('a-scene').addEventListener('enter-vr', function () {
-        if (!controller){
+        if (
+            !controller
+            && noControllerMode === "GearVR"
+        ){
             matchGearVRWithoutController();
         }
+        else if (
+            !controller
+            && noControllerMode === "ChromeSmartPhoneVR"
+        ) {
+            matchChromeSmartPhoneVR();
+        }
     });
-}
-
-/**
- * Identify the browser.
- * Handle Samsung Browser and Oculus Browser
- */
-export function matchBrowser() {
-    const browser = getInfor();
-    if (
-        browser.indexOf('SamsungBrowser') > 0
-        || browser.indexOf('OculusBrowser') > 0
-    ) {
-        initEnterVRMode();
-    }
 }
 
 /**
@@ -118,11 +133,14 @@ function matchNoController() {
  * Adjust the scene for browser in Gear VR without controller
  */
 export  function matchGearVRWithoutController() {
-    device = "GearVRWithoutController";
     adjustAllThingsScale('3.5 3.5 3.5');
     adjustCameraRigPosition('0 1.85 -0.5');
     adjustCursorPosition('0 0 -1');
     adjustCursorGeometry('primitive: ring; radiusInner: 0.007; radiusOuter: 0.0125');
+}
+
+function matchChromeSmartPhoneVR() {
+    adjustCameraRigPosition('0 -0.5 -0.4')
 }
 
 /**
@@ -240,7 +258,6 @@ function adjustCursorPosition(position) {
 function adjustCursorGeometry(geometry) {
     const cursor = document.querySelector('#cursor');
     cursor.setAttribute('geometry', geometry);
-
 }
 
 /**
@@ -266,8 +283,30 @@ export function getActiveController() {
  * @returns {string}
  */
 export function getInfor() {
+    console.log("navigator.userAgent: ", navigator.userAgent, typeof(navigator.userAgent));
     return(navigator.userAgent);
 }
+
+/**
+ * mobile chrome:
+ * navigator.userAgent:  Mozilla/5.0 (Linux; Android 8.0.0; SM-G955F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36 string
+ *
+ * mobile samsung:
+ * navigator.userAgent:
+ *
+ * desktop Firefox:
+ * Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0 string
+ *
+ * desktop chrome:
+ * navigator.userAgent:  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 string
+ *
+ * gear samsung:
+ * navigator.userAgent:  Mozilla/5.0 (Linux; Android 8.0; SAMSUNG SM-G955F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/5.2 Chrome/51.0.2704.106 Mobile VR Safari/537.36 string
+ *
+ * gear oculus:
+ * avigator.userAgent:  Mozilla/5.0 (Linux; Android 8.0.0; SM-G955F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) OculusBrowser/5.2.7.125510815 SamsungBrowser/4.0 Chrome/66.0.3359.203 Mobile VR Safari/537.36 string
+ *
+ */
 
 /**
  * Listen the event of gamepadconnected and gamepaddisconnected

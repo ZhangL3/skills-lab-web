@@ -1,7 +1,7 @@
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
 import * as constants from '../utils/constants';
-import {device} from "../utils/controllerManage";
+import {noControllerMode} from "../utils/controllerManage";
 
 const timeToStay = 6000;
 const moveTime = 800;
@@ -22,6 +22,12 @@ const positionVar = {
     infusionSetOpen: {name:'INFUSION_SET_OPEN', position:'-0.055 0.810 -0.634'},
     infusionSetHanged: {name:'INFUSION_SET_Hanged', position:'0.670 1.100 -0.502'},
     handDisinfectionHandle: {name:'DISPENSER_HANDLE', position:'-1.3 1 -0.4'},
+
+    originChromeVR: {name: 'ORIGIN', position: '0 -0.5 -0.4'},
+    nacl500BottleChromeVR: {name:'NACL_500_BOTTLE', position:'-0.3 0 -0.5'},
+    infusionSetOpenChromeVR: {name:'INFUSION_SET_OPEN', position:'-0.055 -0.69 -0.634'},
+    infusionSetHangedChromeVR: {name:'INFUSION_SET_Hanged', position:'0.670 -0.4 -0.502'},
+    handDisinfectionHandleChromeVR: {name:'DISPENSER_HANDLE', position:'-1.3 -0.5 -0.4'},
 
     originGear: {name: 'ORIGIN_GEAR', position: '0 1.85 -0.6'},
     nacl500BottleGear: {name:'NACL_500_BOTTLE_GEAR', position:'-1.006 3.763 -1.165'},
@@ -111,10 +117,16 @@ function moveToCupboardAndBack() {
             (cameraPosition === positionVar.origin.name) || (cameraPosition = positionVar.originGear.name)
         )
     ) {
-        if (device === "GearVRWithoutController") {
+        if (noControllerMode === "GearVR") {
             moveToBottleGear(element);
             setTimeout(()=>{
                 backToOriginGear(element);
+            }, timeToStay);
+        }
+        else if (noControllerMode === "ChromeSmartPhoneVR") {
+            moveToBottleChromeVR(element);
+            setTimeout(()=>{
+                backToOriginChromeVR(element);
             }, timeToStay);
         }
         else {
@@ -140,10 +152,16 @@ function moveToCabinetAndBack() {
             (cameraPosition === positionVar.origin.name) || (cameraPosition = positionVar.originGear.name)
         )
     ) {
-        if (device === "GearVRWithoutController") {
+        if (noControllerMode === "GearVR") {
             moveToInfusionSetOpenGear(element);
             setTimeout(()=>{
                 backToOriginGear(element);
+            }, timeToStay);
+        }
+        else if (noControllerMode === "ChromeSmartPhoneVR") {
+            moveToInfusionSetOpenChromeVR(element);
+            setTimeout(()=>{
+                backToOriginChromeVR(element);
             }, timeToStay);
         }
         else {
@@ -165,10 +183,16 @@ function moveToHolderAndBack() {
             (cameraPosition === positionVar.origin.name) || (cameraPosition = positionVar.originGear.name)
         )
     ) {
-        if (device === "GearVRWithoutController") {
+        if (noControllerMode === "GearVR") {
             moveToInfusionSetHangedGear(element);
             setTimeout(()=>{
                 backToOriginGear(element);
+            }, timeToStay);
+        }
+        else if (noControllerMode === "ChromeSmartPhoneVR") {
+            moveToInfusionSetHangedChromeVR(element);
+            setTimeout(()=>{
+                backToOriginChromeVR(element);
             }, timeToStay);
         }
         else {
@@ -194,10 +218,16 @@ function moveToHandDisinfectionAndBack() {
             (cameraPosition === positionVar.origin.name) || (cameraPosition = positionVar.originGear.name)
         )
     ) {
-        if (device === "GearVRWithoutController") {
+        if (noControllerMode === "GearVR") {
             moveToHandDisinfectionGear(element);
             setTimeout(()=>{
                 backToOriginGear(element);
+            }, timeToStay);
+        }
+        else if (noControllerMode === "ChromeSmartPhoneVR") {
+            moveToHandDisinfectionChromeVR(element);
+            setTimeout(()=>{
+                backToOriginChromeVR(element);
             }, timeToStay);
         }
         else {
@@ -236,6 +266,37 @@ function moveToInfusionSetHanged(el) {
 function moveToHandDisinfection(el) {
     aAnimationWrapper(el, '', 'position', '', positionVar.handDisinfectionHandle.position, moveTime, '', true, 'forwards');
     cameraPosition = positionVar.handDisinfectionHandle.name;
+    cameraMoved = true;
+}
+
+// For Chrome smart phone VR mode
+function backToOriginChromeVR(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.originChromeVR.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.originChromeVR.name;
+    cameraMoved = false;
+}
+
+function moveToBottleChromeVR(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.nacl500BottleChromeVR.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.nacl500BottleChromeVR.name;
+    cameraMoved = true;
+}
+
+function moveToInfusionSetOpenChromeVR(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.infusionSetOpenChromeVR.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.infusionSetOpenChromeVR.name;
+    cameraMoved = true;
+}
+
+function moveToInfusionSetHangedChromeVR(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.infusionSetHangedChromeVR.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.infusionSetHangedChromeVR.name;
+    cameraMoved = true;
+}
+
+function moveToHandDisinfectionChromeVR(el) {
+    aAnimationWrapper(el, '', 'position', '', positionVar.handDisinfectionHandleChromeVR.position, moveTimeGear, '', true, 'forwards');
+    cameraPosition = positionVar.handDisinfectionHandleChromeVR.name;
     cameraMoved = true;
 }
 
