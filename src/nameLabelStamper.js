@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import _ from 'lodash';
 
 import stateIndex from './state';
 import { nameLabel } from '../utils/constants';
@@ -10,28 +9,29 @@ let element;
 let nameLabelEmpty;
 let nameLabelWrote;
 let stickerStamper;
-
-let currentState;
-
 let moveable = true;
 let namelabelPosition = nameLabel.position.IN_BOX;
 let nameLabelFilled = false;
+let nameLabelEmptyInFrontOfCamera;
 
 export default AFRAME.registerComponent('name_label_stamper', {
 
     init: function(){
-        // shallow copy
         element = this.el;
 
         nameLabelEmpty = $('#nameLabelEmpty');
+        // After taking empty name label, is the click event listener on nameLabelEmpty lost
+        // So add a alternatives
+        nameLabelEmptyInFrontOfCamera = $('#nameLabelEmptyInFrontOfCamera');
         nameLabelWrote = $('#nameLabelWrote');
         stickerStamper = $('#stickerStamper');
 
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
-
         nameLabelEmpty.on('click', () => {
             handleClickNameLabelEmpty();
+        });
+
+        nameLabelEmptyInFrontOfCamera.on('click', () => {
+           handleClickNameLabelEmptyInFrontOfCamera();
         });
 
         stickerStamper.on('click', () => {
@@ -56,23 +56,25 @@ const schema = {
 function takeEmptyNameLabel () {
     moveable = false;
     // If move with animation, the click event can not emitted anymore.
-    /*aAnimationWrapper(
-        nameLabelEmpty, '', 'position', '', schema.nameLabelInFrontOfCameraPosition, 300,
+    aAnimationWrapper(
+        nameLabelEmpty, '', 'position', '', schema.nameLabelInFrontOfCameraPosition, schema.dur,
         '', true, 'forwards'
-    );*/
-    /*aAnimationWrapper(
-        nameLabelEmpty, '', 'rotation', '', schema.nameLabelInFrontOfCameraRotation, 300,
+    );
+    aAnimationWrapper(
+        nameLabelEmpty, '', 'rotation', '', schema.nameLabelInFrontOfCameraRotation, schema.dur,
         '', true, 'forwards'
-    );*/
-    nameLabelEmpty.attr('position', schema.nameLabelInFrontOfCameraPosition);
-    nameLabelEmpty.attr('rotation', schema.nameLabelInFrontOfCameraRotation);
+    );
 
-    setTimeout(() => {moveable=true}, schema.dur);
+    setTimeout(() => {
+        moveable=true;
+        nameLabelEmpty.remove();
+        nameLabelEmptyInFrontOfCamera.attr('visible', true);
+    }, schema.dur);
     namelabelPosition = nameLabel.position.IN_HAND;
 }
 
 function fillNameLabel() {
-    nameLabelEmpty.remove();
+    nameLabelEmptyInFrontOfCamera.remove();
     nameLabelWrote.attr('visible', true);
     nameLabelFilled = true;
 }
@@ -107,8 +109,10 @@ function handleClickNameLabelEmpty() {
         stateIndex.setIn(['nameLabel', 'position'], nameLabel.position.IN_HAND);
         stateIndex.set('hint', hints.fillNameLabel);
     }
+}
 
-    else if (
+function handleClickNameLabelEmptyInFrontOfCamera() {
+    if (
         stateIndex.getIn(['nameLabel', 'position']) === nameLabel.position.IN_HAND &&
         stateIndex.getIn(['nameLabel', 'labelFilled']) === false
     ) {
@@ -154,7 +158,5 @@ export function handleNotifyNameLabel(nextState) {
     ) {
         stickNameLabel();
     }
-    // deep copy
-    currentState = _.cloneDeep(stateIndex.getState());
 }
 
