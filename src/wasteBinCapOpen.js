@@ -3,19 +3,14 @@ import _ from 'lodash';
 
 import aAnimationWrapper from '../utils/aAnimationWrapper';
 import stateIndex from './state';
-import { isEmitted, detectCollision } from "../utils/isEmitted";
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
+import { detectCollision } from "../utils/isEmitted";
 
 let element;
-let currentState;
 
 export default AFRAME.registerComponent('waste_bin_cap_open', {
 
     init: function(){
         element = this.el;
-
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
 
         $(this.el).on('click', () => {
             toggleOpenAndClose();

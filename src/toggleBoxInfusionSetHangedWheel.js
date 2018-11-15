@@ -24,9 +24,7 @@ export default AFRAME.registerComponent('toggle_box_infusion_set_hanged_wheel', 
         element = this.el;
         infusionSetHangedWheel = document.querySelector('#infusionSetHangedWheel');
 
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
     },
 
 });
@@ -42,7 +40,6 @@ export function handleControllerNotifyToggleBoxInfusionSetHangedWheel( triggerEv
     if (
         !controllerStateIndex.getControllerState('dripChamberFilled')
     ) {
-        console.log("Sqeeze chamber before open the roller");
         return false;
     }
     // Open roller
@@ -74,7 +71,6 @@ export function handleControllerStateNotifyToggleBoxInfusionSetHangedWheel (next
         openWheel();
     }
 
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 

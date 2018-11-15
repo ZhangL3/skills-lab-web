@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from '../utils/isEmitted';
+import { detectCollision } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
@@ -13,24 +12,17 @@ import hints from "../utils/hints";
 
 let element;
 let activeController;
-
 let clothOnTable;
 let gloveInHandLeft;
 let gloveInHandRight;
-
 let currentControllerState;
-
 
 export default AFRAME.registerComponent('toggle_box_trash_can', {
 
     init: function(){
-
         element = this.el;
         activeController = null;
-
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
         clothOnTable = document.querySelector('#clothOnTable');
         gloveInHandLeft = document.querySelector('#gloveLeft');
         gloveInHandRight = document.querySelector('#gloveRight');
@@ -61,23 +53,7 @@ function dropGloveCloth() {
     }, 500);
 }
 
-export function handleControllerNotifyToggleBoxTrashCan( triggerEvent ) {
-
-    /*if(controllerStateIndex.getControllerState('deskDisinfection')) {
-        if(
-            detectCollision(element, triggerEvent.activeController)
-            && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('disinfectionClothInHand')
-        ){
-            activeController = triggerEvent.activeController;
-            controllerStateIndex.setControllerState('hasGloveRight', false);
-            controllerStateIndex.setControllerState('hasGloveLeft', false);
-            controllerStateIndex.setControllerState('deskDisinfectionAllFinish', true);
-        }
-    }*/
-}
-
 export function handleControllerReleaseToggleBoxTrashCan( triggerEvent ) {
-
     if(!controllerStateIndex.getControllerState('deskDisinfection')) {
         return false;
     }
@@ -120,7 +96,6 @@ export function handleControllerStateNotifyToggleBoxTrashCan (nextControllerStat
         stateIndex.setIn(['tableDisinfection', 'finish'], true);
     }
 
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 

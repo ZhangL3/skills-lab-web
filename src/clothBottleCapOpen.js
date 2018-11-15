@@ -8,7 +8,6 @@ AFRAME.registerComponent('cloth_bottle_cap_open', {
 
     init: function(){
         element = this.el;
-        console.log("this.data: ", this.data, typeof(this.data));
         canTakeCloth = false;
         this.el.addEventListener('click', () => {
             stateIndex.set('trashCanCapOpen', !stateIndex.get('trashCanCapOpen'));

@@ -25,9 +25,7 @@ export default AFRAME.registerComponent('toggle_box_infusion_set_hanged_chamber'
         infusionSetHangedFill = document.querySelector('#infusionSetHangedFill');
         infusionSetHangedFillTrigger = $('#infusionSetHangedFillTrigger');
 
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
     },
 
 });
@@ -63,7 +61,6 @@ export function handleControllerStateNotifyToggleBoxInfusionSetHangedChamber (ne
         stateIndex.set('hint', hints.openRoller);
     }
 
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 

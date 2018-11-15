@@ -76,9 +76,6 @@ function handleClickGlove () {
         stateIndex.setIn(['tableDisinfection', 'hasGlove'], true);
         stateIndex.set('hint', hints.takeDisinfectionCloth);
     }
-    else {
-        console.log("Disinfect hand at before taking gloves");
-    }
 }
 
 function showGloveInFrontOfCamera() {

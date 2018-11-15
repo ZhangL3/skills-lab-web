@@ -1,7 +1,6 @@
 import $ from 'jquery';
 
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from '../utils/isEmitted';
+import { detectCollision } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import { setVisibleTrue, setVisibleFalse } from "../utils/setVisible";
@@ -12,7 +11,6 @@ let element;
 let portfolioChecked;
 
 export default AFRAME.registerComponent('toggle_box_portfolio', {
-
     init: function(){
         element = this.el;
     },
@@ -20,7 +18,6 @@ export default AFRAME.registerComponent('toggle_box_portfolio', {
 });
 
 export function handleNotifyToggleBoxPortfolio() {
-    // portfolioChecked = controllerStateIndex.getControllerState('portfolioInHand') && is5RChecked();
     portfolioChecked = is5RChecked();
 
     if(portfolioChecked && !stateIndex.getIn(['portfolio', 'finish'])) {

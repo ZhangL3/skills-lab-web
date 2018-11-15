@@ -1,5 +1,4 @@
 import controllerStateIndex from '../utils/controllerState';
-
 import {detectCollision} from "../utils/isEmitted";
 
 let element;

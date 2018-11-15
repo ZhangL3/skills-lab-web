@@ -18,7 +18,6 @@ import * as infusionSet from './infusionSet';
 import * as drawerOpenWithInfusionSet from './drawerOpenWithInfusionSet';
 import * as nameLabelStamper from './nameLabelStamper';
 import * as drawerOpenWithHandle from './drawerOpenWithHandle';
-import * as toggleBoxPortfolioCheck from './toggleBoxPortfolioCheck';
 import * as bottle_nacl_500_vive from './bottleNacl500Vive';
 
 import * as toggleBoxTrashCan from './toggleBoxTrashCan';

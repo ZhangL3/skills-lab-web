@@ -2,13 +2,8 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 import stateIndex from './state';
-import * as constants from '../utils/constants';
-import aAnimationWrapper from '../utils/aAnimationWrapper';
-
-let currentState;
 
 let section;
-
 let section1;
 let section2;
 let section3;
@@ -20,7 +15,6 @@ let section7;
 export default AFRAME.registerComponent('section_selection', {
 
     init: function(){
-        // shallow copy
         section = this.el;
 
         section1 = $("#section1");
@@ -30,9 +24,6 @@ export default AFRAME.registerComponent('section_selection', {
         section5 = $("#section5");
         section6 = $("#section6");
         section7 = $("#section7");
-
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
 
         section1.on('click', () => {
             stateIndex.selectSection(1);

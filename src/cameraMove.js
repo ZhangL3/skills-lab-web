@@ -43,9 +43,6 @@ AFRAME.registerComponent('camera-move', {
         if (data.disable) {
             return false;
         }
-
-        console.log("Should not shown if disable true");
-
         cameraPosition = positionVar.origin.name;
         nacl500Bottle = document.querySelector('#nacl500Bottle');
         infusionSetOpen = document.querySelector('#infusionSetOpen');

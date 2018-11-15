@@ -1,5 +1,4 @@
-import $ from "jquery";
-import {matchBrowser, controller} from '../utils/controllerManage';
+import {matchBrowser} from '../utils/controllerManage';
 
 let sceneEl;
 

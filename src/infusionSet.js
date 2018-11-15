@@ -67,7 +67,6 @@ AFRAME.registerComponent('infusion_set', {
 
         infusionSetHangedFilled.on('click', () => {
            handleClickInfusionSetHangedFilled();
-           console.log("infusionSetHangedFilled: ", infusionSetHangedFilled, typeof(infusionSetHangedFilled));
         });
 
         currentState = _.cloneDeep(stateIndex.getState());

@@ -19,7 +19,6 @@ export default AFRAME.registerComponent('portfoliocheck', {
         hookIV = document.querySelector("#hookIV");
         hookCF = document.querySelector("#hookCF");
 
-        // shallow copy
         element = this.el;
 
         $(this.el).on('click', (event) => {
@@ -91,7 +90,6 @@ export function handleNotifyPortfolioCheck(nextState) {
     if(stateIndex.getIn(['portfolio', 'finish'])) {
         return false;
     }
-
     showHook();
 }
 

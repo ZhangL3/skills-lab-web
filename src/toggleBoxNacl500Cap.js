@@ -1,30 +1,20 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted,detectCollision } from '../utils/isEmitted';
+import { detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
-import { isBottleChecked } from "./bottleNacl500Vive";
 import { controllerActions } from "../utils/controllerActions";
-import * as constants from '../utils/constants';
 import stateIndex from './state';
-
-import { haveSthInHand } from "./controllerHand";
-
-import {canCheck} from "./bottleNacl500Vive";
 import hints from "../utils/hints";
 
 let element;
 let bottleNacl500Cap;
 let infusionSetOpen;
 let infusionSetInBottle;
-
-let currentControllerState;
 let activeController;
-const bottleNacl500Scale = 0.1;
-
 let isNacl500CapInHand = null;
 let isInfusionSetInBottle = false;
+const bottleNacl500Scale = 0.1;
 
 export default AFRAME.registerComponent('toggle_box_nach500_cap', {
 
@@ -38,16 +28,9 @@ export default AFRAME.registerComponent('toggle_box_nach500_cap', {
         $(element).on('removeCap', ()=>{
            bottleNacl500Cap = null;
         });
-
-        // deep copy
-        currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
     },
 
 });
-
-const schema = {
-};
 
 export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
     
@@ -56,17 +39,6 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
     ) {
         return false;
     }
-
-    // drag cap
-    // if (bottleNacl500Cap
-    //     && controllerStateIndex.getControllerState('nacl500OnDesk')
-    //     && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
-    //     && haveSthInHand(triggerEvent.activeController).length === 0
-    // ) {
-    //     activeController = triggerEvent.activeController;
-    //     let activeControllerId = activeController.getAttribute('id');
-    //     controllerStateIndex.setControllerState('bottleNacl500CapInHand', activeControllerId);
-    // }
 
     // pierce infusion set in bottle nacl 500
     else if (
@@ -77,29 +49,6 @@ export function handleControllerNotifyToggleBoxNacl500Cap( triggerEvent ) {
         controllerStateIndex.setControllerState('infusionSetInBottle', true);
         controllerStateIndex.setControllerState('nacl500Dragable', true);
     }
-}
-
-export function handleControllerPressToggleBoxNacl500Cap( triggerEvent ) {
-
-    /*if (
-        !detectCollision(element, triggerEvent.activeController)
-    ) {
-        return false;
-    }
-
-    // drag cap
-    if (bottleNacl500Cap
-        && controllerStateIndex.getControllerState('nacl500OnDesk')
-        && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === null
-        && haveSthInHand(triggerEvent.activeController).length === 0
-    ) {
-        activeController = triggerEvent.activeController;
-        let activeControllerId = activeController.getAttribute('id');
-        controllerStateIndex.setControllerState('bottleNacl500CapInHand', activeControllerId);
-        controllerStateIndex.setControllerState('isNacl500CapHandling', true);
-
-    }*/
-
 }
 
 export function handleControllerReleaseToggleBoxNacl500Cap( triggerEvent ) {
@@ -136,16 +85,12 @@ export function handleControllerStateNotifyToggleBoxNacl500Cap (nextControllerSt
 
     // pierce infusion set in bottle nacl 500
     if (
-        // nextControllerState.bottleOpened
         nextControllerState.infusionSetInBottle
         && !isInfusionSetInBottle
         && !nextControllerState.nacl500Hanged
     ) {
         pierceInfusionSetInBottle();
     }
-
-    // deep copy
-    currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
 function dragInHand() {
@@ -158,7 +103,6 @@ function dragInHand() {
 }
 
 function pierceInfusionSetInBottle() {
-    console.log("pierceInfusionSetInBottle");
     infusionSetInBottle.setAttribute('visible', true);
     $(infusionSetOpen).remove();
     isInfusionSetInBottle = true;

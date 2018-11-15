@@ -39,7 +39,6 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
         });
 
         $(element).on('putOnDesk', () => {
-            console.log("triggle putOnDesk");
             dropBottle();
             controllerStateIndex.setControllerState('nacl500InHandToDesk', null);
             controllerStateIndex.setControllerState('nacl500Dragable', false);
@@ -50,7 +49,6 @@ export default AFRAME.registerComponent('bottle_nacl_500_vive', {
         });
 
         $(element).on('hangToStand', () => {
-            console.log("hang to stand");
             dropBottleToHang();
             controllerStateIndex.setControllerState('nacl500InHandToStand', null);
             controllerStateIndex.setControllerState('nacl500Hanged', true);
@@ -77,20 +75,11 @@ export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
         && haveSthInHand(triggerEvent.activeController).length === 0
         && canTakeBottle
     ) {
-        console.log("emmit triggerDown to bottle");
         activeController = triggerEvent.activeController;
         let activeControllerId =  activeController.getAttribute('id');
         stateIndex.set('hint', hints.checkDrug);
         controllerStateIndex.setControllerState('nacl500InHandToDesk', activeControllerId);
         controllerStateIndex.setControllerState('isNacl500ToDeskHandling', true);
-    }
-    // change hints
-    else if (
-        stateIndex.getIn(['handDisinfection', 'finish']) !== 2
-        && controllerStateIndex.getControllerState('nacl500InHandToDesk') === null
-        && controllerStateIndex.getControllerState('nacl500Dragable')
-    ) {
-        console.log("Disinfect hands before taking bottle");
     }
 
     // to stand
@@ -99,7 +88,6 @@ export function handleControllerPressBottleNacl500Vive ( triggerEvent ) {
         && controllerStateIndex.getControllerState('nacl500InHandToStand') === null
         && haveSthInHand(triggerEvent.activeController).length === 0
     ) {
-        console.log("Drag bottle to stand");
         activeController = triggerEvent.activeController;
         let activeControllerId =  activeController.getAttribute('id');
         controllerStateIndex.setControllerState('nacl500InHandToStand', activeControllerId);
@@ -124,8 +112,6 @@ export function handleControllerReleaseBottleNacl500Vive ( triggerEvent ) {
         && !detectCollision(toggleBoxNacl500Hanged, triggerEvent.activeController)
         && !hasCollisionWithCabinets(element)
     ) {
-        console.log("drop down bottle by dragging to stand");
-
         controllerStateIndex.setControllerState('nacl500InHandToStand', null);
         isNacl500InHand = null;
     }
@@ -162,8 +148,6 @@ export function handleControllerStateNotifyBottleNacl500Vive (nextControllerStat
         setTimeout(() => {
             infusionSetInBottle.setAttribute('visible', true);
         }, 50);
-
-        console.log("should drag bottle in hand to hang");
     }
     // Drop down to floor during putting on table
     else if (
@@ -197,7 +181,6 @@ function dragInHand() {
     let controllerActivities = new controllerActions(element, activeController);
     isNacl500InHand = activeController.getAttribute('id');
     controllerActivities.drag();
-    console.log("controllerActivities drag: ", controllerActivities, typeof(controllerActivities));
 }
 
 function dragInHandToHang() {

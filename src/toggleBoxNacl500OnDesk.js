@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from '../utils/isEmitted';
+import { detectCollision } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
@@ -21,10 +20,8 @@ export default AFRAME.registerComponent('toggle_box_nacl500_on_desk', {
         element = this.el;
         bottleNacl500 = document.querySelector('#nacl500Bottle');
 
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
     },
-
 });
 
 const schema = {
@@ -33,7 +30,6 @@ const schema = {
 };
 
 export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
-    // getWorldBound(element);
     if(!detectCollision(element, triggerEvent.activeController)) {
         return false;
     }
@@ -43,14 +39,12 @@ export function handleControllerNotifyToggleBoxNacl500OnDesk( triggerEvent ) {
         && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
         && !controllerStateIndex.getControllerState('nacl500OnDesk')
     ) {
-        console.log("put on table");
         $(bottleNacl500).trigger('putOnDesk');
         // After the change of DOM, run the animation.
         setTimeout(()=>{
             aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
         }, 500);
         controllerStateIndex.setControllerState('isNacl500ToDeskHandling', false);
-        // bottleNacl500.setAttribute('position', schema.onDeskPosition);
     }
 }
 
@@ -69,13 +63,11 @@ export function handleControllerReleaseToggleBoxNacl500OnDesk( triggerEvent ) {
         && triggerEvent.activeController.getAttribute('id') === controllerStateIndex.getControllerState('nacl500InHandToDesk')
         && !controllerStateIndex.getControllerState('nacl500OnDesk')
     ) {
-        console.log("put on table");
         $(bottleNacl500).trigger('putOnDesk');
         // After the change of DOM, run the animation.
         setTimeout(()=>{
             aAnimationWrapper(bottleNacl500, '', 'position', '', schema.onDeskPosition, schema.dur, '',true , 'forwards');
         }, 500);
-        // bottleNacl500.setAttribute('position', schema.onDeskPosition);
         controllerStateIndex.setControllerState('isNacl500ToDeskHandling', false);
         stateIndex.set('hint', hints.takeOffBottleCap);
     }
@@ -104,7 +96,6 @@ export function handleControllerStateNotifyToggleBoxNacl500OnDesk (nextControlle
         setVisibleFalse(element);
     }
 
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 

@@ -11,7 +11,6 @@ import { handleControllerStateNotifyHookNacl500Liquid } from '../src/hookNacl500
 import { handleControllerStateNotifyToggleBoxNacl500Cap } from '../src/toggleBoxNacl500Cap';
 import { handleControllerStateNotifyToggleBoxWasteBin } from '../src/toggleBoxWasteBin';
 import { handleControllerStateNotifyInfusionSetInPack } from '../src/infusionSetInPackVive';
-import { handleControllerStateNotifyToggleBoxInfusionSetInPack } from '../src/toggleBoxInfusionSetInPack';
 import { handleControllerStateNotifyInfusionSetOpen } from '../src/infusionSetOpenVive';
 import { handleControllerStateNotifyToggleBoxInfusionSetOnDesk } from '../src/toggleBoxInfusionSetOnDesk';
 import { handleControllerStateNotifyInfusionSetCap } from '../src/infusionSetCapVive';
@@ -151,7 +150,6 @@ export default class controllerStateIndex {
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxNacl500Cap);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxWasteBin);
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetInPack);
-        this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetInPack);
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetOpen);
         this.controllerObserver.subscribe(handleControllerStateNotifyToggleBoxInfusionSetOnDesk);
         this.controllerObserver.subscribe(handleControllerStateNotifyInfusionSetCap);

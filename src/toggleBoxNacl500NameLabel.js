@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from '../utils/isEmitted';
+import { detectCollision } from '../utils/isEmitted';
 import controllerStateIndex from '../utils/controllerState';
 import stateIndex from './state';
 import hints from "../utils/hints";
@@ -11,7 +10,6 @@ let element;
 let nameLabelWroteOnBottle;
 let nameLabelWroteLeft;
 let nameLabelWroteRight;
-
 let currentControllerState;
 
 export default AFRAME.registerComponent('toggle_box_nach500_name_label', {
@@ -23,31 +21,10 @@ export default AFRAME.registerComponent('toggle_box_nach500_name_label', {
         nameLabelWroteLeft =document.querySelector('#nameLabelWroteLeft');
         nameLabelWroteRight =document.querySelector('#nameLabelWroteRight');
 
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
     },
 
 });
-
-const schema = {
-};
-
-export function handleControllerNotifyToggleBoxNacl500NameLabel( triggerEvent ) {
-    /*if (!controllerStateIndex.getControllerState('nameLabelFilled')) {
-        return false;
-    }
-
-    if (
-        controllerStateIndex.getControllerState('nameLabelInHand') === triggerEvent.activeController.getAttribute('id')
-        && detectCollision(element, triggerEvent.activeController)
-        && controllerStateIndex.getControllerState('nameLabelFilled')
-        && !stateIndex.getIn(['nameLabel', 'finish'])
-    ) {
-        controllerStateIndex.setControllerState('nameLabelPasted', true);
-        stateIndex.setIn(['nameLabel', 'finish'], true);
-    }*/
-}
 
 export function handleControllerReleaseToggleBoxNacl500NameLabel( triggerEvent ) {
     if (!controllerStateIndex.getControllerState('nameLabelFilled')) {
@@ -90,7 +67,6 @@ export function handleControllerStateNotifyToggleBoxNacl500NameLabel (nextContro
         pastNameLabel();
     }
 
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 

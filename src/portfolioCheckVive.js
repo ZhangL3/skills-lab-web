@@ -1,14 +1,12 @@
 import $ from 'jquery';
 import controllerStateIndex from '../utils/controllerState';
 import stateIndex from './state';
-import { is5RChecked } from './portfolio';
 
 let transparentName;
 let transparentDrug;
 let transparentDose;
 let transparentIV;
 let transparentCF;
-
 let hookName;
 let hookDrug;
 let hookDose;
@@ -38,14 +36,12 @@ AFRAME.registerComponent('portfolio_check_vive', {
         $(el).on('raycaster-intersected', (event) => {
             if (shouldCheck()) {
                 isStaring = true;
-                console.log("event: ", event, typeof(event));
             }
         });
 
         $(el).on('raycaster-intersected-cleared', (event) => {
             if (shouldCheck()) {
                 isStaring = false;
-                console.log("event clear: ", event, typeof(event));
             }
         });
 

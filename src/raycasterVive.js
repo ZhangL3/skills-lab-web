@@ -1,10 +1,8 @@
-import statIndes from './state';
 import controllerStateIndex from '../utils/controllerState';
 import {is5RChecked} from "./portfolio";
 
 let element;
 let portfolioChecked = false;
-let currentState;
 let currentControllerState;
 
 AFRAME.registerComponent('raycaster_vive', {
@@ -12,10 +10,6 @@ AFRAME.registerComponent('raycaster_vive', {
     init: function () {
         element = this.el;
 
-        // deep copy
-        currentState = _.cloneDeep;
-
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 
         element.addEventListener('raycaster-intersection', (event) => {
@@ -35,19 +29,14 @@ AFRAME.registerComponent('raycaster_vive', {
 });
 
 export function handleNotifyRaycasterVive(nextState) {
-
     // portfolio
     portfolioChecked = is5RChecked();
     if (portfolioChecked) {
         element.setAttribute('visible', false);
     }
-
-    // deep copy
-    currentState = _.cloneDeep
 }
 
 export function handleControllerStateNotifyRaycasterVive (nextControllerState) {
-
     // portfolio
     if (
         nextControllerState.portfolioInHand
@@ -56,7 +45,6 @@ export function handleControllerStateNotifyRaycasterVive (nextControllerState) {
     ) {
         element.setAttribute('visible', true);
     }
-
     // bottle
     if (
         nextControllerState.nacl500InHandToDesk !== null
@@ -128,10 +116,7 @@ export function handleControllerStateNotifyRaycasterVive (nextControllerState) {
                 }
             }
         }
-
-
     }
-
     // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }

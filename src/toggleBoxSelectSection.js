@@ -5,11 +5,8 @@ import { getWorldBound } from "../utils/getWorldPositionAndBound";
 import { isEmitted } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
-import aAnimationWrapper from '../utils/aAnimationWrapper';
-import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 
 let section;
-
 let toggleBoxSection1;
 let toggleBoxSection2;
 let toggleBoxSection3;
@@ -17,9 +14,6 @@ let toggleBoxSection4;
 let toggleBoxSection5;
 let toggleBoxSection6;
 let toggleBoxSection7;
-
-let currentControllerState;
-
 
 export default AFRAME.registerComponent('toggle_box_select_section', {
 
@@ -34,10 +28,6 @@ export default AFRAME.registerComponent('toggle_box_select_section', {
         toggleBoxSection5 = document.querySelector('#toggleBoxSection5');
         toggleBoxSection6 = document.querySelector('#toggleBoxSection6');
         toggleBoxSection7 = document.querySelector('#toggleBoxSection7');
-
-        // deep copy
-        currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
     },
 
 });

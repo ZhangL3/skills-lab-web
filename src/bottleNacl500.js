@@ -62,28 +62,24 @@ export function initBottleHanged() {
 }
 
 function takeBottle() {
-    console.log("takeBottle");
     movable = false;
     aAnimationWrapper(element, '', 'position', '', schema.inFrontOfCameraPosition, schema.dur, '', true, 'forwards');
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
 function checkBack() {
-    console.log("checkBack");
     movable = false;
     aAnimationWrapper(element, '', 'rotation', '', schema.checkBackSiteRotation, schema.dur, '', true, 'forwards');
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
 function checkTop() {
-    console.log("checkTop");
     movable = false;
     aAnimationWrapper(element, '', 'rotation', '', schema.checkTopSiteRotation, schema.dur, '', true, 'forwards');
     setTimeout(()=>{ movable = true }, schema.dur);
 }
 
 function putOnTable() {
-    console.log("putOnTable");
     movable = false;
 
     aAnimationWrapper(element, '', 'position', '', schema.onTablePosition, schema.dur, '', true, 'forwards');
@@ -93,7 +89,6 @@ function putOnTable() {
 }
 
 function takeOffCap() {
-    console.log("takeOffCap");
     movable = false;
 
     if (stateIndex.get('wasteBinCapOpen') === false) {

@@ -5,10 +5,8 @@ import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from "../utils/isEmitted";
+import { detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
-
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import {showHook} from "./portfolioCheck";
@@ -19,42 +17,30 @@ let element;
 let currentState;
 let foregroundOfPortfolio;
 let toggleBoxPortfolio;
-
 let activeController;
-
-let     hookName;
+let hookName;
 let hookDrug;
 let hookDose;
 let hookIV;
 let hookCF;
-
 let isPortfolioOpen = false;
 let isPortfolioInHand = null;
-
-export let canCheckPortfolio = false;
-
 let currentControllerState;
+export let canCheckPortfolio = false;
 
 export default AFRAME.registerComponent('portfolio', {
 
     init: function(){
-        // shallow copy
         element = this.el;
-        // Here must use querySelector, not JQuery selector.
         foregroundOfPortfolio = document.querySelector('#portfolioFrontSiteModel');
-
         hookName = document.querySelector("#hookName");
         hookDrug = document.querySelector("#hookDrug");
         hookDose = document.querySelector("#hookDose");
         hookIV = document.querySelector("#hookIV");
         hookCF = document.querySelector("#hookCF");
-
         toggleBoxPortfolio = document.querySelector('#toggleBoxPortfolio');
 
-        // deep copy
         currentState = _.cloneDeep(stateIndex.getState());
-
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
         
         $(this.el).on('click', () => {
@@ -207,10 +193,7 @@ export function handleNotifyPortfolio(nextState) {
         setTimeout(() => {
             hideHooks();
         }, 500);
-
-        // stateIndex.setIn(['portfolio', 'finish'], true);
     }
-    // deep copy
     currentState = _.cloneDeep(stateIndex.getState());
 }
 
@@ -356,7 +339,6 @@ function dropOnDesk() {
     setTimeout(()=>{
         const droppedPosition = element.getAttribute('position');
         const onDeskPosition = `${droppedPosition.x} 0.685 ${droppedPosition.z}`;
-        // element.setAttribute('position', `${droppedPosition.x} 0.685 ${droppedPosition.z}`);
         aAnimationWrapper(
             element, '', 'position', '', onDeskPosition, schema.dur,
             '', true, 'forwards'

@@ -1,19 +1,16 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from '../utils/isEmitted';
+import { detectCollision } from '../utils/isEmitted';
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
-import {setVisibleFalse, setVisibleTrue} from "../utils/setVisible";
 import {drop} from "./infusionSetCapVive";
 import hints from "../utils/hints";
 
 let element;
 let bottleNacl500Cap;
 let infusionSetCap;
-
 let currentControllerState;
 let isInfusionSetCapOff = false;
 let activeController;
@@ -53,40 +50,6 @@ function dropInfusionSetCap(activeController) {
     }, 300);
 }
 
-export function handleControllerNotifyToggleBoxWasteBin( triggerEvent ) {
-
-    /*if(
-        controllerStateIndex.getControllerState('bottleNacl500CapInHand')
-        && stateIndex.get('wasteBinCapOpen')
-    ) {
-
-
-        // drop the cap of nacl 500
-        if (
-            detectCollision(element, triggerEvent.activeController)
-            && controllerStateIndex.getControllerState('bottleNacl500CapInHand') === triggerEvent.activeController.getAttribute('id')
-        ) {
-            activeController = triggerEvent.activeController;
-            controllerStateIndex.setControllerState('bottleNacl500CapDroped', true);
-            controllerStateIndex.setControllerState('isNacl500CapHandling', false);
-        }
-    }
-
-    if (
-        controllerStateIndex.getControllerState('infusionSetCapInHand')
-        && stateIndex.get('wasteBinCapOpen')
-    ) {
-
-        // drop the cap of infusion set
-        if (
-            detectCollision(element, triggerEvent.activeController)
-            && controllerStateIndex.getControllerState('infusionSetCapInHand') === triggerEvent.activeController.getAttribute('id')
-        ) {
-            activeController = triggerEvent.activeController;
-            controllerStateIndex.setControllerState('infusionSetCapOff', true);
-        }
-    }*/
-}
 
 export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
 
@@ -94,8 +57,6 @@ export function handleControllerReleaseToggleBoxWasteBin( triggerEvent ) {
         controllerStateIndex.getControllerState('bottleNacl500CapInHand')
         && stateIndex.get('wasteBinCapOpen')
     ) {
-
-
         // drop the cap of nacl 500
         if (
             detectCollision(element, triggerEvent.activeController)
@@ -151,8 +112,6 @@ export function handleControllerStateNotifyToggleBoxWasteBin (nextControllerStat
     ) {
         dropInfusionSetCap(activeController);
     }
-
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 

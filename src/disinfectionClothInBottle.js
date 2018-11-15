@@ -33,7 +33,6 @@ const schema = {
 };
 
 function putOnTable(){
-    console.log("put on table: ");
     aAnimationWrapper(
         element, '', 'position', schema.inCan, schema.outOfCan, schema.dur,
         '', true, 'forwards'

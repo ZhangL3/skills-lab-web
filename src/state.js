@@ -1,5 +1,4 @@
 import Observable from '../utils/observable';
-
 import * as sectionSelect from '../utils/sectionSelect';
 import {setControllerStateToSection} from '../utils/controllerState';
 
@@ -21,7 +20,6 @@ import {handleNotifyToggleBoxPortfolio} from "./toggleBoxPortfolio";
 import {handleNotifyRaycasterVive} from "./raycasterVive";
 import {handleNotifyNacl500DoorOpen} from "./nacl500DoorOpen";
 import {handleNotifyPageBack} from "./pageBack";
-
 
 let state;
 
@@ -51,7 +49,6 @@ export default class stateIndex {
                     && document.querySelector('#infusionSetHangedFilledWheel')
                     && document.querySelector('#infusionSetFixed')
                 ) {
-                    console.log("set Section after loading!!!!!!!!!");
                     this.selectSection(selectedSection);
                     window.clearInterval(setSectionStillElementsLoaded);
                     stateIndex.set('started', true);
@@ -138,33 +135,26 @@ export default class stateIndex {
         switch (section) {
             case 1:
                 // hand disinfection 1
-                console.log("1");
                 break;
             case 2:
                 // desk disinfection
-                console.log("2");
                 break;
             case 3:
                 // hand disinfection 2
-                console.log("3");
                 break;
             case 4:
-                console.log("4");
                 break;
             case 5:
                 // put bottle on table and take off the cap
-                console.log("put bottle on table and take off the cap");
                 initBottlePutOnTableTakeOffCap();
                 break;
             case 6:
                 // put on table, take off cap, close wheel
-                console.log("put on table, take off cap, close wheel");
                 initBottlePutOnTableTakeOffCap();
                 initInfusionSetOnTableOffCapOpenCloseWheel();
                 break;
             case 7:
                 // to fix the tube
-                console.log("to fix the tube");
                 initInfusionSetFixed();
                 initBottleHanged();
                 break;
@@ -221,8 +211,6 @@ export default class stateIndex {
     static set(propString, value) {
         state[propString] = value;
         this.headingsObserver.notify(state);
-
-        console.log('state: ', stateIndex.getState());
     }
 
     /**
@@ -231,12 +219,8 @@ export default class stateIndex {
      * @param propsArray
      * @param value
      */
-    // TODO: Ugly function, must to be rewrite
     static setIn(propsArray, value) {
         const lengthOfProps = propsArray.length;
-
-        // why state already changed here, before switch???
-        // console.log('before.setIn.state:', state);
 
         switch (lengthOfProps) {
             case 1:
@@ -254,10 +238,6 @@ export default class stateIndex {
         }
 
         this.headingsObserver.notify(state);
-
-        console.log('state changed: ', propsArray, value);
-        console.log("state: ", state, typeof(state));
-
     }
 
     /**
@@ -267,7 +247,6 @@ export default class stateIndex {
         const url = window.location.href;
         const urlArray = url.split('?section=');
         const section = urlArray[urlArray.length-1];
-        console.log("selected section: ", section, typeof(section));
         return section;
     }
 
