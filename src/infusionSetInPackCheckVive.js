@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import controllerStateIndex from '../utils/controllerState';
-import {getWordPosition} from "../utils/getWorldPositionAndBound";
 
 let element;
 

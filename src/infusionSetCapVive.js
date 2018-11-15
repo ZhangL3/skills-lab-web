@@ -1,69 +1,26 @@
-import $ from 'jquery';
-import _ from 'lodash';
-
-import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
-import * as constants from '../utils/constants';
-import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from "../utils/isEmitted";
+import { detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
-
 import { haveSthInHand } from "./controllerHand";
-
 import {canTriggerCapAndWheel} from "./infusionSetOpenVive";
 import dropDown from "../utils/dropDown";
 import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
-let currentState;
-let currentControllerState;
 let element;
 let activeController;
-
 let canTriggerInfusionSetCap = false;
 let isInfusionSetCapInHand = null;
-
 const scopeLocalToGlobalScale = 0.05;
 
 export default AFRAME.registerComponent('infusion_set_cap_vive', {
-
     init: function(){
-        // shallow copy
         element = this.el;
         activeController = null;
-
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
-
-        // deep copy
-        currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
     }
 });
 
 export function setCanTriggerInfusionSetCap(value) {
     canTriggerInfusionSetCap = value;
-}
-
-export function handleNotifyInfusionSetInPack(nextState) {
-
-    // deep copy
-    currentState = _.cloneDeep(stateIndex.getState());
-}
-
-export function handleControllerNotifyInfusionSetCap ( triggerEvent ) {
-
-    /*if (
-        detectCollision(element, triggerEvent.activeController)
-        && controllerStateIndex.getControllerState('infusionSetOnDeskOpened')
-        && haveSthInHand(triggerEvent.activeController).length === 0
-        && canTriggerCapAndWheel
-        && canTriggerInfusionSetCap
-    ) {
-        console.log("take infusion set cap");
-        activeController = triggerEvent.activeController;
-        let activeControllerId = activeController.getAttribute('id');
-        controllerStateIndex.setControllerState('infusionSetCapInHand', activeControllerId);
-    }*/
 }
 
 export function handleControllerPressInfusionSetCap ( triggerEvent ) {
@@ -115,9 +72,6 @@ export function handleControllerStateNotifyInfusionSetCap (nextControllerState) 
     ) {
         fallDown(element);
     }
-
-    // deep copy
-    currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
 function dragInHand() {

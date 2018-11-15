@@ -30,12 +30,10 @@ export function handleControllerPressNameLabelFilledVive ( triggerEvent ) {
         || controllerStateIndex.getControllerState('nameLabelPasted')
         || !controllerStateIndex.getControllerState('isNameFilledLabelHandling')
         || controllerStateIndex.getControllerState('nameLabelInHand') !== null
-        // || !filledNameLabel
     ) {
         return false;
     }
     activeController = triggerEvent.activeController;
-    // test
     filledNameLabel = document.querySelector(`#${filledNameLabelId}`);
 
     // Pick up filled name label
@@ -55,7 +53,6 @@ export function handleControllerReleaseNameLabelFilledVive ( triggerEvent ) {
         !controllerStateIndex.getControllerState('nameLabelFilled')
         || controllerStateIndex.getControllerState('nameLabelPasted')
         || !controllerStateIndex.getControllerState('isNameFilledLabelHandling')
-        // || !filledNameLabel
 ) {
         return false;
     }
@@ -72,8 +69,6 @@ export function handleControllerReleaseNameLabelFilledVive ( triggerEvent ) {
         && !hasCollisionWithCabinets(filledNameLabel)
     ) {
         controllerStateIndex.setControllerState('nameLabelInHand', null);
-
-
     }
 
 }

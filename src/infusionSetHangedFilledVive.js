@@ -3,14 +3,9 @@ import _ from 'lodash';
 
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
-import * as constants from '../utils/constants';
-import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from "../utils/isEmitted";
-import { controllerActions } from "../utils/controllerActions";
+import { detectCollision } from "../utils/isEmitted";
 import hints from '../utils/hints';
 
-let currentState;
 let currentControllerState;
 let element;
 let infusionSetFilledFill;
@@ -24,7 +19,6 @@ let canFixTube = false;
 export default AFRAME.registerComponent('infusion_set_hanged_filled_vive', {
 
     init: function(){
-        // shallow copy
         element = this.el;
         infusionSetFilledFill = document.querySelector('#infusionSetFilledFill');
         infusionSetHangedFilledWheel =document.querySelector('#infusionSetHangedFilledWheel');
@@ -32,10 +26,6 @@ export default AFRAME.registerComponent('infusion_set_hanged_filled_vive', {
 
         touchable = true;
 
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
-
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 
         $(this.el).on('click', () => {
@@ -47,12 +37,6 @@ const schema = {
     infusionSetHangedFilledWheelOpenPosition: '-0.530 0.110 -0.060',
     dur: 800
 };
-
-export function handleNotifyInfusionSetHangedFilledVive(nextState) {
-
-    // deep copy
-    currentState = _.cloneDeep(stateIndex.getState());
-}
 
 export function handleControllerNotifyInfusionSetHangedFilledVive ( triggerEvent ) {
 
@@ -105,7 +89,6 @@ export function handleControllerStateNotifyInfusionSetHangedFilledVive (nextCont
         fixTube();
     }
 
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 

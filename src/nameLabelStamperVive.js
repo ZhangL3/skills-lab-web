@@ -1,28 +1,20 @@
 import $ from 'jquery';
-import _ from 'lodash';
 
 import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
-import * as constants from '../utils/constants';
-import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from "../utils/isEmitted";
+import { detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
-
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import hints from "../utils/hints";
 import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
-let currentState;
-let currentControllerState;
 let element;
 let nameLabelEmpty;
 let nameLabelWroteLeft;
 let nameLabelWroteRight;
 let activeController;
 let infusionSetWheel;
-
 let isNameLabelEmptyInHand = false;
 let isNameEmptyLabelHandling = false;
 
@@ -32,7 +24,6 @@ export let canWrite;
 export default AFRAME.registerComponent('name_label_stamper_vive', {
 
     init: function(){
-        // shallow copy
         element = this.el;
         nameLabelEmpty = document.querySelector('#nameLabelEmpty');
         nameLabelWroteLeft = document.querySelector('#nameLabelWroteLeft');
@@ -40,16 +31,6 @@ export default AFRAME.registerComponent('name_label_stamper_vive', {
         activeController = null;
         infusionSetWheel = document.querySelector('#infusionSetOpenWheel');
         canWrite = false;
-
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
-
-        // deep copy
-        currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
-        // $(this.el).on('closeWheel', () => {
-        //     closeWheel();
-        // });
     }
 });
 
@@ -58,43 +39,6 @@ const schema = {
     pastedNameLabelRotation: '-0.454 0 0.295',
     dur : 500,
 };
-
-export function handleNotifyNameLabelStamperVive(nextState) {
-
-    // deep copy
-    currentState = _.cloneDeep(stateIndex.getState());
-}
-
-export function handleControllerNotifyNameLabelStamperVive ( triggerEvent ) {
-
-    /*if (
-        !stateIndex.getIn(['infusionSet', 'finish'])
-    ) {
-        console.log("Fix the tube before taking name label");
-        return false;
-    }
-
-    if (
-        !controllerStateIndex.getControllerState('nameLabelInHand')
-        && !stateIndex.getIn(['nameLabel', 'finish'])
-    ) {
-        getWorldBound(element);
-
-        // take name label in hand
-        if (
-            detectCollision(element, triggerEvent.activeController)
-            && haveSthInHand(triggerEvent.activeController).length === 0
-        ) {
-            activeController = triggerEvent.activeController;
-            let activeControllerId = activeController.getAttribute('id');
-            controllerStateIndex.setControllerState('nameLabelInHand', activeControllerId);
-            // after 2 second can write name label
-            setTimeout(()=>{
-                canWrite = true;
-            }, 2000);
-        }
-    }*/
-}
 
 export function handleControllerPressNameLabelStamperVive ( triggerEvent ) {
 
@@ -165,7 +109,6 @@ export function handleControllerReleaseNameLabelStamperVive ( triggerEvent ) {
     }
 }
 
-
 export function handleControllerStateNotifyNameLabelStamperVive (nextControllerState) {
 
     // drag in hand
@@ -184,9 +127,6 @@ export function handleControllerStateNotifyNameLabelStamperVive (nextControllerS
     ) {
         fallDown(nameLabelEmpty);
     }
-
-    // deep copy
-    currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
 function dragNameLabelEmptyInHand() {

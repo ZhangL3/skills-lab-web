@@ -1,19 +1,15 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import stateIndex from './state';
 import controllerStateIndex from '../utils/controllerState';
-import * as constants from '../utils/constants';
 import aAnimationWrapper from '../utils/aAnimationWrapper';
-import { getWorldBound } from "../utils/getWorldPositionAndBound";
-import { isEmitted, detectCollision } from "../utils/isEmitted";
+import { detectCollision } from "../utils/isEmitted";
 import { controllerActions } from "../utils/controllerActions";
 
 import { haveSthInHand } from "./controllerHand";
 import dropDown from "../utils/dropDown";
 import hasCollisionWithCabinets from "../utils/hasCollisionWithCabinets";
 
-let currentState;
 let currentControllerState;
 let element;
 let activeController;
@@ -28,21 +24,12 @@ export let canTriggerCapAndWheel = false;
 export default AFRAME.registerComponent('infusion_set_open_vive', {
 
     init: function(){
-        // shallow copy
         element = this.el;
         activeController = null;
         infusionSetWheel = document.querySelector('#infusionSetOpenWheel');
         toggleBoxNacl500Cap = document.querySelector('#toggleBoxNacl500Cap');
 
-        // deep copy
-        currentState = _.cloneDeep(stateIndex.getState());
-
-        // deep copy
         currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
-
-        // $(this.el).on('closeWheel', () => {
-        //     closeWheel();
-        // });
     }
 });
 
@@ -53,40 +40,6 @@ const schema = {
 
 export function setCanTriggerCapAndWheel(value) {
     canTriggerCapAndWheel = value;
-}
-
-export function handleNotifyInfusionSetInPack(nextState) {
-
-    // deep copy
-    currentState = _.cloneDeep(stateIndex.getState());
-}
-
-export function handleControllerNotifyInfusionSetOpen ( triggerEvent ) {
-
-    /*// getWorldBound(element);
-    // getWorldBound(infusionSetWheel);
-
-    if (detectCollision(element, triggerEvent.activeController)) {
-        // take opened infusion set in hand
-        if (
-            controllerStateIndex.getControllerState('infusionSetCapOff')
-            && controllerStateIndex.getControllerState('infusionSetWheelClosed')
-            && !controllerStateIndex.getControllerState('infusionSetOpenInHand')
-            && haveSthInHand(triggerEvent.activeController).length === 0
-        ) {
-            activeController = triggerEvent.activeController;
-            let activeControllerId = activeController.getAttribute('id');
-            controllerStateIndex.setControllerState('infusionSetOpenInHand', activeControllerId);
-        }
-        // change hints
-        else if (
-            (!controllerStateIndex.getControllerState('infusionSetCapOff')
-            || !controllerStateIndex.getControllerState('infusionSetWheelClosed'))
-            && !controllerStateIndex.getControllerState('infusionSetOpenInHand')
-        ) {
-            console.log("Take off the cap of infusion set and bottle, close the roller");
-        }
-    }*/
 }
 
 export function handleControllerPressInfusionSetOpen ( triggerEvent ) {
@@ -186,7 +139,6 @@ export function handleControllerStateNotifyInfusionSetOpen (nextControllerState)
         fallDown(element);
     }
 
-    // deep copy
     currentControllerState = _.cloneDeep(controllerStateIndex.getAllControllerState());
 }
 
